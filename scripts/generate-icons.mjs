@@ -146,8 +146,8 @@ function buildIcon(size, { maskable = false } = {}) {
   const h = size
   const buf = Buffer.alloc(w * h * 4)
 
-  const bg = hexToRgb("#0f0f23")
-  const accent = hexToRgb("#e94560")
+  const bg = hexToRgb("#ffffff")
+  const accent = hexToRgb("#2f7a3d")
   drawGradient(buf, w, h, bg, accent)
 
   const pad = maskable ? Math.round(size * 0.16) : Math.round(size * 0.11)
@@ -161,8 +161,8 @@ function buildIcon(size, { maskable = false } = {}) {
     size - pad,
     size - pad,
     cardR,
-    hexToRgb("#16213e"),
-    220,
+    hexToRgb("#ffffff"),
+    245,
   )
 
   drawCircle(buf, w, h, size - pad - Math.round(size * 0.09), pad + Math.round(size * 0.15), Math.round(size * 0.1), accent, 235)
@@ -171,7 +171,7 @@ function buildIcon(size, { maskable = false } = {}) {
   for (let y = 0; y < h; y++) {
     for (let x = Math.round(size * 0.62); x < size; x++) {
       const nx = (x - size * 0.62) / (size * 0.38)
-      const a = Math.round(30 * (1 - nx))
+      const a = Math.round(16 * (1 - nx))
       const i = (y * w + x) * 4
       buf[i + 0] = Math.min(255, buf[i + 0] + a)
       buf[i + 1] = Math.min(255, buf[i + 1] + a)
@@ -192,4 +192,3 @@ write("icon-192.png", buildIcon(192))
 write("icon-512.png", buildIcon(512))
 write("maskable-512.png", buildIcon(512, { maskable: true }))
 write("apple-touch-icon.png", buildIcon(180))
-

@@ -34,7 +34,7 @@ export function NetworkToast() {
       <div
         className={cx(
           "rounded-full border px-3 py-2 text-xs font-semibold shadow-soft backdrop-blur-xl",
-          online ? "border-white/10 bg-white/6 text-white/80" : "border-ember-500/45 bg-ember-500/15 text-white",
+          online ? "border-black/10 bg-white/85 text-ink-700" : "border-ember-500/25 bg-ember-500/12 text-ink-950",
         )}
       >
         {online ? "已连接 / Online" : "离线模式 / Offline"}
@@ -42,4 +42,3 @@ export function NetworkToast() {
     </div>
   )
 }
-

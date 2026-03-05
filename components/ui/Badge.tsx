@@ -14,10 +14,10 @@ export function Badge({
     "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold tracking-wide"
   const styles =
     tone === "accent"
-      ? "border-ember-500/35 bg-ember-500/15 text-white/90"
+      ? "border-ember-500/25 bg-ember-500/10 text-ink-950"
       : tone === "soft"
-        ? "border-white/10 bg-white/5 text-white/80"
-        : "border-white/10 bg-white/4 text-white/85"
+        ? "border-black/10 bg-black/5 text-ink-700"
+        : "border-black/10 bg-white text-ink-700"
 
   return <span className={cx(base, styles, className)}>{children}</span>
 }

@@ -3,25 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <meta name="theme-color" content="#1a1a2e" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Tobacco Atlas · 离线</title>
     <style>
       :root {
-        color-scheme: dark;
-        --bg: #0f0f23;
-        --panel: #1a1a2e;
-        --panel2: #16213e;
-        --accent: #e94560;
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.66);
+        color-scheme: light;
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel2: #ffffff;
+        --accent: #2f7a3d;
+        --text: #1a1a1a;
+        --muted: rgba(26, 26, 26, 0.62);
       }
       html,
       body {
         height: 100%;
         margin: 0;
-        background: radial-gradient(1200px 700px at 20% -10%, rgba(233, 69, 96, 0.18), transparent 55%),
-          radial-gradient(900px 500px at 90% 5%, rgba(91, 124, 255, 0.12), transparent 60%),
-          var(--bg);
+        background: var(--bg);
         color: var(--text);
         font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI",
           sans-serif;
@@ -32,20 +30,20 @@
         padding: 28px 18px;
       }
       .card {
-        background: linear-gradient(180deg, rgba(26, 26, 46, 0.98), rgba(22, 33, 62, 0.88));
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--panel);
+        border: 1px solid rgba(26, 26, 26, 0.12);
         border-radius: 22px;
         padding: 18px;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 14px 30px rgba(17, 24, 39, 0.1);
       }
       .badge {
         display: inline-block;
         font-size: 12px;
         padding: 4px 10px;
         border-radius: 999px;
-        background: rgba(233, 69, 96, 0.16);
-        border: 1px solid rgba(233, 69, 96, 0.35);
-        color: rgba(255, 255, 255, 0.9);
+        background: rgba(47, 122, 61, 0.12);
+        border: 1px solid rgba(47, 122, 61, 0.25);
+        color: rgba(26, 26, 26, 0.9);
       }
       h1 {
         font-size: 18px;
@@ -63,11 +61,11 @@
         border: none;
         border-radius: 14px;
         padding: 12px 14px;
-        background: rgba(233, 69, 96, 0.92);
+        background: rgba(47, 122, 61, 0.92);
         color: white;
         font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 0 0 1px rgba(233, 69, 96, 0.25), 0 10px 40px rgba(0, 0, 0, 0.55);
+        box-shadow: 0 0 0 1px rgba(47, 122, 61, 0.22), 0 14px 40px rgba(17, 24, 39, 0.12);
       }
     </style>
   </head>
@@ -82,4 +80,3 @@
     </div>
   </body>
 </html>
-

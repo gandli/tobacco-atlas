@@ -3,23 +3,20 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --bg: #0f0f23;
-  --panel: #1a1a2e;
-  --panel2: #16213e;
-  --accent: #e94560;
-  --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.66);
-  --hairline: rgba(255, 255, 255, 0.08);
+  color-scheme: light;
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --panel2: #ffffff;
+  --accent: #2f7a3d;
+  --text: #1a1a1a;
+  --muted: rgba(26, 26, 26, 0.62);
+  --hairline: rgba(26, 26, 26, 0.12);
 }
 
 html,
 body {
   height: 100%;
-  background: radial-gradient(1200px 700px at 20% -10%, rgba(233, 69, 96, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 90% 5%, rgba(91, 124, 255, 0.12), transparent 60%),
-    radial-gradient(900px 500px at 30% 120%, rgba(0, 255, 209, 0.08), transparent 65%),
-    var(--bg);
+  background: var(--bg);
 }
 
 body {
@@ -32,13 +29,13 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid rgba(233, 69, 96, 0.65);
+  outline: 2px solid rgba(47, 122, 61, 0.45);
   outline-offset: 2px;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(233, 69, 96, 0.35) rgba(255, 255, 255, 0.06);
+  scrollbar-color: rgba(26, 26, 26, 0.18) rgba(26, 26, 26, 0.06);
 }
 
 *::-webkit-scrollbar {
@@ -47,12 +44,12 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(26, 26, 26, 0.06);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(233, 69, 96, 0.45), rgba(233, 69, 96, 0.18));
-  border: 2px solid rgba(15, 15, 35, 0.8);
+  background: rgba(26, 26, 26, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.9);
   border-radius: 999px;
 }
 
@@ -66,7 +63,7 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.09;
+    opacity: 0.035;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
     z-index: -1;
@@ -103,13 +100,13 @@ body {
     color: var(--muted);
   }
   .bg-panel {
-    background: linear-gradient(180deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.82));
+    background: var(--panel);
   }
   .bg-panel-strong {
-    background: linear-gradient(180deg, rgba(26, 26, 46, 0.98), rgba(22, 33, 62, 0.9));
+    background: var(--panel2);
   }
   .ring-accent {
-    box-shadow: 0 0 0 1px rgba(233, 69, 96, 0.38), 0 12px 36px rgba(0, 0, 0, 0.42);
+    box-shadow: 0 0 0 1px rgba(47, 122, 61, 0.22), 0 14px 36px rgba(17, 24, 39, 0.12);
   }
 }
 

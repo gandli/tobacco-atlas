@@ -67,18 +67,18 @@ export function CommunityScreen() {
                 <div className="text-sm font-semibold">{p.title}</div>
                 <div className="mt-1 flex items-center gap-2 text-xs text-muted">
                   <span className="truncate">{p.user}</span>
-                  <span className="h-1 w-1 rounded-full bg-white/20" />
+                  <span className="h-1 w-1 rounded-full bg-black/20" />
                   <span>{p.time}</span>
                 </div>
               </div>
               <Badge tone="accent">{likes[p.id] ?? 0} 赞</Badge>
             </div>
 
-            <p className="mt-3 text-sm text-white/80">{p.body}</p>
+            <p className="mt-3 text-sm text-ink-700">{p.body}</p>
 
             <div className="mt-3 flex flex-wrap gap-1.5">
               {p.tags.map((t) => (
-                <span key={t} className="rounded-full border border-white/10 bg-white/4 px-2 py-1 text-[11px] text-white/70">
+                <span key={t} className="rounded-full border border-black/10 bg-white px-2 py-1 text-[11px] text-ink-700">
                   #{t}
                 </span>
               ))}
@@ -95,7 +95,7 @@ export function CommunityScreen() {
               <button
                 type="button"
                 className={cx(
-                  "rounded-xl border border-white/10 bg-white/4 px-3 py-2 text-xs font-semibold text-white/70 transition hover:bg-white/8",
+                  "rounded-xl border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-ink-700 transition hover:bg-black/5",
                 )}
               >
                 评论 / Comment (Mock)
@@ -107,4 +107,3 @@ export function CommunityScreen() {
     </div>
   )
 }
-

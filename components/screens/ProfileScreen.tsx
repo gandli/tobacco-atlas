@@ -55,12 +55,12 @@ export function ProfileScreen() {
           <div>
             <div className="text-sm font-semibold">本地数据 / Local</div>
             <div className="mt-1 text-sm text-muted">
-              收藏 <span className="text-white/80">{counts.fav}</span> / 总计{" "}
-              <span className="text-white/80">{counts.total}</span>
+              收藏 <span className="text-ink-950">{counts.fav}</span> / 总计{" "}
+              <span className="text-ink-950">{counts.total}</span>
             </div>
             <div className="mt-1 text-xs text-muted">存储占用（估算）：{usageText}</div>
           </div>
-          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/4 text-lg font-black">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-black/10 bg-white text-lg font-black text-ink-950">
             我
           </div>
         </div>
@@ -91,4 +91,3 @@ export function ProfileScreen() {
     </div>
   )
 }
-

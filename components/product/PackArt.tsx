@@ -4,7 +4,7 @@ import type { ProductCategory } from "@/lib/types"
 export function PackArt({
   category,
   label,
-  accent = "#e94560",
+  accent = "#2f7a3d",
   className,
 }: {
   category: ProductCategory
@@ -17,34 +17,34 @@ export function PackArt({
   return (
     <div
       className={cx(
-        "relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))] shadow-[inset_0_1px_0_rgba(255,255,255,.06)]",
+        "relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,.04)]",
         className,
       )}
       aria-hidden="true"
     >
       <div
-        className="absolute inset-0 opacity-90"
+        className="absolute inset-0 opacity-100"
         style={{
           background:
-            "radial-gradient(900px 220px at 20% 0%, rgba(233,69,96,.28), transparent 60%), radial-gradient(900px 240px at 80% 10%, rgba(91,124,255,.18), transparent 65%), radial-gradient(700px 220px at 50% 120%, rgba(0,255,209,.10), transparent 55%)",
+            "radial-gradient(900px 260px at 22% 0%, rgba(47,122,61,.18), transparent 60%), radial-gradient(820px 260px at 88% 14%, rgba(0,0,0,.06), transparent 62%)",
         }}
       />
       <div
         className="absolute -left-10 -top-10 h-40 w-40 rounded-full blur-2xl"
-        style={{ background: `${accent}33` }}
+        style={{ background: `${accent}22` }}
       />
-      <div className="absolute right-0 top-0 h-full w-20 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,.10))]" />
+      <div className="absolute right-0 top-0 h-full w-20 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,.06))]" />
 
       <div className="relative p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-white/55">TOBACCO ATLAS</div>
-            <div className="mt-1 line-clamp-1 text-sm font-semibold tracking-tight">{label}</div>
-            <div className="mt-2 h-1.5 w-16 rounded-full bg-white/8">
-              <div className="h-1.5 w-8 rounded-full" style={{ background: `${accent}bb` }} />
+            <div className="text-[10px] uppercase tracking-[0.22em] text-ink-500">TOBACCO ATLAS</div>
+            <div className="mt-1 line-clamp-1 text-sm font-semibold tracking-tight text-ink-950">{label}</div>
+            <div className="mt-2 h-1.5 w-16 rounded-full bg-black/10">
+              <div className="h-1.5 w-8 rounded-full" style={{ background: `${accent}cc` }} />
             </div>
           </div>
-          <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/5 text-sm font-black">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl border border-black/10 bg-white text-sm font-black text-ink-950">
             {glyph}
           </div>
         </div>
@@ -54,7 +54,7 @@ export function PackArt({
             <div
               // eslint-disable-next-line react/no-array-index-key
               key={i}
-              className="h-14 rounded-xl border border-white/10 bg-white/4"
+              className="h-14 rounded-xl border border-black/10 bg-white/70"
             />
           ))}
         </div>
@@ -62,4 +62,3 @@ export function PackArt({
     </div>
   )
 }
-

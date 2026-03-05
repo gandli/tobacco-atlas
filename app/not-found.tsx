@@ -9,7 +9,7 @@ export default function NotFound() {
         <p className="mt-2 text-sm text-muted">你要找的产品或页面可能已被移动，或者尚未收录。</p>
         <Link
           href="/brands"
-          className="mt-4 inline-flex items-center justify-center rounded-xl bg-ember-500/90 px-4 py-2 text-sm font-semibold text-white shadow-glow transition hover:bg-ember-500"
+          className="mt-4 inline-flex items-center justify-center rounded-xl bg-ember-500 px-4 py-2 text-sm font-semibold text-white shadow-glow transition hover:bg-ember-500/90"
         >
           返回品牌 / Back to Brands
         </Link>
@@ -17,4 +17,3 @@ export default function NotFound() {
     </div>
   )
 }
-

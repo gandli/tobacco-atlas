@@ -91,7 +91,7 @@ export function ProductDetailScreen({ product }: { product: Product }) {
 
       <div className="rounded-2xl border hairline bg-panel p-5 shadow-soft">
         <div className="text-sm font-semibold">口感 / Notes</div>
-        <p className="mt-2 text-sm text-white/80">{product.notes}</p>
+        <p className="mt-2 text-sm text-ink-700">{product.notes}</p>
 
         {product.category === "ecig" ? (
           <>
@@ -121,10 +121,9 @@ export function ProductDetailScreen({ product }: { product: Product }) {
 
 function Spec({ k, v }: { k: string; v: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/4 p-3">
-      <div className="text-[11px] uppercase tracking-[0.16em] text-white/45">{k}</div>
-      <div className="mt-1 font-semibold text-white/90">{v}</div>
+    <div className="rounded-2xl border border-black/10 bg-white p-3">
+      <div className="text-[11px] uppercase tracking-[0.16em] text-ink-500">{k}</div>
+      <div className="mt-1 font-semibold text-ink-950">{v}</div>
     </div>
   )
 }
-

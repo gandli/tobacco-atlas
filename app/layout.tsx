@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   applicationName: "Tobacco Atlas",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "Tobacco Atlas",
   },
   formatDetection: { telephone: false },
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1a1a2e",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="zh-Hans" className="dark">
+    <html lang="zh-Hans">
       <body className="noise">
         <FavoritesProvider>
           {children}
