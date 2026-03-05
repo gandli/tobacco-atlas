@@ -25,5 +25,12 @@ Page({
     this.setData({ langIndex: idx });
     wx.showToast({ title: opt.key === "en" ? "Language set" : "已切换语言", icon: "none" });
   },
-});
 
+  goFavorites() {
+    wx.switchTab({ url: "/pages/favorites/favorites" });
+  },
+
+  goSearch() {
+    wx.navigateTo({ url: "/pages/search/search" });
+  },
+});

@@ -7,8 +7,32 @@ function normalizeText(text) {
     .trim();
 }
 
+function categoryIcon(category) {
+  if (category === "cigarette") return "/assets/icons/cigarette-pack.svg";
+  if (category === "cigar") return "/assets/icons/cigar.svg";
+  if (category === "ecig") return "/assets/icons/ecig-device.svg";
+  return "/assets/icons/cigarette-pack.svg";
+}
+
+function displayName(p) {
+  if (p && p.name) return String(p.name);
+  const brand = String((p && p.brand) || "").trim();
+  const series = String((p && p.series) || "").trim();
+  const suffix = series ? ` ${series}` : "";
+  return (brand + suffix).trim() || "未命名产品";
+}
+
+function decorateProduct(p) {
+  if (!p) return null;
+  return {
+    ...p,
+    name: displayName(p),
+    icon: categoryIcon(p.category),
+  };
+}
+
 function getAllProducts() {
-  return products.slice();
+  return products.map(decorateProduct);
 }
 
 function getCatalogStats() {
@@ -26,11 +50,12 @@ function getCatalogStats() {
 function getProductsByCategory(categoryKey) {
   return products
     .filter((p) => p.category === categoryKey)
+    .map(decorateProduct)
     .sort((a, b) => (a.brand + a.name).localeCompare(b.brand + b.name, "zh-Hans-CN"));
 }
 
 function getProductById(id) {
-  return products.find((p) => p.id === id) || null;
+  return decorateProduct(products.find((p) => p.id === id) || null);
 }
 
 function getProductsByIds(ids) {
@@ -39,7 +64,7 @@ function getProductsByIds(ids) {
   const out = [];
   list.forEach((id) => {
     const p = map.get(id);
-    if (p) out.push(p);
+    if (p) out.push(decorateProduct(p));
   });
   return out;
 }
@@ -49,24 +74,26 @@ function searchProducts(query) {
   if (!q) return [];
   return products
     .filter((p) => {
+      const dp = decorateProduct(p);
       const hay = normalizeText(
         [
-          p.category,
-          p.brand,
-          p.name,
-          p.series,
-          p.type,
-          p.origin,
-          p.desc,
-          p.size,
-          p.wrapper,
-          p.features,
+          dp.category,
+          dp.brand,
+          dp.name,
+          dp.series,
+          dp.type,
+          dp.origin,
+          dp.desc,
+          dp.size,
+          dp.wrapper,
+          dp.features,
         ]
           .filter(Boolean)
           .join(" ")
       );
       return hay.includes(q);
     })
+    .map(decorateProduct)
     .slice(0, 60);
 }
 
@@ -77,12 +104,37 @@ function categoryLabel(category) {
   return "产品";
 }
 
+function getProductsByBrand(brand) {
+  const b = String(brand || "").trim();
+  if (!b) return [];
+  return products
+    .filter((p) => String(p.brand || "").trim() === b)
+    .map(decorateProduct)
+    .sort((a, b2) => (a.name + a.id).localeCompare(b2.name + b2.id, "zh-Hans-CN"));
+}
+
+function getBrandsByCategory(categoryKey) {
+  const map = new Map();
+  products.forEach((p) => {
+    if (p.category !== categoryKey) return;
+    const brand = String(p.brand || "").trim();
+    if (!brand) return;
+    map.set(brand, (map.get(brand) || 0) + 1);
+  });
+  return Array.from(map.entries())
+    .map(([brand, count]) => ({ brand, count }))
+    .sort((a, b) => a.brand.localeCompare(b.brand, "zh-Hans-CN"));
+}
+
 module.exports = {
   getAllProducts,
   getCatalogStats,
   getProductsByCategory,
+  getProductsByBrand,
+  getBrandsByCategory,
   getProductById,
   getProductsByIds,
   searchProducts,
   categoryLabel,
+  categoryIcon,
 };

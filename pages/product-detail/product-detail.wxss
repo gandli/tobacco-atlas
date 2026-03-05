@@ -25,7 +25,7 @@
 }
 
 .hero__tag {
-  color: rgba(233, 69, 96, 0.92);
+  color: var(--color-accent);
 }
 
 .hero__dot {
@@ -44,14 +44,14 @@
   margin-top: 14rpx;
   font-size: 30rpx;
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-muted);
 }
 
 .hero__desc {
   margin-top: 12rpx;
   font-size: 26rpx;
   line-height: 1.7;
-  color: rgba(242, 242, 246, 0.9);
+  color: rgba(15, 23, 42, 0.88);
 }
 
 .section {
@@ -106,4 +106,3 @@
   font-size: 24rpx;
   line-height: 1.7;
 }
-

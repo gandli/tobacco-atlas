@@ -3,6 +3,12 @@
   margin-top: 18rpx;
 }
 
+.panel__title {
+  font-size: 28rpx;
+  font-weight: 900;
+  margin-bottom: 6rpx;
+}
+
 .panel__row {
   display: flex;
   align-items: center;
@@ -18,17 +24,12 @@
 
 .panel__label {
   font-size: 26rpx;
-  color: rgba(242, 242, 246, 0.92);
+  color: rgba(15, 23, 42, 0.92);
 }
 
 .panel__value {
   font-size: 24rpx;
-  color: var(--color-accent);
-}
-
-.panel__title {
-  font-size: 28rpx;
-  font-weight: 700;
+  color: var(--color-muted);
 }
 
 .panel__desc {
@@ -38,3 +39,12 @@
   line-height: 1.7;
 }
 
+.panel__row--link:active {
+  opacity: 0.78;
+}
+
+.panel__chev {
+  font-size: 28rpx;
+  color: rgba(15, 23, 42, 0.36);
+  margin-left: 6rpx;
+}

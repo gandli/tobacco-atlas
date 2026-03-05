@@ -12,7 +12,7 @@
   padding: 18rpx 18rpx;
   border-radius: 18rpx;
   border: 1rpx solid var(--color-border);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
 }
 
 .search__icon {
@@ -32,4 +32,3 @@
   border-radius: 18rpx;
   padding: 10rpx 18rpx;
 }
-

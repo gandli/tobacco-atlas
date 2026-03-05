@@ -6,6 +6,7 @@ Page({
     activeCategory: "cigarette",
     products: [],
     statsText: "",
+    heroProducts: [],
   },
 
   onLoad() {
@@ -19,7 +20,17 @@ Page({
   refresh() {
     const { cigarette, cigar, ecig } = getCatalogStats();
     this.setData({ statsText: `${cigarette + cigar + ecig} 款 · 卷烟${cigarette} / 雪茄${cigar} / 电子烟${ecig}` });
+    this.refreshHero();
     this.loadList(this.data.activeCategory);
+  },
+
+  refreshHero() {
+    const list = [
+      ...getProductsByCategory("cigarette").slice(0, 6),
+      ...getProductsByCategory("cigar").slice(0, 6),
+      ...getProductsByCategory("ecig").slice(0, 6),
+    ].slice(0, 14);
+    this.setData({ heroProducts: list });
   },
 
   loadList(categoryKey) {
@@ -50,4 +61,3 @@ Page({
     this.loadList(this.data.activeCategory);
   },
 });
-

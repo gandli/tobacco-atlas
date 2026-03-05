@@ -4,6 +4,7 @@ Page({
       {
         id: "p1",
         user: "阿木",
+        avatar: "阿",
         time: "刚刚",
         tag: "中华",
         likes: 18,
@@ -13,6 +14,7 @@ Page({
       {
         id: "p2",
         user: "Lynn",
+        avatar: "L",
         time: "2小时前",
         tag: "长城雪茄",
         likes: 42,
@@ -22,6 +24,7 @@ Page({
       {
         id: "p3",
         user: "K",
+        avatar: "K",
         time: "昨天",
         tag: "RELX",
         likes: 27,
@@ -31,4 +34,3 @@ Page({
     ],
   },
 });
-

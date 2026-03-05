@@ -1,5 +1,8 @@
 .list {
-  height: calc(100vh - 200rpx);
+  margin-top: 18rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
 }
 
 .empty {
@@ -24,7 +27,6 @@
 }
 
 .product {
-  margin-top: 18rpx;
   transition: transform 160ms ease;
 }
 
@@ -32,56 +34,72 @@
   transform: scale(0.99);
 }
 
-.product__hero {
-  position: relative;
-  height: 140rpx;
-  background: radial-gradient(120% 120% at 20% 20%, rgba(233, 69, 96, 0.22), rgba(22, 33, 62, 0.1));
+.product__inner {
+  display: flex;
+  gap: 16rpx;
+  padding: 18rpx;
 }
 
-.product__badge {
-  position: absolute;
-  left: 16rpx;
-  top: 16rpx;
-  padding: 8rpx 12rpx;
-  border-radius: 999rpx;
-  border: 1rpx solid var(--color-border);
-  background: rgba(15, 15, 35, 0.35);
-  color: var(--color-text);
-  font-size: 24rpx;
+.product__imgWrap {
+  width: 120rpx;
+  height: 120rpx;
+  flex-shrink: 0;
+  border-radius: 24rpx;
+  background: var(--surface-2);
+  border: 1rpx solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product__img {
+  width: 92rpx;
+  height: 92rpx;
+}
+
+.product__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.product__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14rpx;
+}
+
+.product__left {
+  display: flex;
+  align-items: baseline;
+  gap: 10rpx;
+}
+
+.product__brand {
+  font-size: 28rpx;
+  font-weight: 900;
 }
 
 .product__tag {
-  position: absolute;
-  right: 16rpx;
-  top: 16rpx;
-  padding: 8rpx 12rpx;
+  font-size: 22rpx;
+  color: var(--color-accent);
+  padding: 6rpx 10rpx;
   border-radius: 999rpx;
-  border: 1rpx solid var(--color-border);
-  background: rgba(15, 15, 35, 0.2);
-  color: var(--color-muted);
-  font-size: 24rpx;
-}
-
-.product__body {
-  padding: 18rpx 18rpx 20rpx;
-}
-
-.product__nameRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12rpx;
+  border: 1rpx solid rgba(22, 163, 74, 0.18);
+  background: rgba(22, 163, 74, 0.08);
 }
 
 .product__name {
   font-size: 30rpx;
   font-weight: 700;
+  margin-top: 8rpx;
+  line-height: 1.2;
 }
 
 .product__price {
   font-size: 26rpx;
-  color: var(--color-accent);
-  font-weight: 700;
+  color: var(--color-muted);
+  font-weight: 600;
 }
 
 .product__right {
@@ -93,19 +111,15 @@
 .product__remove {
   padding: 8rpx 12rpx;
   border-radius: 14rpx;
-  border: 1rpx solid rgba(233, 69, 96, 0.4);
-  background: rgba(233, 69, 96, 0.12);
-  color: rgba(233, 69, 96, 0.95);
+  border: 1rpx solid rgba(239, 68, 68, 0.28);
+  background: rgba(239, 68, 68, 0.08);
+  color: rgba(239, 68, 68, 0.92);
   font-size: 22rpx;
 }
 
 .product__desc {
   margin-top: 10rpx;
-  color: rgba(242, 242, 246, 0.86);
+  color: rgba(15, 23, 42, 0.86);
   font-size: 24rpx;
   line-height: 1.6;
-}
-
-.footer-space {
-  height: 36rpx;
 }

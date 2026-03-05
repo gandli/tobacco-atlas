@@ -1,10 +1,39 @@
 <view class="container">
+  <view class="card heroBanner">
+    <view class="heroBanner__head">
+      <view class="heroBanner__title">中国烟草图鉴</view>
+      <view class="heroBanner__meta">
+        <view class="heroBanner__sub">Brands · Catalog</view>
+        <view class="pill heroBanner__pill">{{statsText}}</view>
+      </view>
+    </view>
+
+    <swiper
+      class="heroBanner__swiper"
+      circular
+      autoplay
+      interval="2200"
+      duration="480"
+      easing-function="easeOutCubic"
+      display-multiple-items="3"
+    >
+      <swiper-item wx:for="{{heroProducts}}" wx:key="id">
+        <view class="heroBanner__item" data-id="{{item.id}}" bindtap="goDetail">
+          <view class="heroBanner__imgWrap">
+            <image class="heroBanner__img" src="{{item.icon}}" mode="aspectFit" />
+          </view>
+          <view class="heroBanner__brand">{{item.brand}}</view>
+          <view class="heroBanner__name">{{item.name}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
   <view class="title-row">
     <view>
       <view class="h1">品牌</view>
-      <view class="subtitle">Brands · Catalog</view>
+      <view class="subtitle">按品类浏览与收藏</view>
     </view>
-    <view class="pill">{{statsText}}</view>
   </view>
 
   <search-bar placeholder="搜索产品 / 品牌" />
@@ -15,28 +44,35 @@
     <view class="seg__item {{activeCategory==='ecig'?'seg__item--on':''}}" data-key="ecig" bindtap="onCategory">电子烟</view>
   </view>
 
-  <scroll-view class="list" scroll-y enhanced show-scrollbar="{{false}}">
+  <view class="list">
     <view wx:for="{{products}}" wx:key="id" class="card product" data-id="{{item.id}}" bindtap="goDetail">
-      <view class="product__hero">
-        <view class="product__badge">{{item.brand}}</view>
-        <view class="product__fav" data-id="{{item.id}}" catchtap="toggleFav">
-          <text class="product__favIcon {{item.isFav?'product__favIcon--on':''}}">♥</text>
+      <view class="product__inner">
+        <view class="product__imgWrap">
+          <image class="product__img" src="{{item.icon}}" mode="aspectFit" />
         </view>
-      </view>
-      <view class="product__body">
-        <view class="product__nameRow">
-          <text class="product__name">{{item.name}}</text>
-          <text class="product__price">¥{{item.price}}</text>
+
+        <view class="product__main">
+          <view class="product__top">
+            <text class="product__brand">{{item.brand}}</text>
+            <view class="product__right">
+              <text class="product__price">¥{{item.price}}</text>
+              <view class="product__fav" data-id="{{item.id}}" catchtap="toggleFav">
+                <text class="product__favIcon {{item.isFav?'product__favIcon--on':''}}">♥</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="product__name">{{item.name}}</view>
+
+          <view class="product__meta">
+            <text class="product__chip">{{item.series}}</text>
+            <text class="product__dot">·</text>
+            <text class="product__chip">{{item.origin}}</text>
+          </view>
+
+          <view class="product__desc">{{item.desc}}</view>
         </view>
-        <view class="product__meta">
-          <text class="product__chip">{{item.series}}</text>
-          <text class="product__dot">·</text>
-          <text class="product__chip">{{item.origin}}</text>
-        </view>
-        <view class="product__desc">{{item.desc}}</view>
       </view>
     </view>
-    <view class="footer-space" />
-  </scroll-view>
+  </view>
 </view>
-

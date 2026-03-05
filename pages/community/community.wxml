@@ -9,7 +9,10 @@
 
   <view class="card post" wx:for="{{posts}}" wx:key="id">
     <view class="post__head">
-      <view class="post__user">{{item.user}}</view>
+      <view class="post__userRow">
+        <view class="post__avatar">{{item.avatar}}</view>
+        <view class="post__user">{{item.user}}</view>
+      </view>
       <view class="post__time">{{item.time}}</view>
     </view>
     <view class="post__content">{{item.content}}</view>
@@ -22,4 +25,3 @@
     </view>
   </view>
 </view>
-

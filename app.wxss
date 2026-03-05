@@ -1,14 +1,15 @@
 :root,
 page {
-  --color-primary: #1a1a2e;
-  --color-secondary: #16213e;
-  --color-accent: #e94560;
-  --color-bg: #0f0f23;
-  --color-card: #16213e;
-  --color-text: #f2f2f6;
-  --color-muted: #b8b8c6;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 10rpx 30rpx rgba(0, 0, 0, 0.35);
+  --color-accent: #16a34a;
+  --color-bg: #ffffff;
+  --color-card: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #6b7280;
+  --color-border: rgba(15, 23, 42, 0.10);
+  --shadow-card: 0 10rpx 26rpx rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 8rpx 20rpx rgba(15, 23, 42, 0.06);
+  --surface-1: #f6f7fb;
+  --surface-2: #f3f4f6;
 }
 
 page {
@@ -47,13 +48,13 @@ page {
   padding: 10rpx 16rpx;
   border: 1rpx solid var(--color-border);
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
   color: var(--color-muted);
   font-size: 24rpx;
 }
 
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  background: var(--color-card);
   border: 1rpx solid var(--color-border);
   border-radius: 22rpx;
   box-shadow: var(--shadow-card);
@@ -67,7 +68,7 @@ page {
   padding: 14rpx 18rpx;
   border-radius: 16rpx;
   border: 1rpx solid var(--color-border);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
   color: var(--color-text);
 }
 
@@ -89,4 +90,3 @@ page {
 .muted {
   color: var(--color-muted);
 }
-

@@ -25,22 +25,28 @@
     <view class="empty__desc">试试：中华 / 长城 / RELX / 薄荷 / 奶油 …</view>
   </view>
 
-  <scroll-view class="list" scroll-y enhanced show-scrollbar="{{false}}">
+  <view class="list">
     <view wx:for="{{results}}" wx:key="id" class="card item" data-id="{{item.id}}" bindtap="goDetail">
-      <view class="item__head">
-        <view class="item__name">{{item.name}}</view>
-        <view class="item__price">¥{{item.price}}</view>
+      <view class="item__inner">
+        <view class="item__imgWrap">
+          <image class="item__img" src="{{item.icon}}" mode="aspectFit" />
+        </view>
+        <view class="item__main">
+          <view class="item__head">
+            <view class="item__title">
+              <text class="item__brand">{{item.brand}}</text>
+              <text class="item__name">{{item.name}}</text>
+            </view>
+            <view class="item__price">¥{{item.price}}</view>
+          </view>
+          <view class="item__meta">
+            <text class="item__tag">{{item.categoryLabel}}</text>
+            <text class="item__dot">·</text>
+            <text class="item__muted">{{item.origin}}</text>
+          </view>
+          <view class="item__desc">{{item.desc}}</view>
+        </view>
       </view>
-      <view class="item__meta">
-        <text class="item__tag">{{item.categoryLabel}}</text>
-        <text class="item__dot">·</text>
-        <text class="item__muted">{{item.brand}}</text>
-        <text class="item__dot">·</text>
-        <text class="item__muted">{{item.origin}}</text>
-      </view>
-      <view class="item__desc">{{item.desc}}</view>
     </view>
-    <view class="footer-space" />
-  </scroll-view>
+  </view>
 </view>
-

@@ -8,16 +8,16 @@
     "pages/product-detail/product-detail"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#1a1a2e",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "Tobacco Atlas",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#0f0f23"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
-    "color": "#b8b8c6",
-    "selectedColor": "#e94560",
-    "backgroundColor": "#1a1a2e",
+    "color": "#9CA3AF",
+    "selectedColor": "#16A34A",
+    "backgroundColor": "#FFFFFF",
     "borderStyle": "black",
     "list": [
       {
@@ -44,4 +44,3 @@
     "search-bar": "components/search-bar/search-bar"
   }
 }
-
