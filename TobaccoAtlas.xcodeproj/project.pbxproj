@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A1B0A5E2B7A000100000001 /* TobaccoAtlasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A5D2B7A000100000001 /* TobaccoAtlasApp.swift */; };
+		0A1B0A602B7A000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A5F2B7A000100000001 /* Theme.swift */; };
+		0A1B0A622B7A000100000001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A612B7A000100000001 /* Product.swift */; };
+		0A1B0A642B7A000100000001 /* MockCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A632B7A000100000001 /* MockCatalog.swift */; };
+		0A1B0A662B7A000100000001 /* FavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A652B7A000100000001 /* FavoritesStore.swift */; };
+		0A1B0A682B7A000100000001 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A672B7A000100000001 /* RootTabView.swift */; };
+		0A1B0A6A2B7A000100000001 /* ProductCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A692B7A000100000001 /* ProductCatalogView.swift */; };
+		0A1B0A6C2B7A000100000001 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A6B2B7A000100000001 /* ProductCardView.swift */; };
+		0A1B0A6E2B7A000100000001 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A6D2B7A000100000001 /* ProductDetailView.swift */; };
+		0A1B0A702B7A000100000001 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A6F2B7A000100000001 /* FavoritesView.swift */; };
+		0A1B0A722B7A000100000001 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A712B7A000100000001 /* CommunityView.swift */; };
+		0A1B0A742B7A000100000001 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0A732B7A000100000001 /* ProfileView.swift */; };
+		0A1B0A762B7A000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B0A752B7A000100000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A1B0A4A2B7A000100000001 /* TobaccoAtlas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TobaccoAtlas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A1B0A5D2B7A000100000001 /* TobaccoAtlasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TobaccoAtlasApp.swift; sourceTree = "<group>"; };
+		0A1B0A5F2B7A000100000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0A1B0A612B7A000100000001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		0A1B0A632B7A000100000001 /* MockCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCatalog.swift; sourceTree = "<group>"; };
+		0A1B0A652B7A000100000001 /* FavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStore.swift; sourceTree = "<group>"; };
+		0A1B0A672B7A000100000001 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		0A1B0A692B7A000100000001 /* ProductCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCatalogView.swift; sourceTree = "<group>"; };
+		0A1B0A6B2B7A000100000001 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
+		0A1B0A6D2B7A000100000001 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		0A1B0A6F2B7A000100000001 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		0A1B0A712B7A000100000001 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		0A1B0A732B7A000100000001 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0A1B0A752B7A000100000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A1B0A772B7A000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A1B0A562B7A000100000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A1B0A412B7A000100000001 = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A4C2B7A000100000001 /* TobaccoAtlas */,
+				0A1B0A4B2B7A000100000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0A1B0A4B2B7A000100000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A4A2B7A000100000001 /* TobaccoAtlas.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A1B0A4C2B7A000100000001 /* TobaccoAtlas */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A5D2B7A000100000001 /* TobaccoAtlasApp.swift */,
+				0A1B0A782B7A000100000001 /* Theme */,
+				0A1B0A792B7A000100000001 /* Models */,
+				0A1B0A7A2B7A000100000001 /* Data */,
+				0A1B0A7B2B7A000100000001 /* Stores */,
+				0A1B0A7C2B7A000100000001 /* Views */,
+				0A1B0A752B7A000100000001 /* Assets.xcassets */,
+				0A1B0A772B7A000100000001 /* Info.plist */,
+			);
+			path = TobaccoAtlas;
+			sourceTree = "<group>";
+		};
+		0A1B0A782B7A000100000001 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A5F2B7A000100000001 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		0A1B0A792B7A000100000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A612B7A000100000001 /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0A1B0A7A2B7A000100000001 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A632B7A000100000001 /* MockCatalog.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0A1B0A7B2B7A000100000001 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A652B7A000100000001 /* FavoritesStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		0A1B0A7C2B7A000100000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0A672B7A000100000001 /* RootTabView.swift */,
+				0A1B0A6F2B7A000100000001 /* FavoritesView.swift */,
+				0A1B0A692B7A000100000001 /* ProductCatalogView.swift */,
+				0A1B0A6B2B7A000100000001 /* ProductCardView.swift */,
+				0A1B0A6D2B7A000100000001 /* ProductDetailView.swift */,
+				0A1B0A712B7A000100000001 /* CommunityView.swift */,
+				0A1B0A732B7A000100000001 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A1B0A492B7A000100000001 /* TobaccoAtlas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A1B0A5B2B7A000100000001 /* Build configuration list for PBXNativeTarget "TobaccoAtlas" */;
+			buildPhases = (
+				0A1B0A552B7A000100000001 /* Sources */,
+				0A1B0A562B7A000100000001 /* Frameworks */,
+				0A1B0A572B7A000100000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TobaccoAtlas;
+			productName = TobaccoAtlas;
+			productReference = 0A1B0A4A2B7A000100000001 /* TobaccoAtlas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A1B0A422B7A000100000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					0A1B0A492B7A000100000001 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+				};
+			};
+			buildConfigurationList = 0A1B0A452B7A000100000001 /* Build configuration list for PBXProject "TobaccoAtlas" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				zh-Hans,
+			);
+			mainGroup = 0A1B0A412B7A000100000001;
+			productRefGroup = 0A1B0A4B2B7A000100000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A1B0A492B7A000100000001 /* TobaccoAtlas */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A1B0A572B7A000100000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A1B0A762B7A000100000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A1B0A552B7A000100000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A1B0A5E2B7A000100000001 /* TobaccoAtlasApp.swift in Sources */,
+				0A1B0A602B7A000100000001 /* Theme.swift in Sources */,
+				0A1B0A622B7A000100000001 /* Product.swift in Sources */,
+				0A1B0A642B7A000100000001 /* MockCatalog.swift in Sources */,
+				0A1B0A662B7A000100000001 /* FavoritesStore.swift in Sources */,
+				0A1B0A682B7A000100000001 /* RootTabView.swift in Sources */,
+				0A1B0A702B7A000100000001 /* FavoritesView.swift in Sources */,
+				0A1B0A6A2B7A000100000001 /* ProductCatalogView.swift in Sources */,
+				0A1B0A6C2B7A000100000001 /* ProductCardView.swift in Sources */,
+				0A1B0A6E2B7A000100000001 /* ProductDetailView.swift in Sources */,
+				0A1B0A722B7A000100000001 /* CommunityView.swift in Sources */,
+				0A1B0A742B7A000100000001 /* ProfileView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0A1B0A462B7A000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0A1B0A472B7A000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		0A1B0A5C2B7A000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TobaccoAtlas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tobaccoatlas.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0A1B0A5D2B7A000100000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TobaccoAtlas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tobaccoatlas.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A1B0A452B7A000100000001 /* Build configuration list for PBXProject "TobaccoAtlas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A1B0A462B7A000100000001 /* Debug */,
+				0A1B0A472B7A000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A1B0A5B2B7A000100000001 /* Build configuration list for PBXNativeTarget "TobaccoAtlas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A1B0A5C2B7A000100000001 /* Debug */,
+				0A1B0A5D2B7A000100000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A1B0A422B7A000100000001 /* Project object */;
+}
+
