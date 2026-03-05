@@ -33,8 +33,6 @@ struct CommunityView: View {
 			}
 			.background(Theme.background)
 			.navigationTitle("社区")
-			.toolbarBackground(Theme.primary, for: .navigationBar)
-			.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 
@@ -43,7 +41,7 @@ struct CommunityView: View {
 			HStack {
 				Text(post.title)
 					.font(.headline.weight(.semibold))
-					.foregroundStyle(.white)
+					.foregroundStyle(Theme.textPrimary)
 				Spacer(minLength: 0)
 				Text(post.time)
 					.font(.caption)
@@ -52,16 +50,16 @@ struct CommunityView: View {
 
 			Text(post.content)
 				.font(.subheadline)
-				.foregroundStyle(Theme.muted)
+				.foregroundStyle(Theme.textSecondary)
 
 			HStack(spacing: 8) {
 				ForEach(post.tags, id: \.self) { tag in
 					Text("#\(tag)")
 						.font(.caption2.weight(.semibold))
-						.foregroundStyle(.white.opacity(0.92))
+						.foregroundStyle(Theme.textSecondary)
 						.padding(.horizontal, 10)
 						.padding(.vertical, 6)
-						.background(Theme.secondary.opacity(0.65))
+						.background(Theme.chipBackground)
 						.clipShape(Capsule())
 				}
 
@@ -77,18 +75,12 @@ struct CommunityView: View {
 			}
 		}
 		.padding(16)
-		.background(Theme.card)
-		.overlay {
-			RoundedRectangle(cornerRadius: 18, style: .continuous)
-				.stroke(Theme.divider, lineWidth: 1)
-		}
-		.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+		.cardStyle()
 		.animation(.easeInOut(duration: 0.25), value: post)
 	}
 }
 
 #Preview {
 	CommunityView()
-		.preferredColorScheme(.dark)
+		.colorScheme(.light)
 }
-

@@ -54,8 +54,6 @@ struct FavoritesView: View {
 				ProductDetailView(product: product)
 					.environmentObject(favoritesStore)
 			}
-			.toolbarBackground(Theme.primary, for: .navigationBar)
-			.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 
@@ -66,6 +64,7 @@ struct FavoritesView: View {
 				.foregroundStyle(Theme.muted)
 			Text("还没有收藏")
 				.font(.headline)
+				.foregroundStyle(Theme.textPrimary)
 			Text("在“品牌”里点一下 ♥ 把喜欢的产品收进来。")
 				.font(.subheadline)
 				.foregroundStyle(Theme.muted)
@@ -73,17 +72,12 @@ struct FavoritesView: View {
 		}
 		.frame(maxWidth: .infinity)
 		.padding(.vertical, 26)
-		.background(Theme.card)
-		.overlay {
-			RoundedRectangle(cornerRadius: 18, style: .continuous)
-				.stroke(Theme.divider, lineWidth: 1)
-		}
-		.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+		.cardStyle()
 	}
 }
 
 #Preview {
 	FavoritesView()
 		.environmentObject(FavoritesStore())
-		.preferredColorScheme(.dark)
+		.colorScheme(.light)
 }

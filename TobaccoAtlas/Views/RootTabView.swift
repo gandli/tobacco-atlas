@@ -23,8 +23,7 @@ struct RootTabView: View {
 					Label("我的", systemImage: "person.fill")
 				}
 		}
-		.toolbarBackground(Theme.primary, for: .tabBar)
-		.toolbarBackground(.visible, for: .tabBar)
+		.tint(Theme.accent)
 		.background(Theme.background)
 	}
 }
@@ -32,6 +31,5 @@ struct RootTabView: View {
 #Preview {
 	RootTabView()
 		.environmentObject(FavoritesStore())
-		.preferredColorScheme(.dark)
+		.colorScheme(.light)
 }
-

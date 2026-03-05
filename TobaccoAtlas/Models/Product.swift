@@ -30,6 +30,14 @@ enum ProductCategory: String, Codable, CaseIterable, Identifiable {
 		case .ecigarette: return "bolt.fill"
 		}
 	}
+
+	var placeholderAssetName: String {
+		switch self {
+		case .cigarette: return "PlaceholderCigarette"
+		case .cigar: return "PlaceholderCigar"
+		case .ecigarette: return "PlaceholderECigarette"
+		}
+	}
 }
 
 struct ProductSpec: Identifiable, Hashable, Codable {
@@ -62,4 +70,3 @@ struct Product: Identifiable, Hashable, Codable {
 		([brand, series, name, subtitle, origin, tastingNote] + tags).joined(separator: " ")
 	}
 }
-

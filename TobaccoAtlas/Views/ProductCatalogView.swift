@@ -27,6 +27,10 @@ struct ProductCatalogView: View {
 		return base.filter { $0.searchableText.lowercased().contains(q) }
 	}
 
+	private var heroProducts: [Product] {
+		Array(MockCatalog.products.filter { $0.category == category }.prefix(10))
+	}
+
 	var body: some View {
 		NavigationStack {
 			ScrollView {
@@ -68,15 +72,43 @@ struct ProductCatalogView: View {
 				ProductDetailView(product: product)
 					.environmentObject(favoritesStore)
 			}
-			.toolbarBackground(Theme.primary, for: .navigationBar)
-			.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 
 	private var header: some View {
 		VStack(alignment: .leading, spacing: 10) {
-			Text("中国烟草图鉴")
-				.font(.title2.weight(.semibold))
+			VStack(alignment: .leading, spacing: 10) {
+				Text("中国烟草图鉴")
+					.font(.title2.weight(.semibold))
+					.foregroundStyle(Theme.textPrimary)
+
+				ScrollView(.horizontal, showsIndicators: false) {
+					HStack(spacing: 12) {
+						ForEach(heroProducts) { product in
+							NavigationLink(value: product) {
+								VStack(alignment: .leading, spacing: 10) {
+									ZStack {
+										RoundedRectangle(cornerRadius: 16, style: .continuous)
+											.fill(Theme.imageBackground)
+										ProductPlaceholderImage(category: product.category, size: 44, tint: Theme.accent)
+									}
+									.frame(width: 140, height: 92)
+
+									Text(product.brand)
+										.font(.subheadline.weight(.semibold))
+										.foregroundStyle(Theme.textPrimary)
+										.lineLimit(1)
+								}
+								.padding(12)
+								.frame(width: 164, alignment: .leading)
+								.cardStyle(cornerRadius: 20)
+							}
+							.buttonStyle(.plain)
+						}
+					}
+					.padding(.horizontal, 2)
+				}
+			}
 
 			Picker("分类", selection: $category) {
 				ForEach(ProductCategory.allCases) { category in
@@ -95,10 +127,10 @@ struct ProductCatalogView: View {
 					} label: {
 						Text("全部")
 							.font(.caption.weight(.semibold))
-							.foregroundStyle(brandFilter == nil ? .white : Theme.muted)
+							.foregroundStyle(brandFilter == nil ? .white : Theme.textSecondary)
 							.padding(.horizontal, 12)
 							.padding(.vertical, 8)
-							.background(brandFilter == nil ? Theme.accent.opacity(0.9) : Theme.secondary.opacity(0.65))
+							.background(brandFilter == nil ? Theme.accent : Theme.chipBackground)
 							.clipShape(Capsule())
 					}
 					.buttonStyle(.plain)
@@ -111,10 +143,10 @@ struct ProductCatalogView: View {
 						} label: {
 							Text(brand)
 								.font(.caption.weight(.semibold))
-								.foregroundStyle(brandFilter == brand ? .white : Theme.muted)
+								.foregroundStyle(brandFilter == brand ? .white : Theme.textSecondary)
 								.padding(.horizontal, 12)
 								.padding(.vertical, 8)
-								.background(brandFilter == brand ? Theme.accent.opacity(0.9) : Theme.secondary.opacity(0.65))
+								.background(brandFilter == brand ? Theme.accent : Theme.chipBackground)
 								.clipShape(Capsule())
 								.lineLimit(1)
 						}
@@ -137,6 +169,7 @@ struct ProductCatalogView: View {
 				.foregroundStyle(Theme.muted)
 			Text("没有找到相关产品")
 				.font(.headline)
+				.foregroundStyle(Theme.textPrimary)
 			Text("试试更短的关键词，例如 “中华” 或 “薄荷”。")
 				.font(.subheadline)
 				.foregroundStyle(Theme.muted)
@@ -144,12 +177,7 @@ struct ProductCatalogView: View {
 		}
 		.frame(maxWidth: .infinity)
 		.padding(.vertical, 26)
-		.background(Theme.card)
-		.overlay(alignment: .topLeading) {
-			RoundedRectangle(cornerRadius: 18, style: .continuous)
-				.stroke(Theme.divider, lineWidth: 1)
-		}
-		.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+		.cardStyle()
 		.padding(.top, 12)
 	}
 }
@@ -157,5 +185,5 @@ struct ProductCatalogView: View {
 #Preview {
 	ProductCatalogView()
 		.environmentObject(FavoritesStore())
-		.preferredColorScheme(.dark)
+		.colorScheme(.light)
 }

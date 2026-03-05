@@ -30,7 +30,7 @@ struct ProductDetailView: View {
 					}
 				} label: {
 					Image(systemName: isFavorite ? "heart.fill" : "heart")
-						.foregroundStyle(isFavorite ? Theme.accent : .white.opacity(0.9))
+						.foregroundStyle(isFavorite ? Theme.accent : Theme.tabInactive)
 						.symbolEffect(.bounce, value: isFavorite)
 				}
 				.accessibilityLabel(isFavorite ? "取消收藏" : "收藏")
@@ -45,7 +45,7 @@ struct ProductDetailView: View {
 					.font(.system(size: 20, weight: .semibold))
 					.foregroundStyle(Theme.accent)
 					.frame(width: 40, height: 40)
-					.background(Theme.secondary.opacity(0.7))
+					.background(Theme.imageBackground)
 					clipCapsule()
 
 				VStack(alignment: .leading, spacing: 2) {
@@ -54,7 +54,7 @@ struct ProductDetailView: View {
 						.foregroundStyle(Theme.muted)
 					Text(product.displayTitle)
 						.font(.title3.weight(.semibold))
-						.foregroundStyle(.white)
+						.foregroundStyle(Theme.textPrimary)
 						.lineLimit(2)
 				}
 
@@ -64,27 +64,27 @@ struct ProductDetailView: View {
 			HStack(spacing: 10) {
 				Text(product.subtitle)
 					.font(.caption.weight(.semibold))
-					.foregroundStyle(.white.opacity(0.92))
+					.foregroundStyle(Theme.textSecondary)
 					.padding(.horizontal, 10)
 					.padding(.vertical, 6)
-					.background(Theme.secondary.opacity(0.65))
+					.background(Theme.chipBackground)
 					clipCapsule()
 
 				Text(product.origin)
 					.font(.caption.weight(.semibold))
-					.foregroundStyle(.white.opacity(0.92))
+					.foregroundStyle(Theme.textSecondary)
 					.padding(.horizontal, 10)
 					.padding(.vertical, 6)
-					.background(Theme.secondary.opacity(0.65))
+					.background(Theme.chipBackground)
 					clipCapsule()
 
 				if let price = product.priceCNY {
 					Text("¥\(price)")
 						.font(.caption.weight(.semibold))
-						.foregroundStyle(.white.opacity(0.92))
+						.foregroundStyle(Theme.muted)
 						.padding(.horizontal, 10)
 						.padding(.vertical, 6)
-						.background(Theme.secondary.opacity(0.65))
+						.background(Theme.chipBackground)
 						clipCapsule()
 				}
 
@@ -92,12 +92,7 @@ struct ProductDetailView: View {
 			}
 		}
 		.padding(16)
-		.background(Theme.card)
-		.overlay {
-			RoundedRectangle(cornerRadius: 18, style: .continuous)
-				.stroke(Theme.divider, lineWidth: 1)
-		}
-		.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+		.cardStyle()
 		.transition(.opacity.combined(with: .move(edge: .bottom)))
 	}
 
@@ -105,18 +100,19 @@ struct ProductDetailView: View {
 		VStack(alignment: .leading, spacing: 10) {
 			Text("参数 / Specs")
 				.font(.headline)
+				.foregroundStyle(Theme.textPrimary)
 
 			VStack(spacing: 0) {
 				ForEach(product.specs) { spec in
 					HStack(alignment: .top, spacing: 12) {
 						Text(spec.label)
 							.font(.subheadline.weight(.semibold))
-							.foregroundStyle(.white.opacity(0.92))
+							.foregroundStyle(Theme.textSecondary)
 							.frame(width: 128, alignment: .leading)
 
 						Text(spec.value)
 							.font(.subheadline)
-							.foregroundStyle(Theme.muted)
+							.foregroundStyle(Theme.textPrimary)
 							.frame(maxWidth: .infinity, alignment: .leading)
 					}
 					.padding(.vertical, 10)
@@ -127,12 +123,7 @@ struct ProductDetailView: View {
 				}
 			}
 			.padding(.horizontal, 14)
-			.background(Theme.card)
-			.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-			.overlay {
-				RoundedRectangle(cornerRadius: 18, style: .continuous)
-					.stroke(Theme.divider, lineWidth: 1)
-			}
+			.cardStyle()
 		}
 	}
 
@@ -140,18 +131,14 @@ struct ProductDetailView: View {
 		VStack(alignment: .leading, spacing: 10) {
 			Text("口感 / Notes")
 				.font(.headline)
+				.foregroundStyle(Theme.textPrimary)
 
 			Text(product.tastingNote)
 				.font(.body)
-				.foregroundStyle(Theme.muted)
+				.foregroundStyle(Theme.textSecondary)
 				.frame(maxWidth: .infinity, alignment: .leading)
 				.padding(16)
-				.background(Theme.card)
-				.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-				.overlay {
-					RoundedRectangle(cornerRadius: 18, style: .continuous)
-						.stroke(Theme.divider, lineWidth: 1)
-				}
+				.cardStyle()
 		}
 	}
 }
@@ -168,6 +155,5 @@ private extension View {
 		ProductDetailView(product: MockCatalog.products[0])
 			.environmentObject(FavoritesStore())
 	}
-	.preferredColorScheme(.dark)
+	.colorScheme(.light)
 }
-
