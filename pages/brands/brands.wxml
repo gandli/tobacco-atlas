@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="title-row">
+    <view>
+      <view class="h1">品牌</view>
+      <view class="subtitle">Brands · Catalog</view>
+    </view>
+    <view class="pill">{{statsText}}</view>
+  </view>
+
+  <search-bar placeholder="搜索产品 / 品牌" />
+
+  <view class="seg">
+    <view class="seg__item {{activeCategory==='cigarette'?'seg__item--on':''}}" data-key="cigarette" bindtap="onCategory">卷烟</view>
+    <view class="seg__item {{activeCategory==='cigar'?'seg__item--on':''}}" data-key="cigar" bindtap="onCategory">雪茄</view>
+    <view class="seg__item {{activeCategory==='ecig'?'seg__item--on':''}}" data-key="ecig" bindtap="onCategory">电子烟</view>
+  </view>
+
+  <scroll-view class="list" scroll-y enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{products}}" wx:key="id" class="card product" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="product__hero">
+        <view class="product__badge">{{item.brand}}</view>
+        <view class="product__fav" data-id="{{item.id}}" catchtap="toggleFav">
+          <text class="product__favIcon {{item.isFav?'product__favIcon--on':''}}">♥</text>
+        </view>
+      </view>
+      <view class="product__body">
+        <view class="product__nameRow">
+          <text class="product__name">{{item.name}}</text>
+          <text class="product__price">¥{{item.price}}</text>
+        </view>
+        <view class="product__meta">
+          <text class="product__chip">{{item.series}}</text>
+          <text class="product__dot">·</text>
+          <text class="product__chip">{{item.origin}}</text>
+        </view>
+        <view class="product__desc">{{item.desc}}</view>
+      </view>
+    </view>
+    <view class="footer-space" />
+  </scroll-view>
+</view>
+

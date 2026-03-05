@@ -1,0 +1,51 @@
+.post {
+  padding: 20rpx;
+  margin-top: 18rpx;
+}
+
+.post__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.post__user {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.post__time {
+  font-size: 22rpx;
+  color: var(--color-muted);
+}
+
+.post__content {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: rgba(242, 242, 246, 0.9);
+}
+
+.post__meta {
+  margin-top: 14rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  color: var(--color-muted);
+  font-size: 24rpx;
+}
+
+.post__tag {
+  color: rgba(233, 69, 96, 0.92);
+}
+
+.post__dot {
+  opacity: 0.55;
+}
+
+.post__muted {
+  opacity: 0.9;
+}
+

@@ -1,0 +1,8 @@
+<view class="search">
+  <view class="search__box" bindtap="onTap">
+    <text class="search__icon">⌕</text>
+    <text class="search__placeholder">{{placeholder}}</text>
+  </view>
+  <button class="search__btn" size="mini" bindtap="onTap">搜索</button>
+</view>
+

@@ -1,0 +1,65 @@
+<view class="container" wx:if="{{product}}">
+  <view class="hero card">
+    <view class="hero__top">
+      <view>
+        <view class="hero__name">{{product.name}}</view>
+        <view class="hero__sub">
+          <text class="hero__tag">{{categoryLabel}}</text>
+          <text class="hero__dot">·</text>
+          <text class="hero__muted">{{product.brand}}</text>
+          <text class="hero__dot">·</text>
+          <text class="hero__muted">{{product.origin}}</text>
+        </view>
+      </view>
+      <view class="hero__actions">
+        <button class="btn-ghost" size="mini" bindtap="toggleFav">
+          {{isFav ? '已收藏' : '收藏'}}
+        </button>
+      </view>
+    </view>
+
+    <view class="hero__price">¥{{product.price}}</view>
+    <view class="hero__desc">{{product.desc}}</view>
+  </view>
+
+  <view class="card section">
+    <view class="section__title">产品参数</view>
+
+    <view wx:if="{{product.category==='cigarette'}}" class="kv">
+      <view class="kv__row"><text class="kv__k">系列</text><text class="kv__v">{{product.series}}</text></view>
+      <view class="kv__row"><text class="kv__k">类型</text><text class="kv__v">{{product.type}}</text></view>
+      <view class="kv__row"><text class="kv__k">焦油</text><text class="kv__v">{{product.tarMg}} mg</text></view>
+      <view class="kv__row"><text class="kv__k">烟碱</text><text class="kv__v">{{product.nicotineMg}} mg</text></view>
+      <view class="kv__row"><text class="kv__k">产地</text><text class="kv__v">{{product.origin}}</text></view>
+    </view>
+
+    <view wx:elif="{{product.category==='cigar'}}" class="kv">
+      <view class="kv__row"><text class="kv__k">系列</text><text class="kv__v">{{product.series}}</text></view>
+      <view class="kv__row"><text class="kv__k">尺寸</text><text class="kv__v">{{product.size}}</text></view>
+      <view class="kv__row"><text class="kv__k">茄衣</text><text class="kv__v">{{product.wrapper}}</text></view>
+      <view class="kv__row"><text class="kv__k">茄套</text><text class="kv__v">{{product.binder}}</text></view>
+      <view class="kv__row"><text class="kv__k">茄芯</text><text class="kv__v">{{product.filler}}</text></view>
+      <view class="kv__row"><text class="kv__k">浓度</text><text class="kv__v">{{product.strength}}</text></view>
+      <view class="kv__row"><text class="kv__k">产地</text><text class="kv__v">{{product.origin}}</text></view>
+    </view>
+
+    <view wx:else class="kv">
+      <view class="kv__row"><text class="kv__k">系列</text><text class="kv__v">{{product.series}}</text></view>
+      <view class="kv__row"><text class="kv__k">设备类型</text><text class="kv__v">{{product.deviceType}}</text></view>
+      <view class="kv__row"><text class="kv__k">电池</text><text class="kv__v">{{product.batteryMah}} mAh</text></view>
+      <view class="kv__row"><text class="kv__k">烟液</text><text class="kv__v">{{product.liquidMl}} ml</text></view>
+      <view class="kv__row"><text class="kv__k">尼古丁</text><text class="kv__v">{{product.nicotinePct}}</text></view>
+      <view class="kv__row"><text class="kv__k">特色</text><text class="kv__v">{{product.features}}</text></view>
+      <view class="kv__row"><text class="kv__k">产地</text><text class="kv__v">{{product.origin}}</text></view>
+    </view>
+  </view>
+</view>
+
+<view wx:else class="container">
+  <view class="card empty">
+    <view class="empty__title">未找到产品</view>
+    <view class="empty__desc">返回列表重新选择。</view>
+    <button class="btn-accent" bindtap="goBack">返回</button>
+  </view>
+</view>
+

@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="title-row">
+    <view>
+      <view class="h1">社区</view>
+      <view class="subtitle">Community · Discuss</view>
+    </view>
+    <view class="pill">Mock</view>
+  </view>
+
+  <view class="card post" wx:for="{{posts}}" wx:key="id">
+    <view class="post__head">
+      <view class="post__user">{{item.user}}</view>
+      <view class="post__time">{{item.time}}</view>
+    </view>
+    <view class="post__content">{{item.content}}</view>
+    <view class="post__meta">
+      <text class="post__tag">#{{item.tag}}</text>
+      <text class="post__dot">·</text>
+      <text class="post__muted">{{item.likes}} 赞</text>
+      <text class="post__dot">·</text>
+      <text class="post__muted">{{item.comments}} 评论</text>
+    </view>
+  </view>
+</view>
+

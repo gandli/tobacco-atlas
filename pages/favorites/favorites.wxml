@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="title-row">
+    <view>
+      <view class="h1">收藏</view>
+      <view class="subtitle">Favorites · Saved</view>
+    </view>
+    <view class="pill">{{count}} 项</view>
+  </view>
+
+  <view wx:if="{{count===0}}" class="empty card">
+    <view class="empty__title">还没有收藏</view>
+    <view class="empty__desc">去「品牌」挑选想了解的产品吧。</view>
+    <button class="btn-accent empty__btn" bindtap="goBrands">去逛逛</button>
+  </view>
+
+  <scroll-view wx:else class="list" scroll-y enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{products}}" wx:key="id" class="card product" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="product__hero">
+        <view class="product__badge">{{item.brand}}</view>
+        <view class="product__tag">{{item.categoryLabel}}</view>
+      </view>
+      <view class="product__body">
+        <view class="product__nameRow">
+          <text class="product__name">{{item.name}}</text>
+          <view class="product__right">
+            <text class="product__price">¥{{item.price}}</text>
+            <view class="product__remove" data-id="{{item.id}}" catchtap="removeFav">移除</view>
+          </view>
+        </view>
+        <view class="product__desc">{{item.desc}}</view>
+      </view>
+    </view>
+    <view class="footer-space" />
+  </scroll-view>
+</view>

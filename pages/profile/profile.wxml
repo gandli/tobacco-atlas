@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="title-row">
+    <view>
+      <view class="h1">我的</view>
+      <view class="subtitle">Profile · Settings</view>
+    </view>
+    <view class="pill">v{{version}}</view>
+  </view>
+
+  <view class="card panel">
+    <view class="panel__row">
+      <view class="panel__label">语言 / Language</view>
+      <picker mode="selector" range="{{langOptions}}" range-key="label" value="{{langIndex}}" bindchange="onLangChange">
+        <view class="panel__value">{{langOptions[langIndex].label}}</view>
+      </picker>
+    </view>
+    <view class="panel__row">
+      <view class="panel__label">关于</view>
+      <view class="panel__value muted">中国烟草图鉴 · Mock 数据</view>
+    </view>
+  </view>
+
+  <view class="card panel">
+    <view class="panel__title">提示</view>
+    <view class="panel__desc">
+      本小程序为产品图鉴原型，数据为示例参数，仅用于演示界面与交互。
+    </view>
+  </view>
+</view>
+

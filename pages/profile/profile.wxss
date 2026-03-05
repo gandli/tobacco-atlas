@@ -1,0 +1,40 @@
+.panel {
+  padding: 18rpx;
+  margin-top: 18rpx;
+}
+
+.panel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  padding: 16rpx 6rpx;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.panel__row:last-child {
+  border-bottom: none;
+}
+
+.panel__label {
+  font-size: 26rpx;
+  color: rgba(242, 242, 246, 0.92);
+}
+
+.panel__value {
+  font-size: 24rpx;
+  color: var(--color-accent);
+}
+
+.panel__title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.panel__desc {
+  margin-top: 10rpx;
+  color: var(--color-muted);
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+

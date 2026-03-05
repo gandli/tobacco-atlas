@@ -1,0 +1,35 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.search__box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 18rpx 18rpx;
+  border-radius: 18rpx;
+  border: 1rpx solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.search__icon {
+  color: var(--color-muted);
+  font-size: 28rpx;
+}
+
+.search__placeholder {
+  color: var(--color-muted);
+  font-size: 26rpx;
+}
+
+.search__btn {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 18rpx;
+  padding: 10rpx 18rpx;
+}
+

@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="title-row">
+    <view>
+      <view class="h1">搜索</view>
+      <view class="subtitle">Search · Find products</view>
+    </view>
+    <view class="pill">{{count}} 条</view>
+  </view>
+
+  <view class="searchBox card">
+    <input
+      class="searchBox__input"
+      placeholder="输入品牌 / 产品名 / 关键词"
+      placeholder-class="searchBox__placeholder"
+      value="{{query}}"
+      confirm-type="search"
+      bindinput="onInput"
+      bindconfirm="onSearch"
+    />
+    <button class="searchBox__btn" size="mini" bindtap="onSearch">搜索</button>
+  </view>
+
+  <view wx:if="{{query && count===0}}" class="empty card">
+    <view class="empty__title">没有结果</view>
+    <view class="empty__desc">试试：中华 / 长城 / RELX / 薄荷 / 奶油 …</view>
+  </view>
+
+  <scroll-view class="list" scroll-y enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{results}}" wx:key="id" class="card item" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="item__head">
+        <view class="item__name">{{item.name}}</view>
+        <view class="item__price">¥{{item.price}}</view>
+      </view>
+      <view class="item__meta">
+        <text class="item__tag">{{item.categoryLabel}}</text>
+        <text class="item__dot">·</text>
+        <text class="item__muted">{{item.brand}}</text>
+        <text class="item__dot">·</text>
+        <text class="item__muted">{{item.origin}}</text>
+      </view>
+      <view class="item__desc">{{item.desc}}</view>
+    </view>
+    <view class="footer-space" />
+  </scroll-view>
+</view>
+

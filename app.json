@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/brands/brands",
+    "pages/favorites/favorites",
+    "pages/community/community",
+    "pages/profile/profile",
+    "pages/search/search",
+    "pages/product-detail/product-detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarTitleText": "Tobacco Atlas",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0f0f23"
+  },
+  "tabBar": {
+    "color": "#b8b8c6",
+    "selectedColor": "#e94560",
+    "backgroundColor": "#1a1a2e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/favorites/favorites",
+        "text": "收藏"
+      },
+      {
+        "pagePath": "pages/brands/brands",
+        "text": "品牌"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "search-bar": "components/search-bar/search-bar"
+  }
+}
+
