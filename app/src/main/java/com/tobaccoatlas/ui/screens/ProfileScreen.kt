@@ -23,7 +23,11 @@ fun ProfileScreen(contentPadding: PaddingValues) {
                 style = MaterialTheme.typography.titleLarge,
             )
 
-            Surface(shape = MaterialTheme.shapes.large, tonalElevation = 1.dp) {
+            Surface(
+                shape = MaterialTheme.shapes.large,
+                color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 3.dp,
+            ) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(text = "Guest", style = MaterialTheme.typography.titleMedium)
                     Text(
@@ -34,7 +38,11 @@ fun ProfileScreen(contentPadding: PaddingValues) {
                 }
             }
 
-            Surface(shape = MaterialTheme.shapes.large, tonalElevation = 1.dp) {
+            Surface(
+                shape = MaterialTheme.shapes.large,
+                color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 3.dp,
+            ) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(text = "Language", style = MaterialTheme.typography.titleSmall)
                     Text(

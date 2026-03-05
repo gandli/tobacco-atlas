@@ -26,6 +26,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -93,6 +94,13 @@ fun ProductDetailScreen(
                         }
                     }
                 },
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        titleContentColor = MaterialTheme.colorScheme.onSurface,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+                        actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+                    ),
             )
         },
     ) { innerPadding ->
@@ -146,7 +154,8 @@ private fun ProductDetailContent(
         item {
             Surface(
                 shape = RoundedCornerShape(22.dp),
-                tonalElevation = 2.dp,
+                color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 5.dp,
             ) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     BoxHeader(brand = product.brand, title = title, priceCny = product.priceCny)

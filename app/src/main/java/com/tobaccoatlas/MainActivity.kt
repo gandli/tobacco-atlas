@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import com.tobaccoatlas.ui.AppRoot
 import com.tobaccoatlas.ui.theme.TobaccoAtlasTheme
 
@@ -13,11 +15,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TobaccoAtlasTheme {
-                Surface(modifier = Modifier) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background,
+                ) {
                     AppRoot()
                 }
             }
         }
     }
 }
-

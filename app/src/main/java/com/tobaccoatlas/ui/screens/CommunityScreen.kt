@@ -47,7 +47,8 @@ fun CommunityScreen(contentPadding: PaddingValues) {
                 items(posts) { post ->
                     Surface(
                         shape = MaterialTheme.shapes.large,
-                        tonalElevation = 1.dp,
+                        color = MaterialTheme.colorScheme.surface,
+                        shadowElevation = 3.dp,
                     ) {
                         Text(
                             text = post,

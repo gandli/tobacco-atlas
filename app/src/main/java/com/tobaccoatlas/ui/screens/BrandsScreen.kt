@@ -42,6 +42,7 @@ import com.tobaccoatlas.R
 import com.tobaccoatlas.data.model.Product
 import com.tobaccoatlas.data.model.ProductCategory
 import com.tobaccoatlas.ui.MainViewModel
+import com.tobaccoatlas.ui.components.HeroBanner
 import com.tobaccoatlas.ui.components.ProductCard
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -103,8 +104,21 @@ fun BrandsScreen(
                 .toList()
         }
 
+    val featuredProducts =
+        remember(viewModel.allProducts) {
+            viewModel.allProducts.take(12)
+        }
+
     ScreenScaffold(contentPadding) { modifier ->
         Column(modifier = modifier.fillMaxSize()) {
+            HeroBanner(
+                products = featuredProducts,
+                favoriteIds = favoriteIds,
+                onToggleFavorite = viewModel::toggleFavorite,
+                onOpenProduct = onOpenProduct,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            )
+
             SearchBar(
                 query = query,
                 onQueryChange = viewModel::updateQuery,
@@ -190,6 +204,7 @@ fun BrandsScreen(
                         favorite = favoriteIds.contains(product.id),
                         onToggleFavorite = { viewModel.toggleFavorite(product.id) },
                         onOpen = { onOpenProduct(product.id) },
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
             }
@@ -215,7 +230,7 @@ private fun SuggestionRow(product: Product, onClick: () -> Unit) {
         Text(
             text = "¥${product.priceCny}",
             style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.tertiary,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

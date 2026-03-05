@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import com.tobaccoatlas.ui.screens.CommunityScreen
 import com.tobaccoatlas.ui.screens.FavoritesScreen
 import com.tobaccoatlas.ui.screens.ProductDetailScreen
 import com.tobaccoatlas.ui.screens.ProfileScreen
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun AppRoot() {
@@ -71,7 +73,9 @@ private fun BottomBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val destination = navBackStackEntry?.destination
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surface,
+    ) {
         BottomTab.entries.forEach { tab ->
             val selected =
                 destination?.hierarchy?.any { it.route == tab.route } == true ||
@@ -90,6 +94,14 @@ private fun BottomBar(
                 },
                 icon = { androidx.compose.material3.Icon(tab.icon, contentDescription = null) },
                 label = { Text(stringResource(tab.labelRes)) },
+                colors =
+                    NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        selectedTextColor = MaterialTheme.colorScheme.primary,
+                        indicatorColor = MaterialTheme.colorScheme.surfaceVariant,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    ),
             )
         }
     }
@@ -133,4 +145,3 @@ private fun AppNavHost(
         }
     }
 }
-

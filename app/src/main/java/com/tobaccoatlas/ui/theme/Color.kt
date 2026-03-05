@@ -2,8 +2,17 @@ package com.tobaccoatlas.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Primary = Color(0xFF1A1A2E)
-val Secondary = Color(0xFF16213E)
-val Accent = Color(0xFFE94560)
-val Background = Color(0xFF0F0F23)
+// Light theme palette (ciggies.app-inspired)
+val Primary = Color(0xFF4CAF50) // warm green accent
+val Secondary = Color(0xFF43A047) // deeper green for gradients
+val Accent = Color(0xFF4CAF50)
 
+val Background = Color(0xFFFFFFFF)
+val Surface = Color(0xFFFFFFFF)
+val SurfaceVariant = Color(0xFFF2F2F2)
+
+val OnBackground = Color(0xFF121212)
+val OnSurface = Color(0xFF121212)
+val OnSurfaceVariant = Color(0xFF6B6B6B)
+
+val Outline = Color(0xFFE4E4E4)

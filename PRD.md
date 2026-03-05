@@ -16,7 +16,7 @@
 - **电子烟** (E-cigarettes) - RELX、YOOZ等
 
 ## 设计要求
-- 深色主题：Primary #1a1a2e, Secondary #16213e, Accent #e94560, BG #0f0f23
+- 轻白主题：背景/Surface 为白色，SurfaceVariant 为浅灰，主色/强调色为暖绿色 #4CAF50
 - 卡片式布局，高质量产品图片
 - 流畅动画和过渡效果
 - 移动端优先，响应式设计
