@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Tobacco Atlas</string>
+
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_brands">Brands</string>
+    <string name="tab_community">Community</string>
+    <string name="tab_profile">Profile</string>
+
+    <string name="search_hint">Search products, brands, series…</string>
+    <string name="filter_all">All</string>
+    <string name="filter_cigarettes">Cigarettes</string>
+    <string name="filter_cigars">Cigars</string>
+    <string name="filter_ecigarettes">E-cigarettes</string>
+
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_body">Tap the heart on any product to save it here.</string>
+    <string name="no_results">No results</string>
+
+    <string name="detail_specs">Specifications</string>
+    <string name="detail_about">About</string>
+
+    <string name="community_title">Community</string>
+    <string name="profile_title">Profile</string>
+    <string name="mock_notice">Specs are mock references and may vary by edition.</string>
+</resources>

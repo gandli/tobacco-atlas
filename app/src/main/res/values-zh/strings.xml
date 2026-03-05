@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">中国烟草图鉴</string>
+
+    <string name="tab_favorites">收藏</string>
+    <string name="tab_brands">品牌</string>
+    <string name="tab_community">社区</string>
+    <string name="tab_profile">我的</string>
+
+    <string name="search_hint">搜索产品 / 品牌 / 系列…</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_cigarettes">卷烟</string>
+    <string name="filter_cigars">雪茄</string>
+    <string name="filter_ecigarettes">电子烟</string>
+
+    <string name="favorites_empty_title">还没有收藏</string>
+    <string name="favorites_empty_body">在任意产品上点“爱心”即可加入收藏。</string>
+    <string name="no_results">暂无结果</string>
+
+    <string name="detail_specs">参数</string>
+    <string name="detail_about">介绍</string>
+
+    <string name="community_title">社区</string>
+    <string name="profile_title">我的</string>
+    <string name="mock_notice">参数为 Mock 参考，具体以版本/批次为准。</string>
+</resources>

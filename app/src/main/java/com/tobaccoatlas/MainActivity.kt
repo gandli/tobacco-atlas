@@ -1,0 +1,23 @@
+package com.tobaccoatlas
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import com.tobaccoatlas.ui.AppRoot
+import com.tobaccoatlas.ui.theme.TobaccoAtlasTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TobaccoAtlasTheme {
+                Surface(modifier = Modifier) {
+                    AppRoot()
+                }
+            }
+        }
+    }
+}
+
