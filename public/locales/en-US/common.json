@@ -1,0 +1,35 @@
+{
+  "appName": "Chinese Cigarette Museum",
+  "appNameEn": "Chinese Cigarette Museum",
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "save": "Save",
+  "delete": "Delete",
+  "edit": "Edit",
+  "back": "Back",
+  "submit": "Submit",
+  "search": "Search",
+  "noResults": "No results found",
+  "optional": "Optional",
+  "required": "Required",
+  "or": "or",
+  "brands": "Brands",
+  "products": "Products",
+  "manufacturers": "Manufacturers",
+  "collection": "Collection",
+  "community": "Community",
+  "chat": "Chat",
+  "my": "My",
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "zh": "中文",
+    "en": "English"
+  }
+}

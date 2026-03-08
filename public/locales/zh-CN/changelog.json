@@ -1,0 +1,11 @@
+{
+  "title": "更新日志",
+  "footer": "感谢您使用烟草图鉴，我们会持续改进产品体验。",
+  "types": {
+    "feature": "新功能",
+    "fix": "修复",
+    "improvement": "优化",
+    "breaking": "破坏性变更",
+    "docs": "文档"
+  }
+}

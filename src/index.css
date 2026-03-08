@@ -36,9 +36,14 @@ All colors MUST be HSL.
     --input: 0 0% 90%;
     --ring: 0 0% 8%;
 
+    /* Radius - pill style for buttons */
     --radius: 9999px;
+    /* Additional radius values for cards and boxes */
+    --radius-card: 0.75rem; /* 12px */
+    --radius-box: 0.5rem; /* 8px */
 
-    --nav-height: 56px;
+    /* Navigation height in rem for responsiveness */
+    --nav-height: 3.5rem; /* 56px */
 
     --sidebar-background: 0 0% 98%;
 
@@ -125,7 +130,7 @@ All colors MUST be HSL.
   }
 
   .pb-mobile-nav {
-    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
   }
 
   .no-scrollbar {
@@ -140,7 +145,7 @@ All colors MUST be HSL.
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(0.5rem);
   }
   to {
     opacity: 1;

@@ -22,10 +22,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
         />
       </div>
       <div className="flex flex-col items-center gap-0.5 px-1">
-        <span className="text-[14px] font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors">
+        <span className="text-sm font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors">
           {product.brand}
         </span>
-        <span className="text-[11px] font-sans text-muted-text/60 text-center leading-tight line-clamp-1">
+        <span className="text-11 font-sans text-muted-text/60 text-center leading-tight line-clamp-1">
           {product.name}
         </span>
       </div>

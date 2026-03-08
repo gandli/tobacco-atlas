@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { ThemeProvider } from "next-themes";
+import "@/lib/i18n"; // Initialize i18n
 
 // 懒加载页面组件，减少首屏加载时间
 const Index = lazy(() => import("./pages/Index"));
@@ -36,39 +38,46 @@ const PageLoader = () => (
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/brands" element={<BrandList />} />
-            <Route path="/brand/:pinyin" element={<BrandDetail />} />
-            <Route path="/sku/:id" element={<SkuDetail />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/my" element={<MyPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/submit" element={<SubmitData />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/manufacturers" element={<ManufacturerList />} />
-            <Route path="/manufacturer/:name" element={<ManufacturerDetail />} />
-            <Route path="/changelog" element={<Changelog />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/brands" element={<BrandList />} />
+              <Route path="/brand/:pinyin" element={<BrandDetail />} />
+              <Route path="/sku/:id" element={<SkuDetail />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/feed" element={<Feed />} />
+              <Route path="/my" element={<MyPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/submit" element={<SubmitData />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/manufacturers" element={<ManufacturerList />} />
+              <Route path="/manufacturer/:name" element={<ManufacturerDetail />} />
+              <Route path="/changelog" element={<Changelog />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

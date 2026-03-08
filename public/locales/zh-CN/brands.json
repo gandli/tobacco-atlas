@@ -1,0 +1,12 @@
+{
+  "title": "卷烟品牌",
+  "subtitle": "Cigarette Brands",
+  "archive": "Archive",
+  "searchPlaceholder": "Search brands...",
+  "regions": {
+    "mainland": "大陆",
+    "hkmo": "港澳",
+    "international": "国际",
+    "historical": "历史"
+  }
+}

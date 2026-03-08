@@ -1,10 +1,14 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode }) => {
+  // 加载环境变量
+  const env = loadEnv(mode, process.cwd() + '/env', '');
+  
+  return {
   server: {
     host: "::",
     port: 8080,
@@ -18,9 +22,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // 环境变量前缀（除了 VITE_ 前缀外，也加载自定义环境变量）
+  envDir: './env',
+  define: {
+    // 注入构建时间戳
+    __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+  },
   build: {
     // 启用 gzip 压缩报告
     reportCompressed: true,
+    // 生产环境 sourcemap（可选：用于错误追踪）
+    sourcemap: mode === 'production' ? 'hidden' : false,
     rollupOptions: {
       output: {
         // 手动分包策略 - 优化加载性能
@@ -79,4 +91,4 @@ export default defineConfig(({ mode }) => ({
     // 提高 chunk 大小警告阈值
     chunkSizeWarningLimit: 500,
   },
-}));
+}});

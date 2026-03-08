@@ -10,9 +10,11 @@ import { toast } from "@/hooks/use-toast";
 import { UploadIcon, PlusIcon, XIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
+import { useTranslation } from "react-i18next";
 
 const SubmitData = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(['submit', 'common']);
   const [submissionType, setSubmissionType] = useState<"brand" | "product" | "manufacturer">("brand");
   const [formData, setFormData] = useState({
     // Common fields
@@ -59,8 +61,7 @@ const SubmitData = () => {
     // Basic validation
     if (!formData.email) {
       toast({
-        title: "错误",
-        description: "请输入您的邮箱地址",
+        title: t('submit:enterEmail'),
         variant: "destructive",
       });
       return;
@@ -69,8 +70,7 @@ const SubmitData = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "错误",
-        description: "请输入有效的邮箱地址",
+        title: t('submit:invalidEmail'),
         variant: "destructive",
       });
       return;
@@ -80,8 +80,7 @@ const SubmitData = () => {
     if (submissionType === "brand") {
       if (!formData.brandName || !formData.brandRegion) {
         toast({
-          title: "错误",
-          description: "请填写品牌名称和所属地区",
+          title: t('submit:enterBrandNameRegion'),
           variant: "destructive",
         });
         return;
@@ -89,8 +88,7 @@ const SubmitData = () => {
     } else if (submissionType === "product") {
       if (!formData.productName || !formData.productBrand) {
         toast({
-          title: "错误",
-          description: "请填写产品名称和所属品牌",
+          title: t('submit:enterProductNameBrand'),
           variant: "destructive",
         });
         return;
@@ -98,8 +96,7 @@ const SubmitData = () => {
     } else if (submissionType === "manufacturer") {
       if (!formData.manufacturerName || !formData.manufacturerCountry) {
         toast({
-          title: "错误",
-          description: "请填写制造商名称和国家",
+          title: t('submit:enterManufacturerNameCountry'),
           variant: "destructive",
         });
         return;
@@ -113,8 +110,8 @@ const SubmitData = () => {
       // This should call backend API to submit the data
       
       toast({
-        title: "提交成功",
-        description: "感谢您的贡献！管理员将审核您的提交。",
+        title: t('submit:submitSuccess'),
+        description: t('submit:submitSuccessDesc'),
       });
       
       // Reset form
@@ -136,8 +133,8 @@ const SubmitData = () => {
       setPreviewImages([]);
     } catch (error) {
       toast({
-        title: "提交失败",
-        description: "请稍后重试",
+        title: t('submit:submitFailed'),
+        description: t('submit:tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -152,31 +149,31 @@ const SubmitData = () => {
         <div className="max-w-4xl mx-auto py-8 px-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl font-bold">提交数据</CardTitle>
+              <CardTitle className="text-2xl font-bold">{t('submit:title')}</CardTitle>
               <CardDescription>
-                帮助我们完善烟草图谱数据库。您可以提交新的品牌、产品或制造商信息。
+                {t('submit:description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
               {/* Submission Type */}
               <div className="space-y-2">
-                <Label>提交类型</Label>
+                <Label>{t('submit:submissionType')}</Label>
                 <Select value={submissionType} onValueChange={(value: any) => setSubmissionType(value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="选择提交类型" />
+                    <SelectValue placeholder={t('submit:selectType')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="brand">品牌</SelectItem>
-                    <SelectItem value="product">产品</SelectItem>
-                    <SelectItem value="manufacturer">制造商</SelectItem>
+                    <SelectItem value="brand">{t('submit:brand')}</SelectItem>
+                    <SelectItem value="product">{t('submit:product')}</SelectItem>
+                    <SelectItem value="manufacturer">{t('submit:manufacturer')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               {/* Contact Email */}
               <div className="space-y-2">
-                <Label htmlFor="email">您的邮箱地址</Label>
+                <Label htmlFor="email">{t('submit:yourEmail')}</Label>
                 <Input
                   id="email"
                   name="email"
@@ -187,42 +184,42 @@ const SubmitData = () => {
                   required
                 />
                 <p className="text-sm text-muted-foreground">
-                  我们会通过邮箱通知您审核结果
+                  {t('submit:emailNotice')}
                 </p>
               </div>
 
               {/* Dynamic Form Fields */}
               {submissionType === "brand" && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">品牌信息</h3>
+                  <h3 className="text-lg font-semibold">{t('submit:brandInfo')}</h3>
                   <div className="space-y-2">
-                    <Label htmlFor="brandName">品牌名称 *</Label>
+                    <Label htmlFor="brandName">{t('submit:brandName')} *</Label>
                     <Input
                       id="brandName"
                       name="brandName"
-                      placeholder="例如：中华、万宝路"
+                      placeholder={t('submit:brandNamePlaceholder')}
                       value={formData.brandName}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="brandRegion">所属地区 *</Label>
+                    <Label htmlFor="brandRegion">{t('submit:brandRegion')} *</Label>
                     <Input
                       id="brandRegion"
                       name="brandRegion"
-                      placeholder="例如：中国、美国、日本"
+                      placeholder={t('submit:brandRegionPlaceholder')}
                       value={formData.brandRegion}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="brandDescription">品牌描述</Label>
+                    <Label htmlFor="brandDescription">{t('submit:brandDescription')}</Label>
                     <Textarea
                       id="brandDescription"
                       name="brandDescription"
-                      placeholder="品牌历史、特点等信息"
+                      placeholder={t('submit:brandDescPlaceholder')}
                       value={formData.brandDescription}
                       onChange={handleInputChange}
                       rows={3}
@@ -233,55 +230,55 @@ const SubmitData = () => {
 
               {submissionType === "product" && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">产品信息</h3>
+                  <h3 className="text-lg font-semibold">{t('submit:productInfo')}</h3>
                   <div className="space-y-2">
-                    <Label htmlFor="productName">产品名称 *</Label>
+                    <Label htmlFor="productName">{t('submit:productName')} *</Label>
                     <Input
                       id="productName"
                       name="productName"
-                      placeholder="例如：中华（软）"
+                      placeholder={t('submit:productNamePlaceholder')}
                       value={formData.productName}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="productBrand">所属品牌 *</Label>
+                    <Label htmlFor="productBrand">{t('submit:productBrand')} *</Label>
                     <Input
                       id="productBrand"
                       name="productBrand"
-                      placeholder="例如：中华"
+                      placeholder={t('submit:productBrandPlaceholder')}
                       value={formData.productBrand}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="productCategory">产品类别</Label>
+                    <Label htmlFor="productCategory">{t('submit:productCategory')}</Label>
                     <Input
                       id="productCategory"
                       name="productCategory"
-                      placeholder="例如：烤烟型、混合型"
+                      placeholder={t('submit:productCategoryPlaceholder')}
                       value={formData.productCategory}
                       onChange={handleInputChange}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="productPriceRange">价格区间</Label>
+                    <Label htmlFor="productPriceRange">{t('submit:priceRange')}</Label>
                     <Input
                       id="productPriceRange"
                       name="productPriceRange"
-                      placeholder="例如：50-100元"
+                      placeholder={t('submit:priceRangePlaceholder')}
                       value={formData.productPriceRange}
                       onChange={handleInputChange}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="productDescription">产品描述</Label>
+                    <Label htmlFor="productDescription">{t('submit:productDescription')}</Label>
                     <Textarea
                       id="productDescription"
                       name="productDescription"
-                      placeholder="产品特点、包装、口感等信息"
+                      placeholder={t('submit:productDescPlaceholder')}
                       value={formData.productDescription}
                       onChange={handleInputChange}
                       rows={3}
@@ -292,45 +289,45 @@ const SubmitData = () => {
 
               {submissionType === "manufacturer" && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">制造商信息</h3>
+                  <h3 className="text-lg font-semibold">{t('submit:manufacturerInfo')}</h3>
                   <div className="space-y-2">
-                    <Label htmlFor="manufacturerName">制造商名称 *</Label>
+                    <Label htmlFor="manufacturerName">{t('submit:manufacturerName')} *</Label>
                     <Input
                       id="manufacturerName"
                       name="manufacturerName"
-                      placeholder="例如：上海烟草集团"
+                      placeholder={t('submit:manufacturerNamePlaceholder')}
                       value={formData.manufacturerName}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="manufacturerCountry">国家/地区 *</Label>
+                    <Label htmlFor="manufacturerCountry">{t('submit:manufacturerCountry')} *</Label>
                     <Input
                       id="manufacturerCountry"
                       name="manufacturerCountry"
-                      placeholder="例如：中国、美国"
+                      placeholder={t('submit:manufacturerCountryPlaceholder')}
                       value={formData.manufacturerCountry}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="manufacturerWebsite">官方网站</Label>
+                    <Label htmlFor="manufacturerWebsite">{t('submit:manufacturerWebsite')}</Label>
                     <Input
                       id="manufacturerWebsite"
                       name="manufacturerWebsite"
-                      placeholder="https://example.com"
+                      placeholder={t('submit:manufacturerWebsitePlaceholder')}
                       value={formData.manufacturerWebsite}
                       onChange={handleInputChange}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="manufacturerDescription">制造商描述</Label>
+                    <Label htmlFor="manufacturerDescription">{t('submit:manufacturerDescription')}</Label>
                     <Textarea
                       id="manufacturerDescription"
                       name="manufacturerDescription"
-                      placeholder="公司历史、规模、主要产品等信息"
+                      placeholder={t('submit:manufacturerDescPlaceholder')}
                       value={formData.manufacturerDescription}
                       onChange={handleInputChange}
                       rows={3}
@@ -341,7 +338,7 @@ const SubmitData = () => {
 
               {/* Image Upload */}
               <div className="space-y-2">
-                <Label>相关图片</Label>
+                <Label>{t('submit:images')}</Label>
                 <div className="flex flex-wrap gap-2">
                   {previewImages.map((preview, index) => (
                     <div key={index} className="relative">
@@ -371,17 +368,17 @@ const SubmitData = () => {
                   </label>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  支持上传品牌logo、产品包装、制造商标识等相关图片
+                  {t('submit:imagesNotice')}
                 </p>
               </div>
             </form>
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline" asChild>
-              <Link to="/">返回首页</Link>
+              <Link to="/">{t('submit:backHome')}</Link>
             </Button>
             <Button type="submit" onClick={handleSubmit} disabled={isLoading}>
-              {isLoading ? "提交中..." : "提交数据"}
+              {isLoading ? t('submit:submitting') : t('submit:submitData')}
             </Button>
           </CardFooter>
         </Card>

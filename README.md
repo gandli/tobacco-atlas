@@ -229,4 +229,33 @@ tobacco-atlas-web/
 
 ## 部署
 
-项目可通过标准的静态站点部署方式进行部署，支持 Vercel、Netlify、GitHub Pages 等平台。
+项目可通过标准的静态站点部署方式进行部署，支持 Vercel、Cloudflare Pages、GitHub Pages 等平台。
+
+### 快速部署
+
+```bash
+# Vercel 部署
+npm run deploy:vercel
+
+# Cloudflare Pages 部署
+npm run deploy:cf
+```
+
+### 自动部署
+
+项目配置了 GitHub Actions 自动部署工作流：
+
+- **dev 分支**: 自动部署到 Staging 环境
+- **main 分支**: 自动部署到 Production 环境
+
+详细部署文档请参阅 [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)。
+
+### 环境变量
+
+环境变量配置文件位于 `env/` 目录：
+
+- `env/.env.development` - 开发环境
+- `env/.env.staging` - 预发布环境
+- `env/.env.production` - 生产环境
+
+本地开发可使用 `.env.local` 覆盖配置（不提交到 Git）。

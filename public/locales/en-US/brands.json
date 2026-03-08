@@ -1,0 +1,12 @@
+{
+  "title": "Cigarette Brands",
+  "subtitle": "Cigarette Brands",
+  "archive": "Archive",
+  "searchPlaceholder": "Search brands...",
+  "regions": {
+    "mainland": "Mainland",
+    "hkmo": "HK/MO",
+    "international": "International",
+    "historical": "Historical"
+  }
+}

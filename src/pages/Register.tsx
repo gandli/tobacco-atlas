@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { ArrowLeft, EyeIcon, EyeOffIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('auth');
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -30,8 +32,7 @@ const Register = () => {
     // 基本验证
     if (!formData.email || !formData.username || !formData.password || !formData.confirmPassword) {
       toast({
-        title: "错误",
-        description: "请填写所有必填字段",
+        title: t('register.fillAllFields'),
         variant: "destructive",
       });
       return;
@@ -40,8 +41,7 @@ const Register = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "错误",
-        description: "请输入有效的邮箱地址",
+        title: t('register.invalidEmail'),
         variant: "destructive",
       });
       return;
@@ -49,8 +49,7 @@ const Register = () => {
 
     if (formData.username.length < 2) {
       toast({
-        title: "错误",
-        description: "用户名至少需要2个字符",
+        title: t('register.usernameTooShort'),
         variant: "destructive",
       });
       return;
@@ -58,8 +57,7 @@ const Register = () => {
 
     if (formData.password !== formData.confirmPassword) {
       toast({
-        title: "错误",
-        description: "密码和确认密码不匹配",
+        title: t('register.passwordMismatch'),
         variant: "destructive",
       });
       return;
@@ -67,8 +65,7 @@ const Register = () => {
 
     if (formData.password.length < 6) {
       toast({
-        title: "错误",
-        description: "密码长度至少为6位",
+        title: t('register.passwordTooShort'),
         variant: "destructive",
       });
       return;
@@ -81,16 +78,16 @@ const Register = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast({
-        title: "注册成功",
-        description: "欢迎加入烟草图谱社区！",
+        title: t('register.registerSuccess'),
+        description: t('register.welcomeCommunity'),
       });
       
       // 注册成功后跳转到登录页面
       navigate("/login");
     } catch (error) {
       toast({
-        title: "注册失败",
-        description: "请稍后重试",
+        title: t('register.registerFailed'),
+        description: t('register.tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -104,7 +101,7 @@ const Register = () => {
       <div className="p-4">
         <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
           <ArrowLeft className="w-4 h-4 mr-2" />
-          返回
+          {t('common:back')}
         </Button>
       </div>
 
@@ -112,45 +109,45 @@ const Register = () => {
       <div className="flex-1 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">创建账户</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">{t('register.title')}</CardTitle>
             <CardDescription className="text-center">
-              加入烟草图谱社区，记录和分享您的收藏
+              {t('register.description')}
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">邮箱地址</Label>
+                <Label htmlFor="email">{t('register.email')}</Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={t('register.emailPlaceholder')}
                   value={formData.email}
                   onChange={handleInputChange}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="username">用户名</Label>
+                <Label htmlFor="username">{t('register.username')}</Label>
                 <Input
                   id="username"
                   name="username"
                   type="text"
-                  placeholder="选择一个用户名"
+                  placeholder={t('register.usernamePlaceholder')}
                   value={formData.username}
                   onChange={handleInputChange}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">密码</Label>
+                <Label htmlFor="password">{t('register.password')}</Label>
                 <div className="relative">
                   <Input
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="至少6位字符"
+                    placeholder={t('register.passwordPlaceholder')}
                     value={formData.password}
                     onChange={handleInputChange}
                     required
@@ -165,13 +162,13 @@ const Register = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">确认密码</Label>
+                <Label htmlFor="confirmPassword">{t('register.confirmPassword')}</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
-                    placeholder="再次输入密码"
+                    placeholder={t('register.confirmPasswordPlaceholder')}
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
@@ -188,12 +185,12 @@ const Register = () => {
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "注册中..." : "创建账户"}
+                {isLoading ? t('register.submitting') : t('register.submit')}
               </Button>
               <div className="text-center text-sm text-muted-foreground">
-                已有账户？{" "}
+                {t('register.hasAccount')}{" "}
                 <Link to="/login" className="text-primary hover:underline">
-                  立即登录
+                  {t('register.loginNow')}
                 </Link>
               </div>
             </CardFooter>

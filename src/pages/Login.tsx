@@ -6,8 +6,10 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
 import { ArrowLeft, EyeIcon, EyeOffIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+  const { t } = useTranslation('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +21,7 @@ export default function Login() {
     
     if (!email || !password) {
       toast({
-        title: "错误",
-        description: "请输入邮箱和密码",
+        title: t('validation.enterEmailPassword'),
         variant: "destructive",
       });
       return;
@@ -29,8 +30,7 @@ export default function Login() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast({
-        title: "错误",
-        description: "请输入有效的邮箱地址",
+        title: t('validation.invalidEmail'),
         variant: "destructive",
       });
       return;
@@ -43,16 +43,16 @@ export default function Login() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast({
-        title: "登录成功",
-        description: "欢迎回来！",
+        title: t('login.loginSuccess'),
+        description: t('login.welcomeBack'),
       });
       
       // 登录成功后跳转到首页
       navigate('/');
     } catch (error) {
       toast({
-        title: "登录失败",
-        description: "邮箱或密码错误，请重试",
+        title: t('login.loginFailed'),
+        description: t('login.invalidCredentials'),
         variant: "destructive",
       });
     } finally {
@@ -66,7 +66,7 @@ export default function Login() {
       <div className="p-4">
         <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
           <ArrowLeft className="w-4 h-4 mr-2" />
-          返回
+          {t('common:back')}
         </Button>
       </div>
 
@@ -74,20 +74,20 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">登录</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">{t('login.title')}</CardTitle>
             <CardDescription className="text-center">
-              使用您的账户登录中国烟草图谱
+              {t('login.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">邮箱</Label>
+                  <Label htmlFor="email">{t('login.email')}</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t('login.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -95,12 +95,12 @@ export default function Login() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">密码</Label>
+                    <Label htmlFor="password">{t('login.password')}</Label>
                     <Link 
                       to="/forgot-password" 
                       className="text-sm text-primary hover:underline"
                     >
-                      忘记密码？
+                      {t('login.forgotPassword')}
                     </Link>
                   </div>
                   <div className="relative">
@@ -126,7 +126,7 @@ export default function Login() {
                 type="submit"
                 disabled={isLoading}
               >
-                {isLoading ? '登录中...' : '登录'}
+                {isLoading ? t('login.submitting') : t('login.submit')}
               </Button>
             </form>
           </CardContent>
@@ -137,7 +137,7 @@ export default function Login() {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-background px-2 text-muted-foreground">
-                  或者
+                  {t('common:or')}
                 </span>
               </div>
             </div>
@@ -147,17 +147,17 @@ export default function Login() {
               onClick={() => {
                 // TODO: 实现第三方登录
                 toast({
-                  title: "功能开发中",
-                  description: "第三方登录功能即将上线",
+                  title: t('common:loading'),
+                  description: t('login.googleLoginDev'),
                 });
               }}
             >
-              使用 Google 登录
+              {t('login.googleLogin')}
             </Button>
             <p className="text-center text-sm text-muted-foreground">
-              还没有账户？{' '}
+              {t('login.noAccount')}{' '}
               <Link to="/register" className="text-primary hover:underline">
-                立即注册
+                {t('login.registerNow')}
               </Link>
             </p>
           </CardFooter>

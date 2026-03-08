@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 // 变更类型定义
 type ChangeType = "feature" | "fix" | "improvement" | "breaking" | "docs";
@@ -58,23 +59,25 @@ const changelogData: Version[] = [
   },
 ];
 
-// 变更类型图标和颜色映射
-const changeTypeConfig: Record<ChangeType, { icon: string; label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
-  feature: { icon: "✅", label: "新功能", variant: "default" },
-  fix: { icon: "🐛", label: "修复", variant: "secondary" },
-  improvement: { icon: "🚀", label: "优化", variant: "outline" },
-  breaking: { icon: "⚠️", label: "破坏性变更", variant: "destructive" },
-  docs: { icon: "📝", label: "文档", variant: "outline" },
-};
-
 const Changelog = () => {
+  const { t } = useTranslation('changelog');
+
+  // 变更类型图标和颜色映射
+  const changeTypeConfig: Record<ChangeType, { icon: string; label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
+    feature: { icon: "✅", label: t('types.feature'), variant: "default" },
+    fix: { icon: "🐛", label: t('types.fix'), variant: "secondary" },
+    improvement: { icon: "🚀", label: t('types.improvement'), variant: "outline" },
+    breaking: { icon: "⚠️", label: t('types.breaking'), variant: "destructive" },
+    docs: { icon: "📝", label: t('types.docs'), variant: "outline" },
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="container mx-auto px-4 py-8 max-w-3xl">
           {/* 主标题 */}
-          <h1 className="text-3xl font-bold text-center mb-8">更新日志</h1>
+          <h1 className="text-3xl font-bold text-center mb-8">{t('title')}</h1>
 
           {/* 版本列表 */}
           <div className="space-y-6">
@@ -110,7 +113,7 @@ const Changelog = () => {
 
           {/* 底部说明 */}
           <p className="text-center text-muted-foreground text-sm mt-8">
-            感谢您使用烟草图鉴，我们会持续改进产品体验。
+            {t('footer')}
           </p>
         </div>
       </div>

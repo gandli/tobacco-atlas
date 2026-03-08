@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { brands, regionLabels } from "@/data";
+import { useTranslation } from "react-i18next";
 
 const regions = ["mainland", "hkmo", "international", "historical"] as const;
 
 const Brands = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(['brands', 'nav']);
   const [activeRegion, setActiveRegion] = useState<string>("mainland");
   const [search, setSearch] = useState("");
 
@@ -39,12 +41,12 @@ const Brands = () => {
           {/* Header */}
           <div className="mb-6 md:mb-10">
             <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">
-              Archive
+              {t('nav:archive')}
             </p>
             <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-1">
-              卷烟品牌
+              {t('brands:title')}
             </h1>
-            <p className="text-muted-foreground text-sm md:text-base">Cigarette Brands</p>
+            <p className="text-muted-foreground text-sm md:text-base">{t('brands:subtitle')}</p>
           </div>
 
           {/* Region tabs - horizontally scrollable on mobile */}
@@ -70,7 +72,7 @@ const Brands = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search brands..."
+              placeholder={t('brands:searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-foreground/20"

@@ -110,6 +110,70 @@
 - 屏幕阅读器兼容
 - 足够的对比度
 
+## 国际化 (i18n)
+
+### 支持语言
+- **中文** (zh-CN): 默认语言
+- **English** (en-US): 英文支持
+
+### 语言切换
+- 通过导航栏的语言切换器切换
+- 自动检测浏览器语言偏好
+- 用户选择保存在 localStorage
+
+### 翻译文件结构
+```
+public/locales/
+├── zh-CN/
+│   ├── common.json      # 通用翻译
+│   ├── auth.json        # 认证相关
+│   ├── dashboard.json   # 管理后台
+│   ├── submit.json      # 数据提交
+│   ├── changelog.json   # 更新日志
+│   ├── nav.json         # 导航
+│   ├── home.json        # 首页
+│   └── brands.json      # 品牌页面
+└── en-US/
+    └── ... (同上)
+```
+
+### 使用方式
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation('common');
+  return <h1>{t('appName')}</h1>;
+};
+```
+
+## 主题系统
+
+### 支持主题
+- **Light**: 浅色主题
+- **Dark**: 深色主题
+- **System**: 跟随系统偏好
+
+### 主题切换
+- 通过导航栏的主题切换器切换
+- 用户选择保存在 localStorage
+- 使用 `next-themes` 库管理主题状态
+
+### 设计原则
+- 所有颜色使用 CSS 变量 (`--background`, `--foreground` 等)
+- 避免硬编码颜色值
+- 确保两种主题下的对比度符合可访问性标准
+
+### 深色模式颜色
+```css
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  /* ... */
+}
+```
+
 ## 技术栈约定
 
 - **框架**: React 18 + TypeScript

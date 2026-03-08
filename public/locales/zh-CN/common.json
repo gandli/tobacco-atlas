@@ -1,0 +1,35 @@
+{
+  "appName": "中国烟草博物馆",
+  "appNameEn": "Chinese Cigarette Museum",
+  "loading": "加载中...",
+  "error": "错误",
+  "success": "成功",
+  "cancel": "取消",
+  "confirm": "确认",
+  "save": "保存",
+  "delete": "删除",
+  "edit": "编辑",
+  "back": "返回",
+  "submit": "提交",
+  "search": "搜索",
+  "noResults": "没有找到结果",
+  "optional": "可选",
+  "required": "必填",
+  "or": "或者",
+  "brands": "品牌",
+  "products": "产品",
+  "manufacturers": "制造商",
+  "collection": "收藏",
+  "community": "社区",
+  "chat": "聊天",
+  "my": "我的",
+  "theme": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  },
+  "language": {
+    "zh": "中文",
+    "en": "English"
+  }
+}

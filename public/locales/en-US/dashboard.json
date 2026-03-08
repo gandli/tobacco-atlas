@@ -1,0 +1,20 @@
+{
+  "title": "Admin Dashboard",
+  "description": "Review user submitted data",
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected",
+  "pendingSubmissions": "Pending Submissions",
+  "pendingDesc": "New submissions requiring your review",
+  "approvedSubmissions": "Approved Items",
+  "approvedDesc": "Data that has passed review",
+  "rejectedSubmissions": "Rejected Items",
+  "rejectedDesc": "Rejected submission records",
+  "type": "Type",
+  "name": "Name",
+  "submitter": "Submitter",
+  "date": "Date",
+  "actions": "Actions",
+  "approve": "Approve",
+  "reject": "Reject"
+}

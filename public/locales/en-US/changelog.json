@@ -1,0 +1,11 @@
+{
+  "title": "Changelog",
+  "footer": "Thank you for using Chinese Cigarette Museum. We will continue to improve the product experience.",
+  "types": {
+    "feature": "Feature",
+    "fix": "Fix",
+    "improvement": "Improvement",
+    "breaking": "Breaking",
+    "docs": "Docs"
+  }
+}

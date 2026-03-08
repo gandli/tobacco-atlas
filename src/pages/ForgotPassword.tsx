@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { ArrowLeft, Mail, CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('auth');
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -18,8 +20,7 @@ const ForgotPassword = () => {
     
     if (!email) {
       toast({
-        title: "错误",
-        description: "请输入您的邮箱地址",
+        title: t('forgotPassword.enterEmail'),
         variant: "destructive",
       });
       return;
@@ -29,8 +30,7 @@ const ForgotPassword = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast({
-        title: "错误",
-        description: "请输入有效的邮箱地址",
+        title: t('forgotPassword.invalidEmail'),
         variant: "destructive",
       });
       return;
@@ -44,13 +44,13 @@ const ForgotPassword = () => {
       
       setIsSent(true);
       toast({
-        title: "邮件已发送",
-        description: "请检查您的邮箱并按照说明重置密码",
+        title: t('forgotPassword.emailSent'),
+        description: t('forgotPassword.emailSentSuccess'),
       });
     } catch (error) {
       toast({
-        title: "操作失败",
-        description: "请稍后重试",
+        title: t('forgotPassword.operationFailed'),
+        description: t('forgotPassword.tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -64,25 +64,25 @@ const ForgotPassword = () => {
         <div className="p-4">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-4 h-4 mr-2" />
-            返回
+            {t('common:back')}
           </Button>
         </div>
         <div className="flex-1 flex items-center justify-center p-4">
           <Card className="w-full max-w-md">
             <CardHeader className="space-y-1 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold">检查您的邮箱</CardTitle>
+              <CardTitle className="text-2xl font-bold">{t('forgotPassword.checkEmail')}</CardTitle>
               <CardDescription>
-                我们已向 <span className="font-medium text-primary">{email}</span> 发送了密码重置链接。
+                {t('forgotPassword.emailSentDesc', { email })}
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-sm text-muted-foreground">
-                如果几分钟内没有收到邮件，请检查垃圾邮件文件夹。
+                {t('forgotPassword.emailNotReceived')}
               </p>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
@@ -90,14 +90,14 @@ const ForgotPassword = () => {
                 onClick={() => navigate("/login")} 
                 className="w-full"
               >
-                返回登录
+                {t('forgotPassword.backToLogin')}
               </Button>
               <Button 
                 variant="outline" 
                 onClick={() => setIsSent(false)}
                 className="w-full"
               >
-                重新发送
+                {t('forgotPassword.resend')}
               </Button>
             </CardFooter>
           </Card>
@@ -112,7 +112,7 @@ const ForgotPassword = () => {
       <div className="p-4">
         <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
           <ArrowLeft className="w-4 h-4 mr-2" />
-          返回
+          {t('common:back')}
         </Button>
       </div>
 
@@ -125,15 +125,15 @@ const ForgotPassword = () => {
                 <Mail className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <CardTitle className="text-2xl font-bold text-center">忘记密码</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">{t('forgotPassword.title')}</CardTitle>
             <CardDescription className="text-center">
-              输入您的邮箱地址，我们将发送密码重置链接
+              {t('forgotPassword.description')}
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">邮箱地址</Label>
+                <Label htmlFor="email">{t('forgotPassword.email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -146,12 +146,12 @@ const ForgotPassword = () => {
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "发送中..." : "发送重置链接"}
+                {isLoading ? t('forgotPassword.submitting') : t('forgotPassword.submit')}
               </Button>
               <div className="text-center text-sm text-muted-foreground">
-                记起密码了？{" "}
+                {t('register.hasAccount')}{" "}
                 <Link to="/login" className="text-primary hover:underline">
-                  立即登录
+                  {t('register.loginNow')}
                 </Link>
               </div>
             </CardFooter>

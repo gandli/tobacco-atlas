@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
+import { useTranslation } from "react-i18next";
 
 // Mock data for submissions
 const mockSubmissions = [
@@ -43,6 +44,7 @@ const mockSubmissions = [
 ];
 
 const AdminDashboard = () => {
+  const { t } = useTranslation('dashboard');
   const [submissions] = useState(mockSubmissions);
 
   const handleApprove = (id: number) => {
@@ -73,19 +75,19 @@ const AdminDashboard = () => {
           <div className="lg:w-64">
             <Card>
               <CardHeader>
-                <CardTitle>管理面板</CardTitle>
-                <CardDescription>审核用户提交的数据</CardDescription>
+                <CardTitle>{t('title')}</CardTitle>
+                <CardDescription>{t('description')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <Button variant="outline" className="w-full justify-start">
-                    📋 待审核 ({pendingSubmissions.length})
+                    📋 {t('pending')} ({pendingSubmissions.length})
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
-                    ✅ 已批准 ({approvedSubmissions.length})
+                    ✅ {t('approved')} ({approvedSubmissions.length})
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
-                    ❌ 已拒绝 ({rejectedSubmissions.length})
+                    ❌ {t('rejected')} ({rejectedSubmissions.length})
                   </Button>
                 </div>
               </CardContent>
@@ -96,26 +98,26 @@ const AdminDashboard = () => {
           <div className="flex-1">
             <Tabs defaultValue="pending" className="w-full">
               <TabsList>
-                <TabsTrigger value="pending">待审核</TabsTrigger>
-                <TabsTrigger value="approved">已批准</TabsTrigger>
-                <TabsTrigger value="rejected">已拒绝</TabsTrigger>
+                <TabsTrigger value="pending">{t('pending')}</TabsTrigger>
+                <TabsTrigger value="approved">{t('approved')}</TabsTrigger>
+                <TabsTrigger value="rejected">{t('rejected')}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="pending">
                 <Card>
                   <CardHeader>
-                    <CardTitle>待审核提交</CardTitle>
-                    <CardDescription>需要您审核的新提交</CardDescription>
+                    <CardTitle>{t('pendingSubmissions')}</CardTitle>
+                    <CardDescription>{t('pendingDesc')}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>类型</TableHead>
-                          <TableHead>名称</TableHead>
-                          <TableHead>提交者</TableHead>
-                          <TableHead>日期</TableHead>
-                          <TableHead>操作</TableHead>
+                          <TableHead>{t('type')}</TableHead>
+                          <TableHead>{t('name')}</TableHead>
+                          <TableHead>{t('submitter')}</TableHead>
+                          <TableHead>{t('date')}</TableHead>
+                          <TableHead>{t('actions')}</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -130,13 +132,13 @@ const AdminDashboard = () => {
                             <TableCell>
                               <div className="flex gap-2">
                                 <Button size="sm" onClick={() => handleApprove(submission.id)}>
-                                  批准
+                                  {t('approve')}
                                 </Button>
                                 <Button size="sm" variant="destructive" onClick={() => handleReject(submission.id)}>
-                                  拒绝
+                                  {t('reject')}
                                 </Button>
                                 <Button size="sm" variant="outline" onClick={() => handleEdit(submission.id)}>
-                                  编辑
+                                  {t('common:edit')}
                                 </Button>
                               </div>
                             </TableCell>
@@ -151,17 +153,17 @@ const AdminDashboard = () => {
               <TabsContent value="approved">
                 <Card>
                   <CardHeader>
-                    <CardTitle>已批准项目</CardTitle>
-                    <CardDescription>已通过审核的数据</CardDescription>
+                    <CardTitle>{t('approvedSubmissions')}</CardTitle>
+                    <CardDescription>{t('approvedDesc')}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>类型</TableHead>
-                          <TableHead>名称</TableHead>
-                          <TableHead>提交者</TableHead>
-                          <TableHead>日期</TableHead>
+                          <TableHead>{t('type')}</TableHead>
+                          <TableHead>{t('name')}</TableHead>
+                          <TableHead>{t('submitter')}</TableHead>
+                          <TableHead>{t('date')}</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -184,17 +186,17 @@ const AdminDashboard = () => {
               <TabsContent value="rejected">
                 <Card>
                   <CardHeader>
-                    <CardTitle>已拒绝项目</CardTitle>
-                    <CardDescription>被拒绝的提交记录</CardDescription>
+                    <CardTitle>{t('rejectedSubmissions')}</CardTitle>
+                    <CardDescription>{t('rejectedDesc')}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>类型</TableHead>
-                          <TableHead>名称</TableHead>
-                          <TableHead>提交者</TableHead>
-                          <TableHead>日期</TableHead>
+                          <TableHead>{t('type')}</TableHead>
+                          <TableHead>{t('name')}</TableHead>
+                          <TableHead>{t('submitter')}</TableHead>
+                          <TableHead>{t('date')}</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>

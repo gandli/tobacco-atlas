@@ -1,18 +1,20 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { LayoutGrid, Building2, Factory, Users, MessageCircle, User } from "lucide-react";
-
-const tabs = [
-  { label: "Collection", path: "/", icon: LayoutGrid },
-  { label: "Brands", path: "/brands", icon: Building2 },
-  { label: "Makers", path: "/manufacturers", icon: Factory },
-  { label: "Community", path: "/community", icon: Users },
-  { label: "Chat", path: "/chat", icon: MessageCircle },
-  { label: "My", path: "/my", icon: User },
-];
+import { useTranslation } from "react-i18next";
 
 const MobileNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation('nav');
+
+  const tabs = [
+    { label: t('collection'), path: "/", icon: LayoutGrid },
+    { label: t('brands'), path: "/brands", icon: Building2 },
+    { label: t('manufacturers'), path: "/manufacturers", icon: Factory },
+    { label: t('community'), path: "/community", icon: Users },
+    { label: t('chat'), path: "/chat", icon: MessageCircle },
+    { label: t('my'), path: "/my", icon: User },
+  ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/90 backdrop-blur-md border-t border-border/50 safe-area-bottom">

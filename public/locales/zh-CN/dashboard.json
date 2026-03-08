@@ -1,0 +1,20 @@
+{
+  "title": "管理面板",
+  "description": "审核用户提交的数据",
+  "pending": "待审核",
+  "approved": "已批准",
+  "rejected": "已拒绝",
+  "pendingSubmissions": "待审核提交",
+  "pendingDesc": "需要您审核的新提交",
+  "approvedSubmissions": "已批准项目",
+  "approvedDesc": "已通过审核的数据",
+  "rejectedSubmissions": "已拒绝项目",
+  "rejectedDesc": "被拒绝的提交记录",
+  "type": "类型",
+  "name": "名称",
+  "submitter": "提交者",
+  "date": "日期",
+  "actions": "操作",
+  "approve": "批准",
+  "reject": "拒绝"
+}

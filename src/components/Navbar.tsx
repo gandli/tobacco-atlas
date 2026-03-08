@@ -1,31 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-
-const navItems = [
-  { label: "Collection", path: "/" },
-  { label: "Brands", path: "/brands" },
-  { label: "Manufacturers", path: "/manufacturers" },
-  { label: "Community", path: "/community" },
-  { label: "Chat", path: "/chat" },
-  { label: "My", path: "/my" },
-];
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation('nav');
+
+  const navItems = [
+    { label: t('collection'), path: "/" },
+    { label: t('brands'), path: "/brands" },
+    { label: t('manufacturers'), path: "/manufacturers" },
+    { label: t('community'), path: "/community" },
+    { label: t('chat'), path: "/chat" },
+    { label: t('my'), path: "/my" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-[var(--nav-height)] bg-background/80 backdrop-blur-md border-b border-border/50">
       <button onClick={() => navigate("/")} className="flex items-center gap-2">
         <div
-          className="w-7 h-7 rounded-[8px]
-         bg-foreground flex items-center justify-center"
+          className="w-7 h-7 rounded-lg bg-foreground flex items-center justify-center"
         >
-          <span className="text-primary-foreground text-[13px] font-bold leading-none select-none">
+          <span className="text-primary-foreground text-13 font-bold leading-none select-none">
             烟
           </span>
         </div>
-        <span className="font-medium text-sm tracking-tight text-foreground">
+        <span className="font-medium text-sm tracking-tight text-foreground hidden sm:inline">
           Chinese Cigarette Museum
         </span>
       </button>
@@ -50,14 +53,16 @@ const Navbar = () => {
         })}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
+        <LanguageSwitcher />
+        <ThemeToggle />
         <Link to="/login">
           <Button
             variant="default"
             size="sm"
             className="text-xs h-8 px-4"
           >
-            Sign In
+            {t('signIn')}
           </Button>
         </Link>
       </div>
