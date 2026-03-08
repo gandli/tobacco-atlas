@@ -123,4 +123,12 @@ All colors MUST be HSL.
   .pb-mobile-nav {
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
