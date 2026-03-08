@@ -3,10 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Collection", path: "/" },
+  { label: "Gallery", path: "/gallery" },
   { label: "Brands", path: "/brands" },
   { label: "Community", path: "/community" },
   { label: "Chat", path: "/chat" },
-  { label: "Feed", path: "/feed" },
 ];
 
 const Navbar = () => {
