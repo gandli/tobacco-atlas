@@ -226,6 +226,20 @@ function getBrandPinyin(brandName?: string, brandId?: number): string {
 // ============================================================
 // 转换产品数据
 // ============================================================
+// 核心品牌到制造商的映射（作为原始数据缺失时的后备）
+const brandCompanyMap: Record<string, string> = {
+  黄鹤楼: "湖北中烟工业有限责任公司",
+  中华: "上海烟草集团有限责任公司",
+  芙蓉王: "湖南中烟工业有限责任公司",
+  利群: "浙江中烟工业有限责任公司",
+  玉溪: "云南中烟工业有限责任公司",
+  玉金: "云南中烟工业有限责任公司",
+  云烟: "云南中烟工业有限责任公司",
+  南京: "江苏中烟工业有限责任公司",
+  白沙: "湖南中烟工业有限责任公司",
+  黄山: "安徽中烟工业有限责任公司",
+};
+
 export const products: Product[] = (rawProducts as RawProduct[]).map((p) => {
   const specs = p.specifications;
   const brandPinyin = getBrandPinyin(p.brand || p.brand_name, p.brand_id);
@@ -247,7 +261,8 @@ export const products: Product[] = (rawProducts as RawProduct[]).map((p) => {
     image: p.image || (p.images && p.images.length > 0 ? p.images[0].url : ""),
     brandPinyin,
     region,
-    manufacturer: p.manufacturer || brandInfo?.company,
+    manufacturer:
+      p.manufacturer || brandCompanyMap[p.brand || ""] || brandInfo?.company,
     // 规格
     tobaccoType: specs?.["Tobacco Type"] || specs?.["烤烟型"], // 兼容不同字段名
     tar: specs?.Tar ? `${specs.Tar} mg` : undefined,
