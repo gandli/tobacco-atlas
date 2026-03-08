@@ -4,7 +4,9 @@ import { totalBrands, totalProducts } from "@/data";
 
 const HeroSection = () => {
   const scrollToCollection = () => {
-    document.getElementById("collection")?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById("collection")
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -18,7 +20,7 @@ const HeroSection = () => {
       <p className="text-sm text-muted-foreground mb-8">
         {totalBrands} brands · {totalProducts.toLocaleString()} products
       </p>
-      
+
       <Button
         onClick={scrollToCollection}
         variant="default"
@@ -39,9 +41,7 @@ const HeroSection = () => {
         </button>
       </div>
 
-      <p className="mt-6 text-xs text-muted-foreground">
-        𝕏 by @0x_ultra
-      </p>
+      <p className="mt-6 text-xs text-muted-foreground">𝕏 by @gandli</p>
     </div>
   );
 };

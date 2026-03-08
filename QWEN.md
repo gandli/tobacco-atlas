@@ -148,7 +148,7 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 
 1. **Home/Collection** (`/`): Main product listing page showing cigarette products
 2. **Brands** (`/brands`): Organized by geographical regions (Mainland China, Hong Kong/Macau/Taiwan, International, Historical)
-3. **Manufacturers** (`/manufacturers`): Manufacturer listings showing companies and their brands
+3. **Manufacturers** (`/manufacturers`): This route does not exist on the actual website - accessing it results in a "PAGE NOT FOUND" error
 4. **Community** (`/community`): User community section (requires login)
 5. **Feed** (`/feed`): Activity feed showing recent user interactions
 6. **Individual Product Pages** (`/sku/:id`): Detailed product information
@@ -181,13 +181,8 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 - Search functionality for brands
 
 #### Manufacturers Page
-- Lists tobacco manufacturing companies with their logos
-- Shows the number of brands each manufacturer owns
-- Displays manufacturer names in both Chinese and English
-- Each manufacturer card links to a page showing all brands owned by that company
-- May include manufacturer details like location and founding information
-- Allows users to explore cigarette brands by manufacturing company
-- Provides insight into the tobacco industry structure
+- This route does not exist on the actual website - accessing /manufacturers results in a "PAGE NOT FOUND" error
+- The website does not have a dedicated manufacturers page showing tobacco companies and their brands
 
 #### Individual Product (SKU) Page
 - Large product image display
@@ -257,6 +252,14 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 - Real-time updates in chat
 - Image galleries with thumbnail navigation
 
+#### Manufacturer Detail Page
+- Shows manufacturer information including company details in Chinese and English
+- Lists all brands owned by the manufacturer in a grid layout
+- Displays total brand count for the manufacturer
+- Includes manufacturer logo/image
+- May show company history, location and other corporate information
+- Each brand links to its respective brand page with products
+
 #### Brand Detail Page
 - Shows brand information including description in Chinese and English
 - Lists all products under the brand in a scrollable grid
@@ -314,10 +317,11 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 2. **Community Features**: Active user engagement through ratings, reviews, and chat
 3. **Detailed Information**: Thorough specifications for each product
 4. **Regional Organization**: Clear categorization by geographic origin
-5. **Visual Appeal**: High-quality product imagery and clean interface
-6. **Real-time Interaction**: Live chat and activity feeds
-7. **Interactive Gallery**: Infinite canvas-style product browsing
-8. **Rich Media**: Multiple images per product with gallery functionality
-9. **Granular Ratings**: Separate scores for taste, packaging, value, and overall experience
+5. **Manufacturer View**: Company-based organization showing tobacco manufacturers and their brands
+6. **Visual Appeal**: High-quality product imagery and clean interface
+7. **Real-time Interaction**: Live chat and activity feeds
+8. **Interactive Gallery**: Infinite canvas-style product browsing
+9. **Rich Media**: Multiple images per product with gallery functionality
+10. **Granular Ratings**: Separate scores for taste, packaging, value, and overall experience
 
 This analysis provides a foundation for replicating the functionality, design, and user experience of the ciggies.app website in the local project.
