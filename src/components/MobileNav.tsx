@@ -1,9 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutGrid, Building2, Users, MessageCircle, User } from "lucide-react";
+import { LayoutGrid, Building2, Factory, Users, MessageCircle, User } from "lucide-react";
 
 const tabs = [
   { label: "Collection", path: "/", icon: LayoutGrid },
   { label: "Brands", path: "/brands", icon: Building2 },
+  { label: "Makers", path: "/manufacturers", icon: Factory },
   { label: "Community", path: "/community", icon: Users },
   { label: "Chat", path: "/chat", icon: MessageCircle },
   { label: "My", path: "/my", icon: User },
@@ -17,13 +18,14 @@ const MobileNav = () => {
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/90 backdrop-blur-md border-t border-border/50 safe-area-bottom">
       <div className="flex items-center justify-around h-14">
         {tabs.map((tab) => {
-          const isActive = location.pathname === tab.path;
+          const isActive = location.pathname === tab.path || 
+            (tab.path !== "/" && location.pathname.startsWith(tab.path));
           const Icon = tab.icon;
           return (
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1 transition-colors ${
+              className={`flex flex-col items-center gap-0.5 px-2 py-1 transition-colors ${
                 isActive
                   ? "text-foreground"
                   : "text-muted-foreground"

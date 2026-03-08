@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const navItems = [
   { label: "Collection", path: "/" },
   { label: "Brands", path: "/brands" },
+  { label: "Manufacturers", path: "/manufacturers" },
   { label: "Community", path: "/community" },
   { label: "Chat", path: "/chat" },
   { label: "My", path: "/my" },
@@ -31,7 +32,8 @@ const Navbar = () => {
 
       <div className="hidden md:flex items-center gap-1">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname === item.path || 
+            (item.path !== "/" && location.pathname.startsWith(item.path));
           return (
             <button
               key={item.label}
@@ -48,22 +50,17 @@ const Navbar = () => {
         })}
       </div>
 
-      <Button
-        variant="default"
-        size="sm"
-        className="text-xs h-8 px-4 hidden md:inline-flex"
-      >
-        Sign In
-      </Button>
-
-      {/* Mobile: Sign In only */}
-      <Button
-        variant="default"
-        size="sm"
-        className="text-xs h-8 px-4 md:hidden"
-      >
-        Sign In
-      </Button>
+      <div className="flex items-center gap-2">
+        <Link to="/login">
+          <Button
+            variant="default"
+            size="sm"
+            className="text-xs h-8 px-4"
+          >
+            Sign In
+          </Button>
+        </Link>
+      </div>
     </nav>
   );
 };
