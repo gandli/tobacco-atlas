@@ -1,7 +1,7 @@
 import { products } from "@/data";
 import { useMemo } from "react";
 
-const positions = [
+const positions: Array<{ top: string; left?: string; right?: string; w: number }> = [
   // Left side
   { top: "5%", left: "2%", w: 80 },
   { top: "20%", left: "5%", w: 90 },
@@ -46,8 +46,8 @@ const FloatingProducts = () => {
           className="absolute flex flex-col items-center gap-1 opacity-60"
           style={{
             top: item.top,
-            left: (item as any).left,
-            right: (item as any).right,
+            left: item.left,
+            right: item.right,
             width: item.w,
           }}
         >

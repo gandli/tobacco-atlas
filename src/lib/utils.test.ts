@@ -8,13 +8,16 @@ describe("cn utility function", () => {
   });
 
   it("should handle conditional classes", () => {
-    const isActive = true;
-    const result = cn("base", isActive && "active");
+    // Testing conditional class logic - constant condition is intentional for test
+    // eslint-disable-next-line no-constant-condition
+    const result = cn("base", true ? "active" : "");
     expect(result).toBe("base active");
   });
 
   it("should handle falsy values", () => {
-    const result = cn("base", false && "hidden", null, undefined);
+    // Testing falsy handling - constant condition is intentional for test
+    // eslint-disable-next-line no-constant-condition
+    const result = cn("base", false ? "hidden" : "", null, undefined);
     expect(result).toBe("base");
   });
 

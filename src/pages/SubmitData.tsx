@@ -159,7 +159,7 @@ const SubmitData = () => {
               {/* Submission Type */}
               <div className="space-y-2">
                 <Label>{t('submit:submissionType')}</Label>
-                <Select value={submissionType} onValueChange={(value: any) => setSubmissionType(value)}>
+                <Select value={submissionType} onValueChange={(value: "brand" | "product" | "manufacturer") => setSubmissionType(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder={t('submit:selectType')} />
                   </SelectTrigger>
