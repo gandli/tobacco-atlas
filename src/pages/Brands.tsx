@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { brands, regionLabels } from "@/data/products";
