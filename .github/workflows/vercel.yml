@@ -8,10 +8,12 @@ on:
     branches:
       - main
       - dev
+      - web
   pull_request:
     branches:
       - main
       - dev
+      - web
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

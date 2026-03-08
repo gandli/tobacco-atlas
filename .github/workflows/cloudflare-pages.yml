@@ -8,10 +8,12 @@ on:
     branches:
       - main
       - dev
+      - web
   pull_request:
     branches:
       - main
       - dev
+      - web
   workflow_dispatch:
     inputs:
       environment:
