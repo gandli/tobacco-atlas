@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Product } from "@/data/products";
 
 interface ProductCardProps {
@@ -5,8 +6,13 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col items-center gap-2 cursor-pointer group">
+    <div
+      onClick={() => navigate(`/sku/${product.id}`)}
+      className="flex flex-col items-center gap-2 cursor-pointer group"
+    >
       <div className="w-full aspect-[3/4] flex items-center justify-center p-3">
         <img
           src={product.image}
