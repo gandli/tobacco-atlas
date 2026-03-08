@@ -1,5 +1,12 @@
 # 中国烟草图谱 (Chinese Tobacco Atlas)
 
+## 在线访问
+
+| 平台 | 地址 |
+|------|------|
+| **Vercel** | https://tobacco-atlas.vercel.app |
+| **Cloudflare** | https://tobacco-atlas.pages.dev |
+
 ## 项目概述
 
 这是一个基于 React 的 Web 应用程序，名为"中国烟草图谱"，使用现代 Web 技术构建。该项目是一个数字博物馆，展示中国香烟品牌和产品。项目采用当代技术栈，包括 Vite、TypeScript、React、shadcn/ui 和 Tailwind CSS。
