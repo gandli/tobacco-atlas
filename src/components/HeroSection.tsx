@@ -8,8 +8,8 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center">
-      <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-none mb-4">
+    <div className="relative flex flex-col items-center justify-center min-h-[80vh] md:min-h-screen px-4 md:px-6 text-center">
+      <h1 className="font-display text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-none mb-3 md:mb-4">
         中国卷烟博物馆
       </h1>
       <p className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-6">

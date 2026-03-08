@@ -38,7 +38,12 @@ const Navbar = () => {
         })}
       </div>
 
-      <Button variant="default" size="sm" className="text-xs h-8 px-4">
+      <Button variant="default" size="sm" className="text-xs h-8 px-4 hidden md:inline-flex">
+        Sign In
+      </Button>
+
+      {/* Mobile: Sign In only */}
+      <Button variant="default" size="sm" className="text-xs h-8 px-4 md:hidden">
         Sign In
       </Button>
     </nav>
