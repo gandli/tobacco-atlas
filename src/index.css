@@ -37,7 +37,7 @@ All colors MUST be HSL.
     --ring: 0 0% 8%;
 
     --radius: 9999px;
-    
+
     --nav-height: 56px;
 
     --sidebar-background: 0 0% 98%;
@@ -103,15 +103,19 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-family: "Noto Serif SC", "Georgia", serif;
   }
-  
+
   .text-balance {
     text-wrap: balance;
   }
@@ -130,5 +134,16 @@ All colors MUST be HSL.
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
