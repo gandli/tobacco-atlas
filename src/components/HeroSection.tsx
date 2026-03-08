@@ -58,12 +58,12 @@ const HeroSection = () => {
 
         <p className="mt-6 text-xs text-muted-foreground flex items-center gap-3">
           <a href="https://x.com/gandli" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-            𝕏 by @老板
+            𝕏 by @gandli
           </a>
           <span className="opacity-30">·</span>
           <a href="https://github.com/gandli" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
             <Github className="w-3.5 h-3.5" />
-            <span>by @老板</span>
+            <span>by @gandli</span>
           </a>
         </p>
       </div>

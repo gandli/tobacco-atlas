@@ -63,7 +63,7 @@ const WhyThisExistsDialog = ({ open, onOpenChange }: WhyThisExistsDialogProps) =
           </ul>
         </div>
         <p className="text-xs text-center text-muted-foreground/50 mt-4">
-          𝕏 by @老板
+          𝕏 by @gandli
         </p>
       </DialogContent>
     </Dialog>
