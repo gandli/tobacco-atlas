@@ -208,6 +208,14 @@ The website is structured as a comprehensive Chinese cigarette database and comm
   - Wishlist additions
 - Each activity shows user, action, product, and timestamp
 
+#### Gallery Page
+- Infinite canvas-style layout displaying products in a grid
+- Interactive navigation with WASD keys for panning and Q/E for zooming
+- Shows 102% zoom level by default with zoom controls
+- Contains a large collection of products displayed in a continuous space
+- Each product tile shows the product name
+- Clicking on a product opens its detail page
+
 #### Chat Feature
 - Real-time chat accessible from most pages
 - Shows online users count
@@ -237,6 +245,24 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 - Diamond icons for wishlist
 - Smooth transitions between states
 - Real-time updates in chat
+- Image galleries with thumbnail navigation
+
+#### Brand Detail Page
+- Shows brand information including description in Chinese and English
+- Lists all products under the brand in a scrollable grid
+- Displays total product count
+- Includes brand image/logo
+- Shows regional classification (e.g., 国外/International)
+
+#### Product Detail Page (SKU)
+- Multiple image views with thumbnail navigation (up to 10 images)
+- Slide controls for navigating between images
+- Detailed product specifications table
+- Pricing information with currency conversion
+- Barcode information
+- Rating system with Taste, Pack, Value, and Overall scores
+- Interactive elements: Favorite, Tried, Wishlist buttons
+- Price comparison between pack and carton
 
 ### Technical Implementation Insights (Frontend Perspective)
 
@@ -269,7 +295,7 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 #### Accessibility
 - Semantic HTML structure
 - Proper labeling of interactive elements
-- Keyboard navigation support
+- Keyboard navigation support (especially on gallery page)
 - Screen reader compatibility
 
 ### Key Differentiators
@@ -280,5 +306,8 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 4. **Regional Organization**: Clear categorization by geographic origin
 5. **Visual Appeal**: High-quality product imagery and clean interface
 6. **Real-time Interaction**: Live chat and activity feeds
+7. **Interactive Gallery**: Infinite canvas-style product browsing
+8. **Rich Media**: Multiple images per product with gallery functionality
+9. **Granular Ratings**: Separate scores for taste, packaging, value, and overall experience
 
 This analysis provides a foundation for replicating the functionality, design, and user experience of the ciggies.app website in the local project.

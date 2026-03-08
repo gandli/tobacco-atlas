@@ -239,3 +239,17 @@ export interface ProductListItem {
    */
   brand_name: string;
 }
+export interface Manufacturer {
+  /**
+   * 制造商名称
+   */
+  name: string;
+  /**
+   * 旗下品牌名称列表
+   */
+  brands: string[];
+  /**
+   * 关联的产品 SKU ID 列表
+   */
+  productIds: number[];
+}
