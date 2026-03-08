@@ -7,11 +7,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="relative">
-        <FloatingProducts />
-        <HeroSection />
+      <div className="pt-[var(--nav-height)]">
+        <div className="relative">
+          <FloatingProducts />
+          <HeroSection />
+        </div>
+        <ProductGrid />
       </div>
-      <ProductGrid />
     </div>
   );
 };
