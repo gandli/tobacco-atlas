@@ -11,6 +11,7 @@ import Community from "./pages/Community";
 import Chat from "./pages/Chat";
 import Gallery from "./pages/Gallery";
 import Feed from "./pages/Feed";
+import MyPage from "./pages/MyPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/community" element={<Community />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="/my" element={<MyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

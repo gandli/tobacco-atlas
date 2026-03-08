@@ -1,12 +1,12 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutGrid, GalleryHorizontalEnd, Building2, Users, User } from "lucide-react";
+import { LayoutGrid, Building2, Users, MessageCircle, User } from "lucide-react";
 
 const tabs = [
   { label: "Collection", path: "/", icon: LayoutGrid },
-  { label: "Gallery", path: "/gallery", icon: GalleryHorizontalEnd },
   { label: "Brands", path: "/brands", icon: Building2 },
   { label: "Community", path: "/community", icon: Users },
-  { label: "My", path: "/feed", icon: User },
+  { label: "Chat", path: "/chat", icon: MessageCircle },
+  { label: "My", path: "/my", icon: User },
 ];
 
 const MobileNav = () => {
