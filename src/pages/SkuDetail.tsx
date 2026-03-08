@@ -4,7 +4,7 @@ import { ArrowLeft, Star, Circle, Bookmark } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
-import { getProductById, getBrandByPinyin, regionLabels } from "@/data/products";
+import { getProductById, getBrandByPinyin, regionLabels } from "@/data";
 
 const SkuDetail = () => {
   const { id } = useParams<{ id: string }>();

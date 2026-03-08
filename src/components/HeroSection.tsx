@@ -1,6 +1,6 @@
 import { ArrowDown, BookOpen, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { totalBrands, totalProducts } from "@/data/products";
+import { totalBrands, totalProducts } from "@/data";
 
 const HeroSection = () => {
   const scrollToCollection = () => {

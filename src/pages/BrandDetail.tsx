@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data/products";
+import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data";
 
 const BrandDetail = () => {
   const { pinyin } = useParams<{ pinyin: string }>();

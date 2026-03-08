@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { communityUsers } from "@/data/products";
+import { communityUsers } from "@/data";
 import { Button } from "@/components/ui/button";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";

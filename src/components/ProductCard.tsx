@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Product } from "@/data/products";
+import { Product } from "@/data";
 
 interface ProductCardProps {
   product: Product;

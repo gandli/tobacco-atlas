@@ -16,8 +16,17 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-[var(--nav-height)] bg-background/80 backdrop-blur-md border-b border-border/50">
       <button onClick={() => navigate("/")} className="flex items-center gap-2">
-        <span className="text-lg">🚬</span>
-        <span className="font-medium text-sm tracking-tight text-foreground">ciggies.app</span>
+        <div
+          className="w-7 h-7 rounded-[8px]
+         bg-foreground flex items-center justify-center"
+        >
+          <span className="text-primary-foreground text-[13px] font-bold leading-none select-none">
+            烟
+          </span>
+        </div>
+        <span className="font-medium text-sm tracking-tight text-foreground">
+          ciggies.app
+        </span>
       </button>
 
       <div className="hidden md:flex items-center gap-1">
@@ -39,12 +48,20 @@ const Navbar = () => {
         })}
       </div>
 
-      <Button variant="default" size="sm" className="text-xs h-8 px-4 hidden md:inline-flex">
+      <Button
+        variant="default"
+        size="sm"
+        className="text-xs h-8 px-4 hidden md:inline-flex"
+      >
         Sign In
       </Button>
 
       {/* Mobile: Sign In only */}
-      <Button variant="default" size="sm" className="text-xs h-8 px-4 md:hidden">
+      <Button
+        variant="default"
+        size="sm"
+        className="text-xs h-8 px-4 md:hidden"
+      >
         Sign In
       </Button>
     </nav>

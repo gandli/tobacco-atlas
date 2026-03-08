@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { brands, regionLabels } from "@/data/products";
+import { brands, regionLabels } from "@/data";
 
 const regions = ["mainland", "hkmo", "international", "historical"] as const;
 
