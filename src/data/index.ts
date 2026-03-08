@@ -228,15 +228,28 @@ function getBrandPinyin(brandName?: string, brandId?: number): string {
 // ============================================================
 export const products: Product[] = (rawProducts as RawProduct[]).map((p) => {
   const specs = p.specifications;
+  const brandPinyin = getBrandPinyin(p.brand || p.brand_name, p.brand_id);
+  const brandInfo = brands.find((b) => b.id === p.brand_id);
+
+  // 解析区域 (例如 "大陆·Mainland China" -> "mainland")
+  let region = "mainland";
+  if (p.region) {
+    if (p.region.includes("港澳")) region = "hkmo";
+    else if (p.region.includes("国际")) region = "international";
+    else if (p.region.includes("历史")) region = "historical";
+  }
+
   return {
     id: p.sku_id,
     brand: p.brand || p.brand_name || "",
     name: p.name.replace(/^[^（]*（/, "").replace(/）$/, "") || p.name,
     nameEn: p.name_en,
     image: p.image || (p.images && p.images.length > 0 ? p.images[0].url : ""),
-    brandPinyin: getBrandPinyin(p.brand || p.brand_name, p.brand_id),
-    region: "mainland",
+    brandPinyin,
+    region,
+    manufacturer: brandInfo?.company,
     // 规格
+    tobaccoType: specs?.["Tobacco Type"] || specs?.["烤烟型"], // 兼容不同字段名
     tar: specs?.Tar ? `${specs.Tar} mg` : undefined,
     nicotine: specs?.Nicotine ? `${specs.Nicotine} mg` : undefined,
     co: specs?.CO ? `${specs.CO} mg` : undefined,
