@@ -8,6 +8,7 @@ import Brands from "./pages/Brands";
 import BrandDetail from "./pages/BrandDetail";
 import SkuDetail from "./pages/SkuDetail";
 import Community from "./pages/Community";
+import Chat from "./pages/Chat";
 import Feed from "./pages/Feed";
 import NotFound from "./pages/NotFound";
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/brand/:pinyin" element={<BrandDetail />} />
           <Route path="/sku/:id" element={<SkuDetail />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
