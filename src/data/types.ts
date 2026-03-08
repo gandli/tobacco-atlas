@@ -35,11 +35,11 @@ export interface ProductSpecifications {
   /**
    * 每盒数量
    */
-  'Count/Box'?: string;
+  "Count/Box"?: string;
   /**
    * 每件数量
    */
-  'Boxes/Carton'?: string;
+  "Boxes/Carton"?: string;
   /**
    * 其他规格参数
    */
@@ -176,6 +176,10 @@ export interface Product {
    * 品牌名称
    */
   brand_name?: string;
+  /**
+   * 生产企业
+   */
+  manufacturer?: string;
 }
 
 export interface Brand {

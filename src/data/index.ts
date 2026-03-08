@@ -247,7 +247,7 @@ export const products: Product[] = (rawProducts as RawProduct[]).map((p) => {
     image: p.image || (p.images && p.images.length > 0 ? p.images[0].url : ""),
     brandPinyin,
     region,
-    manufacturer: brandInfo?.company,
+    manufacturer: p.manufacturer,
     // 规格
     tobaccoType: specs?.["Tobacco Type"] || specs?.["烤烟型"], // 兼容不同字段名
     tar: specs?.Tar ? `${specs.Tar} mg` : undefined,
