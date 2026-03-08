@@ -8,6 +8,7 @@ import { brands, regionLabels } from "@/data/products";
 const regions = ["mainland", "hkmo", "international", "historical"] as const;
 
 const Brands = () => {
+  const navigate = useNavigate();
   const [activeRegion, setActiveRegion] = useState<string>("mainland");
   const [search, setSearch] = useState("");
 
