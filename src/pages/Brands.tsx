@@ -95,6 +95,7 @@ const Brands = () => {
             {filteredBrands.map((brand) => (
               <div
                 key={brand.id}
+                onClick={() => navigate(`/brand/${brand.pinyin}`)}
                 className="border border-border rounded-xl p-3 md:p-4 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow bg-card"
               >
                 <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
