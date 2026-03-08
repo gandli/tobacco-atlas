@@ -254,7 +254,7 @@ export const products: Product[] = (rawProducts as RawProduct[]).map((p) => {
     nicotine: specs?.Nicotine ? `${specs.Nicotine} mg` : undefined,
     co: specs?.CO ? `${specs.CO} mg` : undefined,
     length: specs?.Length ? `${specs.Length} mm` : undefined,
-    format: specs?.Format,
+    format: specs?.Format?.replace(/Count$/, ""),
     countPerBox: specs?.["Count/Box"]
       ? parseInt(specs["Count/Box"])
       : undefined,

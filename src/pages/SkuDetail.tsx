@@ -78,7 +78,7 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`flex-shrink-0 w-14 h-14 bg-card border rounded-lg transition-colors overflow-hidden ${
+              className={`flex-shrink-0 w-14 h-14 bg-card border rounded-xl transition-colors overflow-hidden ${
                 i === currentIndex
                   ? "border-foreground/50"
                   : "border-border hover:border-foreground/25"
@@ -133,7 +133,7 @@ const SkuDetail = () => {
   }
 
   const regionLabel = product.region ? regionLabels[product.region] : null;
-  const usdRate = 0.14;
+  const usdRate = 0.143; // 汇率参考
 
   const specs = [
     { label: "Tobacco Type", value: product.tobaccoType },
@@ -141,6 +141,7 @@ const SkuDetail = () => {
     { label: "Nicotine", value: product.nicotine },
     { label: "CO", value: product.co },
     { label: "Length", value: product.length },
+    { label: "Format", value: product.format },
     {
       label: "Count / Box",
       value: product.countPerBox ? `${product.countPerBox} pcs` : undefined,
@@ -159,120 +160,147 @@ const SkuDetail = () => {
     { label: "Wholesale", cny: product.wholesalePrice },
   ].filter((p) => p.cny);
 
+  const ratings = [
+    { label: "Taste", value: product.taste },
+    { label: "Pack", value: product.packRating },
+    { label: "Value", value: product.valueRating },
+    { label: "Overall", value: product.overallRating },
+  ].filter((r) => r.value !== undefined);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 md:py-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 md:mb-6 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-2 text-[13px] text-muted-foreground mb-8 overflow-x-auto no-scrollbar">
             <button
               onClick={() => navigate("/")}
               className="hover:text-foreground transition-colors whitespace-nowrap"
             >
               Collection
             </button>
-            <span>/</span>
+            <span className="opacity-30">/</span>
             <button
               onClick={() => navigate(`/brand/${product.brandPinyin}`)}
               className="hover:text-foreground transition-colors whitespace-nowrap"
             >
               {product.brand}
             </button>
-            <span>/</span>
+            <span className="opacity-30">/</span>
             <span className="text-foreground truncate">
               {product.brand}（{product.name}）
             </span>
           </div>
 
-          {/* Main layout: image left, info right */}
-          <div className="flex flex-col lg:flex-row gap-6 md:gap-10">
-            {/* Product image gallery */}
-            <div className="lg:w-[55%] flex-shrink-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_380px] gap-10 lg:gap-16">
+            {/* Left Column: Gallery & Description */}
+            <div className="space-y-10">
               <ProductImageGallery product={product} />
-            </div>
 
-            {/* Product info */}
-            <div className="flex-1 min-w-0">
-              {/* Region badge */}
-              {regionLabel && (
-                <span className="inline-block text-[10px] md:text-xs px-2 py-0.5 rounded-full border border-destructive/30 text-destructive font-medium mb-2 md:mb-3">
-                  {regionLabel.zh} · {regionLabel.en}
-                </span>
-              )}
-
-              {/* Title */}
-              <h1 className="font-display text-2xl md:text-4xl font-bold text-foreground leading-tight mb-1">
-                {product.brand}（{product.name}）
-              </h1>
-              <p className="text-sm md:text-base text-muted-foreground mb-1">
-                {product.brand} {product.name}
-              </p>
-              {product.manufacturer && (
-                <p className="text-xs text-muted-foreground mb-4">
-                  {product.brand} · {product.manufacturer}
-                </p>
-              )}
-
-              {/* Price */}
-              {product.packPrice && (
-                <div className="flex items-baseline gap-2 mb-4 md:mb-5">
-                  <span className="text-2xl md:text-3xl font-bold text-foreground">
-                    ¥{product.packPrice}
-                  </span>
-                  <span className="text-sm text-muted-foreground">/ pack</span>
-                  <span className="text-sm text-muted-foreground">
-                    ≈ ${(product.packPrice * usdRate).toFixed(2)}
-                  </span>
+              {(product.description || product.descriptionZh) && (
+                <div className="p-6 rounded-2xl bg-secondary/30 border border-border/40">
+                  <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground/60 mb-4">
+                    Description
+                  </p>
+                  <div className="space-y-4">
+                    {product.description && (
+                      <p className="text-[14px] text-foreground/80 leading-relaxed font-light">
+                        {product.description}
+                      </p>
+                    )}
+                    {product.descriptionZh && (
+                      <p className="text-[13px] text-muted-foreground leading-loose font-chinese">
+                        {product.descriptionZh}
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
+            </div>
 
-              {/* Action buttons */}
-              <div className="flex gap-2 mb-6">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-1.5 text-xs h-9 rounded-lg"
-                >
-                  <Star className="w-3.5 h-3.5" />
-                  Favorite
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-1.5 text-xs h-9 rounded-lg"
-                >
-                  <Circle className="w-3.5 h-3.5" />
-                  Mark tried
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-1.5 text-xs h-9 rounded-lg"
-                >
-                  <Bookmark className="w-3.5 h-3.5" />
-                  Wishlist
-                </Button>
-              </div>
+            {/* Right Column: Info & Specs */}
+            <div className="space-y-8">
+              {/* Header Info */}
+              <div>
+                {regionLabel && (
+                  <span className="inline-flex text-[11px] px-2.5 py-1 rounded-sm bg-destructive/5 text-destructive border border-destructive/20 font-medium mb-4">
+                    {regionLabel.zh} · {regionLabel.en}
+                  </span>
+                )}
+                <h1 className="text-3xl font-bold text-foreground leading-tight mb-2 font-chinese">
+                  {product.brand}（{product.name}）
+                </h1>
+                <p className="text-[17px] text-muted-foreground italic mb-2">
+                  {product.nameEn}
+                </p>
+                <div className="flex items-center text-[13px] text-muted-foreground">
+                  <button
+                    onClick={() => navigate(`/brand/${product.brandPinyin}`)}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {product.brand}
+                  </button>
+                  {product.manufacturer && (
+                    <>
+                      <span className="mx-2 opacity-30">·</span>
+                      <span>{product.manufacturer}</span>
+                    </>
+                  )}
+                </div>
 
-              {/* Specifications */}
-              {specs.length > 0 && (
-                <div className="border border-border rounded-xl overflow-hidden mb-4">
-                  <div className="px-4 py-2.5 bg-secondary/50">
-                    <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium">
-                      Specifications
+                {/* Main Price */}
+                {product.packPrice && (
+                  <div className="mt-6 flex items-baseline gap-3">
+                    <span className="text-[36px] font-bold text-foreground leading-none">
+                      ¥{product.packPrice}
+                    </span>
+                    <span className="text-[13px] text-muted-foreground/60">
+                      / pack
+                    </span>
+                    <span className="text-[14px] text-muted-foreground/50 font-medium">
+                      ≈ ${Math.round(product.packPrice * usdRate)}
                     </span>
                   </div>
-                  <div className="divide-y divide-border">
+                )}
+
+                {/* Action Buttons */}
+                <div className="mt-6">
+                  <div className="flex gap-2">
+                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
+                      <span className="text-lg leading-none opacity-40">☆</span>
+                      Favorite
+                    </button>
+                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
+                      <span className="text-lg leading-none opacity-40">○</span>
+                      Mark tried
+                    </button>
+                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
+                      <Bookmark className="w-3.5 h-3.5 opacity-40" />
+                      Wishlist
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Specifications Table */}
+              {specs.length > 0 && (
+                <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
+                  <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
+                    <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
+                      Specifications
+                    </p>
+                  </div>
+                  <div className="divide-y divide-border/30">
                     {specs.map((spec) => (
                       <div
                         key={spec.label}
-                        className="flex items-center justify-between px-4 py-2.5"
+                        className="flex items-center px-5 py-3 hover:bg-secondary/10 transition-colors"
                       >
-                        <span className="text-xs md:text-sm text-muted-foreground">
+                        <span className="text-[12px] text-muted-foreground/70 w-36 shrink-0">
                           {spec.label}
                         </span>
-                        <span className="text-xs md:text-sm font-medium text-foreground">
+                        <span className="text-[13px] text-foreground/80 font-medium">
                           {spec.value}
                         </span>
                       </div>
@@ -281,30 +309,93 @@ const SkuDetail = () => {
                 </div>
               )}
 
-              {/* Pricing */}
+              {/* Pricing Details */}
               {pricing.length > 0 && (
-                <div className="border border-border rounded-xl overflow-hidden mb-4">
-                  <div className="px-4 py-2.5 bg-secondary/50">
-                    <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium">
+                <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
+                  <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
+                    <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
                       Pricing
-                    </span>
+                    </p>
                   </div>
-                  <div className="divide-y divide-border">
-                    {pricing.map((p) => (
+                  <div className="divide-y divide-border/30">
+                    {pricing.map((item) => (
                       <div
-                        key={p.label}
-                        className="flex items-center justify-between px-4 py-2.5"
+                        key={item.label}
+                        className="flex items-center px-5 py-3 hover:bg-secondary/10 transition-colors"
                       >
-                        <span className="text-xs md:text-sm text-muted-foreground">
-                          {p.label}
+                        <span className="text-[12px] text-muted-foreground/70 w-36 shrink-0">
+                          {item.label}
                         </span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs md:text-sm font-semibold text-destructive">
-                            ¥{p.cny}
+                        <span className="text-[15px] font-bold text-foreground">
+                          ¥{item.cny}
+                        </span>
+                        <span className="text-[12px] text-muted-foreground/40 ml-2">
+                          ≈ ${(item.cny! * usdRate).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Barcodes */}
+              {(product.boxBarcode || product.cartonBarcode) && (
+                <div className="space-y-2.5">
+                  <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/40 px-1">
+                    Barcodes
+                  </p>
+                  {product.boxBarcode && (
+                    <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
+                      <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
+                        Box
+                      </span>
+                      <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
+                        {product.boxBarcode}
+                      </span>
+                    </div>
+                  )}
+                  {product.cartonBarcode && (
+                    <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
+                      <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
+                        Carton
+                      </span>
+                      <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
+                        {product.cartonBarcode}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Ratings */}
+              {ratings.length > 0 && (
+                <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
+                  <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40 flex items-center justify-between">
+                    <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
+                      Ratings
+                    </p>
+                    {product.votes && (
+                      <span className="text-[10px] text-muted-foreground/40">
+                        {product.votes} votes
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-5 space-y-5">
+                    {ratings.map((rating) => (
+                      <div key={rating.label}>
+                        <div className="flex justify-between mb-2 items-center">
+                          <span className="text-[12px] text-muted-foreground font-medium">
+                            {rating.label}
                           </span>
-                          <span className="text-xs text-muted-foreground">
-                            ≈ ${(p.cny! * usdRate).toFixed(2)}
+                          <span className="text-[13px] font-bold text-foreground">
+                            {rating.value?.toFixed(1)}
                           </span>
+                        </div>
+                        <div className="h-1.5 bg-secondary/40 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-foreground/80 rounded-full transition-all duration-1000 ease-out"
+                            style={{ width: `${(rating.value || 0) * 10}%` }}
+                          ></div>
                         </div>
                       </div>
                     ))}
@@ -313,31 +404,6 @@ const SkuDetail = () => {
               )}
             </div>
           </div>
-
-          {/* Description */}
-          {(product.description || product.descriptionZh) && (
-            <div className="mt-6 md:mt-10 lg:max-w-[55%]">
-              <div className="border border-border rounded-xl overflow-hidden">
-                <div className="px-4 py-2.5 bg-secondary/50">
-                  <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium">
-                    Description
-                  </span>
-                </div>
-                <div className="px-4 py-4 space-y-3">
-                  {product.description && (
-                    <p className="text-sm text-foreground leading-relaxed">
-                      {product.description}
-                    </p>
-                  )}
-                  {product.descriptionZh && (
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {product.descriptionZh}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
       <MobileNav />
