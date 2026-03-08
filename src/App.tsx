@@ -26,6 +26,7 @@ const App = () => (
           <Route path="/brand/:pinyin" element={<BrandDetail />} />
           <Route path="/sku/:id" element={<SkuDetail />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

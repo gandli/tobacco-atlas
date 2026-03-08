@@ -1,10 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutGrid, Building2, Users, Activity } from "lucide-react";
+import { LayoutGrid, Building2, Users, MessageCircle, Activity } from "lucide-react";
 
 const tabs = [
   { label: "Collection", path: "/", icon: LayoutGrid },
   { label: "Brands", path: "/brands", icon: Building2 },
   { label: "Community", path: "/community", icon: Users },
+  { label: "Chat", path: "/chat", icon: MessageCircle },
   { label: "Feed", path: "/feed", icon: Activity },
 ];
 
