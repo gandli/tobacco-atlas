@@ -3,9 +3,9 @@ import { LayoutGrid, Building2, Users, MessageCircle, User } from "lucide-react"
 
 const tabs = [
   { label: "Collection", path: "/", icon: LayoutGrid },
+  { label: "Gallery", path: "/gallery", icon: GalleryHorizontalEnd },
   { label: "Brands", path: "/brands", icon: Building2 },
   { label: "Community", path: "/community", icon: Users },
-  { label: "Chat", path: "/chat", icon: MessageCircle },
   { label: "My", path: "/feed", icon: User },
 ];
 
