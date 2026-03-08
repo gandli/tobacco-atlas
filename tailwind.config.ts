@@ -57,11 +57,6 @@ export default {
       },
       colors: {
         ash: "#0b0b0d",
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-          text: "#6c6c76", // 官方使用的文字颜色
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -82,6 +77,7 @@ export default {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+          text: "#6c6c76", // 官方使用的文字颜色
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
