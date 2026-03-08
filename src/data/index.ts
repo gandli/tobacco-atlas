@@ -354,3 +354,4 @@ export const communityUsers: CommunityUser[] = [
   { id: 11, username: "cigar_master88", brands: 12, tried: 45, fav: 8 },
   { id: 12, username: "zhonghua_daily", brands: 10, tried: 38, fav: 16 },
 ];
+export { manufacturers } from "./manufacturers";
