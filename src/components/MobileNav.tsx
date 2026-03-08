@@ -6,7 +6,7 @@ const tabs = [
   { label: "Brands", path: "/brands", icon: Building2 },
   { label: "Community", path: "/community", icon: Users },
   { label: "Chat", path: "/chat", icon: MessageCircle },
-  { label: "Feed", path: "/feed", icon: Activity },
+  { label: "My", path: "/feed", icon: Activity },
 ];
 
 const MobileNav = () => {
