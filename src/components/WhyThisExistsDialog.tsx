@@ -63,7 +63,7 @@ const WhyThisExistsDialog = ({ open, onOpenChange }: WhyThisExistsDialogProps) =
           </ul>
         </div>
         <p className="text-xs text-center text-muted-foreground/50 mt-4">
-          Made with 🦞 by Tobacco Atlas Team
+          𝕏 by @老板
         </p>
       </DialogContent>
     </Dialog>

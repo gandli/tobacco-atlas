@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, BookOpen, HelpCircle } from "lucide-react";
+import { ArrowDown, BookOpen, HelpCircle, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { totalBrands, totalProducts } from "@/data";
@@ -56,7 +56,16 @@ const HeroSection = () => {
           </button>
         </div>
 
-        <p className="mt-6 text-xs text-muted-foreground">𝕏 by @gandli</p>
+        <p className="mt-6 text-xs text-muted-foreground flex items-center gap-3">
+          <a href="https://x.com/gandli" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+            𝕏 by @老板
+          </a>
+          <span className="opacity-30">·</span>
+          <a href="https://github.com/gandli" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+            <Github className="w-3.5 h-3.5" />
+            <span>by @老板</span>
+          </a>
+        </p>
       </div>
 
       <HowItWorksDialog open={howItWorksOpen} onOpenChange={setHowItWorksOpen} />
