@@ -104,16 +104,16 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground antialiased;
     font-family:
+      "DM Sans",
       "Inter",
-      -apple-system,
-      BlinkMacSystemFont,
+      system-ui,
       sans-serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: "Noto Serif SC", "Georgia", serif;
+    font-family: "Noto Serif SC", serif;
   }
 
   .text-balance {

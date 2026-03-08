@@ -25,7 +25,7 @@ const Navbar = () => {
           </span>
         </div>
         <span className="font-medium text-sm tracking-tight text-foreground">
-          ciggies.app
+          Chinese Cigarette Museum
         </span>
       </button>
 
