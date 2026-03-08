@@ -8,6 +8,7 @@ import Brands from "./pages/Brands";
 import BrandDetail from "./pages/BrandDetail";
 import SkuDetail from "./pages/SkuDetail";
 import Community from "./pages/Community";
+import Chat from "./pages/Chat";
 import Feed from "./pages/Feed";
 import NotFound from "./pages/NotFound";
 
