@@ -148,12 +148,13 @@ The website is structured as a comprehensive Chinese cigarette database and comm
 
 1. **Home/Collection** (`/`): Main product listing page showing cigarette products
 2. **Brands** (`/brands`): Organized by geographical regions (Mainland China, Hong Kong/Macau/Taiwan, International, Historical)
-3. **Community** (`/community`): User community section (requires login)
-4. **Feed** (`/feed`): Activity feed showing recent user interactions
-5. **Individual Product Pages** (`/sku/:id`): Detailed product information
-6. **Brand Pages** (`/brand/:id`): Collection of products under a specific brand
-7. **User Profile** (`/my`): Personal user dashboard
-8. **Chat** (`/chat`): Real-time community chat feature
+3. **Manufacturers** (`/manufacturers`): Manufacturer listings showing companies and their brands
+4. **Community** (`/community`): User community section (requires login)
+5. **Feed** (`/feed`): Activity feed showing recent user interactions
+6. **Individual Product Pages** (`/sku/:id`): Detailed product information
+7. **Brand Pages** (`/brand/:id`): Collection of products under a specific brand
+8. **User Profile** (`/my`): Personal user dashboard
+9. **Chat** (`/chat`): Real-time community chat feature
 
 ### Page-by-Page Functionality
 
@@ -178,6 +179,15 @@ The website is structured as a comprehensive Chinese cigarette database and comm
   - Number of products in the brand
   - Pinyin representation
 - Search functionality for brands
+
+#### Manufacturers Page
+- Lists tobacco manufacturing companies with their logos
+- Shows the number of brands each manufacturer owns
+- Displays manufacturer names in both Chinese and English
+- Each manufacturer card links to a page showing all brands owned by that company
+- May include manufacturer details like location and founding information
+- Allows users to explore cigarette brands by manufacturing company
+- Provides insight into the tobacco industry structure
 
 #### Individual Product (SKU) Page
 - Large product image display
