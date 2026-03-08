@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Star, Circle, Bookmark } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -228,23 +228,28 @@ const SkuDetail = () => {
                     {regionLabel.zh} · {regionLabel.en}
                   </span>
                 )}
-                <h1 className="text-3xl font-bold text-foreground leading-tight mb-2 font-chinese">
+                <h1 className="text-3xl font-bold text-ash leading-tight mb-2 font-serif">
                   {product.brand}（{product.name}）
                 </h1>
-                <p className="text-[17px] text-muted-foreground italic mb-2">
+                <p className="text-[17px] text-muted-text/60 italic mb-2 font-sans">
                   {product.nameEn}
                 </p>
-                <div className="flex items-center text-[13px] text-muted-foreground">
+                <div className="flex items-center text-[13px] text-muted-text/30 font-sans">
                   <button
                     onClick={() => navigate(`/brand/${product.brandPinyin}`)}
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-gold transition-colors"
                   >
                     {product.brand}
                   </button>
                   {product.manufacturer && (
                     <>
                       <span className="mx-2 opacity-30">·</span>
-                      <span>{product.manufacturer}</span>
+                      <Link
+                        to={`/manufacturer/${encodeURIComponent(product.manufacturer)}`}
+                        className="hover:text-gold transition-colors hover:underline"
+                      >
+                        {product.manufacturer}
+                      </Link>
                     </>
                   )}
                 </div>

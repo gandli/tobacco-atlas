@@ -12,6 +12,7 @@ import Chat from "./pages/Chat";
 import Gallery from "./pages/Gallery";
 import Feed from "./pages/Feed";
 import MyPage from "./pages/MyPage";
+import ManufacturerDetail from "./pages/ManufacturerDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/chat" element={<Chat />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/my" element={<MyPage />} />
+          <Route path="/manufacturer/:name" element={<ManufacturerDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

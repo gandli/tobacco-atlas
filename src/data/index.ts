@@ -309,6 +309,11 @@ export function getBrandByPinyin(pinyin: string): BrandItem | undefined {
   return brands.find((b) => b.pinyin === pinyin);
 }
 
+/** 获取特定制造商的所有产品 */
+export function getProductsByManufacturer(manufacturerName: string): Product[] {
+  return products.filter((p) => p.manufacturer === manufacturerName);
+}
+
 /** 通过品牌拼音获取关联产品 */
 export function getProductsByBrand(pinyin: string): Product[] {
   const brand = getBrandByPinyin(pinyin);
