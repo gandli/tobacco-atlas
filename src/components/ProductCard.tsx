@@ -35,34 +35,40 @@ const ProductCard = ({ product }: ProductCardProps) => {
         {/* Hover Overlay */}
         <div className="sku-card-overlay">
           {regionLabel && (
-            <span className="stamp w-fit mb-2 text-[9px] text-gold border-gold/30 bg-gold/10">
+            <span
+              className={`stamp w-fit mb-3 ${
+                product.region === "mainland"
+                  ? "text-red-500 bg-red-50"
+                  : "text-gold bg-gold/10"
+              }`}
+            >
               {regionLabel.zh} · {regionLabel.en}
             </span>
           )}
-          <div className="text-[10px] text-ash/60 leading-tight mb-1 break-words font-sans">
+          <div className="text-[14px] text-foreground/80 leading-tight mb-1 break-words font-sans">
             {product.nameEn || product.name}
           </div>
-          <div className="text-[11px] text-muted-text/60 mb-2 font-serif">
+          <div className="text-[12px] text-muted-foreground/60 mb-4 font-sans">
             {product.brand}
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[12px] font-semibold text-gold tabular-nums">
+            <span className="text-[18px] font-bold text-red-500 tabular-nums">
               ¥{product.packPrice || product.price || 0}
             </span>
-            <div className="flex gap-1.5">
+            <div className="flex items-center gap-2">
               <button
                 aria-label="Add to favorites"
-                className="w-6 h-6 rounded-full flex items-center justify-center transition-all text-sm bg-gold/10 text-gold hover:bg-gold hover:text-white"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-all bg-red-50 text-red-500 hover:bg-red-100"
                 onClick={(e) => handleAction(e, "favorite")}
               >
-                ★
+                <Star className="w-5 h-5 fill-current" />
               </button>
               <button
                 aria-label="Mark as tried"
-                className="w-6 h-6 rounded-full flex items-center justify-center transition-all text-[11px] bg-ash/8 text-ash hover:bg-ash hover:text-white"
+                className="w-10 h-10 flex items-center justify-center transition-all text-foreground/80 hover:text-foreground"
                 onClick={(e) => handleAction(e, "tried")}
               >
-                ✓
+                <CheckCircle className="w-5 h-5" />
               </button>
             </div>
           </div>
