@@ -46,10 +46,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 {regionLabel.zh} · {regionLabel.en}
               </span>
             )}
-            <div className="text-[13px] text-foreground font-medium leading-tight mb-0.5 break-words font-sans line-clamp-2">
+            <div className="text-[12px] text-foreground font-medium leading-tight mb-0.5 font-sans line-clamp-2">
               {product.nameEn || product.name}
             </div>
-            <div className="text-[11px] text-muted-foreground/60 mb-3 font-sans truncate">
+            <div className="text-[10px] text-muted-foreground/60 mb-3 font-sans truncate">
               {product.brand}
             </div>
             <div className="flex items-center justify-between">

@@ -145,29 +145,10 @@ All colors MUST be HSL.
     height: 62%;
     max-height: 62%;
     min-height: 0;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.1) transparent;
+    overflow: hidden;
   }
 
-  .sku-card-overlay::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .sku-card-overlay::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .sku-card-overlay::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.1);
-    border-radius: 2px;
-  }
-
-  .dark .sku-card-overlay::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1);
-  }
-
-  /* Overlay content wrapper for proper scroll behavior */
+  /* Overlay content wrapper */
   .sku-card-overlay-content {
     @apply flex flex-col mt-auto;
   }
