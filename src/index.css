@@ -143,6 +143,26 @@ All colors MUST be HSL.
     opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0
     flex flex-col justify-end text-left rounded-t-[1.75rem] shadow-[0_-4px_20px_rgba(0,0,0,0.08)];
     height: 62%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+  }
+
+  .sku-card-overlay::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sku-card-overlay::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sku-card-overlay::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 2px;
+  }
+
+  .dark .sku-card-overlay::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
   }
 
   .stamp {
