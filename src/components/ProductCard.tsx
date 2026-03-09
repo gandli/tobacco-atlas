@@ -81,7 +81,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <span className="text-sm font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors text-wrap-balance">
           {product.brand}
         </span>
-        <span className="text-11 font-sans text-muted-text/60 text-center leading-tight line-clamp-1">
+        <span className="text-11 font-sans text-muted-foreground/60 text-center leading-tight line-clamp-1">
           {product.name}
         </span>
       </div>

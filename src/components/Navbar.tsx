@@ -34,7 +34,7 @@ const Navbar = () => {
         </span>
       </Link>
 
-      <div className="hidden md:flex items-center gap-1">
+      <div className="hidden md:flex items-center gap-1" role="navigation" aria-label="Main navigation">
         {navItems.map((item) => {
           const isActive =
             location.pathname === item.path ||
@@ -48,6 +48,7 @@ const Navbar = () => {
                   ? "bg-foreground text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
               }`}
+              aria-current={isActive ? "page" : undefined}
             >
               {item.label}
             </Link>

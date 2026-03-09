@@ -19,14 +19,14 @@ const HeroSection = () => {
 
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center min-h-[80vh] md:min-h-screen px-4 md:px-6 text-center">
-        <h1 className="font-display text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-none mb-3 md:mb-4 text-wrap-balance">
+      <div className="relative flex flex-col items-center justify-center min-h-[80vh] md:min-h-[calc(var(--nav-height)_*_12)] px-4 md:px-6 text-center">
+        <h1 className="font-display text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-none mb-3 md:mb-4 text-balance">
           {t("title")}
         </h1>
         <p className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-6">
           {t("subtitle")}
         </p>
-        <p className="text-sm text-muted-foreground mb-8">
+        <p className="text-sm text-muted-foreground mb-8 max-w-md">
           {t("stats", {
             brands: totalBrands,
             products: totalProducts.toLocaleString(),
@@ -36,23 +36,23 @@ const HeroSection = () => {
         <Button
           onClick={scrollToCollection}
           variant="default"
-          className="mb-6 h-11 px-8 text-sm gap-2"
+          className="mb-6 h-11 px-8 text-sm gap-2 rounded-md"
         >
           {t("browseCollection")}
           <ArrowDown className="w-4 h-4" />
         </Button>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3 mt-4">
           <button
             onClick={() => setHowItWorksOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground border border-border rounded-full hover:bg-secondary transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none"
+            className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground border border-border rounded-full hover:bg-secondary transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none min-w-[140px]"
           >
             <BookOpen className="w-4 h-4" />
             {t("howItWorks")}
           </button>
           <button
             onClick={() => setWhyThisExistsOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground border border-border rounded-full hover:bg-secondary transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none"
+            className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground border border-border rounded-full hover:bg-secondary transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none min-w-[140px]"
           >
             <HelpCircle className="w-4 h-4" />
             {t("whyThisExists")}
