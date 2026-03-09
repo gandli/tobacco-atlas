@@ -66,10 +66,13 @@ const BrandDetail = () => {
 
           {/* Brand header */}
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8 mb-12 lg:mb-16">
-            <div className="w-20 h-20 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center border border-border rounded-2xl bg-card p-3 shadow-sm">
+            <div className="w-20 h-20 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center border border-border rounded-2xl bg-card p-3 shadow-sm overflow-hidden">
               <img
                 src={brand.logo}
                 alt={brand.name}
+                width={128}
+                height={128}
+                fetchPriority="high"
                 className="max-w-full max-h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
@@ -106,8 +109,8 @@ const BrandDetail = () => {
 
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex flex-col">
-                  <span className="text-destructive font-bold text-lg leading-none">
-                    {brand.count}
+                  <span className="text-destructive font-bold text-lg leading-none tabular-nums">
+                    {new Intl.NumberFormat().format(brand.count)}
                   </span>
                   <span className="text-[10px] text-muted-foreground uppercase tracking-tighter">
                     Products
@@ -135,11 +138,11 @@ const BrandDetail = () => {
 
           {/* Products section */}
           <div className="mb-8 border-b border-border/50 pb-4">
-            <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-baseline gap-3">
+            <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-baseline gap-3 text-wrap-balance">
               Collection
               {brandProducts.length > 0 && (
                 <span className="text-muted-foreground text-sm font-normal tabular-nums">
-                  {brandProducts.length} items
+                  {new Intl.NumberFormat().format(brandProducts.length)} items
                 </span>
               )}
             </h2>
