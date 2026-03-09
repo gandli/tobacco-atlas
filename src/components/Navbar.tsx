@@ -24,7 +24,7 @@ const Navbar = () => {
         to="/"
         className="flex items-center gap-2 hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg outline-none"
       >
-        <div className="w-7 h-7 rounded-lg bg-foreground flex items-center justify-center">
+        <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
           <span className="text-primary-foreground text-13 font-bold leading-none select-none">
             烟
           </span>
