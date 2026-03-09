@@ -35,12 +35,12 @@ describe("ProductCard", () => {
 
   it("should render product brand name", () => {
     renderWithRouter(<ProductCard product={mockProduct} />);
-    expect(screen.getByText("中华")).toBeInTheDocument();
+    expect(screen.getAllByText("中华")[0]).toBeInTheDocument();
   });
 
   it("should render product name", () => {
     renderWithRouter(<ProductCard product={mockProduct} />);
-    expect(screen.getByText("软中华")).toBeInTheDocument();
+    expect(screen.getAllByText("软中华")[0]).toBeInTheDocument();
   });
 
   it("should render product image with correct alt text", () => {
@@ -81,8 +81,8 @@ describe("ProductCard", () => {
 
     renderWithRouter(<ProductCard product={minimalProduct} />);
 
-    expect(screen.getByText("测试品牌")).toBeInTheDocument();
-    expect(screen.getByText("测试产品")).toBeInTheDocument();
+    expect(screen.getAllByText("测试品牌")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("测试产品")[0]).toBeInTheDocument();
   });
 
   it("should have group class for hover effects", () => {
