@@ -9,11 +9,13 @@ on:
       - main
       - dev
       - web
+      - nextjs
   pull_request:
     branches:
       - main
       - dev
       - web
+      - nextjs
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
