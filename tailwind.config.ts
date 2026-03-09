@@ -55,8 +55,14 @@ export default {
         "80": "5rem", // 80px
       },
       borderRadius: {
-        "8": "0.5rem", // 8px
-        "10": "0.625rem", // 10px
+        sm: "0.25rem", // 4px - 小元素
+        DEFAULT: "0.5rem", // 8px - 默认
+        md: "0.75rem", // 12px - 按钮、输入框
+        lg: "1rem", // 16px - 卡片
+        xl: "1.25rem", // 20px - 模态框
+        "2xl": "1.5rem", // 24px - 大卡片
+        "3xl": "2rem", // 32px - 特殊元素
+        full: "9999px", // 圆形 - 头像
       },
       colors: {
         ash: "#0b0b0d",

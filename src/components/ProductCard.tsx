@@ -19,10 +19,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       to={`/sku/${product.id}`}
-      className="flex flex-col gap-3 cursor-pointer group outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="flex flex-col gap-3 cursor-pointer group outline-none rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       aria-label={`${product.brand} - ${product.name}`}
     >
-      <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-xl overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
+      <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-lg overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
         <img
           src={product.image}
           alt={`${product.brand}（${product.name}）`}
