@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-Tobacco Atlas is a web-based informational platform that provides comprehensive, visually-appealing information about tobacco products available in China. The project is inspired by [ciggies.app](https://www.ciggies.app/) and aims to cover three main product categories: cigarettes, cigars, and e-cigarettes.
+Tobacco Atlas is a web-based informational platform that provides comprehensive, visually-appealing information about tobacco products available in China. The project is inspired by [ciggies.app](https://www.ciggies.app/) and aims to cover three main product categories: cigarettes, cigars, and e-cigarettes. The platform incorporates advanced features including AI-powered recommendations, product comparison tools, authenticity verification guides, and cigar preservation tips.
 
 ---
 
@@ -18,6 +18,7 @@ Tobacco Atlas is a web-based informational platform that provides comprehensive,
 - No unified platform exists that covers cigarettes, cigars, AND e-cigarettes
 - Existing resources lack visual appeal and modern user experience
 - Difficult to compare products across different categories
+- Lack of guidance on product authenticity and preservation techniques
 
 ### Target Users
 
@@ -36,13 +37,18 @@ Tobacco Atlas is a web-based informational platform that provides comprehensive,
 2. Cover three product categories comprehensively
 3. Provide accurate, up-to-date product information
 4. Support both Chinese and English languages
+5. Implement AI-powered personalized recommendations
+6. Offer product comparison tools for informed decision-making
+7. Provide authenticity verification guides to combat counterfeits
+8. Deliver cigar preservation tips for optimal enjoyment
 
 ### Success Metrics
 
 - Page views and time on site
 - Number of products cataloged
-- User engagement (searches, comparisons)
+- User engagement (searches, comparisons, AI recommendations usage)
 - Return visitor rate
+- User satisfaction with authenticity verification and preservation guides
 
 ---
 
@@ -112,13 +118,15 @@ Tobacco Atlas is a web-based informational platform that provides comprehensive,
 | Price History | P1 | Track price changes over time |
 | Reviews | P2 | User ratings and comments |
 
-### 4.3 Future Features (v2.0)
+### 4.3 Advanced Features (v2.0)
 
 | Feature | Priority | Description |
 |---------|----------|-------------|
-| AI Recommendations | P3 | Suggest products based on preferences |
-| AR Preview | P3 | Augmented reality pack viewing |
-| Price Alerts | P3 | Notify when prices change |
+| AI Recommendations | P1 | Suggest products based on preferences and usage patterns |
+| Authenticity Verification Guide | P1 | Comprehensive guides to identify genuine products |
+| Cigar Preservation Tips | P1 | Expert advice on storing and preserving cigars |
+| AR Preview | P2 | Augmented reality pack viewing |
+| Price Alerts | P2 | Notify when prices change |
 | API Access | P3 | Public API for developers |
 
 ---
@@ -170,8 +178,15 @@ Next.js 14 (App Router)
 Content Source
 ├── JSON files (product data)
 ├── Markdown (articles)
+├── AI Model (recommendations)
 └── Images (Cloudinary / local)
 ```
+
+### AI Services
+
+- Machine Learning model for personalized recommendations
+- Natural Language Processing for authenticity verification guides
+- Image recognition for counterfeit detection (future)
 
 ### Deployment
 
@@ -196,6 +211,8 @@ Content Source
 - Brand profiles
 - Industry news
 - Educational articles
+- Authenticity verification guides
+- Cigar preservation tips
 
 ---
 
@@ -222,6 +239,13 @@ Content Source
 - [ ] User accounts
 - [ ] Mobile app consideration
 - [ ] SEO optimization
+
+### Phase 4: Advanced Features (6 weeks)
+
+- [ ] AI recommendation engine
+- [ ] Authenticity verification guides
+- [ ] Cigar preservation tips section
+- [ ] Enhanced comparison tools
 
 ---
 
@@ -256,9 +280,11 @@ Content Source
 - Disclaimer about health risks
 - Respect trademark and copyright
 - No sales or promotion of tobacco products
+- Compliance with regulations for AI recommendations and authenticity verification
 
 ---
 
-*Document Version: 1.0*
+*Document Version: 1.1*
 *Created: 2026-03-06*
+*Updated: 2026-03-09*
 *Author: Lobster AI Assistant 🦞*

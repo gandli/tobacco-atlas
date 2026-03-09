@@ -18,6 +18,9 @@ Tobacco Atlas is an informational website inspired by [ciggies.app](https://www.
 - 📱 Mobile-responsive layout
 - 🔍 Search and filter by brand, type, price range
 - 📊 Product specifications and comparison tools
+- 🤖 AI-powered personalized recommendations
+- ✅ Authenticity verification guides
+- 🚬 Cigar preservation tips
 - 🌐 Bilingual support (Chinese/English)
 
 ## Tech Stack
@@ -25,6 +28,7 @@ Tobacco Atlas is an informational website inspired by [ciggies.app](https://www.
 - Frontend: React / Next.js
 - Styling: Tailwind CSS
 - Data: Static JSON / Markdown content
+- AI Services: Machine Learning recommendation engine
 - Deployment: Vercel / GitHub Pages
 
 ## Getting Started
