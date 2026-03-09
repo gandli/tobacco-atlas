@@ -34,42 +34,44 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Hover Overlay */}
         <div className="sku-card-overlay">
-          {regionLabel && (
-            <span
-              className={`stamp w-fit mb-2 ${
-                product.region === "mainland"
-                  ? "text-red-500 bg-red-50"
-                  : "text-gold bg-gold/10"
-              }`}
-            >
-              {regionLabel.zh} · {regionLabel.en}
-            </span>
-          )}
-          <div className="text-[13px] text-foreground font-medium leading-tight mb-0.5 break-words font-sans line-clamp-2">
-            {product.nameEn || product.name}
-          </div>
-          <div className="text-[11px] text-muted-foreground/60 mb-3 font-sans truncate">
-            {product.brand}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-[16px] font-bold text-red-500 tabular-nums">
-              ¥{product.packPrice || product.price || 0}
-            </span>
-            <div className="flex items-center gap-1.5">
-              <button
-                aria-label="Add to favorites"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-red-50 text-red-500 hover:bg-red-100"
-                onClick={(e) => handleAction(e, "favorite")}
+          <div className="sku-card-overlay-content">
+            {regionLabel && (
+              <span
+                className={`stamp w-fit mb-2 ${
+                  product.region === "mainland"
+                    ? "text-red-500 bg-red-50"
+                    : "text-gold bg-gold/10"
+                }`}
               >
-                <Star className="w-4 h-4 fill-current" />
-              </button>
-              <button
-                aria-label="Mark as tried"
-                className="w-8 h-8 flex items-center justify-center transition-all text-foreground/40 hover:text-foreground"
-                onClick={(e) => handleAction(e, "tried")}
-              >
-                <CheckCircle className="w-4 h-4" />
-              </button>
+                {regionLabel.zh} · {regionLabel.en}
+              </span>
+            )}
+            <div className="text-[13px] text-foreground font-medium leading-tight mb-0.5 break-words font-sans line-clamp-2">
+              {product.nameEn || product.name}
+            </div>
+            <div className="text-[11px] text-muted-foreground/60 mb-3 font-sans truncate">
+              {product.brand}
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[16px] font-bold text-red-500 tabular-nums">
+                ¥{product.packPrice || product.price || 0}
+              </span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  aria-label="Add to favorites"
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-red-50 text-red-500 hover:bg-red-100"
+                  onClick={(e) => handleAction(e, "favorite")}
+                >
+                  <Star className="w-4 h-4 fill-current" />
+                </button>
+                <button
+                  aria-label="Mark as tried"
+                  className="w-8 h-8 flex items-center justify-center transition-all text-foreground/40 hover:text-foreground"
+                  onClick={(e) => handleAction(e, "tried")}
+                >
+                  <CheckCircle className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
