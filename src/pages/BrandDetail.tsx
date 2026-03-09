@@ -1,16 +1,19 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
+import ProductCard from "@/components/ProductCard";
 import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data";
 
 const BrandDetail = () => {
   const { pinyin } = useParams<{ pinyin: string }>();
-  const navigate = useNavigate();
 
   const brand = useMemo(() => getBrandByPinyin(pinyin || ""), [pinyin]);
-  const brandProducts = useMemo(() => getProductsByBrand(pinyin || ""), [pinyin]);
+  const brandProducts = useMemo(
+    () => getProductsByBrand(pinyin || ""),
+    [pinyin],
+  );
 
   if (!brand) {
     return (
@@ -19,11 +22,16 @@ const BrandDetail = () => {
         <div className="pt-[var(--nav-height)] flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <p className="text-6xl mb-4">🚬</p>
-            <h1 className="text-xl font-bold text-foreground mb-2">品牌未找到</h1>
+            <h1 className="text-xl font-bold text-foreground mb-2">
+              品牌未找到
+            </h1>
             <p className="text-muted-foreground mb-4">Brand not found</p>
-            <button onClick={() => navigate("/brands")} className="text-sm text-foreground underline">
+            <Link
+              to="/brands"
+              className="text-sm text-foreground underline focus-visible:ring-2 focus-visible:ring-ring outline-none rounded"
+            >
               ← Back to brands
-            </button>
+            </Link>
           </div>
         </div>
         <MobileNav />
@@ -39,18 +47,26 @@ const BrandDetail = () => {
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-10">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 md:mb-8">
-            <button onClick={() => navigate("/brands")} className="hover:text-foreground transition-colors flex items-center gap-1">
+          <nav
+            className="flex items-center gap-2 text-sm text-muted-foreground mb-6 md:mb-8"
+            aria-label="Breadcrumb"
+          >
+            <Link
+              to="/brands"
+              className="hover:text-foreground transition-colors flex items-center gap-1 focus-visible:underline outline-none"
+            >
               <ArrowLeft className="w-3.5 h-3.5" />
               Brands
-            </button>
-            <span>/</span>
-            <span className="text-foreground">{brand.name}</span>
-          </div>
+            </Link>
+            <span className="opacity-30" aria-hidden="true">
+              /
+            </span>
+            <span className="text-foreground font-medium">{brand.name}</span>
+          </nav>
 
           {/* Brand header */}
-          <div className="flex items-start gap-4 md:gap-6 mb-8 md:mb-12">
-            <div className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0 flex items-center justify-center border border-border rounded-xl bg-card p-2">
+          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8 mb-12 lg:mb-16">
+            <div className="w-20 h-20 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center border border-border rounded-2xl bg-card p-3 shadow-sm">
               <img
                 src={brand.logo}
                 alt={brand.name}
@@ -60,59 +76,86 @@ const BrandDetail = () => {
                 }}
               />
             </div>
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] px-2 py-0.5 rounded-full border border-destructive/30 text-destructive font-medium">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[10px] px-2.5 py-0.5 rounded-full border border-destructive/30 text-destructive font-medium uppercase tracking-wider">
                   {regionLabel.zh} · {regionLabel.en}
                 </span>
               </div>
-              <h1 className="font-display text-2xl md:text-4xl font-bold text-foreground mb-0.5">
+              <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-2 text-wrap-balance">
                 {brand.name}
               </h1>
-              <p className="text-sm md:text-base text-muted-foreground">{brand.pinyin}</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                <span className="text-destructive font-semibold">{brand.count}</span> products in collection
+              <p className="text-base text-muted-foreground font-medium mb-4">
+                {brand.pinyin}
               </p>
+
+              {(brand.descriptionCn || brand.descriptionEn) && (
+                <div className="max-w-3xl space-y-3 mb-6">
+                  {brand.descriptionCn && (
+                    <p className="text-[15px] leading-relaxed text-foreground/80 font-chinese">
+                      {brand.descriptionCn}
+                    </p>
+                  )}
+                  {brand.descriptionEn && (
+                    <p className="text-sm leading-relaxed text-muted-foreground font-light italic">
+                      {brand.descriptionEn}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <div className="flex items-center gap-4 text-sm">
+                <div className="flex flex-col">
+                  <span className="text-destructive font-bold text-lg leading-none">
+                    {brand.count}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-tighter">
+                    Products
+                  </span>
+                </div>
+                {brand.company && (
+                  <div
+                    className="h-8 w-px bg-border/50 mx-2"
+                    aria-hidden="true"
+                  />
+                )}
+                {brand.company && (
+                  <div className="flex flex-col">
+                    <span className="text-foreground font-medium truncate max-w-[200px] md:max-w-md">
+                      {brand.company}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-tighter">
+                      Manufacturer
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Products section */}
-          <div className="mb-4 md:mb-6">
-            <h2 className="text-lg md:text-xl font-semibold text-foreground">
-              Products
+          <div className="mb-8 border-b border-border/50 pb-4">
+            <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-baseline gap-3">
+              Collection
               {brandProducts.length > 0 && (
-                <span className="text-muted-foreground text-sm font-normal ml-2">
-                  {brandProducts.length} in database
+                <span className="text-muted-foreground text-sm font-normal tabular-nums">
+                  {brandProducts.length} items
                 </span>
               )}
             </h2>
           </div>
 
           {brandProducts.length > 0 ? (
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 md:gap-8">
               {brandProducts.map((product) => (
-                <div
-                  key={product.id}
-                  onClick={() => navigate(`/sku/${product.id}`)}
-                  className="flex flex-col items-center gap-2 cursor-pointer group"
-                >
-                  <div className="w-full aspect-[3/4] flex items-center justify-center p-2 md:p-3 border border-border rounded-xl bg-card group-hover:shadow-md transition-shadow">
-                    <img
-                      src={product.image}
-                      alt={`${product.brand}（${product.name}）`}
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="text-center">
-                    <span className="text-xs text-foreground font-medium">{product.name}</span>
-                  </div>
-                </div>
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 text-muted-foreground">
-              <p className="text-sm">No products in our database yet for this brand.</p>
+            <div className="text-center py-20 bg-secondary/20 rounded-3xl border border-dashed border-border">
+              <p className="text-muted-foreground">
+                No products in our database yet for this brand.
+              </p>
             </div>
           )}
         </div>
