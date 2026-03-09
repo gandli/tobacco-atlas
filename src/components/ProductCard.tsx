@@ -33,50 +33,38 @@ const ProductCard = ({ product }: ProductCardProps) => {
         />
 
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-background/60 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
-          <div className="flex flex-col gap-2 mb-4 animate-in fade-in zoom-in-95 duration-300">
-            {regionLabel && (
-              <div className="flex items-center justify-center gap-1.5 text-[10px] text-destructive font-medium uppercase tracking-wider">
-                <MapPin className="w-3 h-3" />
-                {regionLabel.zh}
-              </div>
-            )}
-            {product.manufacturer && (
-              <div className="flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground line-clamp-1 px-2">
-                <Building2 className="w-3 h-3 shrink-0" />
-                <span className="truncate">{product.manufacturer}</span>
-              </div>
-            )}
-            {product.packPrice && (
-              <div className="text-sm font-bold text-foreground mt-1 tabular-nums">
-                ¥{product.packPrice}
-              </div>
-            )}
+        <div className="sku-card-overlay">
+          {regionLabel && (
+            <span className="stamp w-fit mb-2 text-[9px] text-gold border-gold/30 bg-gold/10">
+              {regionLabel.zh} · {regionLabel.en}
+            </span>
+          )}
+          <div className="text-[10px] text-ash/60 leading-tight mb-1 break-words font-sans">
+            {product.nameEn || product.name}
           </div>
-
-          {/* Quick Actions */}
-          <div className="flex gap-2 animate-in slide-in-from-bottom-2 duration-300">
-            <button
-              onClick={(e) => handleAction(e, "favorite")}
-              className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
-              title="Add to Favorites"
-            >
-              <Star className="w-4 h-4" />
-            </button>
-            <button
-              onClick={(e) => handleAction(e, "tried")}
-              className="w-8 h-8 rounded-full bg-secondary/50 hover:bg-secondary text-foreground/70 flex items-center justify-center transition-colors"
-              title="Mark as Tried"
-            >
-              <CheckCircle className="w-4 h-4" />
-            </button>
-            <button
-              onClick={(e) => handleAction(e, "wishlist")}
-              className="w-8 h-8 rounded-full bg-secondary/50 hover:bg-secondary text-foreground/70 flex items-center justify-center transition-colors"
-              title="Add to Wishlist"
-            >
-              <Bookmark className="w-4 h-4" />
-            </button>
+          <div className="text-[11px] text-muted-text/60 mb-2 font-serif">
+            {product.brand}
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] font-semibold text-gold tabular-nums">
+              ¥{product.packPrice || product.price || 0}
+            </span>
+            <div className="flex gap-1.5">
+              <button
+                aria-label="Add to favorites"
+                className="w-6 h-6 rounded-full flex items-center justify-center transition-all text-sm bg-gold/10 text-gold hover:bg-gold hover:text-white"
+                onClick={(e) => handleAction(e, "favorite")}
+              >
+                ★
+              </button>
+              <button
+                aria-label="Mark as tried"
+                className="w-6 h-6 rounded-full flex items-center justify-center transition-all text-[11px] bg-ash/8 text-ash hover:bg-ash hover:text-white"
+                onClick={(e) => handleAction(e, "tried")}
+              >
+                ✓
+              </button>
+            </div>
           </div>
         </div>
       </div>

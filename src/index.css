@@ -108,11 +108,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family:
-      "DM Sans",
-      "Inter",
-      system-ui,
-      sans-serif;
+    font-family: "DM Sans", "Inter", system-ui, sans-serif;
   }
 }
 
@@ -139,6 +135,18 @@ All colors MUST be HSL.
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Product Card Overlay Styles */
+  .sku-card-overlay {
+    @apply absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-background/95 via-background/80 to-transparent 
+    opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0
+    flex flex-col justify-end text-left;
+    height: 70%;
+  }
+
+  .stamp {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded-sm border font-medium uppercase tracking-tighter;
   }
 }
 

@@ -24,39 +24,43 @@ export default {
         sans: ['"DM Sans"', "sans-serif"],
       },
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '0.875rem' }], // 10px
-        '3xs': ['0.5625rem', { lineHeight: '0.75rem' }], // 9px
-        '11': ['0.6875rem', { lineHeight: '1rem' }], // 11px
-        '13': ['0.8125rem', { lineHeight: '1.25rem' }], // 13px
-        '15': ['0.9375rem', { lineHeight: '1.5rem' }], // 15px
-        '17': ['1.0625rem', { lineHeight: '1.5rem' }], // 17px
-        '36': ['2.25rem', { lineHeight: '2.5rem' }], // 36px
+        "2xs": ["0.625rem", { lineHeight: "0.875rem" }], // 10px
+        "3xs": ["0.5625rem", { lineHeight: "0.75rem" }], // 9px
+        "11": ["0.6875rem", { lineHeight: "1rem" }], // 11px
+        "13": ["0.8125rem", { lineHeight: "1.25rem" }], // 13px
+        "15": ["0.9375rem", { lineHeight: "1.5rem" }], // 15px
+        "17": ["1.0625rem", { lineHeight: "1.5rem" }], // 17px
+        "36": ["2.25rem", { lineHeight: "2.5rem" }], // 36px
+        "9": ["0.5625rem", { lineHeight: "0.75rem" }], // 9px
+        "10": ["0.625rem", { lineHeight: "0.875rem" }], // 10px
+        "12": ["0.75rem", { lineHeight: "1rem" }], // 12px
       },
       width: {
-        '36': '9rem', // 144px
-        '140': '8.75rem', // 140px
-        '180': '11.25rem', // 180px
+        "36": "9rem", // 144px
+        "140": "8.75rem", // 140px
+        "180": "11.25rem", // 180px
       },
       height: {
-        '180': '11.25rem', // 180px
-        '260': '16.25rem', // 260px
+        "180": "11.25rem", // 180px
+        "260": "16.25rem", // 260px
       },
       maxWidth: {
-        '300': '18.75rem', // 300px
-        '380': '23.75rem', // 380px
-        '420': '26.25rem', // 420px
-        '1200': '75rem', // 1200px
-        '1600': '100rem', // 1600px
+        "300": "18.75rem", // 300px
+        "380": "23.75rem", // 380px
+        "420": "26.25rem", // 420px
+        "1200": "75rem", // 1200px
+        "1600": "100rem", // 1600px
       },
       minHeight: {
-        '80': '5rem', // 80px
+        "80": "5rem", // 80px
       },
       borderRadius: {
-        '8': '0.5rem', // 8px
-        '10': '0.625rem', // 10px
+        "8": "0.5rem", // 8px
+        "10": "0.625rem", // 10px
       },
       colors: {
         ash: "#0b0b0d",
+        gold: "#c5a059", // A more premium gold color matching ciggies.app
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -101,11 +105,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {
