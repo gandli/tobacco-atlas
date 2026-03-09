@@ -1,7 +1,12 @@
 import { products } from "@/data";
 import { useMemo } from "react";
 
-const positions: Array<{ top: string; left?: string; right?: string; w: number }> = [
+const positions: Array<{
+  top: string;
+  left?: string;
+  right?: string;
+  w: number;
+}> = [
   // Left side
   { top: "5%", left: "2%", w: 80 },
   { top: "20%", left: "5%", w: 90 },
@@ -39,7 +44,10 @@ const FloatingProducts = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+    <div
+      className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block"
+      aria-hidden="true"
+    >
       {items.map((item, i) => (
         <div
           key={i}

@@ -15,9 +15,7 @@ import {
 const ProductImageGallery = ({ product }: { product: Product }) => {
   const allImages = useMemo(() => {
     const imgs: string[] = [];
-    // 主图
     if (product.image) imgs.push(product.image);
-    // images 数组中的其他图
     if (product.images) {
       for (const img of product.images) {
         if (img.url && !imgs.includes(img.url)) imgs.push(img.url);
@@ -44,6 +42,8 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
           alt={`${product.brand}（${product.name}）`}
           className="max-h-full max-w-full object-contain p-6 md:p-10 animate-[fadeUp_0.2s_ease_both]"
           src={allImages[currentIndex]}
+          width={800}
+          height={600}
         />
 
         {/* 左右切换箭头（多图时显示） */}
@@ -51,19 +51,21 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
           <>
             <button
               onClick={goPrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg"
+              aria-label="Previous image"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg focus-visible:ring-2 focus-visible:ring-ring outline-none"
             >
               ‹
             </button>
             <button
               onClick={goNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg"
+              aria-label="Next image"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg focus-visible:ring-2 focus-visible:ring-ring outline-none"
             >
               ›
             </button>
             {/* 页码 */}
             <div className="absolute bottom-3 left-0 right-0 flex justify-center">
-              <span className="font-mono text-[10px] text-muted-foreground bg-background/80 px-2 py-0.5 rounded">
+              <span className="font-mono text-[10px] text-muted-foreground bg-background/80 px-2 py-0.5 rounded slashed-zero tabular-nums">
                 {currentIndex + 1} / {allImages.length}
               </span>
             </div>
@@ -78,7 +80,8 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`flex-shrink-0 w-14 h-14 bg-card border rounded-xl transition-colors overflow-hidden ${
+              aria-label={`View image ${i + 1}`}
+              className={`flex-shrink-0 w-14 h-14 bg-card border rounded-xl transition-colors overflow-hidden focus-visible:ring-2 focus-visible:ring-ring outline-none ${
                 i === currentIndex
                   ? "border-foreground/50"
                   : "border-border hover:border-foreground/25"
@@ -89,6 +92,8 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
                 alt={`Thumb ${i + 1}`}
                 className="w-full h-full object-contain p-1"
                 loading="lazy"
+                width={56}
+                height={56}
               />
             </button>
           ))}
@@ -167,31 +172,47 @@ const SkuDetail = () => {
     { label: "Overall", value: product.overallRating },
   ].filter((r) => r.value !== undefined);
 
+  // 格式化货币
+  const formatCurrency = (value: number, currency: string = "CNY") => {
+    return new Intl.NumberFormat(currency === "CNY" ? "zh-CN" : "en-US", {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 0,
+    }).format(value);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-[13px] text-muted-foreground mb-8 overflow-x-auto no-scrollbar">
-            <button
-              onClick={() => navigate("/")}
-              className="hover:text-foreground transition-colors whitespace-nowrap"
+          <nav
+            className="flex items-center gap-2 text-[13px] text-muted-foreground mb-8 overflow-x-auto no-scrollbar"
+            aria-label="Breadcrumb"
+          >
+            <Link
+              to="/"
+              className="hover:text-foreground transition-colors whitespace-nowrap focus-visible:underline outline-none"
             >
               Collection
-            </button>
-            <span className="opacity-30">/</span>
-            <button
-              onClick={() => navigate(`/brand/${product.brandPinyin}`)}
-              className="hover:text-foreground transition-colors whitespace-nowrap"
+            </Link>
+            <span className="opacity-30" aria-hidden="true">
+              /
+            </span>
+            <Link
+              to={`/brand/${product.brandPinyin}`}
+              className="hover:text-foreground transition-colors whitespace-nowrap focus-visible:underline outline-none"
             >
               {product.brand}
-            </button>
-            <span className="opacity-30">/</span>
-            <span className="text-foreground truncate">
+            </Link>
+            <span className="opacity-30" aria-hidden="true">
+              /
+            </span>
+            <span className="text-foreground truncate font-medium">
               {product.brand}（{product.name}）
             </span>
-          </div>
+          </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_380px] gap-10 lg:gap-16">
             {/* Left Column: Gallery & Description */}
@@ -200,9 +221,9 @@ const SkuDetail = () => {
 
               {(product.description || product.descriptionZh) && (
                 <div className="p-6 rounded-2xl bg-secondary/30 border border-border/40">
-                  <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground/60 mb-4">
+                  <h2 className="text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground/60 mb-4">
                     Description
-                  </p>
+                  </h2>
                   <div className="space-y-4">
                     {product.description && (
                       <p className="text-[14px] text-foreground/80 leading-relaxed font-light">
@@ -228,25 +249,27 @@ const SkuDetail = () => {
                     {regionLabel.zh} · {regionLabel.en}
                   </span>
                 )}
-                <h1 className="text-3xl font-bold text-ash leading-tight mb-2 font-serif">
+                <h1 className="text-3xl font-bold text-ash leading-tight mb-2 font-serif text-wrap-balance">
                   {product.brand}（{product.name}）
                 </h1>
                 <p className="text-[17px] text-muted-text/60 italic mb-2 font-sans">
                   {product.nameEn}
                 </p>
                 <div className="flex items-center text-[13px] text-muted-text/30 font-sans">
-                  <button
-                    onClick={() => navigate(`/brand/${product.brandPinyin}`)}
-                    className="hover:text-gold transition-colors"
+                  <Link
+                    to={`/brand/${product.brandPinyin}`}
+                    className="hover:text-gold transition-colors focus-visible:underline outline-none"
                   >
                     {product.brand}
-                  </button>
+                  </Link>
                   {product.manufacturer && (
                     <>
-                      <span className="mx-2 opacity-30">·</span>
+                      <span className="mx-2 opacity-30" aria-hidden="true">
+                        ·
+                      </span>
                       <Link
                         to={`/manufacturer/${encodeURIComponent(product.manufacturer)}`}
-                        className="hover:text-gold transition-colors hover:underline"
+                        className="hover:text-gold transition-colors hover:underline focus-visible:underline outline-none"
                       >
                         {product.manufacturer}
                       </Link>
@@ -257,14 +280,18 @@ const SkuDetail = () => {
                 {/* Main Price */}
                 {product.packPrice && (
                   <div className="mt-6 flex items-baseline gap-3">
-                    <span className="text-[36px] font-bold text-foreground leading-none">
-                      ¥{product.packPrice}
+                    <span className="text-[36px] font-bold text-foreground leading-none font-variant-numeric-tabular-nums">
+                      {formatCurrency(product.packPrice)}
                     </span>
                     <span className="text-[13px] text-muted-foreground/60">
                       / pack
                     </span>
                     <span className="text-[14px] text-muted-foreground/50 font-medium">
-                      ≈ ${Math.round(product.packPrice * usdRate)}
+                      ≈{" "}
+                      {formatCurrency(
+                        Math.round(product.packPrice * usdRate),
+                        "USD",
+                      )}
                     </span>
                   </div>
                 )}
@@ -272,18 +299,40 @@ const SkuDetail = () => {
                 {/* Action Buttons */}
                 <div className="mt-6">
                   <div className="flex gap-2">
-                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
-                      <span className="text-lg leading-none opacity-40">☆</span>
+                    <Button
+                      variant="secondary"
+                      className="flex-1 h-11 text-[13px] font-medium"
+                      aria-label={`Favorite ${product.name}`}
+                    >
+                      <span
+                        className="text-lg leading-none opacity-40"
+                        aria-hidden="true"
+                      >
+                        ☆
+                      </span>
                       Favorite
-                    </button>
-                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
-                      <span className="text-lg leading-none opacity-40">○</span>
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="flex-1 h-11 text-[13px] font-medium"
+                      aria-label={`Mark ${product.name} as tried`}
+                    >
+                      <span
+                        className="text-lg leading-none opacity-40"
+                        aria-hidden="true"
+                      >
+                        ○
+                      </span>
                       Mark tried
-                    </button>
-                    <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[13px] font-medium transition-all bg-secondary/50 text-foreground/60 hover:bg-secondary hover:text-foreground">
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="flex-1 h-11 text-[13px] font-medium"
+                      aria-label={`Add ${product.name} to wishlist`}
+                    >
                       <Bookmark className="w-3.5 h-3.5 opacity-40" />
                       Wishlist
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -292,9 +341,9 @@ const SkuDetail = () => {
               {specs.length > 0 && (
                 <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
                   <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
-                    <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
+                    <h2 className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
                       Specifications
-                    </p>
+                    </h2>
                   </div>
                   <div className="divide-y divide-border/30">
                     {specs.map((spec) => (
@@ -305,7 +354,7 @@ const SkuDetail = () => {
                         <span className="text-[12px] text-muted-foreground/70 w-36 shrink-0">
                           {spec.label}
                         </span>
-                        <span className="text-[13px] text-foreground/80 font-medium">
+                        <span className="text-[13px] text-foreground/80 font-medium font-variant-numeric-tabular-nums">
                           {spec.value}
                         </span>
                       </div>
@@ -318,9 +367,9 @@ const SkuDetail = () => {
               {pricing.length > 0 && (
                 <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
                   <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
-                    <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
+                    <h2 className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
                       Pricing
-                    </p>
+                    </h2>
                   </div>
                   <div className="divide-y divide-border/30">
                     {pricing.map((item) => (
@@ -331,11 +380,11 @@ const SkuDetail = () => {
                         <span className="text-[12px] text-muted-foreground/70 w-36 shrink-0">
                           {item.label}
                         </span>
-                        <span className="text-[15px] font-bold text-foreground">
-                          ¥{item.cny}
+                        <span className="text-[15px] font-bold text-foreground font-variant-numeric-tabular-nums">
+                          {formatCurrency(item.cny!)}
                         </span>
-                        <span className="text-[12px] text-muted-foreground/40 ml-2">
-                          ≈ ${(item.cny! * usdRate).toFixed(2)}
+                        <span className="text-[12px] text-muted-foreground/40 ml-2 font-variant-numeric-tabular-nums">
+                          ≈ {formatCurrency(item.cny! * usdRate, "USD")}
                         </span>
                       </div>
                     ))}

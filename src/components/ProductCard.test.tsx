@@ -56,23 +56,18 @@ describe("ProductCard", () => {
     expect(image).toHaveAttribute("loading", "lazy");
   });
 
-  it("should navigate to product detail on click", () => {
+  it("should have correct link path", () => {
     renderWithRouter(<ProductCard product={mockProduct} />);
-    const card = screen.getByRole("img").closest("div[class*='cursor-pointer']");
-    
-    if (card) {
-      fireEvent.click(card);
-    }
-
-    expect(mockNavigate).toHaveBeenCalledWith(`/sku/${mockProduct.id}`);
+    const link = screen.getByRole("link");
+    expect(link).toHaveAttribute("href", `/sku/${mockProduct.id}`);
   });
 
   it("should have correct container structure", () => {
-    const { container } = renderWithRouter(<ProductCard product={mockProduct} />);
-    
+    renderWithRouter(<ProductCard product={mockProduct} />);
+
     // Check for cursor-pointer class indicating interactivity
-    const clickableContainer = container.querySelector(".cursor-pointer");
-    expect(clickableContainer).toBeInTheDocument();
+    const clickableContainer = screen.getByRole("link");
+    expect(clickableContainer).toHaveClass("cursor-pointer");
   });
 
   it("should display product with missing optional fields", () => {
@@ -85,14 +80,16 @@ describe("ProductCard", () => {
     };
 
     renderWithRouter(<ProductCard product={minimalProduct} />);
-    
+
     expect(screen.getByText("测试品牌")).toBeInTheDocument();
     expect(screen.getByText("测试产品")).toBeInTheDocument();
   });
 
   it("should have group class for hover effects", () => {
-    const { container } = renderWithRouter(<ProductCard product={mockProduct} />);
-    
+    const { container } = renderWithRouter(
+      <ProductCard product={mockProduct} />,
+    );
+
     const groupElement = container.querySelector(".group");
     expect(groupElement).toBeInTheDocument();
   });
