@@ -30,3 +30,5 @@ bun.lock
 .vercel
 .wrangler
 bun.lock
+.*/skills/
+skills-lock.json
