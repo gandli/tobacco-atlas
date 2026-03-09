@@ -1,4 +1,4 @@
-# Tobacco Atlas 中国烟草图鉴
+# Tobacco Atlas
 
 > A comprehensive guide to Chinese tobacco products: cigarettes, cigars, and e-cigarettes.
 
@@ -9,7 +9,7 @@ Tobacco Atlas is an informational website inspired by [ciggies.app](https://www.
 ### Product Categories
 
 - **Cigarettes (香烟)** - Traditional Chinese cigarette brands and varieties
-- **Cigars (雪茄烟)** - Domestic and imported cigar products  
+- **Cigars (雪茄烟)** - Domestic and imported cigar products
 - **E-cigarettes (电子烟)** - Vaping devices and e-liquid brands
 
 ## Features
@@ -50,4 +50,4 @@ MIT License
 
 ---
 
-🦞 *Idea captured by Lobster, the AI assistant*
+🦞 _Idea captured by Lobster, the AI assistant_
