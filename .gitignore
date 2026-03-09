@@ -29,3 +29,4 @@ dist-ssr
 bun.lock
 .vercel
 .wrangler
+bun.lock
