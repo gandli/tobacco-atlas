@@ -1,5 +1,1 @@
-import ManufacturerListPage from "@/features/pages/ManufacturerList";
-
-export default function ManufacturersPage() {
-  return <ManufacturerListPage />;
-}
+export { default } from "@/app/makers/page";

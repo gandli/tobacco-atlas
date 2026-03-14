@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import ManufacturerList from "./ManufacturerList";
+import ManufacturerList from "@/app/makers/page";
 
 const mockI18n = {
   language: "zh-CN",

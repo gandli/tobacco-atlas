@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
-import Chat from "./Chat";
+import Chat from "@/app/chat/page";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({

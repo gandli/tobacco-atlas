@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import Changelog from "./Changelog";
+import Changelog from "@/app/changelog/page";
 
 const mockI18n = {
   language: "zh-CN",

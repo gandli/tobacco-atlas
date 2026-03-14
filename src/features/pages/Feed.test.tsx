@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import Feed from "./Feed";
+import Feed from "@/app/feed/page";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
