@@ -26,7 +26,7 @@ vi.mock("react-i18next", () => ({
 
 vi.mock("@/components/Navbar", () => ({ default: () => <nav data-testid="navbar" /> }));
 vi.mock("@/components/MobileNav", () => ({ default: () => <nav data-testid="mobile-nav" /> }));
-vi.mock("@/data", () => ({
+vi.mock("@/data/community", () => ({
   communityUsers: [
     { id: "1", username: "alice", brands: 2, tried: 7, fav: 3, avatar: "" },
   ],

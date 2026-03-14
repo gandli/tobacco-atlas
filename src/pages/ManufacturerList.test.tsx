@@ -48,7 +48,7 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-vi.mock("@/data", () => ({
+vi.mock("@/data/manufacturers", () => ({
   manufacturers: [
     {
       name: "湖北中烟工业有限责任公司",

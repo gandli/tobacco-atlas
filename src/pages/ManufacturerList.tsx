@@ -17,8 +17,8 @@ import {
 import { Search, Building2, Filter, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
-import { manufacturers } from '@/data';
-import type { Manufacturer } from '@/data';
+import { manufacturers } from '@/data/manufacturers';
+import type { Manufacturer } from '@/data/types';
 import { isEnglishLanguage } from "@/lib/i18n-utils";
 
 /**

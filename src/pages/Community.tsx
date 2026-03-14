@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { communityUsers } from "@/data";
+import { communityUsers } from "@/data/community";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import SocialPageHero from "@/components/social/SocialPageHero";

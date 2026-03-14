@@ -40,7 +40,7 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-vi.mock("@/data", () => ({
+vi.mock("@/data/brand-catalog", () => ({
   brands: [
     {
       id: 1,
@@ -63,6 +63,9 @@ vi.mock("@/data", () => ({
       descriptionCn: "国际品牌",
     },
   ],
+}));
+
+vi.mock("@/data/region-labels", () => ({
   regionLabels: {
     mainland: { zh: "大陆", en: "Mainland" },
     hkmo: { zh: "港澳", en: "HK & Macau" },

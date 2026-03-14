@@ -5,7 +5,8 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { brands, regionLabels } from "@/data";
+import { brands } from "@/data/brand-catalog";
+import { regionLabels } from "@/data/region-labels";
 import { useTranslation } from "react-i18next";
 import { isEnglishLanguage } from "@/lib/i18n-utils";
 
