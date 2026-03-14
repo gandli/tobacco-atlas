@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SocialPageHero from "@/components/social/SocialPageHero";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 interface ChatMessage {
   id: string;
@@ -65,7 +66,7 @@ const Chat = () => {
       <Navbar />
       <div className="flex-1 flex flex-col pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="px-4 md:px-6 py-4 md:py-6 border-b border-border/50 bg-background/80 backdrop-blur-sm">
-          <div className="max-w-3xl mx-auto">
+          <CollectionPageFrame size="reading" className="px-0 py-0">
             <SocialPageHero
               eyebrow={t("chat.eyebrow")}
               title={t("chat.title")}
@@ -77,12 +78,12 @@ const Chat = () => {
                 </div>
               }
             />
-          </div>
+          </CollectionPageFrame>
         </div>
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 py-4 space-y-1">
+          <CollectionPageFrame size="reading" className="space-y-1 px-0 py-4">
             {mockMessages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-2.5 py-1.5 hover:bg-secondary/30 rounded-lg px-1 -mx-1 transition-colors">
                 {msg.avatar ? (
@@ -111,12 +112,12 @@ const Chat = () => {
               </div>
             ))}
             <div ref={bottomRef} />
-          </div>
+          </CollectionPageFrame>
         </div>
 
         {/* Input */}
         <div className="border-t border-border/50 bg-background/80 backdrop-blur-md">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 py-3">
+          <CollectionPageFrame size="reading" className="px-0 py-3">
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -133,7 +134,7 @@ const Chat = () => {
                 <Send className="w-4 h-4" />
               </button>
             </div>
-          </div>
+          </CollectionPageFrame>
         </div>
       </div>
       <MobileNav />

@@ -4,7 +4,7 @@ import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
-import { 
+import {
   User, 
   Heart, 
   History, 
@@ -15,6 +15,7 @@ import {
   Bell
 } from "lucide-react";
 import SocialPageHero from "@/components/social/SocialPageHero";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 const MyPage = () => {
   const { t } = useTranslation("account");
@@ -70,7 +71,7 @@ const MyPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12 space-y-6">
+        <CollectionPageFrame className="space-y-6">
           <SocialPageHero
             eyebrow={t("eyebrow")}
             title={t("title")}
@@ -149,7 +150,7 @@ const MyPage = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

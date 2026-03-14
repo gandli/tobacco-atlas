@@ -12,6 +12,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { useTranslation } from "react-i18next";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 const SubmitData = () => {
   const navigate = useNavigate();
@@ -147,7 +148,7 @@ const SubmitData = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-4xl mx-auto py-8 px-4">
+        <CollectionPageFrame size="narrow">
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl font-bold">{t('submit:title')}</CardTitle>
@@ -386,7 +387,7 @@ const SubmitData = () => {
             </Button>
           </CardFooter>
         </Card>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

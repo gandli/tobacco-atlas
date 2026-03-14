@@ -39,5 +39,6 @@ describe("Community", () => {
     expect(screen.getByText("Collector Network")).toBeInTheDocument();
     expect(screen.getByText("Community")).toBeInTheDocument();
     expect(screen.getByText("Sign up to appear on the leaderboard")).toBeInTheDocument();
+    expect(screen.getByTestId("page-frame")).toBeInTheDocument();
   });
 });

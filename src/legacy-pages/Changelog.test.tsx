@@ -51,5 +51,6 @@ describe("Changelog", () => {
     expect(pageText).toContain("A running timeline of product improvements, structure changes, and interface upgrades.");
     expect(pageText).toContain("Feature");
     expect(pageText).toContain("Added gallery support to brand detail pages");
+    expect(screen.getByTestId("page-frame")).toBeInTheDocument();
   });
 });

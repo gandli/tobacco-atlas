@@ -10,6 +10,7 @@ import { getBrandById, getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductsByBrand } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 type BrandDetailProps = {
   identifier?: string;
@@ -82,7 +83,7 @@ const BrandDetail = ({ identifier, pinyin: explicitPinyin }: BrandDetailProps) =
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-10">
+        <CollectionPageFrame className="py-6 md:py-10">
           {/* Breadcrumb */}
           <nav
             className="flex items-center gap-2 text-sm text-muted-foreground mb-6 md:mb-8"
@@ -193,7 +194,7 @@ const BrandDetail = ({ identifier, pinyin: explicitPinyin }: BrandDetailProps) =
               </p>
             </div>
           )}
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

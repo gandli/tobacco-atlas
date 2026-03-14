@@ -1,11 +1,12 @@
 import BrandGridSkeleton from "@/components/skeletons/BrandGridSkeleton";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import PageShellSkeleton from "@/components/skeletons/PageShellSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function BrandsLoading() {
   return (
     <PageShellSkeleton>
-      <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-6 md:py-12">
+      <CollectionPageFrame>
         <div className="mb-6 md:mb-10">
           <Skeleton className="mb-2 h-3 w-24 rounded-full" />
           <Skeleton className="mb-2 h-10 w-48 rounded-2xl md:h-14 md:w-72" />
@@ -26,7 +27,7 @@ export default function BrandsLoading() {
         </div>
 
         <BrandGridSkeleton />
-      </div>
+      </CollectionPageFrame>
     </PageShellSkeleton>
   );
 }

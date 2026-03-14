@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { getProductsByManufacturer } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
 import OptimizedImage from "@/components/OptimizedImage";
+import MobileNav from "@/components/MobileNav";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -35,8 +37,8 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
   return (
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
-
-      <main className="container max-w-7xl mx-auto px-4 py-8">
+      <main className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
+        <CollectionPageFrame>
         <Breadcrumb className="mb-8">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -138,7 +140,9 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             ))}
           </div>
         </section>
+        </CollectionPageFrame>
       </main>
+      <MobileNav />
     </div>
   );
 };

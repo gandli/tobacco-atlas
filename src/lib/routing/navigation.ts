@@ -23,7 +23,11 @@ export const mobileNavigationItems: NavigationItem[] = [
   { key: "community", path: "/community" },
 ];
 
-export function isPathActive(pathname: string, path: string) {
+export function isPathActive(pathname: string | null | undefined, path: string) {
+  if (!pathname) {
+    return false;
+  }
+
   if (path === "/") {
     return pathname === "/";
   }

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import SocialPageHero from "@/components/social/SocialPageHero";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";
 
@@ -23,7 +24,7 @@ const Community = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-6">
+        <CollectionPageFrame className="space-y-6">
           <SocialPageHero
             eyebrow={t("community.eyebrow")}
             title={t("community.title")}
@@ -116,7 +117,7 @@ const Community = () => {
             ))}
           </div>
           </div>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

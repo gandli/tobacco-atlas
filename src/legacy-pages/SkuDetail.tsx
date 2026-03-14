@@ -10,6 +10,7 @@ import { getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductById, type Product } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 /** 产品图片画廊 — 多图轮播 + 缩略图 */
 const ProductImageGallery = ({ product }: { product: Product }) => {
@@ -219,7 +220,7 @@ const SkuDetail = ({ id: explicitId }: SkuDetailProps) => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
+        <CollectionPageFrame className="py-6 md:py-8">
           {/* Breadcrumb */}
           <nav
             className="flex items-center gap-2 text-[13px] text-muted-foreground mb-8 overflow-x-auto no-scrollbar"
@@ -490,7 +491,7 @@ const SkuDetail = ({ id: explicitId }: SkuDetailProps) => {
               )}
             </div>
           </div>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

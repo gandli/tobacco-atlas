@@ -1,3 +1,4 @@
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import ManufacturerGridSkeleton from "@/components/skeletons/ManufacturerGridSkeleton";
 import PageShellSkeleton from "@/components/skeletons/PageShellSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -5,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function ManufacturersLoading() {
   return (
     <PageShellSkeleton>
-      <div className="container mx-auto max-w-7xl px-4 py-8">
+      <CollectionPageFrame>
         <div className="mb-8">
           <Skeleton className="mb-4 h-6 w-28 rounded-full" />
           <Skeleton className="mb-2 h-10 w-48 rounded-2xl md:w-64" />
@@ -23,7 +24,7 @@ export default function ManufacturersLoading() {
         </div>
 
         <ManufacturerGridSkeleton />
-      </div>
+      </CollectionPageFrame>
     </PageShellSkeleton>
   );
 }

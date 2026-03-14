@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import { getLocalizedText } from "@/lib/i18n-utils";
 import { Clock3, Sparkles } from "lucide-react";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 
 type ChangeType = "feature" | "fix" | "improvement" | "breaking" | "docs";
 
@@ -73,7 +74,7 @@ const Changelog = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <CollectionPageFrame size="narrow">
           <section className="relative overflow-hidden rounded-[30px] border border-border/60 bg-gradient-to-br from-secondary/60 via-background to-background px-6 py-8 md:px-8 md:py-10 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
             <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/8 blur-2xl" />
             <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs text-muted-foreground">
@@ -137,7 +138,7 @@ const Changelog = () => {
           <p className="text-center text-muted-foreground text-sm mt-8">
             {t('footer')}
           </p>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>
