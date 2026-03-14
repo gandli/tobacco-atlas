@@ -127,39 +127,67 @@ export default function BrandsPage() {
             </div>
 
             <div className="mt-4 border-t border-border/50 pt-5">
-              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
-                {filteredBrands.map((brand) => (
-                  <Link
-                    key={brand.id}
-                    href={`/brand/${brand.pinyin}`}
-                    className="rounded-2xl border border-border/60 bg-card/80 p-3 md:p-4 flex flex-col items-center cursor-pointer transition-all hover:border-gold/30 hover:shadow-md"
-                  >
-                    <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                      <OptimizedImage
-                        src={brand.logo}
-                        alt={brand.name}
-                        width={64}
-                        height={64}
-                        className="max-w-full max-h-full object-contain"
-                        sizes="64px"
-                      />
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center gap-1 justify-center">
-                        <span className="text-xs md:text-sm font-medium text-foreground">
-                          {brand.name}
-                        </span>
-                        <span className="text-[10px] md:text-xs text-destructive font-medium">
-                          {brand.count}
+              {isLoading ? (
+                // 骨架屏状态
+                <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <SkeletonBrandCard key={i} />
+                  ))}
+                </div>
+              ) : filteredBrands.length === 0 ? (
+                // 空状态
+                <EmptyState
+                  type="search"
+                  title="未找到品牌"
+                  description={search ? `"${search}" 没有匹配的品牌，尝试其他关键词` : "该分类下暂无品牌"}
+                  action={
+                    search && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSearch("")}
+                      >
+                        清除搜索
+                      </Button>
+                    )
+                  }
+                />
+              ) : (
+                // 品牌网格
+                <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
+                  {filteredBrands.map((brand) => (
+                    <Link
+                      key={brand.id}
+                      href={`/brand/${brand.pinyin}`}
+                      className="rounded-2xl border border-border/60 bg-card/80 p-3 md:p-4 flex flex-col items-center cursor-pointer transition-all hover:border-gold/30 hover:shadow-md"
+                    >
+                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
+                        <OptimizedImage
+                          src={brand.logo}
+                          alt={`${brand.name} 品牌标志`}
+                          width={64}
+                          height={64}
+                          className="max-w-full max-h-full object-contain"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div className="text-center">
+                        <div className="flex items-center gap-1 justify-center">
+                          <span className="text-xs md:text-sm font-medium text-foreground">
+                            {brand.name}
+                          </span>
+                          <span className="text-[10px] md:text-xs text-destructive font-medium">
+                            {brand.count}
+                          </span>
+                        </div>
+                        <span className="text-[10px] md:text-xs text-muted-foreground">
+                          {brand.pinyin}
                         </span>
                       </div>
-                      <span className="text-[10px] md:text-xs text-muted-foreground">
-                        {brand.pinyin}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </CollectionPageSurface>
         </CollectionPageFrame>
