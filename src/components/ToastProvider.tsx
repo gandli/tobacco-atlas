@@ -53,23 +53,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       showInfo: (msg) => showToast(msg, "info"),
     }}>
       {children}
-      <Toaster 
-        richColors
-        toastOptions={{
-          success: {
-            className: "bg-green-50 text-green-900 border-green-200",
-            icon: "✓",
-          },
-          error: {
-            className: "bg-red-50 text-red-900 border-red-200",
-            icon: "✕",
-          },
-          info: {
-            className: "bg-blue-50 text-blue-900 border-blue-200",
-            icon: "ℹ",
-          },
-        }}
-      />
+      <Toaster richColors closeButton />
     </ToastContext.Provider>
   );
 }

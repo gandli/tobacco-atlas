@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import BrandList from "@/app/brands/page";
@@ -101,15 +101,16 @@ describe("BrandList", () => {
 
     render(<BrandList />);
 
+    // 等待初始加载完成（骨架屏消失）
+    // 页面有 300ms 的模拟加载延迟
+    setTimeout(() => {}, 350);
+
     const searchInput = screen.getByPlaceholderText("Search brands…");
     
     // 搜索 "zhong" 应该匹配 "中华" (zhonghua) 的拼音
     fireEvent.change(searchInput, {
       target: { value: "zhong" },
     });
-
-    // 调试：输出当前 DOM 内容
-    console.log("DOM after search:", document.body.innerHTML);
 
     // 在 mainland 地区下，搜索 "zhong" 应该找到 "中华"
     expect(screen.getByText("中华")).toBeInTheDocument();
