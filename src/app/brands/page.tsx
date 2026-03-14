@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,9 @@ import CollectionControlBar from "@/components/catalog/CollectionControlBar";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
 import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
+import { EmptyState } from "@/components/EmptyState";
+import { SkeletonBrandCard } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import { brands } from "@/data/brand-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { isEnglishLanguage } from "@/lib/i18n-utils";
@@ -21,7 +24,14 @@ export default function BrandsPage() {
   const { t, i18n } = useTranslation(["brands", "nav"]);
   const [activeRegion, setActiveRegion] = useState<string>("mainland");
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
+
+  // 模拟初始加载延迟，展示骨架屏
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredBrands = useMemo(() => {
     return brands
