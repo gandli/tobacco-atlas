@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import SkuDetailPage from "@/app/sku/[id]/page";
@@ -20,11 +20,13 @@ vi.mock("@/data/brand-catalog", () => ({
 }));
 
 describe("Sku detail route", () => {
-  it("passes the dynamic id param into the sku detail page", async () => {
-    const page = await SkuDetailPage({ params: Promise.resolve({ id: "3424" }) } as any);
-    render(page);
-    await waitFor(() => {
-      expect(screen.getByText(/Test Brand/)).toBeInTheDocument();
+  it("passes the dynamic id param into the sku detail page", () => {
+    const page = SkuDetailPage({
+      params: { id: "3424" } as any,
     });
+
+    render(page);
+
+    expect(screen.getAllByText(/Test Brand/)[0]).toBeInTheDocument();
   });
 });
