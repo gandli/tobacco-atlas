@@ -115,14 +115,13 @@ describe("ManufacturerList", () => {
     render(<ManufacturerList />);
 
     await waitFor(() => {
-      const detailLinks = screen.getAllByRole("link");
-      expect(
-        detailLinks.some((link) =>
-          (link.getAttribute("href") || "").includes(
-            "/manufacturer/%E6%B9%96%E5%8C%97%E4%B8%AD%E7%83%9F%E5%B7%A5%E4%B8%9A%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8",
-          ),
-        ),
-      ).toBe(true);
+      const manufacturerName = screen.getByText("湖北中烟工业有限责任公司");
+      const detailLink = manufacturerName.closest("a");
+
+      expect(detailLink).not.toBeNull();
+      expect(detailLink?.getAttribute("href")).toContain(
+        "/manufacturer/%E6%B9%96%E5%8C%97%E4%B8%AD%E7%83%9F%E5%B7%A5%E4%B8%9A%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8",
+      );
     });
   });
 

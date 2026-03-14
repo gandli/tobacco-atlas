@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { products } from "@/data";
+import { galleryProducts } from "@/data/gallery-catalog";
 import { Minus, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
@@ -96,8 +96,8 @@ const Gallery = () => {
   }, []);
 
   const rows = [];
-  for (let i = 0; i < products.length; i += COLS) {
-    rows.push(products.slice(i, i + COLS));
+  for (let i = 0; i < galleryProducts.length; i += COLS) {
+    rows.push(galleryProducts.slice(i, i + COLS));
   }
 
   return (
