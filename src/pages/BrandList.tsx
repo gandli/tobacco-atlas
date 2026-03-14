@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { brands, regionLabels } from "@/data";
@@ -9,7 +11,6 @@ import { useTranslation } from "react-i18next";
 const regions = ["mainland", "hkmo", "international", "historical"] as const;
 
 const Brands = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation(['brands', 'nav']);
   const [activeRegion, setActiveRegion] = useState<string>("mainland");
   const [search, setSearch] = useState("");
@@ -95,9 +96,9 @@ const Brands = () => {
           {/* Brand grid - 3 cols on mobile */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-2 md:gap-3">
             {filteredBrands.map((brand) => (
-              <div
+              <Link
                 key={brand.id}
-                onClick={() => navigate(`/brand/${brand.pinyin}`)}
+                href={`/brand/${brand.pinyin}`}
                 className="border border-border rounded-xl p-3 md:p-4 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow bg-card"
               >
                 <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
@@ -123,7 +124,7 @@ const Brands = () => {
                     {brand.pinyin}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
