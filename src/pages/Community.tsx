@@ -5,6 +5,7 @@ import { communityUsers } from "@/data/community";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import SocialPageHero from "@/components/social/SocialPageHero";
+import OptimizedImage from "@/components/OptimizedImage";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";
 
@@ -69,10 +70,13 @@ const Community = () => {
                 </span>
 
                 {user.avatar ? (
-                  <img
+                  <OptimizedImage
                     src={user.avatar}
                     alt={user.username}
+                    width={40}
+                    height={40}
                     className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
+                    sizes="40px"
                   />
                 ) : (
                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-xs md:text-sm font-semibold flex-shrink-0">

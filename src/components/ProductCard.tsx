@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import type { HomeProductSummary } from "@/data/home-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface ProductCardProps {
   product: HomeProductSummary;
@@ -44,13 +45,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       aria-label={`${product.brand} - ${productName}`}
     >
       <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-xl overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
-        <img
+        <OptimizedImage
           src={product.image}
           alt={`${product.brand}（${productName}）`}
-          className="max-h-full max-w-full object-contain group-hover:scale-105 group-hover:blur-[1px] transition-all duration-700 ease-out"
-          loading="lazy"
           width={400}
           height={500}
+          className="max-h-full max-w-full object-contain group-hover:scale-105 group-hover:blur-[1px] transition-all duration-700 ease-out"
+          loading="lazy"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
         />
 
         {/* Hover Overlay */}

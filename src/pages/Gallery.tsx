@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { useTranslation } from "react-i18next";
 import { getLocalizedText } from "@/lib/i18n-utils";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const COLS = 8;
 const CELL_W = 180;
@@ -138,12 +139,14 @@ const Gallery = () => {
                   style={{ width: CELL_W, height: CELL_H, padding: 12, flexShrink: 0 }}
                 >
                   <div className="flex-1 flex items-center justify-center w-full">
-                    <img
+                    <OptimizedImage
                       src={product.image}
                       alt={`${product.brand}（${getLocalizedText({ language: i18n.resolvedLanguage, zh: product.name, en: product.nameEn })}）`}
+                      width={CELL_W}
+                      height={CELL_H}
                       className="max-h-full max-w-full object-contain"
                       loading="lazy"
-                      draggable={false}
+                      sizes={`${CELL_W}px`}
                     />
                   </div>
                   <span className="text-xs text-muted-foreground text-center leading-tight whitespace-nowrap">

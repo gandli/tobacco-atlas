@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import ProductCard from "@/components/ProductCard";
+import OptimizedImage from "@/components/OptimizedImage";
 import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
@@ -82,15 +83,13 @@ const BrandDetail = () => {
           {/* Brand header */}
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8 mb-12 lg:mb-16">
             <div className="w-20 h-20 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center border border-border rounded-2xl bg-card p-3 shadow-sm overflow-hidden">
-              <img
+              <OptimizedImage
                 src={brand.logo}
                 alt={brand.name}
                 width={128}
                 height={128}
                 className="max-w-full max-h-full object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
+                sizes="128px"
               />
             </div>
             <div className="flex-1 min-w-0">

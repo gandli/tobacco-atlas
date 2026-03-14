@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import { homeProducts } from "@/data/home-catalog";
 
 const positions: Array<{
@@ -56,11 +57,14 @@ const FloatingProducts = () => {
             width: item.w,
           }}
         >
-          <img
+          <OptimizedImage
             src={item.product.image}
             alt=""
+            width={item.w}
+            height={Math.round(item.w * 1.25)}
             className="w-full object-contain"
             loading="lazy"
+            sizes={`${item.w}px`}
           />
           <span className="text-[10px] text-muted-foreground whitespace-nowrap">
             {item.product.brand}（{item.product.name}）

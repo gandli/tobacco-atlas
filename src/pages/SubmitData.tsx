@@ -11,6 +11,7 @@ import { UploadIcon, PlusIcon, XIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { useTranslation } from "react-i18next";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const SubmitData = () => {
   const navigate = useNavigate();
@@ -342,10 +343,13 @@ const SubmitData = () => {
                 <div className="flex flex-wrap gap-2">
                   {previewImages.map((preview, index) => (
                     <div key={index} className="relative">
-                      <img
+                      <OptimizedImage
                         src={preview}
                         alt={`Preview ${index + 1}`}
+                        width={96}
+                        height={96}
                         className="w-24 h-24 object-cover rounded border"
+                        sizes="96px"
                       />
                       <button
                         type="button"

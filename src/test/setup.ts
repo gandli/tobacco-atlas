@@ -1,4 +1,23 @@
 import "@testing-library/jest-dom";
+import { createElement } from "react";
+import { vi } from "vitest";
+
+vi.mock("next/image", () => ({
+  default: (props: Record<string, unknown>) => {
+    const {
+      fill: _fill,
+      priority: _priority,
+      placeholder: _placeholder,
+      blurDataURL: _blurDataURL,
+      unoptimized: _unoptimized,
+      quality: _quality,
+      loader: _loader,
+      ...rest
+    } = props;
+
+    return createElement("img", rest);
+  },
+}));
 
 type IntersectionEntryInit = {
   isIntersecting?: boolean;

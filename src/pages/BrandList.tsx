@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
+import OptimizedImage from "@/components/OptimizedImage";
 import { brands } from "@/data/brand-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { useTranslation } from "react-i18next";
@@ -102,13 +103,13 @@ const Brands = () => {
                 className="border border-border rounded-xl p-3 md:p-4 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow bg-card"
               >
                 <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                  <img
+                  <OptimizedImage
                     src={brand.logo}
                     alt={brand.name}
+                    width={64}
+                    height={64}
                     className="max-w-full max-h-full object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
+                    sizes="64px"
                   />
                 </div>
                 <div className="text-center">

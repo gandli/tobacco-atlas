@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
+import OptimizedImage from "@/components/OptimizedImage";
 import {
   getProductById,
   getBrandByPinyin,
@@ -40,13 +41,14 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
     <div className="flex flex-col gap-3">
       {/* 主图区域 */}
       <div className="relative bg-card border border-border rounded-2xl aspect-square sm:aspect-[4/3] flex items-center justify-center overflow-hidden">
-        <img
+        <OptimizedImage
           key={currentIndex}
           alt={`${product.brand}（${product.name}）`}
           className="max-h-full max-w-full object-contain p-6 md:p-10 animate-[fadeUp_0.2s_ease_both]"
           src={allImages[currentIndex]}
           width={800}
           height={600}
+          sizes="(max-width: 768px) 100vw, 800px"
         />
 
         {/* 左右切换箭头（多图时显示） */}
@@ -90,13 +92,14 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
                   : "border-border hover:border-foreground/25"
               }`}
             >
-              <img
+              <OptimizedImage
                 src={url}
                 alt={`Thumb ${i + 1}`}
-                className="w-full h-full object-contain p-1"
-                loading="lazy"
                 width={56}
                 height={56}
+                className="w-full h-full object-contain p-1"
+                loading="lazy"
+                sizes="56px"
               />
             </button>
           ))}

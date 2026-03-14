@@ -4,6 +4,7 @@ import MobileNav from "@/components/MobileNav";
 import { Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SocialPageHero from "@/components/social/SocialPageHero";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface ChatMessage {
   id: string;
@@ -85,10 +86,13 @@ const Chat = () => {
             {mockMessages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-2.5 py-1.5 hover:bg-secondary/30 rounded-lg px-1 -mx-1 transition-colors">
                 {msg.avatar ? (
-                  <img
+                  <OptimizedImage
                     src={msg.avatar}
                     alt={msg.username}
+                    width={32}
+                    height={32}
                     className="w-7 h-7 md:w-8 md:h-8 rounded-full object-cover flex-shrink-0 mt-0.5"
+                    sizes="32px"
                   />
                 ) : (
                   <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0 mt-0.5 ${getInitialColor(msg.username)}`}>

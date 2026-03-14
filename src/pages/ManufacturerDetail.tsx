@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getProductsByManufacturer } from "@/data";
 import Navbar from "@/components/Navbar";
+import OptimizedImage from "@/components/OptimizedImage";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -101,10 +102,13 @@ const ManufacturerDetail = () => {
                 className="group flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-500"
               >
                 <div className="aspect-[3/4] bg-card border border-border/50 rounded-2xl overflow-hidden flex items-center justify-center p-6 transition-all group-hover:shadow-2xl group-hover:border-gold/30">
-                  <img
+                  <OptimizedImage
                     src={product.image}
                     alt={product.name}
+                    width={320}
+                    height={426}
                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 50vw, 320px"
                   />
                 </div>
                 <div className="space-y-1 px-1 text-center sm:text-left">

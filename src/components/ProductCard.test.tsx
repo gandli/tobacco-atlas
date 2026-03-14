@@ -55,15 +55,16 @@ describe("ProductCard", () => {
   });
 
   it("renders a sku detail link", () => {
-    render(<ProductCard product={mockProduct} />);
+    const { container } = render(<ProductCard product={mockProduct} />);
 
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/sku/123");
+    expect(container.querySelector("a")).toHaveAttribute("href", "/sku/123");
   });
 
   it("renders a lazy-loaded image", () => {
-    render(<ProductCard product={mockProduct} />);
+    const { container } = render(<ProductCard product={mockProduct} />);
 
-    const image = screen.getByRole("img");
+    const image = container.querySelector("img");
+    expect(image).not.toBeNull();
     expect(image).toHaveAttribute("alt", "中华（软中华）");
     expect(image).toHaveAttribute("loading", "lazy");
   });
