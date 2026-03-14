@@ -39,8 +39,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isExtremeProductName = productName.length > 62;
   const isExtremeBrandName = product.brand.length > 34;
   const isLongRegionLabel = (regionDisplayLabel?.length || 0) > 18;
+  const isVeryLongRegionLabel = (regionDisplayLabel?.length || 0) > 24;
   const overlayCharLoad =
     productName.length + product.brand.length + (regionDisplayLabel?.length || 0);
+  const useDenseOverlay =
+    isExtremeProductName ||
+    overlayCharLoad > 58 ||
+    productName.length > 34 ||
+    product.brand.length > 24 ||
+    isVeryLongRegionLabel;
   const useCompactOverlay =
     isExtremeProductName ||
     isExtremeBrandName ||
@@ -48,14 +55,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
     overlayCharLoad > 42 ||
     productName.length > 24 ||
     product.brand.length > 18;
-  const overlayTitleClass = isExtremeProductName
-    ? "text-[9px] leading-snug"
+  const overlayTitleClass = useDenseOverlay
+    ? "text-[8px] md:text-[9px] leading-[1.2]"
+    : isExtremeProductName
+      ? "text-[9px] leading-[1.18]"
     : isVeryLongProductName
-      ? "text-[10px] leading-snug"
+      ? "text-[10px] leading-[1.18]"
       : isLongProductName
-        ? "text-[11px] leading-snug"
-        : "text-[12px] md:text-[13px] leading-snug";
-  const overlayBrandClass = isExtremeBrandName
+        ? "text-[11px] leading-[1.2]"
+        : "text-[12px] md:text-[13px] leading-[1.22]";
+  const overlayBrandClass = useDenseOverlay
+    ? "text-[7px] md:text-[8px] line-clamp-2"
+    : isExtremeBrandName
     ? "text-[8px] md:text-[9px] line-clamp-2"
     : useCompactOverlay
       ? "text-[8px] md:text-[9px] line-clamp-2"
@@ -63,20 +74,34 @@ const ProductCard = ({ product }: ProductCardProps) => {
       ? "text-[9px] md:text-[10px] line-clamp-1"
       : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} line-clamp-1`;
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
-  const overlayRegionClass = useCompactOverlay
+  const overlayRegionClass = useDenseOverlay
+    ? "text-[7px] px-1 py-[2px] max-w-full"
+    : useCompactOverlay
     ? "text-[8px] px-1.5 py-0.5 max-w-full"
     : "max-w-full";
-  const overlayContentDensity = useCompactOverlay ? "compact" : "default";
-  const overlayContentClass = useCompactOverlay
+  const overlayContentDensity = useDenseOverlay
+    ? "dense"
+    : useCompactOverlay
+      ? "compact"
+      : "default";
+  const overlayContentClass = useDenseOverlay
+    ? "sku-card-overlay-content sku-card-overlay-content-dense"
+    : useCompactOverlay
     ? "sku-card-overlay-content sku-card-overlay-content-compact"
     : "sku-card-overlay-content";
-  const overlayPriceClass = useCompactOverlay
+  const overlayPriceClass = useDenseOverlay
+    ? "text-[12px] md:text-[13px]"
+    : useCompactOverlay
     ? "text-[13px] md:text-[14px]"
     : "text-[14px] md:text-[15px]";
-  const overlayActionButtonClass = useCompactOverlay
+  const overlayActionButtonClass = useDenseOverlay
+    ? "flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all active:scale-95 md:h-5 md:w-5 animate-button-press"
+    : useCompactOverlay
     ? "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press"
     : "flex h-6 w-6 items-center justify-center rounded-full transition-all active:scale-95 md:h-7 md:w-7 animate-button-press";
-  const overlayActionIconClass = useCompactOverlay
+  const overlayActionIconClass = useDenseOverlay
+    ? "h-2.5 w-2.5 md:h-3 md:w-3"
+    : useCompactOverlay
     ? "h-3 w-3 md:h-3.5 md:w-3.5"
     : "h-3.5 w-3.5 md:h-4 md:w-4";
 
@@ -158,11 +183,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
             <div
               data-testid="product-card-overlay-text"
-              className={`flex flex-col min-h-0 ${useCompactOverlay ? "gap-1.5" : "gap-2"}`}
+              className={`flex min-h-0 flex-1 flex-col ${useDenseOverlay ? "gap-1" : useCompactOverlay ? "gap-1.5" : "gap-2"}`}
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} text-[#666661] font-medium font-sans ${useCompactOverlay ? "line-clamp-3" : isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
+                className={`${overlayTitleClass} pb-px text-[#666661] font-medium font-sans ${useDenseOverlay ? "line-clamp-4" : useCompactOverlay ? "line-clamp-3" : isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
                 title={productName}
               >
                 {productName}
@@ -175,11 +200,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 {product.brand}
               </div>
             </div>
-            <div className={`flex items-center justify-between gap-3 ${useCompactOverlay ? "pt-0.5" : "pt-1"}`}>
+            <div className={`mt-auto flex shrink-0 items-center justify-between gap-3 ${useDenseOverlay ? "pt-0" : useCompactOverlay ? "pt-0.5" : "pt-1"}`}>
               <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
                 ¥{product.packPrice || product.price || 0}
               </span>
-              <div className={`flex items-center ${useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
+              <div className={`flex items-center ${useDenseOverlay ? "gap-2" : useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
                 <button
                   aria-label="Add to favorites"
                   className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#ff6b5b]`}

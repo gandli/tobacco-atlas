@@ -112,7 +112,11 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[10px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[8px]");
+    expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
+      "data-overlay-density",
+      "dense",
+    );
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
       "中华",
@@ -133,10 +137,10 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-4");
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
-      "compact",
+      "dense",
     );
     expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
     expect(screen.getByTestId("product-card-overlay-text")).toHaveClass("min-h-0");
@@ -167,11 +171,11 @@ describe("ProductCard", () => {
 
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
-      "compact",
+      "dense",
     );
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[9px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[8px]");
     expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
-    expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[8px]");
+    expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[7px]");
   });
 
   it("switches to compact overlay layout when combined bilingual copy would otherwise overflow", () => {
@@ -185,5 +189,17 @@ describe("ProductCard", () => {
       "compact",
     );
     expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
+  });
+
+  it("pins the price row to the bottom so bilingual copy gets the remaining vertical space", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ProductCard product={combinedLongCopyProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-content").className).not.toContain(
+      "justify-between",
+    );
+    expect(screen.getByText("¥0").parentElement).toHaveClass("mt-auto", "shrink-0");
   });
 });
