@@ -33,9 +33,10 @@ export function LanguageSwitcher() {
           size="icon"
           className="h-8 w-8"
           aria-label={t("switchLanguage")}
+          suppressHydrationWarning
         >
           <Globe className="h-4 w-4" />
-          <span className="sr-only">{t("switchLanguage")}</span>
+          <span className="sr-only" suppressHydrationWarning>{t("switchLanguage")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

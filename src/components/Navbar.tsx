@@ -48,6 +48,7 @@ const Navbar = () => {
                   : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
               }`}
               aria-current={isActive ? "page" : undefined}
+              suppressHydrationWarning
             >
               {t(item.key)}
             </Link>
@@ -69,6 +70,7 @@ const Navbar = () => {
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
                 }`}
                 aria-current={isActive ? "page" : undefined}
+                suppressHydrationWarning
               >
                 {t(item.key)}
               </Link>
@@ -79,6 +81,7 @@ const Navbar = () => {
           href="/chat"
           aria-label={t("openChat")}
           className="inline-flex lg:hidden h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
+          suppressHydrationWarning
         >
           <MessageCircle className="h-4 w-4" />
         </Link>
@@ -88,13 +91,14 @@ const Navbar = () => {
           <Link
             href="/my"
             className="hidden sm:inline-flex items-center justify-center gap-1 rounded-full border border-border/60 px-3 h-8 text-xs text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
+            suppressHydrationWarning
           >
             <UserCircle2 className="h-3.5 w-3.5" />
             {t("my")}
           </Link>
         ) : null}
-        <Link href="/login" className="inline-flex items-center justify-center h-8">
-          <Button variant="default" size="sm" className="text-xs h-full px-4">
+        <Link href="/login" className="inline-flex items-center justify-center h-8" suppressHydrationWarning>
+          <Button variant="default" size="sm" className="text-xs h-full px-4" suppressHydrationWarning>
             {t("signIn")}
           </Button>
         </Link>
