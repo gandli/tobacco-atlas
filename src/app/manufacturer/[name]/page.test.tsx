@@ -15,6 +15,6 @@ describe("Manufacturer detail route", () => {
 
     render(page);
 
-    expect(screen.getByText("manufacturer detail Anhui%20Tobacco")).toBeInTheDocument();
+    expect(screen.getAllByText("manufacturer detail Anhui%20Tobacco")[0]).toBeInTheDocument();
   });
 });

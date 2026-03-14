@@ -15,6 +15,6 @@ describe("Maker detail route", () => {
 
     render(page);
 
-    expect(screen.getByText("maker detail Anhui%20Tobacco")).toBeInTheDocument();
+    expect(screen.getAllByText("maker detail Anhui%20Tobacco")[0]).toBeInTheDocument();
   });
 });

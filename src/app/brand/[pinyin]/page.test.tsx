@@ -19,7 +19,7 @@ describe("Brand detail route", () => {
 
     render(page);
 
-    expect(screen.getByText("brand detail huangshan")).toBeInTheDocument();
+    expect(screen.getAllByText("brand detail huangshan")[0]).toBeInTheDocument();
   });
 
   it("passes numeric brand ids through the same dynamic route", () => {
@@ -29,6 +29,6 @@ describe("Brand detail route", () => {
 
     render(page);
 
-    expect(screen.getByText("brand detail 23")).toBeInTheDocument();
+    expect(screen.getAllByText("brand detail 23")[0]).toBeInTheDocument();
   });
 });

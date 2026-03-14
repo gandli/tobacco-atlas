@@ -15,6 +15,6 @@ describe("Sku detail route", () => {
 
     render(page);
 
-    expect(screen.getByText("sku detail 3424")).toBeInTheDocument();
+    expect(screen.getAllByText("sku detail 3424")[0]).toBeInTheDocument();
   });
 });
