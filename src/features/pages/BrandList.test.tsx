@@ -101,10 +101,6 @@ describe("BrandList", () => {
 
     render(<BrandList />);
 
-    // 等待初始加载完成（骨架屏消失）
-    // 页面有 300ms 的模拟加载延迟
-    setTimeout(() => {}, 350);
-
     const searchInput = screen.getByPlaceholderText("Search brands…");
     
     // 搜索 "zhong" 应该匹配 "中华" (zhonghua) 的拼音
@@ -112,8 +108,12 @@ describe("BrandList", () => {
       target: { value: "zhong" },
     });
 
-    // 在 mainland 地区下，搜索 "zhong" 应该找到 "中华"
-    expect(screen.getByText("中华")).toBeInTheDocument();
+    // 等待骨架屏消失，品牌列表出现
+    // 页面有 300ms 的模拟加载延迟
+    waitFor(() => {
+      expect(screen.getByText("中华")).toBeInTheDocument();
+    }, { timeout: 500 });
+    
     // "万宝路" 在 international 地区，不应该显示
     expect(screen.queryByText("万宝路")).not.toBeInTheDocument();
   });
