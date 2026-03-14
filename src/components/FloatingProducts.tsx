@@ -1,4 +1,4 @@
-import { products } from "@/data";
+import { homeProducts } from "@/data/home-catalog";
 
 const positions: Array<{
   top: string;
@@ -37,7 +37,7 @@ const positions: Array<{
 const FloatingProducts = () => {
   const items = positions.map((pos, i) => ({
     ...pos,
-    product: products[i % products.length],
+    product: homeProducts[i % homeProducts.length],
   }));
 
   return (

@@ -20,18 +20,19 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-// Mock the data module
-vi.mock("@/data", () => ({
-  totalBrands: 100,
-  totalProducts: 1000,
+// Mock the home catalog module
+vi.mock("@/data/home-catalog", () => ({
+  homeProductStats: {
+    totalBrands: 100,
+    totalProducts: 1000,
+  },
 }));
 
 describe("HeroSection", () => {
   it("should render the hero section", () => {
-    render(<HeroSection />);
+    const { container } = render(<HeroSection />);
 
-    // Check if the main heading is present
-    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(container.querySelector("h1")).toBeInTheDocument();
   });
 
   it("should have the correct title", () => {

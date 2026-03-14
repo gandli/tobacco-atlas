@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowDown, BookOpen, HelpCircle, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { totalBrands, totalProducts } from "@/data";
+import { homeProductStats } from "@/data/home-catalog";
 import HowItWorksDialog from "./HowItWorksDialog";
 import WhyThisExistsDialog from "./WhyThisExistsDialog";
 
@@ -30,8 +30,8 @@ const HeroSection = () => {
         </p>
         <p className="text-sm text-muted-foreground mb-8 max-w-md">
           {t("stats", {
-            brands: totalBrands,
-            products: totalProducts.toLocaleString(),
+            brands: homeProductStats.totalBrands,
+            products: homeProductStats.totalProducts.toLocaleString(),
           })}
         </p>
 

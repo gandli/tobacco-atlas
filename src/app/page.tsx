@@ -3,24 +3,12 @@ import MobileNav from "@/components/MobileNav";
 import HeroSection from "@/components/HeroSection";
 import HomeProductStream from "@/components/HomeProductStream";
 import FloatingProductsDeferred from "@/components/FloatingProductsDeferred";
-import { products } from "@/data";
+import { homeProducts } from "@/data/home-catalog";
 
 const HOME_INITIAL_PRODUCTS = 16;
 const HOME_BATCH_SIZE = 16;
 
 export default function HomePage() {
-  const streamProducts = products.map((product) => ({
-    id: product.id,
-    brand: product.brand,
-    name: product.name,
-    nameEn: product.nameEn,
-    image: product.image,
-    brandPinyin: product.brandPinyin,
-    region: product.region,
-    price: product.price,
-    packPrice: product.packPrice,
-  }));
-
   return (
     <main className="min-h-screen pb-16 md:pb-0">
       <Navbar />
@@ -30,7 +18,7 @@ export default function HomePage() {
           <HeroSection />
         </div>
         <HomeProductStream
-          products={streamProducts}
+          products={homeProducts}
           initialCount={HOME_INITIAL_PRODUCTS}
           batchSize={HOME_BATCH_SIZE}
         />

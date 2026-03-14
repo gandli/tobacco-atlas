@@ -3,6 +3,7 @@ import MobileNav from "@/components/MobileNav";
 import HeroSection from "@/components/HeroSection";
 import FloatingProducts from "@/components/FloatingProducts";
 import ProductGrid from "@/components/ProductGrid";
+import { homeProducts } from "@/data/home-catalog";
 
 const Index = () => {
   return (
@@ -13,7 +14,7 @@ const Index = () => {
           <FloatingProducts />
           <HeroSection />
         </div>
-        <ProductGrid />
+        <ProductGrid products={homeProducts} />
       </div>
       <MobileNav />
     </div>

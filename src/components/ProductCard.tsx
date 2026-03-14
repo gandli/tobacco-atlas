@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { Star, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Product, regionLabels } from "@/data";
+import type { HomeProductSummary } from "@/data/home-catalog";
+import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 interface ProductCardProps {
-  product: Product;
+  product: HomeProductSummary;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {

@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import type { Product } from "@/data";
+import type { HomeProductSummary } from "@/data/home-catalog";
 import ProductGrid from "@/components/ProductGrid";
 import ProductCardSkeleton from "@/components/skeletons/ProductCardSkeleton";
 
 interface HomeProductStreamProps {
-  products: Product[];
+  products: HomeProductSummary[];
   initialCount?: number;
   batchSize?: number;
 }
