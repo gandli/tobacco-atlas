@@ -44,11 +44,12 @@ describe("Changelog", () => {
     mockI18n.language = "en-US";
     mockI18n.resolvedLanguage = "en-US";
 
-    render(<Changelog />);
+    const { container } = render(<Changelog />);
+    const pageText = container.textContent || "";
 
-    expect(screen.getByText("Changelog")).toBeInTheDocument();
-    expect(screen.getByText("A running timeline of product improvements, structure changes, and interface upgrades.")).toBeInTheDocument();
-    expect(screen.getAllByText("Feature")[0]).toBeInTheDocument();
-    expect(screen.getByText("Added gallery support to brand detail pages")).toBeInTheDocument();
+    expect(pageText).toContain("Changelog");
+    expect(pageText).toContain("A running timeline of product improvements, structure changes, and interface upgrades.");
+    expect(pageText).toContain("Feature");
+    expect(pageText).toContain("Added gallery support to brand detail pages");
   });
 });

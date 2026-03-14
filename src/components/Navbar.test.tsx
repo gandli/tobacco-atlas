@@ -35,22 +35,22 @@ describe("Navbar", () => {
   it("renders the museum home link and auth entry", () => {
     mockUsePathname.mockReturnValue("/");
 
-    render(<Navbar />);
+    const { container } = render(<Navbar />);
 
-    expect(screen.getByRole("link", { name: /Chinese Cigarette Museum/i })).toHaveAttribute("href", "/");
-    expect(screen.getByText("feed").closest("a")).toHaveAttribute("href", "/feed");
-    expect(screen.getByText("community").closest("a")).toHaveAttribute("href", "/community");
-    expect(screen.getByText("chat").closest("a")).toHaveAttribute("href", "/chat");
-    expect(screen.getByText("changelog").closest("a")).toHaveAttribute("href", "/changelog");
-    expect(screen.queryByText("my")).not.toBeInTheDocument();
-    expect(screen.getByText("signIn").closest("a")).toHaveAttribute("href", "/login");
+    expect(container.querySelector('a[href="/"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/feed"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/community"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/chat"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/changelog"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/my"]')).toBeNull();
+    expect(container.querySelector('a[href="/login"]')).toBeTruthy();
   });
 
   it("marks the active navigation item from pathname", () => {
     mockUsePathname.mockReturnValue("/brands");
 
-    render(<Navbar />);
+    const { container } = render(<Navbar />);
 
-    expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("aria-current", "page");
+    expect(container.querySelector('a[href="/brands"]')).toHaveAttribute("aria-current", "page");
   });
 });

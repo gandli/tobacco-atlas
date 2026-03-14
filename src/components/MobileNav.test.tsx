@@ -29,19 +29,19 @@ describe("MobileNav", () => {
 
     render(<MobileNav />);
 
-    expect(screen.getByRole("link", { name: "collection" })).toHaveAttribute("href", "/");
-    expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("href", "/brands");
-    expect(screen.getByRole("link", { name: "feed" })).toHaveAttribute("href", "/feed");
-    expect(screen.getByRole("link", { name: "community" })).toHaveAttribute("href", "/community");
-    expect(screen.queryByRole("link", { name: "my" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "chat" })).not.toBeInTheDocument();
+    expect(screen.getByLabelText("collection")).toHaveAttribute("href", "/");
+    expect(screen.getByLabelText("brands")).toHaveAttribute("href", "/brands");
+    expect(screen.getByLabelText("feed")).toHaveAttribute("href", "/feed");
+    expect(screen.getByLabelText("community")).toHaveAttribute("href", "/community");
+    expect(screen.queryByLabelText("my")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("chat")).not.toBeInTheDocument();
   });
 
   it("marks the current mobile tab by pathname styling state", () => {
     mockUsePathname.mockReturnValue("/feed");
 
-    render(<MobileNav />);
+    const { container } = render(<MobileNav />);
 
-    expect(screen.getByRole("link", { name: "feed" })).toHaveClass("text-foreground");
+    expect(container.querySelector('a[href="/feed"]')).toHaveClass("text-foreground");
   });
 });
