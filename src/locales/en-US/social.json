@@ -1,0 +1,30 @@
+{
+  "feed": {
+    "notSignedIn": "Not signed in",
+    "signIn": "Sign In",
+    "favorites": "Favorites",
+    "tried": "Tried",
+    "wishlist": "Wishlist",
+    "empty": "Sign in to track your collection"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Collectors with a username, ranked by packs tried.",
+    "cta": "Sign up to appear on the leaderboard",
+    "collectors": "Collectors",
+    "mostTried": "Most tried",
+    "mostFavorited": "Most favorited",
+    "brands": "Brands",
+    "tried": "Tried",
+    "favorited": "Fav"
+  },
+  "chat": {
+    "title": "Ciggie Chat",
+    "online": "{{count}} online",
+    "placeholder": "Sign in to chat..."
+  },
+  "gallery": {
+    "desktopHint": "WASD pan · Q/E zoom · Click to open",
+    "mobileHint": "Drag · Pinch to zoom · Tap to open"
+  }
+}

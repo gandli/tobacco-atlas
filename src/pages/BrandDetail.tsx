@@ -1,13 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import ProductCard from "@/components/ProductCard";
 import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data";
+import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 const BrandDetail = () => {
+  const { t, i18n } = useTranslation("details");
   const { pinyin } = useParams<{ pinyin: string }>();
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   const brand = useMemo(() => getBrandByPinyin(pinyin || ""), [pinyin]);
   const brandProducts = useMemo(
@@ -23,14 +27,14 @@ const BrandDetail = () => {
           <div className="text-center">
             <p className="text-6xl mb-4">🚬</p>
             <h1 className="text-xl font-bold text-foreground mb-2">
-              品牌未找到
+              {t("notFound.brandTitle")}
             </h1>
-            <p className="text-muted-foreground mb-4">Brand not found</p>
+            <p className="text-muted-foreground mb-4">{t("notFound.brandDescription")}</p>
             <Link
               to="/brands"
               className="text-sm text-foreground underline focus-visible:ring-2 focus-visible:ring-ring outline-none rounded"
             >
-              ← Back to brands
+              ← {t("notFound.backToBrands")}
             </Link>
           </div>
         </div>
@@ -40,6 +44,17 @@ const BrandDetail = () => {
   }
 
   const regionLabel = regionLabels[brand.region];
+  const primaryDescription = getLocalizedText({
+    language: i18n.resolvedLanguage,
+    zh: brand.descriptionCn,
+    en: brand.descriptionEn,
+  });
+  const secondaryDescription =
+    isEnglish && brand.descriptionEn && brand.descriptionCn
+      ? brand.descriptionCn
+      : !isEnglish && brand.descriptionCn && brand.descriptionEn
+        ? brand.descriptionEn
+        : "";
 
   return (
     <div className="min-h-screen bg-background">
@@ -56,7 +71,7 @@ const BrandDetail = () => {
               className="hover:text-foreground transition-colors flex items-center gap-1 focus-visible:underline outline-none"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Brands
+              {t("breadcrumbs.brands")}
             </Link>
             <span className="opacity-30" aria-hidden="true">
               /
@@ -72,7 +87,6 @@ const BrandDetail = () => {
                 alt={brand.name}
                 width={128}
                 height={128}
-                fetchPriority="high"
                 className="max-w-full max-h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
@@ -82,7 +96,7 @@ const BrandDetail = () => {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-[10px] px-2.5 py-0.5 rounded-full border border-destructive/30 text-destructive font-medium uppercase tracking-wider">
-                  {regionLabel.zh} · {regionLabel.en}
+                  {isEnglish ? regionLabel.en : regionLabel.zh}
                 </span>
               </div>
               <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-2 text-wrap-balance">
@@ -92,18 +106,16 @@ const BrandDetail = () => {
                 {brand.pinyin}
               </p>
 
-              {(brand.descriptionCn || brand.descriptionEn) && (
+              {primaryDescription && (
                 <div className="max-w-3xl space-y-3 mb-6">
-                  {brand.descriptionCn && (
-                    <p className="text-[15px] leading-relaxed text-foreground/80 font-chinese">
-                      {brand.descriptionCn}
-                    </p>
-                  )}
-                  {brand.descriptionEn && (
+                  <p className="text-[15px] leading-relaxed text-foreground/80">
+                    {primaryDescription}
+                  </p>
+                  {secondaryDescription ? (
                     <p className="text-sm leading-relaxed text-muted-foreground font-light italic">
-                      {brand.descriptionEn}
+                      {secondaryDescription}
                     </p>
-                  )}
+                  ) : null}
                 </div>
               )}
 
@@ -113,7 +125,7 @@ const BrandDetail = () => {
                     {new Intl.NumberFormat().format(brand.count)}
                   </span>
                   <span className="text-[10px] text-muted-foreground uppercase tracking-tighter">
-                    Products
+                    {t("brand.products")}
                   </span>
                 </div>
                 {brand.company && (
@@ -128,7 +140,7 @@ const BrandDetail = () => {
                       {brand.company}
                     </span>
                     <span className="text-[10px] text-muted-foreground uppercase tracking-tighter">
-                      Manufacturer
+                      {t("brand.manufacturer")}
                     </span>
                   </div>
                 )}
@@ -139,10 +151,10 @@ const BrandDetail = () => {
           {/* Products section */}
           <div className="mb-8 border-b border-border/50 pb-4">
             <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-baseline gap-3 text-wrap-balance">
-              Collection
+              {t("brand.collection")}
               {brandProducts.length > 0 && (
                 <span className="text-muted-foreground text-sm font-normal tabular-nums">
-                  {new Intl.NumberFormat().format(brandProducts.length)} items
+                  {t("brand.items", { count: brandProducts.length })}
                 </span>
               )}
             </h2>
@@ -157,7 +169,7 @@ const BrandDetail = () => {
           ) : (
             <div className="text-center py-20 bg-secondary/20 rounded-3xl border border-dashed border-border">
               <p className="text-muted-foreground">
-                No products in our database yet for this brand.
+                {t("brand.empty")}
               </p>
             </div>
           )}

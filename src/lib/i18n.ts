@@ -12,6 +12,9 @@ import zhCNNav from "../locales/zh-CN/nav.json";
 import zhCNHome from "../locales/zh-CN/home.json";
 import zhCNBrands from "../locales/zh-CN/brands.json";
 import zhCNManufacturers from "../locales/zh-CN/manufacturers.json";
+import zhCNDetails from "../locales/zh-CN/details.json";
+import zhCNSocial from "../locales/zh-CN/social.json";
+import zhCNAccount from "../locales/zh-CN/account.json";
 
 import enUSCommon from "../locales/en-US/common.json";
 import enUSDashboard from "../locales/en-US/dashboard.json";
@@ -22,6 +25,9 @@ import enUSNav from "../locales/en-US/nav.json";
 import enUSHome from "../locales/en-US/home.json";
 import enUSBrands from "../locales/en-US/brands.json";
 import enUSManufacturers from "../locales/en-US/manufacturers.json";
+import enUSDetails from "../locales/en-US/details.json";
+import enUSSocial from "../locales/en-US/social.json";
+import enUSAccount from "../locales/en-US/account.json";
 
 const resources = {
   "zh-CN": {
@@ -34,6 +40,9 @@ const resources = {
     home: zhCNHome,
     brands: zhCNBrands,
     manufacturers: zhCNManufacturers,
+    details: zhCNDetails,
+    social: zhCNSocial,
+    account: zhCNAccount,
   },
   "en-US": {
     common: enUSCommon,
@@ -45,6 +54,9 @@ const resources = {
     home: enUSHome,
     brands: enUSBrands,
     manufacturers: enUSManufacturers,
+    details: enUSDetails,
+    social: enUSSocial,
+    account: enUSAccount,
   },
 };
 
@@ -65,6 +77,9 @@ i18n
       "home",
       "brands",
       "manufacturers",
+      "details",
+      "social",
+      "account",
     ],
     interpolation: {
       escapeValue: false,

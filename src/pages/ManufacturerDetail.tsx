@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { getProductsByManufacturer } from "@/data";
 import Navbar from "@/components/Navbar";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 const ManufacturerDetail = () => {
+  const { t } = useTranslation("details");
   const { name } = useParams();
   const products = name ? getProductsByManufacturer(name) : [];
 
@@ -27,11 +29,11 @@ const ManufacturerDetail = () => {
         <Breadcrumb className="mb-8">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">首页</BreadcrumbLink>
+              <BreadcrumbLink href="/">{t("breadcrumbs.home")}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/brands">品牌</BreadcrumbLink>
+              <BreadcrumbLink href="/brands">{t("breadcrumbs.brands")}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -42,21 +44,20 @@ const ManufacturerDetail = () => {
 
         <header className="mb-12">
           <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-            生产企业 · Manufacturer
+            {t("manufacturer.badge")}
           </div>
           <h1 className="text-4xl font-bold font-serif text-ash mb-4">
             {name}
           </h1>
           <p className="text-muted-foreground max-w-2xl">
-            共收录该厂家旗下的 {brands.length} 个品牌，{products.length}{" "}
-            款产品。
+            {t("manufacturer.summary", { brands: brands.length, products: products.length })}
           </p>
         </header>
 
         {/* 品牌列表 */}
         <section className="mb-16">
           <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground/60 mb-6 font-sans">
-            旗下的品牌 / Brands
+            {t("manufacturer.brandsSection")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {brands.map((brandName) => {
@@ -85,10 +86,10 @@ const ManufacturerDetail = () => {
         <section>
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground/60 font-sans">
-              相关产品 / Products
+              {t("manufacturer.productsSection")}
             </h2>
             <span className="text-xs text-muted-foreground">
-              {products.length} items
+              {t("manufacturer.items", { count: products.length })}
             </span>
           </div>
 

@@ -1,0 +1,30 @@
+{
+  "feed": {
+    "notSignedIn": "未登录",
+    "signIn": "登录",
+    "favorites": "收藏",
+    "tried": "尝试",
+    "wishlist": "想抽",
+    "empty": "登录后即可追踪你的收藏"
+  },
+  "community": {
+    "title": "社区",
+    "subtitle": "按尝试过的烟包数量为已设置用户名的收藏者排序。",
+    "cta": "注册后登上排行榜",
+    "collectors": "收藏者",
+    "mostTried": "尝试最多",
+    "mostFavorited": "收藏最多",
+    "brands": "品牌",
+    "tried": "尝试",
+    "favorited": "收藏"
+  },
+  "chat": {
+    "title": "烟友聊天",
+    "online": "{{count}} 人在线",
+    "placeholder": "登录后即可聊天..."
+  },
+  "gallery": {
+    "desktopHint": "WASD 平移 · Q/E 缩放 · 点击查看",
+    "mobileHint": "拖拽 · 双指缩放 · 点击查看"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "title": "My Account",
+  "loginCardTitle": "Sign in",
+  "loginCardDescription": "Sign in to save favorites, submit data, and join community discussions.",
+  "login": "Sign In",
+  "register": "Create account",
+  "quickActions": "Quick actions",
+  "submitData": "Submit data",
+  "browseBrands": "Browse brands",
+  "browseManufacturers": "Browse manufacturers",
+  "menu": {
+    "favorites": {
+      "label": "Favorites",
+      "description": "Saved brands and products"
+    },
+    "history": {
+      "label": "History",
+      "description": "Recently viewed items"
+    },
+    "submissions": {
+      "label": "My submissions",
+      "description": "Submitted data and review status"
+    },
+    "notifications": {
+      "label": "Notifications",
+      "description": "Manage notification preferences"
+    },
+    "settings": {
+      "label": "Account settings",
+      "description": "Profile and security settings"
+    },
+    "changelog": {
+      "label": "Changelog",
+      "description": "See the latest product updates"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "title": "我的账户",
+  "loginCardTitle": "登录账户",
+  "loginCardDescription": "登录后可以收藏品牌、提交数据、参与社区讨论",
+  "login": "登录",
+  "register": "注册新账户",
+  "quickActions": "快速操作",
+  "submitData": "提交数据",
+  "browseBrands": "浏览品牌",
+  "browseManufacturers": "浏览制造商",
+  "menu": {
+    "favorites": {
+      "label": "我的收藏",
+      "description": "收藏的品牌和产品"
+    },
+    "history": {
+      "label": "浏览历史",
+      "description": "最近浏览的记录"
+    },
+    "submissions": {
+      "label": "我的提交",
+      "description": "提交的数据和审核状态"
+    },
+    "notifications": {
+      "label": "通知设置",
+      "description": "管理通知偏好"
+    },
+    "settings": {
+      "label": "账户设置",
+      "description": "个人信息和安全设置"
+    },
+    "changelog": {
+      "label": "更新日志",
+      "description": "查看最新版本更新"
+    }
+  }
+}

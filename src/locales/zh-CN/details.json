@@ -1,0 +1,46 @@
+{
+  "breadcrumbs": {
+    "home": "首页",
+    "collection": "收藏",
+    "brands": "品牌"
+  },
+  "notFound": {
+    "brandTitle": "品牌未找到",
+    "brandDescription": "未找到对应的品牌记录",
+    "productTitle": "产品未找到",
+    "productDescription": "未找到对应的产品记录",
+    "backToBrands": "返回品牌页",
+    "backToCollection": "返回收藏"
+  },
+  "brand": {
+    "products": "产品",
+    "manufacturer": "制造商",
+    "collection": "馆藏",
+    "items": "{{count}} 件",
+    "empty": "该品牌暂时还没有收录产品。"
+  },
+  "manufacturer": {
+    "badge": "生产企业",
+    "summary": "共收录该厂家旗下的 {{brands}} 个品牌，{{products}} 款产品。",
+    "brandsSection": "旗下品牌",
+    "productsSection": "相关产品",
+    "items": "{{count}} 件"
+  },
+  "sku": {
+    "description": "介绍",
+    "specifications": "规格参数",
+    "pricing": "价格",
+    "barcodes": "条码",
+    "ratings": "评分",
+    "votes": "{{count}} 次评分",
+    "perPack": "/ 包",
+    "favorite": "收藏",
+    "markTried": "标记尝试",
+    "wishlist": "想抽清单",
+    "previousImage": "上一张图片",
+    "nextImage": "下一张图片",
+    "viewImage": "查看图片 {{index}}",
+    "box": "盒码",
+    "carton": "条码"
+  }
+}

@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Star, Circle, Bookmark } from "lucide-react";
+import { Bookmark } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,11 @@ import {
   regionLabels,
   type Product,
 } from "@/data";
+import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 /** 产品图片画廊 — 多图轮播 + 缩略图 */
 const ProductImageGallery = ({ product }: { product: Product }) => {
+  const { t } = useTranslation("details");
   const allImages = useMemo(() => {
     const imgs: string[] = [];
     if (product.image) imgs.push(product.image);
@@ -51,14 +54,14 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
           <>
             <button
               onClick={goPrev}
-              aria-label="Previous image"
+              aria-label={t("sku.previousImage")}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg focus-visible:ring-2 focus-visible:ring-ring outline-none"
             >
               ‹
             </button>
             <button
               onClick={goNext}
-              aria-label="Next image"
+              aria-label={t("sku.nextImage")}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-background/70 hover:bg-background border border-border hover:border-foreground/20 text-muted-foreground hover:text-foreground transition-all flex items-center justify-center text-lg focus-visible:ring-2 focus-visible:ring-ring outline-none"
             >
               ›
@@ -80,7 +83,7 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              aria-label={`View image ${i + 1}`}
+              aria-label={t("sku.viewImage", { index: i + 1 })}
               className={`flex-shrink-0 w-14 h-14 bg-card border rounded-xl transition-colors overflow-hidden focus-visible:ring-2 focus-visible:ring-ring outline-none ${
                 i === currentIndex
                   ? "border-foreground/50"
@@ -104,8 +107,10 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
 };
 
 const SkuDetail = () => {
+  const { t, i18n } = useTranslation("details");
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   const product = useMemo(() => getProductById(Number(id)), [id]);
   const brand = useMemo(
@@ -121,14 +126,14 @@ const SkuDetail = () => {
           <div className="text-center">
             <p className="text-6xl mb-4">🚬</p>
             <h1 className="text-xl font-bold text-foreground mb-2">
-              产品未找到
+              {t("notFound.productTitle")}
             </h1>
-            <p className="text-muted-foreground mb-4">Product not found</p>
+            <p className="text-muted-foreground mb-4">{t("notFound.productDescription")}</p>
             <button
               onClick={() => navigate("/")}
               className="text-sm text-foreground underline"
             >
-              ← Back to collection
+              ← {t("notFound.backToCollection")}
             </button>
           </div>
         </div>
@@ -139,6 +144,22 @@ const SkuDetail = () => {
 
   const regionLabel = product.region ? regionLabels[product.region] : null;
   const usdRate = 0.143; // 汇率参考
+  const productName = getLocalizedText({
+    language: i18n.resolvedLanguage,
+    zh: product.name,
+    en: product.nameEn,
+  });
+  const primaryDescription = getLocalizedText({
+    language: i18n.resolvedLanguage,
+    zh: product.descriptionZh,
+    en: product.description,
+  });
+  const secondaryDescription =
+    isEnglish && product.description && product.descriptionZh
+      ? product.descriptionZh
+      : !isEnglish && product.descriptionZh && product.description
+        ? product.description
+        : "";
 
   const specs = [
     { label: "Tobacco Type", value: product.tobaccoType },
@@ -195,7 +216,7 @@ const SkuDetail = () => {
               to="/"
               className="hover:text-foreground transition-colors whitespace-nowrap focus-visible:underline outline-none"
             >
-              Collection
+              {t("breadcrumbs.collection")}
             </Link>
             <span className="opacity-30" aria-hidden="true">
               /
@@ -210,7 +231,7 @@ const SkuDetail = () => {
               /
             </span>
             <span className="text-foreground truncate font-medium">
-              {product.brand}（{product.name}）
+              {product.brand}（{productName}）
             </span>
           </nav>
 
@@ -219,22 +240,20 @@ const SkuDetail = () => {
             <div className="space-y-10">
               <ProductImageGallery product={product} />
 
-              {(product.description || product.descriptionZh) && (
+              {primaryDescription && (
                 <div className="p-6 rounded-2xl bg-secondary/30 border border-border/40">
                   <h2 className="text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground/60 mb-4">
-                    Description
+                    {t("sku.description")}
                   </h2>
                   <div className="space-y-4">
-                    {product.description && (
-                      <p className="text-[14px] text-foreground/80 leading-relaxed font-light">
-                        {product.description}
-                      </p>
-                    )}
-                    {product.descriptionZh && (
+                    <p className="text-[14px] text-foreground/80 leading-relaxed font-light">
+                      {primaryDescription}
+                    </p>
+                    {secondaryDescription ? (
                       <p className="text-[13px] text-muted-foreground leading-loose font-chinese">
-                        {product.descriptionZh}
+                        {secondaryDescription}
                       </p>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               )}
@@ -246,14 +265,14 @@ const SkuDetail = () => {
               <div>
                 {regionLabel && (
                   <span className="inline-flex text-[11px] px-2.5 py-1 rounded-sm bg-destructive/5 text-destructive border border-destructive/20 font-medium mb-4">
-                    {regionLabel.zh} · {regionLabel.en}
+                    {isEnglish ? regionLabel.en : regionLabel.zh}
                   </span>
                 )}
                 <h1 className="text-3xl font-bold text-ash leading-tight mb-2 font-serif text-wrap-balance">
-                  {product.brand}（{product.name}）
+                  {product.brand}（{productName}）
                 </h1>
                 <p className="text-[17px] text-muted-text/60 italic mb-2 font-sans">
-                  {product.nameEn}
+                  {isEnglish ? product.name : product.nameEn}
                 </p>
                 <div className="flex items-center text-[13px] text-muted-text/30 font-sans">
                   <Link
@@ -284,7 +303,7 @@ const SkuDetail = () => {
                       {formatCurrency(product.packPrice)}
                     </span>
                     <span className="text-[13px] text-muted-foreground/60">
-                      / pack
+                      {t("sku.perPack")}
                     </span>
                     <span className="text-[14px] text-muted-foreground/50 font-medium">
                       ≈{" "}
@@ -302,7 +321,7 @@ const SkuDetail = () => {
                     <Button
                       variant="secondary"
                       className="flex-1 h-11 text-[13px] font-medium"
-                      aria-label={`Favorite ${product.name}`}
+                      aria-label={`${t("sku.favorite")} ${productName}`}
                     >
                       <span
                         className="text-lg leading-none opacity-40"
@@ -310,12 +329,12 @@ const SkuDetail = () => {
                       >
                         ☆
                       </span>
-                      Favorite
+                      {t("sku.favorite")}
                     </Button>
                     <Button
                       variant="secondary"
                       className="flex-1 h-11 text-[13px] font-medium"
-                      aria-label={`Mark ${product.name} as tried`}
+                      aria-label={`${t("sku.markTried")} ${productName}`}
                     >
                       <span
                         className="text-lg leading-none opacity-40"
@@ -323,15 +342,15 @@ const SkuDetail = () => {
                       >
                         ○
                       </span>
-                      Mark tried
+                      {t("sku.markTried")}
                     </Button>
                     <Button
                       variant="secondary"
                       className="flex-1 h-11 text-[13px] font-medium"
-                      aria-label={`Add ${product.name} to wishlist`}
+                      aria-label={`${t("sku.wishlist")} ${productName}`}
                     >
                       <Bookmark className="w-3.5 h-3.5 opacity-40" />
-                      Wishlist
+                      {t("sku.wishlist")}
                     </Button>
                   </div>
                 </div>
@@ -342,7 +361,7 @@ const SkuDetail = () => {
                 <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
                   <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
                     <h2 className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
-                      Specifications
+                      {t("sku.specifications")}
                     </h2>
                   </div>
                   <div className="divide-y divide-border/30">
@@ -368,7 +387,7 @@ const SkuDetail = () => {
                 <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
                   <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40">
                     <h2 className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
-                      Pricing
+                      {t("sku.pricing")}
                     </h2>
                   </div>
                   <div className="divide-y divide-border/30">
@@ -396,12 +415,12 @@ const SkuDetail = () => {
               {(product.boxBarcode || product.cartonBarcode) && (
                 <div className="space-y-2.5">
                   <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/40 px-1">
-                    Barcodes
+                    {t("sku.barcodes")}
                   </p>
                   {product.boxBarcode && (
                     <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
                       <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
-                        Box
+                        {t("sku.box")}
                       </span>
                       <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
                         {product.boxBarcode}
@@ -411,7 +430,7 @@ const SkuDetail = () => {
                   {product.cartonBarcode && (
                     <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
                       <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
-                        Carton
+                        {t("sku.carton")}
                       </span>
                       <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
                         {product.cartonBarcode}
@@ -426,11 +445,11 @@ const SkuDetail = () => {
                 <div className="rounded-2xl border border-border/60 overflow-hidden bg-card/50">
                   <div className="px-5 py-3.5 bg-secondary/30 border-b border-border/40 flex items-center justify-between">
                     <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground/70">
-                      Ratings
+                      {t("sku.ratings")}
                     </p>
                     {product.votes && (
                       <span className="text-[10px] text-muted-foreground/40">
-                        {product.votes} votes
+                        {t("sku.votes", { count: product.votes })}
                       </span>
                     )}
                   </div>

@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 import { 
   User, 
   Heart, 
@@ -15,49 +16,50 @@ import {
 } from "lucide-react";
 
 const MyPage = () => {
+  const { t } = useTranslation("account");
   // TODO: Replace with actual authentication state
   const isLoggedIn = false;
 
   const menuItems = [
     {
       icon: Heart,
-      label: "我的收藏",
-      description: "收藏的品牌和产品",
+      label: t("menu.favorites.label"),
+      description: t("menu.favorites.description"),
       href: "/my/favorites",
       color: "text-red-500"
     },
     {
       icon: History,
-      label: "浏览历史",
-      description: "最近浏览的记录",
+      label: t("menu.history.label"),
+      description: t("menu.history.description"),
       href: "/my/history",
       color: "text-blue-500"
     },
     {
       icon: PlusCircle,
-      label: "我的提交",
-      description: "提交的数据和审核状态",
+      label: t("menu.submissions.label"),
+      description: t("menu.submissions.description"),
       href: "/my/submissions",
       color: "text-green-500"
     },
     {
       icon: Bell,
-      label: "通知设置",
-      description: "管理通知偏好",
+      label: t("menu.notifications.label"),
+      description: t("menu.notifications.description"),
       href: "/my/notifications",
       color: "text-yellow-500"
     },
     {
       icon: Settings,
-      label: "账户设置",
-      description: "个人信息和安全设置",
+      label: t("menu.settings.label"),
+      description: t("menu.settings.description"),
       href: "/my/settings",
       color: "text-gray-500"
     },
     {
       icon: FileText,
-      label: "更新日志",
-      description: "查看最新版本更新",
+      label: t("menu.changelog.label"),
+      description: t("menu.changelog.description"),
       href: "/changelog",
       color: "text-purple-500"
     }
@@ -69,7 +71,7 @@ const MyPage = () => {
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12">
           <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6">
-            My Account
+            {t("title")}
           </h1>
 
           {!isLoggedIn ? (
@@ -77,10 +79,10 @@ const MyPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <User className="w-5 h-5" />
-                  登录账户
+                  {t("loginCardTitle")}
                 </CardTitle>
                 <CardDescription>
-                  登录后可以收藏品牌、提交数据、参与社区讨论
+                  {t("loginCardDescription")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -88,12 +90,12 @@ const MyPage = () => {
                   <Link to="/login">
                     <Button className="w-full">
                       <LogIn className="w-4 h-4 mr-2" />
-                      登录
+                      {t("login")}
                     </Button>
                   </Link>
                   <Link to="/register">
                     <Button variant="outline" className="w-full">
-                      注册新账户
+                      {t("register")}
                     </Button>
                   </Link>
                 </div>
@@ -124,22 +126,22 @@ const MyPage = () => {
 
           {/* Quick Actions */}
           <div className="mt-8 pt-8 border-t">
-            <h2 className="text-lg font-semibold mb-4">快速操作</h2>
+            <h2 className="text-lg font-semibold mb-4">{t("quickActions")}</h2>
             <div className="flex flex-wrap gap-3">
               <Link to="/submit">
                 <Button variant="outline" size="sm">
                   <PlusCircle className="w-4 h-4 mr-2" />
-                  提交数据
+                  {t("submitData")}
                 </Button>
               </Link>
               <Link to="/brands">
                 <Button variant="outline" size="sm">
-                  浏览品牌
+                  {t("browseBrands")}
                 </Button>
               </Link>
               <Link to="/manufacturers">
                 <Button variant="outline" size="sm">
-                  浏览制造商
+                  {t("browseManufacturers")}
                 </Button>
               </Link>
             </div>

@@ -3,10 +3,12 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { communityUsers } from "@/data";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";
 
 const Community = () => {
+  const { t } = useTranslation("social");
   const [tab, setTab] = useState<Tab>("collectors");
 
   const sorted = [...communityUsers].sort((a, b) => {
@@ -20,34 +22,34 @@ const Community = () => {
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="max-w-2xl mx-auto px-4 md:px-6 py-8 md:py-12">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Community</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{t("community.title")}</h1>
           <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-            Collectors with a username, ranked by packs tried.
+            {t("community.subtitle")}
           </p>
 
           <Button variant="default" className="w-full mb-6 md:mb-8 h-11 md:h-12 text-sm">
-            Sign up to appear on the leaderboard
+            {t("community.cta")}
           </Button>
 
           {/* Tabs - scrollable on mobile */}
           <div className="flex gap-1 mb-4 md:mb-6 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
             {(
               [
-                { key: "collectors", label: "Collectors" },
-                { key: "most_tried", label: "Most tried" },
-                { key: "most_favorited", label: "Most favorited" },
+                { key: "collectors", label: t("community.collectors") },
+                { key: "most_tried", label: t("community.mostTried") },
+                { key: "most_favorited", label: t("community.mostFavorited") },
               ] as const
-            ).map((t) => (
+            ).map((tabOption) => (
               <button
-                key={t.key}
-                onClick={() => setTab(t.key)}
+                key={tabOption.key}
+                onClick={() => setTab(tabOption.key)}
                 className={`px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm rounded-full transition-colors whitespace-nowrap flex-shrink-0 ${
-                  tab === t.key
+                  tab === tabOption.key
                     ? "bg-foreground text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {t.label}
+                {tabOption.label}
               </button>
             ))}
           </div>
@@ -85,7 +87,7 @@ const Community = () => {
                       {user.brands}
                     </div>
                     <div className="text-[9px] md:text-[10px] text-muted-foreground">
-                      brands
+                      {t("community.brands")}
                     </div>
                   </div>
                   <div>
@@ -93,14 +95,14 @@ const Community = () => {
                       {user.tried}
                     </div>
                     <div className="text-[9px] md:text-[10px] text-muted-foreground">
-                      tried
+                      {t("community.tried")}
                     </div>
                   </div>
                   <div>
                     <div className="text-xs md:text-sm font-semibold text-destructive">
                       {user.fav}
                     </div>
-                    <div className="text-[9px] md:text-[10px] text-muted-foreground">fav</div>
+                    <div className="text-[9px] md:text-[10px] text-muted-foreground">{t("community.favorited")}</div>
                   </div>
                 </div>
               </div>

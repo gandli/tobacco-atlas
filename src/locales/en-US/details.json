@@ -1,0 +1,46 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "collection": "Collection",
+    "brands": "Brands"
+  },
+  "notFound": {
+    "brandTitle": "Brand not found",
+    "brandDescription": "We could not find a matching brand record.",
+    "productTitle": "Product not found",
+    "productDescription": "We could not find a matching product record.",
+    "backToBrands": "Back to brands",
+    "backToCollection": "Back to collection"
+  },
+  "brand": {
+    "products": "Products",
+    "manufacturer": "Manufacturer",
+    "collection": "Collection",
+    "items": "{{count}} items",
+    "empty": "No products in our database yet for this brand."
+  },
+  "manufacturer": {
+    "badge": "Manufacturer",
+    "summary": "This maker currently has {{brands}} brands and {{products}} products in the archive.",
+    "brandsSection": "Brands",
+    "productsSection": "Products",
+    "items": "{{count}} items"
+  },
+  "sku": {
+    "description": "Description",
+    "specifications": "Specifications",
+    "pricing": "Pricing",
+    "barcodes": "Barcodes",
+    "ratings": "Ratings",
+    "votes": "{{count}} votes",
+    "perPack": "/ pack",
+    "favorite": "Favorite",
+    "markTried": "Mark tried",
+    "wishlist": "Wishlist",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "viewImage": "View image {{index}}",
+    "box": "Box",
+    "carton": "Carton"
+  }
+}

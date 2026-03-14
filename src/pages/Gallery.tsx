@@ -4,6 +4,8 @@ import { products } from "@/data";
 import { Minus, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
+import { useTranslation } from "react-i18next";
+import { getLocalizedText } from "@/lib/i18n-utils";
 
 const COLS = 8;
 const CELL_W = 180;
@@ -11,6 +13,7 @@ const CELL_H = 260;
 const GAP = 24;
 
 const Gallery = () => {
+  const { t, i18n } = useTranslation("social");
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -114,8 +117,8 @@ const Gallery = () => {
       >
         {/* Help text */}
         <div className="absolute top-[calc(var(--nav-height)+8px)] left-1/2 -translate-x-1/2 z-10 text-xs text-muted-foreground pointer-events-none">
-          <span className="hidden md:inline">WASD pan · Q/E zoom · Click to open</span>
-          <span className="md:hidden">Drag · Pinch to zoom · Tap to open</span>
+          <span className="hidden md:inline">{t("gallery.desktopHint")}</span>
+          <span className="md:hidden">{t("gallery.mobileHint")}</span>
         </div>
 
         <div
@@ -137,14 +140,14 @@ const Gallery = () => {
                   <div className="flex-1 flex items-center justify-center w-full">
                     <img
                       src={product.image}
-                      alt={`${product.brand}（${product.name}）`}
+                      alt={`${product.brand}（${getLocalizedText({ language: i18n.resolvedLanguage, zh: product.name, en: product.nameEn })}）`}
                       className="max-h-full max-w-full object-contain"
                       loading="lazy"
                       draggable={false}
                     />
                   </div>
                   <span className="text-xs text-muted-foreground text-center leading-tight whitespace-nowrap">
-                    {product.brand}（{product.name}）
+                    {product.brand}（{getLocalizedText({ language: i18n.resolvedLanguage, zh: product.name, en: product.nameEn })}）
                   </span>
                 </div>
               ))}

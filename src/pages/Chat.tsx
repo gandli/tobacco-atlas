@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Send } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ChatMessage {
   id: string;
@@ -49,6 +50,7 @@ const getInitialColor = (username: string) => {
 };
 
 const Chat = () => {
+  const { t } = useTranslation("social");
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -63,10 +65,10 @@ const Chat = () => {
         {/* Header */}
         <div className="px-4 md:px-6 py-3 md:py-4 border-b border-border/50">
           <div className="max-w-3xl mx-auto flex items-center gap-2">
-            <h1 className="text-lg md:text-xl font-bold text-foreground">Ciggie Chat</h1>
+            <h1 className="text-lg md:text-xl font-bold text-foreground">{t("chat.title")}</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-green-500" />
-              <span className="text-xs text-muted-foreground">{onlineCount} online</span>
+              <span className="text-xs text-muted-foreground">{t("chat.online", { count: onlineCount })}</span>
             </div>
           </div>
         </div>
@@ -110,7 +112,7 @@ const Chat = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Sign in to chat..."
+                placeholder={t("chat.placeholder")}
                 className="flex-1 bg-secondary/50 border border-border/50 rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
                 disabled
               />
