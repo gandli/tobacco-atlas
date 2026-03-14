@@ -1,4 +1,4 @@
-import ManufacturerListPage from "@/pages/ManufacturerList";
+import ManufacturerListPage from "@/legacy-pages/ManufacturerList";
 
 export default function ManufacturersPage() {
   return <ManufacturerListPage />;

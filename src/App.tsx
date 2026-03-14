@@ -8,24 +8,24 @@ import { ThemeProvider } from "next-themes";
 import "@/lib/i18n"; // Initialize i18n
 
 // 懒加载页面组件，减少首屏加载时间
-const Index = lazy(() => import("./pages/Index"));
-const BrandList = lazy(() => import("./pages/BrandList"));
-const BrandDetail = lazy(() => import("./pages/BrandDetail"));
-const SkuDetail = lazy(() => import("./pages/SkuDetail"));
-const Community = lazy(() => import("./pages/Community"));
-const Chat = lazy(() => import("./pages/Chat"));
-const Gallery = lazy(() => import("./pages/Gallery"));
-const Feed = lazy(() => import("./pages/Feed"));
-const MyPage = lazy(() => import("./pages/MyPage"));
-const Login = lazy(() => import("./pages/Login"));
-const Register = lazy(() => import("./pages/Register"));
-const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
-const SubmitData = lazy(() => import("./pages/SubmitData"));
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const ManufacturerDetail = lazy(() => import("./pages/ManufacturerDetail"));
-const ManufacturerList = lazy(() => import("./pages/ManufacturerList"));
-const Changelog = lazy(() => import("./pages/Changelog"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+const Index = lazy(() => import("./legacy-pages/Index"));
+const BrandList = lazy(() => import("./legacy-pages/BrandList"));
+const BrandDetail = lazy(() => import("./legacy-pages/BrandDetail"));
+const SkuDetail = lazy(() => import("./legacy-pages/SkuDetail"));
+const Community = lazy(() => import("./legacy-pages/Community"));
+const Chat = lazy(() => import("./legacy-pages/Chat"));
+const Gallery = lazy(() => import("./legacy-pages/Gallery"));
+const Feed = lazy(() => import("./legacy-pages/Feed"));
+const MyPage = lazy(() => import("./legacy-pages/MyPage"));
+const Login = lazy(() => import("./legacy-pages/Login"));
+const Register = lazy(() => import("./legacy-pages/Register"));
+const ForgotPassword = lazy(() => import("./legacy-pages/ForgotPassword"));
+const SubmitData = lazy(() => import("./legacy-pages/SubmitData"));
+const AdminDashboard = lazy(() => import("./legacy-pages/AdminDashboard"));
+const ManufacturerDetail = lazy(() => import("./legacy-pages/ManufacturerDetail"));
+const ManufacturerList = lazy(() => import("./legacy-pages/ManufacturerList"));
+const Changelog = lazy(() => import("./legacy-pages/Changelog"));
+const NotFound = lazy(() => import("./legacy-pages/NotFound"));
 
 const queryClient = new QueryClient();
 
