@@ -1,5 +1,4 @@
 import { products } from "@/data";
-import { useMemo } from "react";
 
 const positions: Array<{
   top: string;
@@ -36,12 +35,10 @@ const positions: Array<{
 ];
 
 const FloatingProducts = () => {
-  const items = useMemo(() => {
-    return positions.map((pos, i) => ({
-      ...pos,
-      product: products[i % products.length],
-    }));
-  }, []);
+  const items = positions.map((pos, i) => ({
+    ...pos,
+    product: products[i % products.length],
+  }));
 
   return (
     <div
