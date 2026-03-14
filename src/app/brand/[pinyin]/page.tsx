@@ -95,7 +95,7 @@ function BrandDetailContent({
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <CollectionPageFrame className="py-6 md:py-10">
+        <div className="mx-auto max-w-[1600px] px-4 py-6 md:px-8 md:py-10">
           <nav
             className="flex items-center gap-2 text-sm text-muted-foreground mb-6 md:mb-8"
             aria-label="Breadcrumb"
@@ -198,7 +198,7 @@ function BrandDetailContent({
               <p className="text-muted-foreground">{t("brand.empty")}</p>
             </div>
           )}
-        </CollectionPageFrame>
+        </div>
       </div>
       <MobileNav />
     </div>

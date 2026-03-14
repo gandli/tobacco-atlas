@@ -46,7 +46,7 @@ function ManufacturerDetailContent({ name: explicitName }: ManufacturerDetailCon
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
       <main className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <CollectionPageFrame>
+        <div className="mx-auto max-w-[1600px] px-4 py-6 md:px-8 md:py-10">
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -110,13 +110,13 @@ function ManufacturerDetailContent({ name: explicitName }: ManufacturerDetailCon
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 md:gap-8">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </section>
-        </CollectionPageFrame>
+        </div>
       </main>
       <MobileNav />
     </div>
