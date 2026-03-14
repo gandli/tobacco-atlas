@@ -95,7 +95,8 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[11px]");
+    // 名称长度 > 42，使用 text-[10px]
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[10px]");
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
       "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
