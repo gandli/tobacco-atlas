@@ -211,7 +211,7 @@ export default function ManufacturerList() {
     setRegionFilter('all');
   };
 
-  const hasActiveFilters = searchTerm || regionFilter !== 'all';
+  const hasActiveFilters = Boolean(searchTerm) || regionFilter !== "all";
 
   return (
     <div className="min-h-screen bg-background">

@@ -9,14 +9,13 @@
 
 ## 项目概述
 
-这是一个基于 React 的 Web 应用程序，名为"中国烟草图谱"，使用现代 Web 技术构建。该项目是一个数字博物馆，展示中国香烟品牌和产品。项目采用当代技术栈，包括 Vite、TypeScript、React、shadcn/ui 和 Tailwind CSS。
+这是一个基于 Next.js App Router 的 Web 应用程序，名为"中国烟草图谱"，使用现代 Web 技术构建。该项目是一个数字博物馆，展示中国香烟品牌和产品。项目采用当代技术栈，包括 Next.js、TypeScript、React、shadcn/ui 和 Tailwind CSS。
 
 ## 技术栈
 
-- **Vite**: 快速的构建工具和开发服务器
+- **Next.js App Router**: 统一的应用运行时、路由与构建框架
 - **TypeScript**: 类型化的 JavaScript 超集
 - **React**: 基于组件的 UI 库
-- **React Router DOM**: 客户端路由
 - **Tailwind CSS**: 实用优先的 CSS 框架
 - **shadcn/ui**: 基于 Radix UI 和 Tailwind CSS 构建的可重用组件
 - **TanStack Query (React Query)**: 服务器状态管理
@@ -35,16 +34,15 @@ tobacco-atlas-web/
 │   ├── data/              # 数据文件和模拟数据
 │   ├── hooks/             # 自定义 React hooks
 │   ├── lib/               # 工具函数
-│   ├── pages/             # 页面组件
-│   ├── App.tsx           # 主应用程序组件
-│   ├── main.tsx          # 应用程序入口点
-│   └── index.css         # 全局样式
+│   ├── app/              # Next.js App Router 页面与布局
+│   ├── pages/            # 迁移中的旧页面实现
+│   └── index.css         # 全局设计 token（待并入 app/globals.css）
 ├── components.json        # shadcn/ui 配置
 ├── package.json           # 依赖项和脚本
-├── vite.config.ts         # Vite 配置
+├── next.config.ts         # Next.js 配置
 ├── tailwind.config.ts     # Tailwind CSS 配置
 ├── tsconfig.json          # TypeScript 配置
-└── index.html             # HTML 模板
+└── public/                # 静态资源
 ```
 
 ## 核心功能
@@ -173,7 +171,7 @@ tobacco-atlas-web/
    bun run dev
    ```
    
-   应用程序将在 `http://localhost:8080` 提供服务（如 vite.config.ts 中配置）。
+   应用程序默认将在 `http://localhost:3000` 提供服务。
 
 3. **构建生产版本：**
    ```bash
@@ -182,11 +180,11 @@ tobacco-atlas-web/
    bun run build
    ```
 
-4. **预览生产构建：**
+4. **启动生产构建：**
    ```bash
-   npm run preview
+   npm run start
    # 或
-   bun run preview
+   bun run start
    ```
 
 5. **运行测试：**
@@ -215,7 +213,7 @@ tobacco-atlas-web/
 
 - **React Query** 用于服务器状态管理和缓存
 - **React hooks** 用于本地组件状态
-- **React Router DOM** 用于客户端导航
+- **Next.js App Router** 用于文件系统路由与服务端渲染
 
 ## 开发约定
 
