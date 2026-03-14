@@ -6,6 +6,7 @@ import BrandDetailPage from "@/app/brand/[pinyin]/page";
 vi.mock("@/data/brand-catalog", () => ({
   getBrandByPinyin: (id: string) => ({ pinyin: id, name: "brand detail " + id, region: "CN" }),
   getBrandById: (id: number) => ({ pinyin: String(id), name: "brand detail " + id, region: "CN" }),
+  brands: []
 }));
 vi.mock("@/data/region-labels", () => ({
   regionLabels: { "CN": { en: "China", zh: "中国" } }

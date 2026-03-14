@@ -4,7 +4,11 @@ import { describe, expect, it, vi } from "vitest";
 import SkuDetailPage from "@/app/sku/[id]/page";
 
 vi.mock("@/data/product-catalog", () => ({
-  getSkuById: (id: string) => ({ id, name: "sku detail " + id })
+  getProductById: (id: string) => ({ id, name: "sku detail " + id, brandPinyin: "test" })
+}));
+vi.mock("@/data/brand-catalog", () => ({
+  getBrandByPinyin: () => ({ name: "test", pinyin: "test" }),
+  brands: []
 }));
 
 describe("Sku detail route", () => {
