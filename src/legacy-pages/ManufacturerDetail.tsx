@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { getMakerByIdentifier } from "@/data/maker-catalog";
 import { getProductsByMakerIdentifier } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
-import OptimizedImage from "@/components/OptimizedImage";
 import MobileNav from "@/components/MobileNav";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import ProductGrid from "@/components/ProductGrid";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -111,39 +111,11 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {products.map((product) => (
-              <Link
-                key={product.id}
-                href={`/sku/${product.id}`}
-                className="group flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-500"
-              >
-                <div className="aspect-[3/4] bg-card border border-border/50 rounded-2xl overflow-hidden flex items-center justify-center p-6 transition-all group-hover:shadow-2xl group-hover:border-gold/30">
-                  <OptimizedImage
-                    src={product.image}
-                    alt={product.name}
-                    width={320}
-                    height={426}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 50vw, 320px"
-                  />
-                </div>
-                <div className="space-y-1 px-1 text-center sm:text-left">
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-sans">
-                    {product.brand}
-                  </div>
-                  <h3 className="font-serif text-[15px] text-ash line-clamp-1 group-hover:text-gold transition-colors">
-                    {product.name}
-                  </h3>
-                  {product.packPrice && (
-                    <div className="font-sans text-sm font-bold text-ash/80">
-                      ¥{product.packPrice}
-                    </div>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
+          <ProductGrid
+            products={products}
+            sectionId="legacy-maker-products"
+            className="px-0 pb-0 pt-0 max-w-none"
+          />
         </section>
         </CollectionPageFrame>
       </main>
