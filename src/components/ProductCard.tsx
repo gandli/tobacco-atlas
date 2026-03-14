@@ -34,9 +34,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : null;
   const regionDisplayLabel = bilingualRegionLabel || localizedRegionLabel;
   const isLongBrandName = product.brand.length > 15;
-  const isLongProductName = productName.length > 26;
-  const isVeryLongProductName = productName.length > 42;
-  const isExtremeProductName = productName.length > 62;
+  const isMediumProductName = productName.length > 16;
+  const isLongProductName = productName.length > 24;
+  const isVeryLongProductName = productName.length > 34;
+  const isExtremeProductName = productName.length > 52;
   const isExtremeBrandName = product.brand.length > 34;
   const isLongRegionLabel = (regionDisplayLabel?.length || 0) > 18;
   const isVeryLongRegionLabel = (regionDisplayLabel?.length || 0) > 24;
@@ -63,7 +64,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       ? "text-[10px] leading-[1.18]"
       : isLongProductName
         ? "text-[11px] leading-[1.2]"
+        : isMediumProductName
+          ? "text-[11px] md:text-[12px] leading-[1.2]"
         : "text-[12px] md:text-[13px] leading-[1.22]";
+  const overlayTitleClampClass = useDenseOverlay
+    ? "line-clamp-3"
+    : useCompactOverlay
+      ? "line-clamp-2"
+      : "line-clamp-2";
   const overlayBrandClass = useDenseOverlay
     ? "text-[7px] md:text-[8px] line-clamp-2"
     : isExtremeBrandName
@@ -187,7 +195,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} pb-px text-[#666661] font-medium font-sans ${useDenseOverlay ? "line-clamp-4" : useCompactOverlay ? "line-clamp-3" : isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
+                className={`${overlayTitleClass} ${overlayTitleClampClass} pb-px text-[#666661] font-medium font-sans break-words`}
                 title={productName}
               >
                 {productName}

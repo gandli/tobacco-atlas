@@ -1,20 +1,21 @@
-import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import ManufacturerDetailPage from "@/app/manufacturer/[name]/page";
+const redirectMock = vi.fn();
 
-vi.mock("@/data/maker-catalog", () => ({
-  getMakerByIdentifier: (id: string) => ({ identifier: id, englishName: "manufacturer detail " + id, name: "manufacturer detail " + id })
+vi.mock("next/navigation", () => ({
+  redirect: (href: string) => redirectMock(href),
 }));
 
-describe("Manufacturer detail route", () => {
-  it("passes the dynamic name param into the manufacturer detail page", () => {
-    const page = ManufacturerDetailPage({
-      params: { name: "Anhui%20Tobacco" } as Parameters<typeof ManufacturerDetailPage>[0]["params"],
+import ManufacturerCompatibilityPage from "@/app/manufacturer/[name]/page";
+
+describe("Manufacturer detail compatibility route", () => {
+  it("redirects the legacy manufacturer route to the maker route", async () => {
+    await ManufacturerCompatibilityPage({
+      params: Promise.resolve({
+        name: "Anhui%20Tobacco",
+      }),
     });
 
-    render(page);
-
-    expect(screen.getAllByText("manufacturer detail Anhui%20Tobacco")[0]).toBeInTheDocument();
+    expect(redirectMock).toHaveBeenCalledWith("/maker/Anhui%20Tobacco");
   });
 });

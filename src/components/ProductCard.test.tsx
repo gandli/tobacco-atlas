@@ -67,6 +67,14 @@ const combinedLongCopyProduct: Product = {
   nameEn: "Huanghelou Mantianyou Jiutian",
 };
 
+const mediumLengthEnglishProduct: Product = {
+  ...mockProduct,
+  id: 791,
+  brand: "黄鹤楼",
+  name: "珍品",
+  nameEn: "Huanghelou Zhenpin",
+};
+
 describe("ProductCard", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -106,6 +114,18 @@ describe("ProductCard", () => {
     expect(screen.getByText("大陆 · Mainland")).toBeInTheDocument();
   });
 
+  it("shrinks title typography earlier for medium-length english names", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ProductCard product={mediumLengthEnglishProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass(
+      "text-[11px]",
+      "md:text-[12px]",
+    );
+  });
+
   it("uses a more compact title treatment for long names while preserving the full label", () => {
     mockI18n.language = "en-US";
     mockI18n.resolvedLanguage = "en-US";
@@ -137,7 +157,7 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-4");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
       "dense",
@@ -188,7 +208,7 @@ describe("ProductCard", () => {
       "data-overlay-density",
       "compact",
     );
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-2");
   });
 
   it("pins the price row to the bottom so bilingual copy gets the remaining vertical space", () => {
