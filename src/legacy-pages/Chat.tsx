@@ -67,7 +67,7 @@ const Chat = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <div className="flex-1 pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <CollectionPageFrame size="reading" className="space-y-6">
+        <CollectionPageFrame className="space-y-6">
           <CollectionPageHeader
             eyebrow={t("chat.eyebrow")}
             title={t("chat.title")}

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { getProductsByManufacturer } from "@/data/product-catalog";
+import { getMakerByIdentifier } from "@/data/maker-catalog";
+import { getProductsByMakerIdentifier } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
 import OptimizedImage from "@/components/OptimizedImage";
 import MobileNav from "@/components/MobileNav";
@@ -17,19 +18,21 @@ import {
 } from "@/components/ui/breadcrumb";
 
 type ManufacturerDetailProps = {
-  name?: string;
+  name?: string | number;
 };
 
 const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => {
   const { t } = useTranslation("details");
-  const name =
+  const identifier =
     explicitName ??
     (typeof window !== "undefined"
       ? decodeURIComponent(
           window.location.pathname.match(/^\/(?:maker|manufacturer)\/([^/]+)/)?.[1] ?? "",
         )
       : "");
-  const products = name ? getProductsByManufacturer(name) : [];
+  const maker = identifier ? getMakerByIdentifier(identifier) : undefined;
+  const displayName = maker?.englishName ?? String(identifier ?? "");
+  const products = identifier ? getProductsByMakerIdentifier(identifier) : [];
 
   // 获取该厂家的品牌列表 (去重)
   const brands = Array.from(new Set(products.map((p) => p.brand))).filter(
@@ -52,7 +55,7 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{name}</BreadcrumbPage>
+              <BreadcrumbPage>{displayName}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -62,7 +65,7 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             {t("manufacturer.badge")}
           </div>
           <h1 className="text-4xl font-bold font-serif text-ash mb-4">
-            {name}
+            {displayName}
           </h1>
           <p className="text-muted-foreground max-w-2xl">
             {t("manufacturer.summary", { brands: brands.length, products: products.length })}

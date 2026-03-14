@@ -75,7 +75,7 @@ const Changelog = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <CollectionPageFrame size="narrow">
+        <CollectionPageFrame>
           <CollectionPageHeader
             eyebrow={t("eyebrow")}
             title={t("title")}

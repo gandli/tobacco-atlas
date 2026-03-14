@@ -37,8 +37,10 @@ vi.mock("next/link", () => ({
 }));
 
 vi.mock("@/data/product-catalog", () => ({
-  getProductsByManufacturer: (name: string) =>
-    name === "Anhui Tobacco"
+  getProductsByMakerIdentifier: (identifier: string | number) =>
+    ["4", "Anhui Tobacco", "anhui-tobacco", "安徽中烟工业有限责任公司"].includes(
+      String(identifier),
+    )
       ? [
           {
             id: 3424,
@@ -66,6 +68,22 @@ vi.mock("@/data/product-catalog", () => ({
           },
         ]
       : [],
+}));
+
+vi.mock("@/data/maker-catalog", () => ({
+  getMakerByIdentifier: (identifier: string | number) =>
+    ["4", "Anhui Tobacco", "anhui-tobacco", "安徽中烟工业有限责任公司"].includes(
+      String(identifier),
+    )
+      ? {
+          id: 4,
+          name: "安徽中烟工业有限责任公司",
+          englishName: "Anhui Tobacco",
+          slug: "anhui-tobacco",
+          brands: ["黄山", "迎客松"],
+          productIds: [3424, 3425, 3550],
+        }
+      : undefined,
 }));
 
 vi.mock("@/components/Navbar", () => ({
@@ -96,5 +114,17 @@ describe("ManufacturerDetail", () => {
     expect(screen.getAllByText("Anhui Tobacco").length).toBeGreaterThan(0);
     expect(screen.getAllByText("黄山").length).toBeGreaterThan(0);
     expect(screen.getAllByText("迎客松").length).toBeGreaterThan(0);
+  });
+
+  it("supports maker slugs and numeric ids", () => {
+    window.history.replaceState({}, "", "/maker/anhui-tobacco");
+    render(<ManufacturerDetail />);
+
+    expect(screen.getAllByText("Anhui Tobacco").length).toBeGreaterThan(0);
+
+    window.history.replaceState({}, "", "/maker/4");
+    render(<ManufacturerDetail />);
+
+    expect(screen.getAllByText("Anhui Tobacco").length).toBeGreaterThan(0);
   });
 });

@@ -1,6 +1,7 @@
 import rawProducts from "./products";
 import type { Product as RawProduct } from "./types";
 import { brands, getBrandByPinyin } from "./brand-catalog";
+import { getMakerByIdentifier } from "./maker-catalog";
 
 export interface Product {
   id: number;
@@ -128,6 +129,15 @@ export const totalProducts = products.length;
 
 export function getProductsByManufacturer(manufacturerName: string): Product[] {
   return products.filter((product) => product.manufacturer === manufacturerName);
+}
+
+export function getProductsByMakerIdentifier(identifier: string | number): Product[] {
+  const maker = getMakerByIdentifier(identifier);
+  if (!maker) {
+    return [];
+  }
+
+  return getProductsByManufacturer(maker.name);
 }
 
 export function getProductsByBrand(pinyin: string): Product[] {

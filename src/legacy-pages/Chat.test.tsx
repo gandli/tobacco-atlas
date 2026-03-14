@@ -38,5 +38,6 @@ describe("Chat", () => {
     expect(screen.getByText("Ciggie Chat")).toBeInTheDocument();
     expect(screen.getByTestId("page-frame")).toBeInTheDocument();
     expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
+    expect(screen.getByTestId("page-frame")).toHaveClass("max-w-[1200px]");
   });
 });

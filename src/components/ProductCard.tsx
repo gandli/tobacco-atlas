@@ -28,7 +28,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       : regionLabel.zh
     : null;
   const isLongProductName = productName.length > 26;
-  const overlayTitleClass = isLongProductName ? "text-[11px]" : "text-[12px]";
+  const isVeryLongProductName = productName.length > 42;
+  const overlayTitleClass = isVeryLongProductName
+    ? "text-[10px]"
+    : isLongProductName
+      ? "text-[11px]"
+      : "text-[12px]";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
 
   const handleAction = (e: React.MouseEvent, action: string) => {
@@ -71,14 +76,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
             <div
               data-testid="product-card-overlay-title"
-              className={`${overlayTitleClass} text-foreground font-medium leading-snug mb-1 font-sans line-clamp-3`}
+              className={`${overlayTitleClass} text-foreground font-medium leading-snug font-sans line-clamp-4 break-words`}
             >
               {productName}
             </div>
-            <div className="text-[10px] text-muted-foreground/80 mb-3 font-sans truncate">
+            <div
+              data-testid="product-card-overlay-brand"
+              className="text-[10px] text-muted-foreground/80 font-sans leading-relaxed line-clamp-2 break-words"
+            >
               {product.brand}
             </div>
-            <div className="flex items-center justify-between">
+            <div className="mt-1 flex items-center justify-between gap-3">
               <span className="text-[16px] font-bold text-red-500 tabular-nums">
                 ¥{product.packPrice || product.price || 0}
               </span>
@@ -87,6 +95,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                   aria-label="Add to favorites"
                   className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-red-50 text-red-500 hover:bg-red-100"
                   onClick={(e) => handleAction(e, "favorite")}
+                  type="button"
                 >
                   <Star className="w-4 h-4 fill-current" />
                 </button>
@@ -94,6 +103,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                   aria-label="Mark as tried"
                   className="w-8 h-8 flex items-center justify-center transition-all text-foreground/40 hover:text-foreground"
                   onClick={(e) => handleAction(e, "tried")}
+                  type="button"
                 >
                   <CheckCircle className="w-4 h-4" />
                 </button>

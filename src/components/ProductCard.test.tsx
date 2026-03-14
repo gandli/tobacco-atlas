@@ -85,11 +85,28 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[11px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[10px]");
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
       "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
     );
     expect(screen.getByTestId("product-card-footer-name")).toHaveClass("truncate");
+  });
+
+  it("keeps overlay copy readable for long titles and brands", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(
+      <ProductCard
+        product={{
+          ...longNameProduct,
+          brand: "Shanghai Tobacco Group Limited Reserve Collection",
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-4");
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
   });
 });
