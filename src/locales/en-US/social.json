@@ -1,8 +1,9 @@
 {
   "feed": {
-    "eyebrow": "Collection Feed",
-    "title": "Track your collection",
-    "subtitle": "Save favorites, mark tried packs, and keep your wishlist in one place.",
+    "eyebrow": "Social",
+    "title": "Community Feed",
+    "subtitle": "Recent activity from the community.",
+    "activityLabel": "Latest activity",
     "notSignedIn": "Not signed in",
     "signIn": "Sign In",
     "favorites": "Favorites",

@@ -1,8 +1,9 @@
 {
   "feed": {
-    "eyebrow": "收藏动态",
-    "title": "追踪你的收藏",
-    "subtitle": "把收藏、尝试记录和想抽清单收在一个地方。",
+    "eyebrow": "社区",
+    "title": "社区动态",
+    "subtitle": "查看社区里最近发生的收藏与尝试记录。",
+    "activityLabel": "最新动态",
     "notSignedIn": "未登录",
     "signIn": "登录",
     "favorites": "收藏",

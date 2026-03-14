@@ -6,6 +6,8 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
+import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 import { brands } from "@/data/brand-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { useTranslation } from "react-i18next";
@@ -43,91 +45,85 @@ const Brands = () => {
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12">
-          {/* Header */}
-          <div className="mb-6 md:mb-10">
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">
-              {t('nav:archive')}
-            </p>
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-1">
-              {t('brands:title')}
-            </h1>
-            <p className="text-muted-foreground text-sm md:text-base">{t('brands:subtitle')}</p>
-          </div>
+          <CollectionPageHeader
+            eyebrow={t('nav:archive')}
+            title={t('brands:title')}
+            subtitle={t('brands:subtitle')}
+            meta={<span>{filteredBrands.length} results</span>}
+          />
 
-          {/* Region tabs - horizontally scrollable on mobile */}
-          <div className="flex gap-2 mb-4 md:mb-6 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
-            {regions.map((r) => (
-              <button
-                key={r}
-                onClick={() => setActiveRegion(r)}
-                className={`px-3 py-1.5 text-xs md:text-sm rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeRegion === r
-                    ? "bg-foreground text-primary-foreground border-foreground"
-                    : "border-border text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {isEnglish ? regionLabels[r].en : regionLabels[r].zh}{" "}
-                <span className="opacity-60">{regionCounts[r]}</span>
-              </button>
-            ))}
-          </div>
+          <CollectionPageSurface className="p-4 md:p-5">
+            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+              {regions.map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setActiveRegion(r)}
+                  className={`px-3 py-1.5 text-xs md:text-sm rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
+                    activeRegion === r
+                      ? "bg-foreground text-primary-foreground border-foreground"
+                      : "border-border text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {isEnglish ? regionLabels[r].en : regionLabels[r].zh}{" "}
+                  <span className="opacity-60">{regionCounts[r]}</span>
+                </button>
+              ))}
+            </div>
 
-          {/* Search */}
-          <div className="relative mb-6 md:mb-10 md:max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder={t('brands:searchPlaceholder')}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-foreground/20"
-            />
-          </div>
+            <div className="relative mt-4 md:max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder={t('brands:searchPlaceholder')}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-xl bg-background/80 focus:outline-none focus:ring-1 focus:ring-foreground/20"
+              />
+            </div>
 
-          {/* Section label */}
-          <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <span className="font-semibold text-foreground text-sm md:text-base">
-              {isEnglish ? regionLabels[activeRegion].en : regionLabels[activeRegion].zh}
-            </span>
-            <span className="text-muted-foreground text-sm">
-              {filteredBrands.length}
-            </span>
-          </div>
+            <div className="mt-6 flex items-center gap-3 px-1">
+              <span className="font-semibold text-foreground text-sm md:text-base">
+                {isEnglish ? regionLabels[activeRegion].en : regionLabels[activeRegion].zh}
+              </span>
+              <span className="text-muted-foreground text-sm">
+                {filteredBrands.length}
+              </span>
+            </div>
 
-          {/* Brand grid - 3 cols on mobile */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-2 md:gap-3">
-            {filteredBrands.map((brand) => (
-              <Link
-                key={brand.id}
-                href={`/brand/${brand.pinyin}`}
-                className="border border-border rounded-xl p-3 md:p-4 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow bg-card"
-              >
-                <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                  <OptimizedImage
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={64}
-                    height={64}
-                    className="max-w-full max-h-full object-contain"
-                    sizes="64px"
-                  />
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center gap-1 justify-center">
-                    <span className="text-xs md:text-sm font-medium text-foreground">
-                      {brand.name}
-                    </span>
-                    <span className="text-[10px] md:text-xs text-destructive font-medium">
-                      {brand.count}
+            <div className="mt-5 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
+              {filteredBrands.map((brand) => (
+                <Link
+                  key={brand.id}
+                  href={`/brand/${brand.pinyin}`}
+                  className="rounded-2xl border border-border/60 bg-card/80 p-3 md:p-4 flex flex-col items-center cursor-pointer transition-all hover:border-gold/30 hover:shadow-md"
+                >
+                  <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
+                    <OptimizedImage
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={64}
+                      height={64}
+                      className="max-w-full max-h-full object-contain"
+                      sizes="64px"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center gap-1 justify-center">
+                      <span className="text-xs md:text-sm font-medium text-foreground">
+                        {brand.name}
+                      </span>
+                      <span className="text-[10px] md:text-xs text-destructive font-medium">
+                        {brand.count}
+                      </span>
+                    </div>
+                    <span className="text-[10px] md:text-xs text-muted-foreground">
+                      {brand.pinyin}
                     </span>
                   </div>
-                  <span className="text-[10px] md:text-xs text-muted-foreground">
-                    {brand.pinyin}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          </CollectionPageSurface>
         </div>
       </div>
       <MobileNav />

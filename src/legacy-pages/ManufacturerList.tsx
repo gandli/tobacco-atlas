@@ -17,6 +17,8 @@ import {
 import { Search, Building2, Filter, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
+import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
+import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 import { manufacturers } from '@/data/manufacturers';
 import type { Manufacturer } from '@/data/types';
 import { isEnglishLanguage } from "@/lib/i18n-utils";
@@ -229,23 +231,23 @@ export default function ManufacturerList() {
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <div className="container mx-auto px-4 py-8 max-w-7xl">
-          {/* 页面标题 */}
-          <header className="mb-8">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-              {t("badge")}
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold font-serif text-ash mb-2">
-              {t("title")}
-            </h1>
-            <p className="text-muted-foreground max-w-xl">
-              {t("subtitle")}
-            </p>
-          </header>
+          <CollectionPageHeader
+            eyebrow={t("badge")}
+            title={t("title")}
+            subtitle={t("subtitle")}
+            meta={
+              <Stats
+                total={manufacturers.length}
+                filtered={filteredManufacturers.length}
+                searchTerm={searchTerm}
+                regionFilter={regionFilter}
+              />
+            }
+          />
 
-          {/* 搜索和筛选栏 */}
-          <div className="flex flex-col gap-4 mb-8">
-            {/* 搜索框 */}
-            <div className="relative w-full md:max-w-md">
+          <CollectionPageSurface className="p-4 md:p-5">
+            <div className="flex flex-col gap-4">
+              <div className="relative w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder={t("searchPlaceholder")}
@@ -261,11 +263,9 @@ export default function ManufacturerList() {
                   <X className="h-4 w-4" />
                 </button>
               )}
-            </div>
+              </div>
 
-            {/* 筛选和排序控件 */}
-            <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-              {/* 地区筛选 */}
+              <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
               <div className="flex items-center gap-2">
                 <Filter className="h-4 w-4 text-muted-foreground" />
                 <Select value={regionFilter} onValueChange={setRegionFilter}>
@@ -305,31 +305,26 @@ export default function ManufacturerList() {
                 </Button>
               )}
             </div>
-
-            {/* 统计信息 */}
-            <Stats
-              total={manufacturers.length}
-              filtered={filteredManufacturers.length}
-              searchTerm={searchTerm}
-              regionFilter={regionFilter}
-            />
           </div>
+          </CollectionPageSurface>
 
           {/* 制造商网格 */}
-          {filteredManufacturers.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredManufacturers.map((manufacturer, index) => (
-                <ManufacturerCard
-                  key={manufacturer.name}
-                  manufacturer={manufacturer}
-                  index={index}
-                  isEnglish={isEnglish}
-                />
-              ))}
-            </div>
-          ) : (
-            <EmptyState hasFilter={hasActiveFilters} />
-          )}
+          <div className="mt-6">
+            {filteredManufacturers.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredManufacturers.map((manufacturer, index) => (
+                  <ManufacturerCard
+                    key={manufacturer.name}
+                    manufacturer={manufacturer}
+                    index={index}
+                    isEnglish={isEnglish}
+                  />
+                ))}
+              </div>
+            ) : (
+              <EmptyState hasFilter={hasActiveFilters} />
+            )}
+          </div>
         </div>
       </div>
       <MobileNav />

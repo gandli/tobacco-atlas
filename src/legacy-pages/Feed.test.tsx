@@ -7,18 +7,16 @@ vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
-        "feed.notSignedIn": "Not signed in",
+        "feed.eyebrow": "Social",
+        "feed.title": "Community Feed",
+        "feed.subtitle": "Recent activity from the community.",
+        "feed.activityLabel": "Latest activity",
         "feed.signIn": "Sign In",
-        "feed.favorites": "Favorites",
-        "feed.tried": "Tried",
-        "feed.wishlist": "Wishlist",
-        "feed.empty": "Sign in to track your collection",
-        "social:feed.notSignedIn": "Not signed in",
+        "social:feed.eyebrow": "Social",
+        "social:feed.title": "Community Feed",
+        "social:feed.subtitle": "Recent activity from the community.",
+        "social:feed.activityLabel": "Latest activity",
         "social:feed.signIn": "Sign In",
-        "social:feed.favorites": "Favorites",
-        "social:feed.tried": "Tried",
-        "social:feed.wishlist": "Wishlist",
-        "social:feed.empty": "Sign in to track your collection",
       };
 
       return translations[key] || key;
@@ -34,13 +32,29 @@ vi.mock("@/components/MobileNav", () => ({
   default: () => <nav data-testid="mobile-nav" />,
 }));
 
+vi.mock("@/data/feed-activity", () => ({
+  feedActivities: [
+    {
+      id: "1",
+      user: "toyashtray",
+      avatar: "https://example.com/avatar.png",
+      action: "wishlisted",
+      productNameZh: "威力加（3号）",
+      productNameEn: "Villiger Premium No.3",
+      productHref: "/sku/3424",
+      timestamp: "41m ago",
+    },
+  ],
+}));
+
 describe("Feed", () => {
-  it("renders translated feed empty state copy", () => {
+  it("renders a community activity stream", () => {
     render(<Feed />);
 
-    expect(screen.getByText("Not signed in")).toBeInTheDocument();
+    expect(screen.getByText("Community Feed")).toBeInTheDocument();
+    expect(screen.getByText("Latest activity")).toBeInTheDocument();
+    expect(screen.getByText("@toyashtray", { exact: false })).toBeInTheDocument();
+    expect(screen.getByText("威力加（3号）")).toBeInTheDocument();
     expect(screen.getAllByText("Sign In").length).toBeGreaterThan(0);
-    expect(screen.getByText("Favorites")).toBeInTheDocument();
-    expect(screen.getByText("Sign in to track your collection")).toBeInTheDocument();
   });
 });
