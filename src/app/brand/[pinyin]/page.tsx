@@ -205,8 +205,10 @@ function BrandDetailContent({
   );
 }
 
-export default async function BrandDetailPage({ params }: BrandDetailRouteProps) {
-  const { pinyin } = await params;
+import { use } from "react";
+
+export default function BrandDetailPage({ params }: BrandDetailRouteProps) {
+  const { pinyin } = use(params);
 
   return <BrandDetailContent identifier={pinyin} />;
 }

@@ -150,8 +150,10 @@ function ManufacturerDetailContent({ name: explicitName }: ManufacturerDetailCon
   );
 }
 
-export default async function MakerDetailPage({ params }: MakerDetailRouteProps) {
-  const { name } = await params;
+import { use } from "react";
+
+export default function MakerDetailPage({ params }: MakerDetailRouteProps) {
+  const { name } = use(params);
 
   return <ManufacturerDetailContent name={name} />;
 }

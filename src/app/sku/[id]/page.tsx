@@ -486,8 +486,10 @@ function SkuDetailContent({ id: explicitId }: SkuDetailContentProps) {
   );
 }
 
-export default async function SkuDetailPage({ params }: SkuDetailRouteProps) {
-  const { id } = await params;
+import { use } from "react";
+
+export default function SkuDetailPage({ params }: SkuDetailRouteProps) {
+  const { id } = use(params);
 
   return <SkuDetailContent id={id} />;
 }

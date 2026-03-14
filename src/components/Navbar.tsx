@@ -42,7 +42,7 @@ const Navbar = () => {
             <Link
               key={item.key}
               href={item.path}
-              className={`px-3 py-1.5 text-sm rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none ${
+              className={`inline-flex items-center justify-center h-8 px-3 text-sm rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none ${
                 isActive
                   ? "bg-foreground text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
@@ -63,7 +63,7 @@ const Navbar = () => {
               <Link
                 key={item.key}
                 href={item.path}
-                className={`px-3 py-1.5 text-sm rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none ${
+                className={`inline-flex items-center justify-center h-8 px-3 text-sm rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none ${
                   isActive
                     ? "bg-accent text-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -87,14 +87,14 @@ const Navbar = () => {
         {isLoggedIn ? (
           <Link
             href="/my"
-            className="hidden sm:inline-flex items-center gap-1 rounded-full border border-border/60 px-3 h-8 text-xs text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
+            className="hidden sm:inline-flex items-center justify-center gap-1 rounded-full border border-border/60 px-3 h-8 text-xs text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
           >
             <UserCircle2 className="h-3.5 w-3.5" />
             {t("my")}
           </Link>
         ) : null}
-        <Link href="/login">
-          <Button variant="default" size="sm" className="text-xs h-8 px-4">
+        <Link href="/login" className="inline-flex items-center justify-center h-8">
+          <Button variant="default" size="sm" className="text-xs h-full px-4">
             {t("signIn")}
           </Button>
         </Link>
