@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Bookmark } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -106,10 +106,19 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
   );
 };
 
-const SkuDetail = () => {
+type SkuDetailProps = {
+  id?: string;
+};
+
+const SkuDetail = ({ id: explicitId }: SkuDetailProps) => {
   const { t, i18n } = useTranslation("details");
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const id =
+    explicitId ??
+    (typeof window !== "undefined"
+      ? decodeURIComponent(
+          window.location.pathname.match(/^\/sku\/([^/]+)/)?.[1] ?? "",
+        )
+      : "");
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   const product = useMemo(() => getProductById(Number(id)), [id]);
@@ -130,7 +139,11 @@ const SkuDetail = () => {
             </h1>
             <p className="text-muted-foreground mb-4">{t("notFound.productDescription")}</p>
             <button
-              onClick={() => navigate("/")}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.location.assign("/");
+                }
+              }}
               className="text-sm text-foreground underline"
             >
               ← {t("notFound.backToCollection")}
@@ -213,7 +226,7 @@ const SkuDetail = () => {
             aria-label="Breadcrumb"
           >
             <Link
-              to="/"
+              href="/"
               className="hover:text-foreground transition-colors whitespace-nowrap focus-visible:underline outline-none"
             >
               {t("breadcrumbs.collection")}
@@ -222,7 +235,7 @@ const SkuDetail = () => {
               /
             </span>
             <Link
-              to={`/brand/${product.brandPinyin}`}
+              href={`/brand/${product.brandPinyin}`}
               className="hover:text-foreground transition-colors whitespace-nowrap focus-visible:underline outline-none"
             >
               {product.brand}
@@ -276,7 +289,7 @@ const SkuDetail = () => {
                 </p>
                 <div className="flex items-center text-[13px] text-muted-text/30 font-sans">
                   <Link
-                    to={`/brand/${product.brandPinyin}`}
+                  href={`/brand/${product.brandPinyin}`}
                     className="hover:text-gold transition-colors focus-visible:underline outline-none"
                   >
                     {product.brand}
@@ -287,7 +300,7 @@ const SkuDetail = () => {
                         ·
                       </span>
                       <Link
-                        to={`/manufacturer/${encodeURIComponent(product.manufacturer)}`}
+                        href={`/manufacturer/${encodeURIComponent(product.manufacturer)}`}
                         className="hover:text-gold transition-colors hover:underline focus-visible:underline outline-none"
                       >
                         {product.manufacturer}

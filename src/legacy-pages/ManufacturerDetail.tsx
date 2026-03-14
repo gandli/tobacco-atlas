@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { getProductsByManufacturer } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
@@ -12,9 +12,19 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-const ManufacturerDetail = () => {
+type ManufacturerDetailProps = {
+  name?: string;
+};
+
+const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => {
   const { t } = useTranslation("details");
-  const { name } = useParams();
+  const name =
+    explicitName ??
+    (typeof window !== "undefined"
+      ? decodeURIComponent(
+          window.location.pathname.match(/^\/manufacturer\/([^/]+)/)?.[1] ?? "",
+        )
+      : "");
   const products = name ? getProductsByManufacturer(name) : [];
 
   // 获取该厂家的品牌列表 (去重)
@@ -68,7 +78,7 @@ const ManufacturerDetail = () => {
               return (
                 <Link
                   key={brandName}
-                  to={`/brand/${brandPinyin}`}
+                  href={`/brand/${brandPinyin}`}
                   className="group relative bg-card border border-border/50 hover:border-gold/30 p-4 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden"
                 >
                   <div className="relative z-10 text-center">
@@ -98,7 +108,7 @@ const ManufacturerDetail = () => {
             {products.map((product) => (
               <Link
                 key={product.id}
-                to={`/sku/${product.id}`}
+                href={`/sku/${product.id}`}
                 className="group flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-500"
               >
                 <div className="aspect-[3/4] bg-card border border-border/50 rounded-2xl overflow-hidden flex items-center justify-center p-6 transition-all group-hover:shadow-2xl group-hover:border-gold/30">

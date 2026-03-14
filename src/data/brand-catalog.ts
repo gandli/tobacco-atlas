@@ -2388,7 +2388,12 @@ export const brands: BrandItem[] = [
 export const totalBrands = brands.length;
 
 const brandByPinyin = new Map(brands.map((brand) => [brand.pinyin, brand] as const));
+const brandById = new Map(brands.map((brand) => [brand.id, brand] as const));
 
 export function getBrandByPinyin(pinyin: string): BrandItem | undefined {
   return brandByPinyin.get(pinyin);
+}
+
+export function getBrandById(id: number): BrandItem | undefined {
+  return brandById.get(id);
 }

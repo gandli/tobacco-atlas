@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import BrandDetailPage from "@/app/brand/[pinyin]/page";
 
 vi.mock("@/legacy-pages/BrandDetail", () => ({
-  default: ({ pinyin }: { pinyin: string }) => <div>brand detail {pinyin}</div>,
+  default: ({ identifier }: { identifier: string }) => <div>brand detail {identifier}</div>,
 }));
 
 describe("Brand detail route", () => {
@@ -16,5 +16,15 @@ describe("Brand detail route", () => {
     render(page);
 
     expect(screen.getByText("brand detail huangshan")).toBeInTheDocument();
+  });
+
+  it("passes numeric brand ids through the same dynamic route", async () => {
+    const page = await BrandDetailPage({
+      params: Promise.resolve({ pinyin: "23" }),
+    });
+
+    render(page);
+
+    expect(screen.getByText("brand detail 23")).toBeInTheDocument();
   });
 });

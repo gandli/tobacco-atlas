@@ -30,10 +30,6 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-vi.mock("react-router-dom", () => ({
-  useParams: () => ({ pinyin: "zhonghua" }),
-}));
-
 vi.mock("next/link", () => ({
   default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
     <a href={href} {...props}>
@@ -43,24 +39,58 @@ vi.mock("next/link", () => ({
 }));
 
 vi.mock("@/data/brand-catalog", () => ({
-  getBrandByPinyin: () => ({
-    id: 1,
-    name: "中华",
-    pinyin: "zhonghua",
-    logo: "https://example.com/logo.png",
-    count: 2,
-    region: "mainland",
-    descriptionEn: "Premium national brand",
-    descriptionCn: "经典国烟品牌",
-    company: "Shanghai Tobacco",
-  }),
+  getBrandByPinyin: (value: string) =>
+    value === "huangshan"
+      ? {
+          id: 23,
+          name: "黄山",
+          pinyin: "huangshan",
+          logo: "https://example.com/logo-hs.png",
+          count: 3,
+          region: "mainland",
+          descriptionEn: "Anhui classic",
+          descriptionCn: "安徽经典品牌",
+          company: "Anhui Tobacco",
+        }
+      : {
+          id: 1,
+          name: "中华",
+          pinyin: "zhonghua",
+          logo: "https://example.com/logo.png",
+          count: 2,
+          region: "mainland",
+          descriptionEn: "Premium national brand",
+          descriptionCn: "经典国烟品牌",
+          company: "Shanghai Tobacco",
+        },
+  getBrandById: (id: number) =>
+    id === 23
+      ? {
+          id: 23,
+          name: "黄山",
+          pinyin: "huangshan",
+          logo: "https://example.com/logo-hs.png",
+          count: 3,
+          region: "mainland",
+          descriptionEn: "Anhui classic",
+          descriptionCn: "安徽经典品牌",
+          company: "Anhui Tobacco",
+        }
+      : undefined,
 }));
 
 vi.mock("@/data/product-catalog", () => ({
-  getProductsByBrand: () => [
-    { id: 1, brand: "中华", name: "软中华", image: "", brandPinyin: "zhonghua" },
-    { id: 2, brand: "中华", name: "硬中华", image: "", brandPinyin: "zhonghua" },
-  ],
+  getProductsByBrand: (value: string) =>
+    value === "huangshan"
+      ? [
+          { id: 3, brand: "黄山", name: "小红方印", image: "", brandPinyin: "huangshan" },
+          { id: 4, brand: "黄山", name: "大红方印", image: "", brandPinyin: "huangshan" },
+          { id: 5, brand: "黄山", name: "金皖烟", image: "", brandPinyin: "huangshan" },
+        ]
+      : [
+          { id: 1, brand: "中华", name: "软中华", image: "", brandPinyin: "zhonghua" },
+          { id: 2, brand: "中华", name: "硬中华", image: "", brandPinyin: "zhonghua" },
+        ],
 }));
 
 vi.mock("@/data/region-labels", () => ({
@@ -82,8 +112,18 @@ vi.mock("@/components/ProductCard", () => ({
 }));
 
 describe("BrandDetail", () => {
-  it("renders translated english section labels", () => {
+  it("renders translated english section labels from the current path", { timeout: 15000 }, () => {
+    window.history.replaceState({}, "", "/brand/zhonghua");
     render(<BrandDetail />);
+
+    expect(screen.getByText("Brands")).toBeInTheDocument();
+    expect(screen.getByText("Collection")).toBeInTheDocument();
+    expect(screen.getByText("Manufacturer")).toBeInTheDocument();
+    expect(screen.getByText("2 items")).toBeInTheDocument();
+  });
+
+  it("renders translated english section labels", () => {
+    render(<BrandDetail pinyin="zhonghua" />);
 
     expect(screen.getByText("Brands")).toBeInTheDocument();
     expect(screen.getByText("Collection")).toBeInTheDocument();
@@ -94,6 +134,14 @@ describe("BrandDetail", () => {
   it("prefers the explicit pinyin prop when provided", () => {
     render(<BrandDetail pinyin="huangshan" />);
 
-    expect(screen.getByText("2 items")).toBeInTheDocument();
+    expect(screen.getByText("3 items")).toBeInTheDocument();
+    expect(screen.getAllByText("黄山").length).toBeGreaterThan(0);
+  });
+
+  it("supports numeric brand ids in the shared detail component", () => {
+    render(<BrandDetail identifier="23" />);
+
+    expect(screen.getByText("3 items")).toBeInTheDocument();
+    expect(screen.getByText("Anhui Tobacco")).toBeInTheDocument();
   });
 });

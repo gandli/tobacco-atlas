@@ -11,5 +11,5 @@ export default async function BrandDetailRoute({
 }: BrandDetailRouteProps) {
   const { pinyin } = await params;
 
-  return <BrandDetailPage pinyin={pinyin} />;
+  return <BrandDetailPage identifier={pinyin} />;
 }

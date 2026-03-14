@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -7,25 +6,39 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import ProductCard from "@/components/ProductCard";
 import OptimizedImage from "@/components/OptimizedImage";
-import { getBrandByPinyin } from "@/data/brand-catalog";
+import { getBrandById, getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductsByBrand } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 type BrandDetailProps = {
+  identifier?: string;
   pinyin?: string;
 };
 
-const BrandDetail = ({ pinyin: explicitPinyin }: BrandDetailProps) => {
+const BrandDetail = ({ identifier, pinyin: explicitPinyin }: BrandDetailProps) => {
   const { t, i18n } = useTranslation("details");
-  const routeParams = useParams<{ pinyin: string }>();
-  const pinyin = explicitPinyin ?? routeParams.pinyin;
+  const brandIdentifier =
+    identifier ??
+    explicitPinyin ??
+    (typeof window !== "undefined"
+      ? decodeURIComponent(
+          window.location.pathname.match(/^\/brand\/([^/]+)/)?.[1] ?? "",
+        )
+      : "");
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
-  const brand = useMemo(() => getBrandByPinyin(pinyin || ""), [pinyin]);
+  const brand = useMemo(() => {
+    const numericId = Number(brandIdentifier);
+    if (brandIdentifier && Number.isInteger(numericId) && numericId > 0) {
+      return getBrandById(numericId);
+    }
+
+    return getBrandByPinyin(brandIdentifier || "");
+  }, [brandIdentifier]);
   const brandProducts = useMemo(
-    () => getProductsByBrand(pinyin || ""),
-    [pinyin],
+    () => getProductsByBrand(brand?.pinyin || ""),
+    [brand?.pinyin],
   );
 
   if (!brand) {
