@@ -1,5 +1,6 @@
 # Vercel 自动部署工作流
 # 分支策略：dev → 预览部署，main → 生产部署
+# 框架：Next.js
 
 name: Vercel Deploy
 
@@ -28,19 +29,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Run ESLint
         run: npm run lint
-      
+
       - name: TypeScript type check
         run: npx tsc --noEmit
 
@@ -50,16 +51,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Run tests
         run: npm run test
 
@@ -70,34 +71,37 @@ jobs:
     needs: [lint, test]
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Build (Production)
         if: github.ref == 'refs/heads/main'
         run: npm run build
         env:
           VITE_APP_ENV: production
-      
+
       - name: Build (Staging)
         if: github.ref == 'refs/heads/dev'
         run: npm run build
         env:
           VITE_APP_ENV: staging
-      
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist-${{ github.sha }}
-          path: dist
+          name: next-build-${{ github.sha }}
+          path: .next
           retention-days: 7
+          # 排除缓存文件，减小 artifact 大小
+          exclude: |
+            .next/cache/**
 
   # 预览部署（dev 分支和 PR）
   deploy-preview:
@@ -110,32 +114,32 @@ jobs:
       url: ${{ steps.deploy.outputs.url }}
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
-      
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Build Project Artifacts
         run: vercel build --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Deploy Project Artifacts to Vercel
         id: deploy
         run: |
           url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$url" >> $GITHUB_OUTPUT
           echo "### Preview URL: $url" >> $GITHUB_STEP_SUMMARY
-      
+
       - name: Comment PR with preview URL
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -146,20 +150,20 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            const botComment = comments.find(comment => 
+            const botComment = comments.find(comment =>
               comment.user.type === 'Bot' && comment.body.includes('Preview Deployment')
             );
-            
+
             const output = `## 🚀 Preview Deployment
-            
+
             | Status | URL |
             |--------|-----|
             | ✅ Ready | [${{ steps.deploy.outputs.url }}](${{ steps.deploy.outputs.url }}) |
-            
+
             **Commit:** \`${{ github.sha }}\`
             **Branch:** \`${{ github.ref_name }}\`
             `;
-            
+
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
@@ -187,32 +191,32 @@ jobs:
       url: ${{ steps.deploy.outputs.url }}
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
-      
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Build Project Artifacts
         run: vercel build --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      
+
       - name: Deploy to Production
         id: deploy
         run: |
           url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$url" >> $GITHUB_OUTPUT
           echo "### Production URL: $url" >> $GITHUB_STEP_SUMMARY
-      
+
       - name: Create deployment record
         run: |
           echo "## 🎉 Production Deployment Successful" >> $GITHUB_STEP_SUMMARY

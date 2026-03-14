@@ -1,11 +1,15 @@
-# Cloudflare Pages 配置
-# 文档: https://developers.cloudflare.com/pages/platform/build-configuration
+# Cloudflare Pages 配置 - Next.js 版本
+# 文档：https://developers.cloudflare.com/pages/platform/build-configuration
 
 name = "tobacco-atlas"
 compatibility_date = "2024-01-01"
 
-# Pages 项目配置
-pages_build_output_dir = "dist"
+# Next.js 构建输出目录
+pages_build_output_dir = ".next"
+
+# 使用 @cloudflare/next-on-pages 适配 Next.js
+# 安装：npm install -D @cloudflare/next-on-pages
+# 构建命令：npx @cloudflare/next-on-pages
 
 # 环境变量 (如需要，在 Cloudflare Dashboard 中配置)
 # [vars]
