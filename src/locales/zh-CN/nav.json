@@ -1,14 +1,14 @@
 {
-  "collection": "Collection",
-  "brands": "Brands",
+  "collection": "藏品",
+  "brands": "品牌",
   "feed": "动态",
   "manufacturers": "厂商",
-  "community": "Community",
-  "chat": "Chat",
+  "community": "社区",
+  "chat": "聊天",
   "changelog": "更新",
-  "my": "My",
-  "signIn": "Sign In",
-  "archive": "Archive",
+  "my": "我的",
+  "signIn": "登录",
+  "archive": "档案",
   "socialHub": "社群",
   "openChat": "打开聊天"
 }
