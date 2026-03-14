@@ -163,16 +163,16 @@ describe("ProductCard", () => {
     );
 
     const titleWrapper = screen.getByTestId("product-card-overlay-title");
-    expect(titleWrapper).toHaveClass("h-12", "overflow-hidden");
+    expect(titleWrapper).toHaveClass("h-10", "overflow-hidden");
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
       "dense",
     );
     const brandWrapper = screen.getByTestId("product-card-overlay-brand");
     expect(brandWrapper).toHaveClass("h-[18px]", "overflow-hidden");
-    expect(screen.getByTestId("product-card-overlay-text")).toHaveClass(
+    expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
       "grid",
-      "grid-rows-[48px_18px]",
+      "grid-rows-[40px_18px_22px]",
     );
   });
 
@@ -230,22 +230,30 @@ describe("ProductCard", () => {
       "data-overlay-density",
       "compact",
     );
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("h-[46px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("h-[34px]");
     expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("h-[18px]");
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
       "sku-card-overlay-expanded",
     );
   });
 
-  it("pins the price row to the bottom so bilingual copy gets the remaining vertical space", () => {
+  it("keeps title, brand, and price rows on fixed overlay rails", () => {
     mockI18n.language = "en-US";
     mockI18n.resolvedLanguage = "en-US";
 
     render(<ProductCard product={combinedLongCopyProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-content").className).not.toContain(
-      "justify-between",
+    expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
+      "grid",
+      "grid-rows-[34px_18px_24px]",
+      "gap-1.5",
     );
-    expect(screen.getByText("¥0").parentElement).toHaveClass("mt-auto", "shrink-0");
+    expect(screen.getByTestId("product-card-overlay-footer")).toHaveClass(
+      "flex",
+      "h-full",
+      "items-center",
+      "justify-between",
+      "gap-3",
+    );
   });
 });

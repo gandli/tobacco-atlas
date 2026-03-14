@@ -66,15 +66,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const overlayShellClass = useDenseOverlay || useExpandedOverlay
     ? "sku-card-overlay sku-card-overlay-expanded"
     : "sku-card-overlay";
-  const overlayTextLayoutClass = useDenseOverlay
-    ? "grid min-h-0 flex-1 grid-rows-[48px_18px] gap-1"
+  const overlayBodyClass = useDenseOverlay
+    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_22px] gap-1"
     : useExpandedOverlay
-      ? "grid min-h-0 flex-1 grid-rows-[46px_18px] gap-1.5"
-      : "grid min-h-0 flex-1 grid-rows-[30px_18px] gap-1.5";
+      ? "grid min-h-0 flex-1 grid-rows-[34px_18px_24px] gap-1.5"
+      : "grid min-h-0 flex-1 grid-rows-[30px_18px_24px] gap-1.5";
   const overlayTitleBoxClass = useDenseOverlay
-    ? "h-12 overflow-hidden"
+    ? "h-10 overflow-hidden"
     : useExpandedOverlay
-      ? "h-[46px] overflow-hidden"
+      ? "h-[34px] overflow-hidden"
       : "h-[30px] overflow-hidden";
   const overlayBrandBoxClass = useDenseOverlay
     ? "h-[18px] overflow-hidden"
@@ -130,8 +130,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       const computedStyle = window.getComputedStyle(element);
       const lineHeight = Number.parseFloat(computedStyle.lineHeight);
       const fallbackLineHeight = Number.isFinite(lineHeight) ? lineHeight : 18;
-      const contentHeight = Math.max(element.scrollHeight, element.getBoundingClientRect().height);
-      if (contentHeight === 0) {
+      const rectHeight = element.getBoundingClientRect().height;
+      const contentHeight = Math.max(element.scrollHeight, rectHeight);
+      if (!Number.isFinite(contentHeight) || contentHeight <= 0) {
         setHasWrappedTitle(prefersExpandedOverlay);
         return;
       }
@@ -231,10 +232,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 {regionDisplayLabel}
               </span>
             )}
-            <div
-              data-testid="product-card-overlay-text"
-              className={overlayTextLayoutClass}
-            >
+            <div data-testid="product-card-overlay-body" className={overlayBodyClass}>
               <div
                 data-testid="product-card-overlay-title"
                 className={`${overlayTitleBoxClass} text-[#666661] font-medium font-sans subpixel-antialiased`}
@@ -256,28 +254,31 @@ const ProductCard = ({ product }: ProductCardProps) => {
                   {product.brand}
                 </span>
               </div>
-            </div>
-            <div className={`mt-auto flex shrink-0 items-center justify-between gap-3 ${useDenseOverlay ? "pt-0" : useCompactOverlay ? "pt-0.5" : "pt-1"}`}>
-              <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
-                ¥{product.packPrice || product.price || 0}
-              </span>
-              <div className={`flex items-center ${useDenseOverlay ? "gap-2" : useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
-                <button
-                  aria-label="Add to favorites"
-                  className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#ff6b5b]`}
-                  onClick={(e) => handleAction(e, "favorite")}
-                  type="button"
-                >
-                  <Star className={`${overlayActionIconClass} stroke-[1.75]`} />
-                </button>
-                <button
-                  aria-label="Mark as tried"
-                  className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#8f8a84]`}
-                  onClick={(e) => handleAction(e, "tried")}
-                  type="button"
-                >
-                  <CheckCircle className={`${overlayActionIconClass} stroke-[1.55]`} />
-                </button>
+              <div
+                data-testid="product-card-overlay-footer"
+                className="flex h-full items-center justify-between gap-3"
+              >
+                <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
+                  ¥{product.packPrice || product.price || 0}
+                </span>
+                <div className={`flex items-center ${useDenseOverlay ? "gap-2" : useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
+                  <button
+                    aria-label="Add to favorites"
+                    className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#ff6b5b]`}
+                    onClick={(e) => handleAction(e, "favorite")}
+                    type="button"
+                  >
+                    <Star className={`${overlayActionIconClass} stroke-[1.75]`} />
+                  </button>
+                  <button
+                    aria-label="Mark as tried"
+                    className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#8f8a84]`}
+                    onClick={(e) => handleAction(e, "tried")}
+                    type="button"
+                  >
+                    <CheckCircle className={`${overlayActionIconClass} stroke-[1.55]`} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
