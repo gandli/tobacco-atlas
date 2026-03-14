@@ -4,6 +4,7 @@
     "title": "Community Feed",
     "subtitle": "Recent activity from the community.",
     "activityLabel": "Latest activity",
+    "streamLabel": "Public stream",
     "notSignedIn": "Not signed in",
     "signIn": "Sign In",
     "favorites": "Favorites",

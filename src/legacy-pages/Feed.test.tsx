@@ -52,7 +52,8 @@ describe("Feed", () => {
     render(<Feed />);
 
     expect(screen.getByText("Community Feed")).toBeInTheDocument();
-    expect(screen.getByText("Latest activity")).toBeInTheDocument();
+    expect(screen.getAllByText("Latest activity").length).toBeGreaterThan(0);
+    expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
     expect(screen.getByText("@toyashtray", { exact: false })).toBeInTheDocument();
     expect(screen.getByText("威力加（3号）")).toBeInTheDocument();
     expect(screen.getAllByText("Sign In").length).toBeGreaterThan(0);

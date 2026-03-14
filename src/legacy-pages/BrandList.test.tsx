@@ -91,6 +91,7 @@ describe("BrandList", () => {
 
     expect(screen.getByText("Cigarette Brands")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Search brands…")).toBeInTheDocument();
+    expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
     expect(screen.getAllByText("Mainland")[0]).toBeInTheDocument();
   });
 

@@ -17,6 +17,8 @@ import {
 import { Search, Building2, Filter, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
+import CollectionControlBar from "@/components/catalog/CollectionControlBar";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
 import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 import { manufacturers } from '@/data/manufacturers';
@@ -230,7 +232,7 @@ export default function ManufacturerList() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <CollectionPageFrame>
           <CollectionPageHeader
             eyebrow={t("badge")}
             title={t("title")}
@@ -245,87 +247,98 @@ export default function ManufacturerList() {
             }
           />
 
-          <CollectionPageSurface className="p-4 md:p-5">
-            <div className="flex flex-col gap-4">
-              <div className="relative w-full md:max-w-md">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder={t("searchPlaceholder")}
-                className="pl-10 pr-10"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-              </div>
+          <CollectionPageSurface className="p-3 md:p-4">
+            <CollectionControlBar
+              leading={
+                <div className="relative w-full md:max-w-md">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    placeholder={t("searchPlaceholder")}
+                    className="border-border/70 bg-background/90 pl-10 pr-10"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              }
+              trailing={
+                <>
+                  <div className="flex items-center gap-2">
+                    <Filter className="h-4 w-4 text-muted-foreground" />
+                    <Select value={regionFilter} onValueChange={setRegionFilter}>
+                      <SelectTrigger className="w-[150px] bg-background/90">
+                        <SelectValue placeholder={t("filters.region")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">{t("filters.allRegions")}</SelectItem>
+                        <SelectItem value="mainland">{t("filters.mainland")}</SelectItem>
+                        <SelectItem value="international">{t("filters.international")}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="w-[150px] bg-background/90">
+                      <SelectValue placeholder={t("filters.sort")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="brands">{t("sort.brands")}</SelectItem>
+                      <SelectItem value="products">{t("sort.products")}</SelectItem>
+                      <SelectItem value="name">{t("sort.name")}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {hasActiveFilters && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearFilters}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="mr-1 h-4 w-4" />
+                      {t("filters.clear")}
+                    </Button>
+                  )}
+                </>
+              }
+              summary={
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/70">
+                    {t("sectionLabel")}
+                  </span>
+                  <Stats
+                    total={manufacturers.length}
+                    filtered={filteredManufacturers.length}
+                    searchTerm={searchTerm}
+                    regionFilter={regionFilter}
+                  />
+                </div>
+              }
+            />
 
-              <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <Select value={regionFilter} onValueChange={setRegionFilter}>
-                  <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder={t("filters.region")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">{t("filters.allRegions")}</SelectItem>
-                    <SelectItem value="mainland">{t("filters.mainland")}</SelectItem>
-                    <SelectItem value="international">{t("filters.international")}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* 排序 */}
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder={t("filters.sort")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="brands">{t("sort.brands")}</SelectItem>
-                  <SelectItem value="products">{t("sort.products")}</SelectItem>
-                  <SelectItem value="name">{t("sort.name")}</SelectItem>
-                </SelectContent>
-              </Select>
-
-              {/* 清除筛选 */}
-              {hasActiveFilters && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={clearFilters}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4 mr-1" />
-                  {t("filters.clear")}
-                </Button>
+            <div className="mt-4 border-t border-border/50 pt-5">
+              {filteredManufacturers.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {filteredManufacturers.map((manufacturer, index) => (
+                    <ManufacturerCard
+                      key={manufacturer.name}
+                      manufacturer={manufacturer}
+                      index={index}
+                      isEnglish={isEnglish}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <EmptyState hasFilter={hasActiveFilters} />
               )}
             </div>
-          </div>
           </CollectionPageSurface>
-
-          {/* 制造商网格 */}
-          <div className="mt-6">
-            {filteredManufacturers.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredManufacturers.map((manufacturer, index) => (
-                  <ManufacturerCard
-                    key={manufacturer.name}
-                    manufacturer={manufacturer}
-                    index={index}
-                    isEnglish={isEnglish}
-                  />
-                ))}
-              </div>
-            ) : (
-              <EmptyState hasFilter={hasActiveFilters} />
-            )}
-          </div>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

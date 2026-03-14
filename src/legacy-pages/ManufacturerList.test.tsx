@@ -87,6 +87,7 @@ describe("ManufacturerList", () => {
 
     expect(screen.getByText("制造商名录")).toBeInTheDocument();
     expect(screen.getByTestId("navbar")).toBeInTheDocument();
+    expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText("湖北中烟工业有限责任公司")).toBeInTheDocument();

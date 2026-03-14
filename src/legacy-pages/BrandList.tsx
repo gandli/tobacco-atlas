@@ -6,6 +6,8 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionControlBar from "@/components/catalog/CollectionControlBar";
+import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
 import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 import { brands } from "@/data/brand-catalog";
@@ -44,7 +46,7 @@ const Brands = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12">
+        <CollectionPageFrame>
           <CollectionPageHeader
             eyebrow={t('nav:archive')}
             title={t('brands:title')}
@@ -52,36 +54,56 @@ const Brands = () => {
             meta={<span>{filteredBrands.length} results</span>}
           />
 
-          <CollectionPageSurface className="p-4 md:p-5">
-            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
-              {regions.map((r) => (
-                <button
-                  key={r}
-                  onClick={() => setActiveRegion(r)}
-                  className={`px-3 py-1.5 text-xs md:text-sm rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
-                    activeRegion === r
-                      ? "bg-foreground text-primary-foreground border-foreground"
-                      : "border-border text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {isEnglish ? regionLabels[r].en : regionLabels[r].zh}{" "}
-                  <span className="opacity-60">{regionCounts[r]}</span>
-                </button>
-              ))}
-            </div>
+          <CollectionPageSurface className="p-3 md:p-4">
+            <CollectionControlBar
+              leading={
+                <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+                  {regions.map((r) => (
+                    <button
+                      key={r}
+                      onClick={() => setActiveRegion(r)}
+                      className={`px-3 py-1.5 text-xs md:text-sm rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
+                        activeRegion === r
+                          ? "bg-foreground text-primary-foreground border-foreground"
+                          : "border-border bg-background/80 text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {isEnglish ? regionLabels[r].en : regionLabels[r].zh}{" "}
+                      <span className="opacity-60">{regionCounts[r]}</span>
+                    </button>
+                  ))}
+                </div>
+              }
+              trailing={
+                <div className="relative w-full md:w-[280px]">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder={t('brands:searchPlaceholder')}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full rounded-xl border border-border/70 bg-background/90 py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-foreground/20"
+                  />
+                </div>
+              }
+              summary={
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/70">
+                      {t("brands:sectionLabel")}
+                    </span>
+                    <span className="font-semibold text-foreground text-sm md:text-base">
+                      {isEnglish ? regionLabels[activeRegion].en : regionLabels[activeRegion].zh}
+                    </span>
+                  </div>
+                  <span className="text-sm text-muted-foreground">
+                    {filteredBrands.length}
+                  </span>
+                </div>
+              }
+            />
 
-            <div className="relative mt-4 md:max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder={t('brands:searchPlaceholder')}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-xl bg-background/80 focus:outline-none focus:ring-1 focus:ring-foreground/20"
-              />
-            </div>
-
-            <div className="mt-6 flex items-center gap-3 px-1">
+            <div className="mt-4 flex items-center gap-3 px-1">
               <span className="font-semibold text-foreground text-sm md:text-base">
                 {isEnglish ? regionLabels[activeRegion].en : regionLabels[activeRegion].zh}
               </span>
@@ -90,7 +112,8 @@ const Brands = () => {
               </span>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-3">
+            <div className="mt-4 border-t border-border/50 pt-5">
+              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
               {filteredBrands.map((brand) => (
                 <Link
                   key={brand.id}
@@ -122,9 +145,10 @@ const Brands = () => {
                   </div>
                 </Link>
               ))}
+              </div>
             </div>
           </CollectionPageSurface>
-        </div>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>

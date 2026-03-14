@@ -4,6 +4,7 @@
     "title": "社区动态",
     "subtitle": "查看社区里最近发生的收藏与尝试记录。",
     "activityLabel": "最新动态",
+    "streamLabel": "公开动态",
     "notSignedIn": "未登录",
     "signIn": "登录",
     "favorites": "收藏",

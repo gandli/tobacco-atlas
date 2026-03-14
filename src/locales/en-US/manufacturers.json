@@ -3,6 +3,7 @@
   "title": "Manufacturer Directory",
   "subtitle": "Browse tobacco makers and the brands they produce across the collection.",
   "searchPlaceholder": "Search manufacturers or brands...",
+  "sectionLabel": "Manufacturer index",
   "filters": {
     "region": "Region",
     "allRegions": "All regions",
