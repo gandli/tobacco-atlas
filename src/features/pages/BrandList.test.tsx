@@ -101,11 +101,14 @@ describe("BrandList", () => {
 
     render(<BrandList />);
 
+    // 搜索 "zhong" 应该匹配 "中华" (zhonghua) 的拼音
     fireEvent.change(screen.getByPlaceholderText("Search brands…"), {
       target: { value: "zhong" },
     });
 
+    // 在 mainland 地区下，搜索 "zhong" 应该找到 "中华"
     expect(screen.getByText("中华")).toBeInTheDocument();
+    // "万宝路" 在 international 地区，不应该显示
     expect(screen.queryByText("万宝路")).not.toBeInTheDocument();
   });
 });

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import type { HomeProductSummary } from "@/data/home-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
+import { useToast } from "@/components/ToastProvider";
 import OptimizedImage from "@/components/OptimizedImage";
 
 interface ProductCardProps {
@@ -14,6 +15,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { i18n } = useTranslation();
+  const { showSuccess } = useToast();
   const regionLabel = product.region ? regionLabels[product.region] : null;
   const productId = product.id;
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
@@ -39,8 +41,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(`Action ${action} for product ${product.id}`);
-    // Placeholder for actual action logic (e.g., toast notification)
+    
+    // 显示 Toast 反馈
+    const messages = {
+      favorite: `已收藏：${product.brand} - ${productName}`,
+      tried: `已标记尝试：${product.brand} - ${productName}`,
+      wishlist: `已加入愿望单：${product.brand} - ${productName}`,
+    };
+    
+    showSuccess(messages[action as keyof typeof messages] || "操作成功");
   };
 
   return (
