@@ -73,4 +73,29 @@ describe("HomeProductStream", () => {
 
     expect(screen.getByText("Loaded 2 products")).toBeInTheDocument();
   });
+
+  it("can keep appending batches until the full collection is visible", async () => {
+    const manyProducts = Array.from({ length: 9 }, (_, index) => ({
+      id: index + 1,
+      brand: "测试品牌",
+      name: `产品 ${index + 1}`,
+      image: `https://example.com/${index + 1}.jpg`,
+      brandPinyin: "test",
+    }));
+
+    render(<HomeProductStream products={manyProducts} initialCount={3} batchSize={3} />);
+
+    for (let i = 0; i < 2; i += 1) {
+      await act(async () => {
+        globalThis.__triggerIntersection?.(true);
+      });
+
+      await act(async () => {
+        vi.advanceTimersByTime(160);
+      });
+    }
+
+    expect(screen.getByTestId("product-card-9")).toBeInTheDocument();
+    expect(screen.getByText("Loaded 9 products")).toBeInTheDocument();
+  });
 });

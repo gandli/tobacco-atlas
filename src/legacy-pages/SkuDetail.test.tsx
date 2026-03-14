@@ -74,7 +74,10 @@ vi.mock("@/data/product-catalog", () => ({
     packRating: 8.1,
     overallRating: 8.5,
     votes: 14,
-    images: [],
+    images: [
+      { type: "gallery_1", url: "https://example.com/detail-1.png" },
+      { type: "gallery_2", url: "https://example.com/detail-2.png" },
+    ],
   }),
 }));
 
@@ -109,5 +112,15 @@ describe("SkuDetail", () => {
     expect(screen.getAllByText("黄山").length).toBeGreaterThan(0);
     expect(screen.getByText("Favorite")).toBeInTheDocument();
     expect(screen.getByText("14 votes")).toBeInTheDocument();
+  });
+
+  it("uses the shared rounded-rectangle treatment for the thumbnail rail", () => {
+    render(<SkuDetail id="3424" />);
+
+    expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("rounded-2xl");
+    expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("border-border/60");
+    expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("rounded-2xl");
+    expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("border-foreground/50");
+    expect(screen.getByTestId("sku-thumbnail-button-1")).toHaveClass("border-border/60");
   });
 });

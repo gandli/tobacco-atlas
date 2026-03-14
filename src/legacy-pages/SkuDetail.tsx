@@ -80,16 +80,20 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
 
       {/* 缩略图条（多图时显示） */}
       {allImages.length > 1 && (
-        <div className="flex gap-1.5 overflow-x-auto [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          data-testid="sku-thumbnail-rail"
+          className="flex gap-2 overflow-x-auto rounded-2xl border border-border/60 bg-background/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.06)] [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {allImages.map((url, i) => (
             <button
               key={i}
+              data-testid={`sku-thumbnail-button-${i}`}
               onClick={() => setCurrentIndex(i)}
               aria-label={t("sku.viewImage", { index: i + 1 })}
-              className={`flex-shrink-0 w-14 h-14 bg-card border rounded-xl transition-colors overflow-hidden focus-visible:ring-2 focus-visible:ring-ring outline-none ${
+              className={`flex-shrink-0 h-14 w-14 overflow-hidden rounded-2xl border bg-card/85 transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none ${
                 i === currentIndex
-                  ? "border-foreground/50"
-                  : "border-border hover:border-foreground/25"
+                  ? "border-foreground/50 shadow-[0_10px_24px_rgba(15,23,42,0.12)]"
+                  : "border-border/60 hover:border-foreground/25"
               }`}
             >
               <OptimizedImage
