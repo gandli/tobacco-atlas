@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Star, CheckCircle, Bookmark, MapPin, Building2 } from "lucide-react";
 import { Product, regionLabels } from "@/data";
 
@@ -8,6 +10,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const regionLabel = product.region ? regionLabels[product.region] : null;
+  const productId = product.id;
 
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link
-      to={`/sku/${product.id}`}
+      href={`/sku/${productId}`}
       className="flex flex-col gap-3 cursor-pointer group outline-none rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       aria-label={`${product.brand} - ${product.name}`}
     >

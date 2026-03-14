@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import ProductGrid from "@/components/ProductGrid";
-import * as data from "@/data";
 
 // Mock the data module
 vi.mock("@/data", () => ({
@@ -35,11 +34,6 @@ vi.mock("@/components/ProductCard", () => ({
   default: ({ product }: { product: { id: number; name: string } }) => (
     <div data-testid={`product-card-${product.id}`}>{product.name}</div>
   ),
-}));
-
-// Mock react-router-dom
-vi.mock("react-router-dom", () => ({
-  useNavigate: () => vi.fn(),
 }));
 
 describe("ProductGrid", () => {

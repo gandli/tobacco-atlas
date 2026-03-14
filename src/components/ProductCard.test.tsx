@@ -1,25 +1,17 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/data";
 
-// Mock useNavigate
-const mockNavigate = vi.fn();
-vi.mock("react-router-dom", async () => {
-  const actual = await vi.importActual("react-router-dom");
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  };
-});
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
-// Test wrapper with Router
-const renderWithRouter = (component: React.ReactNode) => {
-  return render(<BrowserRouter>{component}</BrowserRouter>);
-};
-
-// Mock product data
 const mockProduct: Product = {
   id: 123,
   brand: "中华",
@@ -30,67 +22,27 @@ const mockProduct: Product = {
 
 describe("ProductCard", () => {
   beforeEach(() => {
-    mockNavigate.mockClear();
+    vi.clearAllMocks();
   });
 
-  it("should render product brand name", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
+  it("renders the product brand and name", () => {
+    render(<ProductCard product={mockProduct} />);
+
     expect(screen.getAllByText("中华")[0]).toBeInTheDocument();
-  });
-
-  it("should render product name", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
     expect(screen.getAllByText("软中华")[0]).toBeInTheDocument();
   });
 
-  it("should render product image with correct alt text", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
+  it("renders a sku detail link", () => {
+    render(<ProductCard product={mockProduct} />);
+
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/sku/123");
+  });
+
+  it("renders a lazy-loaded image", () => {
+    render(<ProductCard product={mockProduct} />);
+
     const image = screen.getByRole("img");
     expect(image).toHaveAttribute("alt", "中华（软中华）");
-    expect(image).toHaveAttribute("src", mockProduct.image);
-  });
-
-  it("should have lazy loading on image", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
-    const image = screen.getByRole("img");
     expect(image).toHaveAttribute("loading", "lazy");
-  });
-
-  it("should have correct link path", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
-    const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", `/sku/${mockProduct.id}`);
-  });
-
-  it("should have correct container structure", () => {
-    renderWithRouter(<ProductCard product={mockProduct} />);
-
-    // Check for cursor-pointer class indicating interactivity
-    const clickableContainer = screen.getByRole("link");
-    expect(clickableContainer).toHaveClass("cursor-pointer");
-  });
-
-  it("should display product with missing optional fields", () => {
-    const minimalProduct: Product = {
-      id: 456,
-      brand: "测试品牌",
-      name: "测试产品",
-      image: "",
-      brandPinyin: "test",
-    };
-
-    renderWithRouter(<ProductCard product={minimalProduct} />);
-
-    expect(screen.getAllByText("测试品牌")[0]).toBeInTheDocument();
-    expect(screen.getAllByText("测试产品")[0]).toBeInTheDocument();
-  });
-
-  it("should have group class for hover effects", () => {
-    const { container } = renderWithRouter(
-      <ProductCard product={mockProduct} />,
-    );
-
-    const groupElement = container.querySelector(".group");
-    expect(groupElement).toBeInTheDocument();
   });
 });

@@ -1,47 +1,43 @@
-import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import MobileNav from "@/components/MobileNav";
-import { vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
-// Mock react-router-dom's useNavigate
-const mockNavigate = vi.fn();
-vi.mock("react-router-dom", async () => {
-  const actual = await vi.importActual("react-router-dom");
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  };
-});
+import MobileNav from "@/components/MobileNav";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+const mockUsePathname = vi.fn();
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => mockUsePathname(),
+}));
 
 describe("MobileNav", () => {
-  beforeEach(() => {
-    mockNavigate.mockClear();
+  it("renders primary navigation links", () => {
+    mockUsePathname.mockReturnValue("/");
+
+    render(<MobileNav />);
+
+    expect(screen.getByRole("link", { name: "collection" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("href", "/brands");
   });
 
-  it("should render navigation container", () => {
-    render(
-      <MemoryRouter>
-        <MobileNav />
-      </MemoryRouter>
-    );
-    
-    // MobileNav should render some navigation UI
-    const container = document.body;
-    expect(container).toBeTruthy();
-  });
+  it("marks the current mobile tab by pathname styling state", () => {
+    mockUsePathname.mockReturnValue("/chat");
 
-  it("should have clickable elements for navigation", () => {
-    render(
-      <MemoryRouter>
-        <MobileNav />
-      </MemoryRouter>
-    );
-    
-    // Check for buttons or links
-    const buttons = document.querySelectorAll("button");
-    const links = document.querySelectorAll("a");
-    
-    expect(buttons.length + links.length).toBeGreaterThan(0);
+    render(<MobileNav />);
+
+    expect(screen.getByRole("link", { name: "chat" })).toHaveClass("text-foreground");
   });
 });

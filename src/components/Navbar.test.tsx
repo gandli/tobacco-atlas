@@ -1,61 +1,51 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { describe, expect, it, vi } from "vitest";
 
-vi.mock("@/hooks/use-mobile", () => ({
-  useIsMobile: vi.fn(),
+import Navbar from "@/components/Navbar";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
 }));
 
-const renderWithRouter = (component: React.ReactNode) => {
-  return render(
-    <MemoryRouter>
-      {component}
-    </MemoryRouter>
-  );
-};
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+const mockUsePathname = vi.fn();
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => mockUsePathname(),
+}));
+
+vi.mock("@/components/LanguageSwitcher", () => ({
+  default: () => <div data-testid="language-switcher" />,
+}));
+
+vi.mock("@/components/ThemeToggle", () => ({
+  default: () => <div data-testid="theme-toggle" />,
+}));
 
 describe("Navbar", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+  it("renders the museum home link and auth entry", () => {
+    mockUsePathname.mockReturnValue("/");
+
+    render(<Navbar />);
+
+    expect(screen.getByRole("link", { name: /Chinese Cigarette Museum/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "signIn" })).toHaveAttribute("href", "/login");
   });
 
-  describe("Desktop view", () => {
-    beforeEach(() => {
-      (useIsMobile as ReturnType<typeof vi.fn>).mockReturnValue(false);
-    });
+  it("marks the active navigation item from pathname", () => {
+    mockUsePathname.mockReturnValue("/brands");
 
-    it("should render without crashing", () => {
-      const { container } = renderWithRouter(<Navbar />);
-      expect(container).toBeTruthy();
-    });
+    render(<Navbar />);
 
-    it("should render navigation element", () => {
-      renderWithRouter(<Navbar />);
-      // Check for nav element or navigation-related content
-      const nav = document.querySelector("nav");
-      expect(nav || screen.getByRole("navigation") || document.body).toBeTruthy();
-    });
-  });
-
-  describe("Mobile view", () => {
-    beforeEach(() => {
-      (useIsMobile as ReturnType<typeof vi.fn>).mockReturnValue(true);
-    });
-
-    it("should render in mobile mode", () => {
-      const { container } = renderWithRouter(<Navbar />);
-      expect(container).toBeTruthy();
-    });
-
-    it("should have mobile-appropriate elements", () => {
-      renderWithRouter(<Navbar />);
-      // In mobile mode, there should be some UI elements
-      const buttons = document.querySelectorAll("button");
-      const links = document.querySelectorAll("a");
-      // At least some interactive elements should exist
-      expect(buttons.length + links.length).toBeGreaterThanOrEqual(0);
-    });
+    expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("aria-current", "page");
   });
 });
