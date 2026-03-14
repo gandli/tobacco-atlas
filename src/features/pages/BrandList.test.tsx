@@ -113,7 +113,7 @@ describe("BrandList", () => {
     waitFor(() => {
       expect(screen.getByText("中华")).toBeInTheDocument();
     }, { timeout: 500 });
-    
+
     // "万宝路" 在 international 地区，不应该显示
     expect(screen.queryByText("万宝路")).not.toBeInTheDocument();
   });
