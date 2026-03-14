@@ -1,0 +1,33 @@
+{
+  "badge": "Manufacturers",
+  "title": "Manufacturer Directory",
+  "subtitle": "Browse tobacco makers and the brands they produce across the collection.",
+  "searchPlaceholder": "Search manufacturers or brands...",
+  "filters": {
+    "region": "Region",
+    "allRegions": "All regions",
+    "mainland": "Mainland China",
+    "international": "International / Other",
+    "sort": "Sort",
+    "clear": "Clear filters"
+  },
+  "sort": {
+    "brands": "By brands",
+    "products": "By products",
+    "name": "By name"
+  },
+  "stats": {
+    "all": "{{total}} manufacturers",
+    "filtered": "Showing {{filtered}} / {{total}} manufacturers",
+    "filteredBadge": "Filtered"
+  },
+  "empty": {
+    "filteredTitle": "No matching manufacturers found",
+    "filteredDescription": "Try adjusting your search or filters",
+    "defaultTitle": "No manufacturers available",
+    "defaultDescription": "Please check back later"
+  },
+  "card": {
+    "brandsCount": "{{count}} brands"
+  }
+}

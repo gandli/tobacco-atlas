@@ -1,8 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function ProductCardSkeleton() {
+export default function ProductCardSkeleton({ index }: { index?: number }) {
   return (
-    <div className="flex flex-col gap-3" data-testid="product-card-skeleton">
+    <div
+      className="flex flex-col gap-3"
+      data-testid={typeof index === "number" ? `append-skeleton-${index}` : "product-card-skeleton"}
+    >
       <div className="rounded-lg border border-border/50 bg-secondary/20 p-4">
         <Skeleton className="aspect-[4/5] w-full rounded-lg" />
       </div>

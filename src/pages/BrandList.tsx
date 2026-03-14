@@ -7,13 +7,15 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { brands, regionLabels } from "@/data";
 import { useTranslation } from "react-i18next";
+import { isEnglishLanguage } from "@/lib/i18n-utils";
 
 const regions = ["mainland", "hkmo", "international", "historical"] as const;
 
 const Brands = () => {
-  const { t } = useTranslation(['brands', 'nav']);
+  const { t, i18n } = useTranslation(['brands', 'nav']);
   const [activeRegion, setActiveRegion] = useState<string>("mainland");
   const [search, setSearch] = useState("");
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   const filteredBrands = useMemo(() => {
     return brands
@@ -62,7 +64,7 @@ const Brands = () => {
                     : "border-border text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {regionLabels[r].zh} {regionLabels[r].en}{" "}
+                {isEnglish ? regionLabels[r].en : regionLabels[r].zh}{" "}
                 <span className="opacity-60">{regionCounts[r]}</span>
               </button>
             ))}
@@ -82,11 +84,8 @@ const Brands = () => {
 
           {/* Section label */}
           <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <span className="text-xs font-medium text-destructive">
-              {regionLabels[activeRegion].zh}
-            </span>
             <span className="font-semibold text-foreground text-sm md:text-base">
-              {regionLabels[activeRegion].en}
+              {isEnglish ? regionLabels[activeRegion].en : regionLabels[activeRegion].zh}
             </span>
             <span className="text-muted-foreground text-sm">
               {filteredBrands.length}

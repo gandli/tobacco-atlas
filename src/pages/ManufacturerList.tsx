@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,6 +19,7 @@ import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
 import { manufacturers } from '@/data';
 import type { Manufacturer } from '@/data';
+import { isEnglishLanguage } from "@/lib/i18n-utils";
 
 /**
  * 获取制造商的地区分类
@@ -51,9 +53,11 @@ function sortByBrandCount(a: Manufacturer, b: Manufacturer): number {
 interface ManufacturerCardProps {
   manufacturer: Manufacturer;
   index: number;
+  isEnglish: boolean;
 }
 
-function ManufacturerCard({ manufacturer, index }: ManufacturerCardProps) {
+function ManufacturerCard({ manufacturer, index, isEnglish }: ManufacturerCardProps) {
+  const { t } = useTranslation("manufacturers");
   const region = getManufacturerRegion(manufacturer.name);
   const regionLabel = regionLabels[region] || regionLabels.mainland;
 
@@ -99,14 +103,14 @@ function ManufacturerCard({ manufacturer, index }: ManufacturerCardProps) {
           {/* 底部信息 */}
           <div className="flex justify-between items-center text-sm">
             <span className="text-muted-foreground text-xs">
-              {regionLabel.zh}
+              {isEnglish ? regionLabel.en : regionLabel.zh}
             </span>
             <Button
               variant="outline"
               size="sm"
               className="h-7 text-xs bg-gold/5 hover:bg-gold/10 hover:text-gold border-gold/20"
             >
-              {manufacturer.brands.length} 品牌
+              {t("card.brandsCount", { count: manufacturer.brands.length })}
             </Button>
           </div>
         </CardContent>
@@ -122,16 +126,18 @@ function ManufacturerCard({ manufacturer, index }: ManufacturerCardProps) {
  * 空状态组件
  */
 function EmptyState({ hasFilter }: { hasFilter: boolean }) {
+  const { t } = useTranslation("manufacturers");
+
   return (
     <div className="text-center py-16">
       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted/50 mb-4">
         <Search className="h-8 w-8 text-muted-foreground" />
       </div>
       <p className="text-muted-foreground text-lg">
-        {hasFilter ? '未找到匹配的制造商' : '暂无制造商数据'}
+        {hasFilter ? t("empty.filteredTitle") : t("empty.defaultTitle")}
       </p>
       <p className="text-muted-foreground/60 text-sm mt-2">
-        {hasFilter ? '尝试调整搜索条件或筛选器' : '请稍后再试'}
+        {hasFilter ? t("empty.filteredDescription") : t("empty.defaultDescription")}
       </p>
     </div>
   );
@@ -148,18 +154,19 @@ interface StatsProps {
 }
 
 function Stats({ total, filtered, searchTerm, regionFilter }: StatsProps) {
+  const { t } = useTranslation("manufacturers");
   const hasFilter = searchTerm || regionFilter !== 'all';
 
   return (
     <div className="flex items-center gap-2 text-sm text-muted-foreground">
       <span>
         {hasFilter
-          ? `显示 ${filtered} / ${total} 家制造商`
-          : `共 ${total} 家制造商`}
+          ? t("stats.filtered", { filtered, total })
+          : t("stats.all", { total })}
       </span>
       {hasFilter && (
         <Badge variant="secondary" className="text-xs">
-          已筛选
+          {t("stats.filteredBadge")}
         </Badge>
       )}
     </div>
@@ -167,9 +174,11 @@ function Stats({ total, filtered, searchTerm, regionFilter }: StatsProps) {
 }
 
 export default function ManufacturerList() {
+  const { t, i18n } = useTranslation("manufacturers");
   const [searchTerm, setSearchTerm] = useState('');
   const [regionFilter, setRegionFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('brands');
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   // 过滤和排序后的制造商列表
   const filteredManufacturers = useMemo(() => {
@@ -223,13 +232,13 @@ export default function ManufacturerList() {
           {/* 页面标题 */}
           <header className="mb-8">
             <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-              Manufacturers
+              {t("badge")}
             </div>
             <h1 className="text-3xl md:text-4xl font-bold font-serif text-ash mb-2">
-              制造商名录
+              {t("title")}
             </h1>
             <p className="text-muted-foreground max-w-xl">
-              浏览中国烟草行业各大制造商及其旗下品牌，了解完整的产品谱系
+              {t("subtitle")}
             </p>
           </header>
 
@@ -239,7 +248,7 @@ export default function ManufacturerList() {
             <div className="relative w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="搜索制造商或品牌..."
+                placeholder={t("searchPlaceholder")}
                 className="pl-10 pr-10"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -261,12 +270,12 @@ export default function ManufacturerList() {
                 <Filter className="h-4 w-4 text-muted-foreground" />
                 <Select value={regionFilter} onValueChange={setRegionFilter}>
                   <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder="地区" />
+                    <SelectValue placeholder={t("filters.region")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">全部地区</SelectItem>
-                    <SelectItem value="mainland">中国大陆</SelectItem>
-                    <SelectItem value="international">国际/其他</SelectItem>
+                    <SelectItem value="all">{t("filters.allRegions")}</SelectItem>
+                    <SelectItem value="mainland">{t("filters.mainland")}</SelectItem>
+                    <SelectItem value="international">{t("filters.international")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -274,12 +283,12 @@ export default function ManufacturerList() {
               {/* 排序 */}
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="排序" />
+                  <SelectValue placeholder={t("filters.sort")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="brands">按品牌数</SelectItem>
-                  <SelectItem value="products">按产品数</SelectItem>
-                  <SelectItem value="name">按名称</SelectItem>
+                  <SelectItem value="brands">{t("sort.brands")}</SelectItem>
+                  <SelectItem value="products">{t("sort.products")}</SelectItem>
+                  <SelectItem value="name">{t("sort.name")}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -292,7 +301,7 @@ export default function ManufacturerList() {
                   className="text-muted-foreground hover:text-foreground"
                 >
                   <X className="h-4 w-4 mr-1" />
-                  清除筛选
+                  {t("filters.clear")}
                 </Button>
               )}
             </div>
@@ -314,6 +323,7 @@ export default function ManufacturerList() {
                   key={manufacturer.name}
                   manufacturer={manufacturer}
                   index={index}
+                  isEnglish={isEnglish}
                 />
               ))}
             </div>

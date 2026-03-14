@@ -11,6 +11,7 @@ import zhCNChangelog from "../locales/zh-CN/changelog.json";
 import zhCNNav from "../locales/zh-CN/nav.json";
 import zhCNHome from "../locales/zh-CN/home.json";
 import zhCNBrands from "../locales/zh-CN/brands.json";
+import zhCNManufacturers from "../locales/zh-CN/manufacturers.json";
 
 import enUSCommon from "../locales/en-US/common.json";
 import enUSDashboard from "../locales/en-US/dashboard.json";
@@ -20,6 +21,7 @@ import enUSChangelog from "../locales/en-US/changelog.json";
 import enUSNav from "../locales/en-US/nav.json";
 import enUSHome from "../locales/en-US/home.json";
 import enUSBrands from "../locales/en-US/brands.json";
+import enUSManufacturers from "../locales/en-US/manufacturers.json";
 
 const resources = {
   "zh-CN": {
@@ -31,6 +33,7 @@ const resources = {
     nav: zhCNNav,
     home: zhCNHome,
     brands: zhCNBrands,
+    manufacturers: zhCNManufacturers,
   },
   "en-US": {
     common: enUSCommon,
@@ -41,6 +44,7 @@ const resources = {
     nav: enUSNav,
     home: enUSHome,
     brands: enUSBrands,
+    manufacturers: enUSManufacturers,
   },
 };
 
@@ -60,6 +64,7 @@ i18n
       "nav",
       "home",
       "brands",
+      "manufacturers",
     ],
     interpolation: {
       escapeValue: false,

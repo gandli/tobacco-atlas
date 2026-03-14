@@ -3,6 +3,43 @@ import { describe, expect, it, vi } from "vitest";
 
 import ManufacturerList from "./ManufacturerList";
 
+const mockI18n = {
+  language: "zh-CN",
+  resolvedLanguage: "zh-CN",
+};
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, Record<string, string>> = {
+        "zh-CN": {
+          badge: "Manufacturers",
+          title: "制造商名录",
+          subtitle: "浏览中国烟草行业各大制造商及其旗下品牌，了解完整的产品谱系",
+          searchPlaceholder: "搜索制造商或品牌...",
+          "manufacturers:badge": "Manufacturers",
+          "manufacturers:title": "制造商名录",
+          "manufacturers:subtitle": "浏览中国烟草行业各大制造商及其旗下品牌，了解完整的产品谱系",
+          "manufacturers:searchPlaceholder": "搜索制造商或品牌...",
+        },
+        "en-US": {
+          badge: "Manufacturers",
+          title: "Manufacturer Directory",
+          subtitle: "Browse tobacco makers and the brands they produce across the collection.",
+          searchPlaceholder: "Search manufacturers or brands...",
+          "manufacturers:badge": "Manufacturers",
+          "manufacturers:title": "Manufacturer Directory",
+          "manufacturers:subtitle": "Browse tobacco makers and the brands they produce across the collection.",
+          "manufacturers:searchPlaceholder": "Search manufacturers or brands...",
+        },
+      };
+
+      return translations[mockI18n.resolvedLanguage]?.[key] || key;
+    },
+    i18n: mockI18n,
+  }),
+}));
+
 vi.mock("next/link", () => ({
   default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
     <a href={href} {...props}>
@@ -44,6 +81,8 @@ vi.mock("@/components/ui/select", () => ({
 
 describe("ManufacturerList", () => {
   it("renders page shell and manufacturer cards", async () => {
+    mockI18n.language = "zh-CN";
+    mockI18n.resolvedLanguage = "zh-CN";
     render(<ManufacturerList />);
 
     expect(screen.getByText("制造商名录")).toBeInTheDocument();
@@ -56,6 +95,8 @@ describe("ManufacturerList", () => {
   });
 
   it("filters manufacturers by search term", async () => {
+    mockI18n.language = "zh-CN";
+    mockI18n.resolvedLanguage = "zh-CN";
     render(<ManufacturerList />);
 
     fireEvent.change(screen.getByPlaceholderText("搜索制造商或品牌..."), {
@@ -69,6 +110,8 @@ describe("ManufacturerList", () => {
   });
 
   it("renders detail links with encoded manufacturer names", async () => {
+    mockI18n.language = "zh-CN";
+    mockI18n.resolvedLanguage = "zh-CN";
     render(<ManufacturerList />);
 
     await waitFor(() => {
@@ -81,5 +124,17 @@ describe("ManufacturerList", () => {
         ),
       ).toBe(true);
     });
+  });
+
+  it("renders english copy when the active language is english", async () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ManufacturerList />);
+
+    expect(screen.getByText("Manufacturer Directory")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Search manufacturers or brands..."),
+    ).toBeInTheDocument();
   });
 });

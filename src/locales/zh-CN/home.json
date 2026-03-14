@@ -4,5 +4,8 @@
   "stats": "{{brands}} brands · {{products}} products",
   "browseCollection": "浏览收藏",
   "howItWorks": "使用指南",
-  "whyThisExists": "项目介绍"
+  "whyThisExists": "项目介绍",
+  "loadingMore": "正在加载更多产品",
+  "loadMoreHint": "继续向下滚动，探索更多藏品",
+  "endOfCollection": "已展示全部 {{count}} 件藏品"
 }

@@ -4,5 +4,8 @@
   "stats": "{{brands}} brands · {{products}} products",
   "browseCollection": "Browse collection",
   "howItWorks": "How it works",
-  "whyThisExists": "Why this exists"
+  "whyThisExists": "Why this exists",
+  "loadingMore": "Loading more products",
+  "loadMoreHint": "Keep scrolling to reveal more from the archive",
+  "endOfCollection": "Loaded {{count}} products"
 }
