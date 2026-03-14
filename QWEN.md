@@ -1,327 +1,380 @@
-# Chinese Cigarette Museum (Ciggies-Clone) - Project Context
+# 中国烟草图谱 (Chinese Tobacco Atlas) - 项目上下文
 
-## Project Overview
+## 项目概述
 
-This is a React-based web application called "中国卷烟博物馆" (Chinese Cigarette Museum) built using modern web technologies. The project is a digital museum showcasing Chinese cigarette brands and products. It was created using the Lovable platform and follows a contemporary tech stack including Vite, TypeScript, React, shadcn/ui, and Tailwind CSS.
+**中国烟草图谱** 是一个基于 Next.js App Router 的 Web 应用程序，作为数字博物馆展示中国香烟品牌和产品。项目采用现代 Web 技术栈，包括 Next.js、TypeScript、React、shadcn/ui 和 Tailwind CSS。
 
-The project appears to be a clone or copy of another project named "ciggies", as indicated by the directory name "ciggies-clone".
+### 在线访问
 
-## Technologies Used
+| 平台 | 地址 |
+|------|------|
+| **Vercel** | https://tobacco-atlas.vercel.app |
+| **Cloudflare** | https://tobacco-atlas.pages.dev |
 
-- **Vite**: Fast build tool and development server
-- **TypeScript**: Typed JavaScript superset
-- **React**: Component-based UI library
-- **React Router DOM**: Client-side routing
-- **Tailwind CSS**: Utility-first CSS framework
-- **shadcn/ui**: Reusable components built with Radix UI and Tailwind CSS
-- **TanStack Query (React Query)**: Server state management
-- **Lucide React**: Icon library
-- **Zod**: Schema validation
-- **React Hook Form**: Form management with easy validation
-- **Vitest**: Testing framework
+## 技术栈
 
-## Project Structure
+### 核心框架
+- **Next.js 16** (App Router): 统一的应用运行时、路由与构建框架
+- **React 18**: 基于组件的 UI 库
+- **TypeScript 5.8**: 类型化的 JavaScript 超集
+
+### UI 与样式
+- **Tailwind CSS 3.4**: 实用优先的 CSS 框架
+- **shadcn/ui**: 基于 Radix UI 和 Tailwind CSS 构建的可重用组件
+- **Lucide React**: 图标库
+
+### 状态管理与数据
+- **TanStack Query 5**: 服务器状态管理
+- **React Hook Form 7**: 表单管理
+- **Zod**: 模式验证
+
+### 国际化
+- **i18next 25**: 国际化框架
+- **react-i18next**: React 集成
+
+### 测试
+- **Vitest 3**: 测试框架
+- **Testing Library**: React 测试工具
+- **jsdom**: 浏览器环境模拟
+
+## 项目结构
 
 ```
-ciggies-clone/
-├── public/                 # Static assets
-├── src/                    # Source code
-│   ├── components/         # Reusable UI components
-│   ├── data/              # Data files and mock data
-│   ├── hooks/             # Custom React hooks
-│   ├── lib/               # Utility functions
-│   ├── pages/             # Page components
-│   ├── App.tsx           # Main application component
-│   ├── main.tsx          # Application entry point
-│   └── index.css         # Global styles
-├── components.json        # shadcn/ui configuration
-├── package.json           # Dependencies and scripts
-├── vite.config.ts         # Vite configuration
-├── tailwind.config.ts     # Tailwind CSS configuration
-├── tsconfig.json          # TypeScript configuration
-└── index.html             # HTML template
+tobacco-atlas-web/
+├── env/                    # 环境变量配置
+│   ├── .env.development
+│   ├── .env.staging
+│   └── .env.production
+├── public/                 # 静态资源
+├── src/                    # 源代码
+│   ├── app/               # Next.js App Router 页面与布局
+│   │   ├── brand/[pinyin]/    # 品牌详情页
+│   │   ├── brands/            # 品牌列表页
+│   │   ├── changelog/         # 更新日志页
+│   │   ├── chat/              # 聊天功能页
+│   │   ├── community/         # 社区页
+│   │   ├── feed/              # 动态页
+│   │   ├── maker/[name]/      # 制造商详情页
+│   │   ├── makers/            # 制造商列表页
+│   │   ├── manufacturer/[name]/ # 厂商详情页
+│   │   ├── manufacturers/     # 厂商列表页
+│   │   ├── sku/[id]/          # 单品详情页
+│   │   ├── layout.tsx         # 根布局
+│   │   ├── page.tsx           # 首页
+│   │   ├── loading.tsx        # 加载状态
+│   │   ├── not-found.tsx      # 404 页面
+│   │   └── providers.tsx      # 上下文提供者
+│   ├── components/         # 可重用的 UI 组件
+│   │   ├── ui/            # shadcn/ui 基础组件
+│   │   ├── catalog/       # 目录相关组件
+│   │   └── ...            # 其他组件
+│   ├── data/              # 数据文件和目录
+│   │   ├── brand-catalog.ts
+│   │   ├── product-catalog.ts
+│   │   ├── maker-catalog.ts
+│   │   └── ...
+│   ├── features/          # 功能模块
+│   │   └── pages/        # 页面级组件
+│   ├── hooks/             # 自定义 React hooks
+│   ├── lib/               # 工具函数
+│   │   ├── i18n.ts       # i18n 配置
+│   │   └── utils.ts      # 通用工具
+│   ├── locales/           # 国际化翻译文件
+│   │   ├── zh-CN/
+│   │   └── en-US/
+│   └── test/              # 测试配置
+│       └── setup.ts      # Vitest 测试设置
+├── .github/workflows/     # GitHub Actions 工作流
+│   └── vercel.yml        # Vercel 自动部署
+├── docs/                  # 文档
+│   └── DEPLOYMENT.md     # 部署指南
+├── scripts/               # 辅助脚本
+├── components.json        # shadcn/ui 配置
+├── next.config.ts         # Next.js 配置
+├── tailwind.config.ts     # Tailwind CSS 配置
+├── tsconfig.json          # TypeScript 配置
+├── vitest.config.ts       # Vitest 配置
+├── vercel.json            # Vercel 部署配置
+└── wrangler.toml          # Cloudflare Wrangler 配置
 ```
 
-## Key Features
+## 构建和运行
 
-The application has multiple routes for different sections:
-- Home page (`/`)
-- Gallery (`/gallery`)
-- Brands listing (`/brands`)
-- Brand detail page (`/brand/:pinyin`)
-- SKU detail page (`/sku/:id`)
-- Community section (`/community`)
-- Chat functionality (`/chat`)
-- Feed (`/feed`)
-- User profile page (`/my`)
-- 404 Not Found page
+### 先决条件
+- **Node.js 20.x** 或更高版本
+- **npm** 或 **bun** 包管理器
 
-## Building and Running
+### 安装依赖
 
-### Prerequisites
-- Node.js and npm (or bun)
+```bash
+npm install
+# 或
+bun install
+```
 
-### Installation and Running
+### 开发模式
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   bun install
-   ```
+```bash
+npm run dev
+# 或
+bun run dev
+```
 
-2. **Run in development mode:**
-   ```bash
-   npm run dev
-   # or
-   bun run dev
-   ```
-   
-   The application will be available at `http://localhost:8080` (as configured in vite.config.ts).
+应用程序将在 `http://localhost:3000` 启动（Next.js 默认端口）。
 
-3. **Build for production:**
-   ```bash
-   npm run build
-   # or
-   bun run build
-   ```
+### 生产构建
 
-4. **Preview production build:**
-   ```bash
-   npm run preview
-   # or
-   bun run preview
-   ```
+```bash
+# 构建
+npm run build
+# 或
+bun run build
 
-5. **Run tests:**
-   ```bash
-   npm run test
-   # or
-   bun run test
-   ```
+# 启动生产服务器
+npm run start
+# 或
+bun run start
+```
 
-6. **Lint code:**
-   ```bash
-   npm run lint
-   # or
-   bun run lint
-   ```
+### 测试
 
-## Styling and UI Framework
+```bash
+# 运行测试
+npm run test
+# 或
+bun run test
 
-The project uses:
-- **Tailwind CSS** for utility-first styling
-- **shadcn/ui** for accessible UI components
-- **CSS variables** for theming (light/dark mode support)
-- **Typography plugin** for enhanced text rendering
+# 监听模式
+npm run test:watch
+```
 
-## State Management
+### 代码质量
 
-- **React Query** for server state management and caching
-- **React hooks** for local component state
-- **React Router DOM** for client-side navigation
+```bash
+# ESLint 检查
+npm run lint
 
-## Development Conventions
+# TypeScript 类型检查
+npm run typecheck
+```
 
-- TypeScript is used throughout the project
-- Components follow the shadcn/ui design system
-- Absolute imports are configured using `@` alias for the `src` directory
-- Tailwind CSS utility classes are used extensively
-- Component organization separates UI components, pages, and business logic
-- Responsive design is implemented using Tailwind's responsive utilities
+## 部署
 
-## Special Notes
+### 环境说明
 
-- The project is configured to use Chinese as the primary language (HTML lang attribute in index.html)
-- Font loading is optimized with preconnect links to Google Fonts
-- Social media meta tags are included for better sharing
-- The project includes accessibility features through Radix UI primitives
-- Dark mode support is configured in the Tailwind theme
+| 环境 | 分支 | 用途 |
+|------|------|------|
+| Development | 本地 | 本地开发 |
+| Staging | dev | 预发布测试 |
+| Production | main | 正式生产 |
 
-## Analysis of Target Website (ciggies.app)
+### 自动部署（推荐）
 
-Based on pixel-level analysis of the target website https://www.ciggies.app/, here are the detailed findings:
+项目配置了 GitHub Actions 自动部署：
 
-### Overall Information Architecture
+- **Push 到 dev 分支**: 自动部署到 Staging 环境
+- **Push 到 main 分支**: 自动部署到 Production 环境
+- **Pull Request**: 自动创建预览部署
 
-The website is structured as a comprehensive Chinese cigarette database and community platform with the following main sections:
+需要在 GitHub Secrets 中配置：
+- `VERCEL_TOKEN`: Vercel 部署 Token
+- `VERCEL_ORG_ID`: Vercel 组织 ID
+- `VERCEL_PROJECT_ID`: Vercel 项目 ID
 
-1. **Home/Collection** (`/`): Main product listing page showing cigarette products
-2. **Brands** (`/brands`): Organized by geographical regions (Mainland China, Hong Kong/Macau/Taiwan, International, Historical)
-3. **Manufacturers** (`/manufacturers`): This route does not exist on the actual website - accessing it results in a "PAGE NOT FOUND" error
-4. **Community** (`/community`): User community section (requires login)
-5. **Feed** (`/feed`): Activity feed showing recent user interactions
-6. **Individual Product Pages** (`/sku/:id`): Detailed product information
-7. **Brand Pages** (`/brand/:id`): Collection of products under a specific brand
-8. **User Profile** (`/my`): Personal user dashboard
-9. **Chat** (`/chat`): Real-time community chat feature
+### 手动部署
 
-### Page-by-Page Functionality
+#### Vercel 部署
 
-#### Home/Collection Page
-- Displays a grid of cigarette products with images
-- Includes filtering options (All/Format/Price/Sort)
-- Shows 3,220 products in total
-- Each product card displays:
-  - Product image
-  - Chinese and English names
-  - Brand name
-  - Region and English translation
-  - Price (when available)
-  - Favorite and "Mark as tried" buttons
-- Pagination controls at bottom
+```bash
+# 预览部署
+npm run deploy:vercel:preview
 
-#### Brands Page
-- Organized by region: Mainland China (98 brands), HK/Macau/Taiwan (10), International (37), Historical (73)
-- Each brand card shows:
-  - Brand logo/image
-  - Chinese and English names
-  - Number of products in the brand
-  - Pinyin representation
-- Search functionality for brands
+# 生产部署
+npm run deploy:vercel
 
-#### Manufacturers Page
-- This route does not exist on the actual website - accessing /manufacturers results in a "PAGE NOT FOUND" error
-- The website does not have a dedicated manufacturers page showing tobacco companies and their brands
+# 回滚
+npm run rollback:vercel
+```
 
-#### Individual Product (SKU) Page
-- Large product image display
-- Detailed product information:
-  - Chinese and English names
-  - Brand with company information
-  - Description in both Chinese and English
-  - Specifications table:
-    - Tobacco type
-    - Tar, nicotine, CO content
-    - Length
-    - Format (e.g., slim)
-    - Count per box
-    - Boxes per carton
-  - Barcodes (box and carton)
-  - Ratings section with Taste, Pack, Value, and Overall scores
-- Interactive elements:
-  - Favorite button
-  - Mark as tried
-  - Wishlist
-- Comment section at bottom
+#### Cloudflare Pages 部署
 
-#### Feed Page
-- Shows chronological activity from community members
-- Activities include:
-  - Products tried
-  - Favorites added
-  - Wishlist additions
-- Each activity shows user, action, product, and timestamp
+```bash
+# 生产部署
+npm run deploy:cf
 
-#### Gallery Page
-- Infinite canvas-style layout displaying products in a grid
-- Interactive navigation with WASD keys for panning and Q/E for zooming
-- Shows 102% zoom level by default with zoom controls
-- Contains a large collection of products displayed in a continuous space
-- Each product tile shows the product name
-- Clicking on a product opens its detail page
+# Staging 部署
+npm run deploy:cf:staging
 
-#### Chat Feature
-- Real-time chat accessible from most pages
-- Shows online users count
-- Displays recent conversations/messages
-- Requires sign-in to participate
+# 回滚
+npm run rollback:cf
+```
 
-### Module Interactions and UI Design
+详细部署文档请参阅 [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)。
 
-#### Navigation
-- Consistent top navigation bar across all pages
-- Logo links back to home
-- Section links: Collection, Brands, Community, Feed
-- User profile link on right side when logged in
+## 开发约定
 
-#### Visual Design
-- Clean, minimalist interface with ample white space
-- Product cards use consistent layout with prominent imagery
-- Color scheme is neutral with accent colors for interactive elements
-- Typography is clear and readable
-- Responsive design adapts to different screen sizes
-- Images are high-quality and consistently sized
+### Git 工作流
 
-#### Interactive Elements
-- Hover effects on product cards
-- Star icons for favorites
-- Circle icons for "tried" status
-- Diamond icons for wishlist
-- Smooth transitions between states
-- Real-time updates in chat
-- Image galleries with thumbnail navigation
+- **功能分支**: `feature/*` 命名
+- **开发分支**: `dev` - 自动部署到 Staging
+- **主分支**: `main` - 自动部署到 Production
 
-#### Manufacturer Detail Page
-- Shows manufacturer information including company details in Chinese and English
-- Lists all brands owned by the manufacturer in a grid layout
-- Displays total brand count for the manufacturer
-- Includes manufacturer logo/image
-- May show company history, location and other corporate information
-- Each brand links to its respective brand page with products
+### Git Worktree（并行开发）
 
-#### Brand Detail Page
-- Shows brand information including description in Chinese and English
-- Lists all products under the brand in a scrollable grid
-- Displays total product count
-- Includes brand image/logo
-- Shows regional classification (e.g., 国外/International)
+当需要并行开发多个功能时，使用 git worktree：
 
-#### Product Detail Page (SKU)
-- Multiple image views with thumbnail navigation (up to 10 images)
-- Slide controls for navigating between images
-- Detailed product specifications table
-- Pricing information with currency conversion
-- Barcode information
-- Rating system with Taste, Pack, Value, and Overall scores
-- Interactive elements: Favorite, Tried, Wishlist buttons
-- Price comparison between pack and carton
+```bash
+# 创建新 worktree
+git worktree add ../tobacco-atlas-feature-x feature-x
 
-### Technical Implementation Insights (Frontend Perspective)
+# 在 worktree 中工作
+cd ../tobacco-atlas-feature-x
+npm install
+npm run dev
 
-#### Architecture
-- Single Page Application (SPA) built with React
-- Routing handled by React Router
-- State management likely uses React Context and/or Redux
-- Data fetching probably uses React Query or SWR
-- Component-based architecture with reusable UI elements
+# 完成后清理
+git worktree remove <path>
+```
 
-#### UI Framework
-- Uses Tailwind CSS for styling
-- Likely uses a component library similar to shadcn/ui
-- Custom components for product displays, ratings, and interactive elements
-- Responsive design implemented with mobile-first approach
+### 代码规范
 
-#### Data Handling
-- Product images served from internal API (`/api/img/products/`)
-- Brand images from `/api/img/brands/`
-- Dynamic content loaded via API calls
-- User interactions (favorites, tried, wishlist) stored server-side
-- Real-time chat functionality suggests WebSocket implementation
+- **TypeScript**: 全程使用，但允许 `noImplicitAny: false`
+- **组件命名**: PascalCase（如 `ProductCard.tsx`）
+- **工具函数**: camelCase（如 `formatCurrency.ts`）
+- **导入路径**: 使用 `@/` 别名指向 `src/` 目录
 
-#### Performance Considerations
-- Image optimization with appropriate sizing
-- Lazy loading for product grids
-- Efficient data fetching strategies
-- Caching mechanisms for improved performance
+### 测试实践
 
-#### Accessibility
-- Semantic HTML structure
-- Proper labeling of interactive elements
-- Keyboard navigation support (especially on gallery page)
-- Screen reader compatibility
+- 测试文件命名：`*.test.ts` 或 `*.test.tsx`
+- 使用 Vitest 作为测试运行器
+- 使用 Testing Library 进行组件测试
+- 测试设置位于 `src/test/setup.ts`
 
-### Key Differentiators
+### 服务器管理
 
-1. **Comprehensive Database**: Extensive collection of Chinese cigarette brands and products
-2. **Community Features**: Active user engagement through ratings, reviews, and chat
-3. **Detailed Information**: Thorough specifications for each product
-4. **Regional Organization**: Clear categorization by geographic origin
-5. **Manufacturer View**: Company-based organization showing tobacco manufacturers and their brands
-6. **Visual Appeal**: High-quality product imagery and clean interface
-7. **Real-time Interaction**: Live chat and activity feeds
-8. **Interactive Gallery**: Infinite canvas-style product browsing
-9. **Rich Media**: Multiple images per product with gallery functionality
-10. **Granular Ratings**: Separate scores for taste, packaging, value, and overall experience
+- **单开发服务器规则**: 每个项目只应运行一个开发服务器
+- 使用 `lsof -i :<port>` 检查端口占用
+- 避免重复启动实例
 
-This analysis provides a foundation for replicating the functionality, design, and user experience of the ciggies.app website in the local project.
+## 核心功能模块
+
+### 页面路由
+
+| 路由 | 说明 |
+|------|------|
+| `/` | 首页/产品收藏 |
+| `/brands` | 品牌列表 |
+| `/brand/:pinyin` | 品牌详情 |
+| `/makers` | 制造商列表 |
+| `/maker/:name` | 制造商详情 |
+| `/sku/:id` | 单品详情 |
+| `/gallery` | 画廊（无限画布） |
+| `/feed` | 用户动态 |
+| `/community` | 社区 |
+| `/chat` | 实时聊天 |
+| `/my` | 用户资料 |
+| `/changelog` | 更新日志 |
+
+### 数据目录
+
+- **brand-catalog.ts**: 品牌数据目录
+- **product-catalog.ts**: 产品目录
+- **maker-catalog.ts**: 制造商目录
+- **region-labels.ts**: 地区标签映射
+
+### 国际化
+
+支持中文（zh-CN）和英文（en-US）：
+
+```typescript
+import { useTranslation } from 'react-i18next';
+
+function Component() {
+  const { t, i18n } = useTranslation('details');
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
+}
+```
+
+## 设计系统
+
+### 颜色系统
+
+项目使用 CSS 变量定义主题色：
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --gold: #c5a059;
+  --ash: #0b0b0d;
+  /* ... */
+}
+```
+
+### 字体配置
+
+```typescript
+fontFamily: {
+  serif: ['"Noto Serif SC"', "serif"],
+  sans: ['"DM Sans"', "sans-serif"],
+}
+```
+
+### 自定义尺寸
+
+```typescript
+fontSize: {
+  "2xs": ["0.625rem"], // 10px
+  "11": ["0.6875rem"], // 11px
+  "13": ["0.8125rem"], // 13px
+  "36": ["2.25rem"],   // 36px
+}
+```
+
+## 环境变量
+
+### 配置文件结构
+
+```
+env/
+├── .env.development    # 开发环境
+├── .env.staging        # 预发布环境
+└── .env.production     # 生产环境
+```
+
+### 可用变量
+
+| 变量名 | 说明 |
+|--------|------|
+| `VITE_APP_ENV` | 应用环境标识 |
+| `VITE_API_URL` | 后端 API 地址 |
+| `VITE_DEBUG` | 调试模式开关 |
+
+> ⚠️ **注意**: 以 `VITE_` 开头的变量会打包到前端代码中，不要存储敏感信息！
+
+## 版本发布
+
+使用 standard-version 进行版本管理：
+
+```bash
+# 预览发布
+npm run release:dry
+
+# 主版本发布
+npm run release:major
+
+# 次版本发布
+npm run release:minor
+
+# 补丁版本发布
+npm run release:patch
+```
+
+## 相关文档
+
+- [README.md](./README.md) - 项目概述
+- [DEVELOPMENT_RULES.md](./DEVELOPMENT_RULES.md) - 开发规则
+- [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) - 部署指南
+- [CIGGIES_DESIGN_DOC.md](./CIGGIES_DESIGN_DOC.md) - 设计文档
+- [CHANGELOG.md](./CHANGELOG.md) - 变更日志
