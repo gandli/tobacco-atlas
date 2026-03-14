@@ -19,6 +19,6 @@ describe("App Router shell", () => {
     render(<NotFoundPage />);
 
     expect(screen.getByText("404")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Return to Home" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Return home" })).toHaveAttribute("href", "/");
   });
 });

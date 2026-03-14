@@ -8,9 +8,9 @@ vi.mock("@/features/pages/ManufacturerDetail", () => ({
 }));
 
 describe("Maker detail route", () => {
-  it("passes the dynamic name param into the maker detail page", async () => {
-    const page = await MakerDetailPage({
-      params: Promise.resolve({ name: "Anhui%20Tobacco" }),
+  it("passes the dynamic name param into the maker detail page", () => {
+    const page = MakerDetailPage({
+      params: { name: "Anhui%20Tobacco" } as any,
     });
 
     render(page);

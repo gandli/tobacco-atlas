@@ -2,6 +2,18 @@ import "@testing-library/jest-dom";
 import { createElement } from "react";
 import { vi } from "vitest";
 
+// React 18 / Next.js 15 compat mock
+vi.mock("react", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("react")>();
+  return {
+    ...actual,
+    use: actual.use || ((promise: any) => {
+      if (promise && promise._mockResolvedValue) return promise._mockResolvedValue;
+      return promise;
+    }),
+  };
+});
+
 vi.mock("next/image", () => ({
   default: (props: Record<string, unknown>) => {
     const {

@@ -8,9 +8,9 @@ vi.mock("@/features/pages/BrandDetail", () => ({
 }));
 
 describe("Brand detail route", () => {
-  it("passes the dynamic pinyin param into the brand detail page", async () => {
-    const page = await BrandDetailPage({
-      params: Promise.resolve({ pinyin: "huangshan" }),
+  it("passes the dynamic pinyin param into the brand detail page", () => {
+    const page = BrandDetailPage({
+      params: { pinyin: "huangshan" } as any,
     });
 
     render(page);
@@ -18,9 +18,9 @@ describe("Brand detail route", () => {
     expect(screen.getByText("brand detail huangshan")).toBeInTheDocument();
   });
 
-  it("passes numeric brand ids through the same dynamic route", async () => {
-    const page = await BrandDetailPage({
-      params: Promise.resolve({ pinyin: "23" }),
+  it("passes numeric brand ids through the same dynamic route", () => {
+    const page = BrandDetailPage({
+      params: { pinyin: "23" } as any,
     });
 
     render(page);
