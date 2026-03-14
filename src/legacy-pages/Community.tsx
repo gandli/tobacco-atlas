@@ -4,9 +4,11 @@ import MobileNav from "@/components/MobileNav";
 import { communityUsers } from "@/data/community";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import SocialPageHero from "@/components/social/SocialPageHero";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionControlBar from "@/components/catalog/CollectionControlBar";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
+import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";
 
@@ -25,98 +27,119 @@ const Community = () => {
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <CollectionPageFrame className="space-y-6">
-          <SocialPageHero
+          <CollectionPageHeader
             eyebrow={t("community.eyebrow")}
             title={t("community.title")}
             subtitle={t("community.subtitle")}
             action={
-              <Button variant="default" className="h-11 md:h-12 text-sm">
+              <Button variant="default" className="h-10 text-sm">
                 {t("community.cta")}
               </Button>
             }
+            meta={<span>{sorted.length}</span>}
           />
 
-          <div className="rounded-[28px] border border-border/60 bg-background/70 p-4 md:p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-
-          <div className="flex gap-1 mb-4 md:mb-6 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
-            {(
-              [
-                { key: "collectors", label: t("community.collectors") },
-                { key: "most_tried", label: t("community.mostTried") },
-                { key: "most_favorited", label: t("community.mostFavorited") },
-              ] as const
-            ).map((tabOption) => (
-              <button
-                key={tabOption.key}
-                onClick={() => setTab(tabOption.key)}
-                className={`px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm rounded-full transition-colors whitespace-nowrap flex-shrink-0 ${
-                  tab === tabOption.key
-                    ? "bg-foreground text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {tabOption.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-1.5 md:gap-2">
-            {sorted.map((user, i) => (
-              <div
-                key={user.id}
-                className="flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border border-border hover:bg-secondary/50 transition-colors cursor-pointer"
-              >
-                <span className="text-xs md:text-sm text-muted-foreground w-5 md:w-6 text-right flex-shrink-0">
-                  {i + 1}
-                </span>
-
-                {user.avatar ? (
-                  <OptimizedImage
-                    src={user.avatar}
-                    alt={user.username}
-                    width={40}
-                    height={40}
-                    className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
-                    sizes="40px"
-                  />
-                ) : (
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-xs md:text-sm font-semibold flex-shrink-0">
-                    {user.username[0].toUpperCase()}
-                  </div>
-                )}
-
-                <span className="font-medium text-sm text-foreground flex-1 truncate">
-                  @{user.username}
-                </span>
-
-                <div className="flex gap-3 md:gap-4 text-right flex-shrink-0">
-                  <div>
-                    <div className="text-xs md:text-sm font-semibold text-foreground">
-                      {user.brands}
-                    </div>
-                    <div className="text-[9px] md:text-[10px] text-muted-foreground">
-                      {t("community.brands")}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs md:text-sm font-semibold text-foreground">
-                      {user.tried}
-                    </div>
-                    <div className="text-[9px] md:text-[10px] text-muted-foreground">
-                      {t("community.tried")}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs md:text-sm font-semibold text-destructive">
-                      {user.fav}
-                    </div>
-                    <div className="text-[9px] md:text-[10px] text-muted-foreground">{t("community.favorited")}</div>
-                  </div>
+          <CollectionPageSurface className="p-3 md:p-4">
+            <CollectionControlBar
+              leading={
+                <div className="flex gap-1 overflow-x-auto no-scrollbar">
+                  {(
+                    [
+                      { key: "collectors", label: t("community.collectors") },
+                      { key: "most_tried", label: t("community.mostTried") },
+                      { key: "most_favorited", label: t("community.mostFavorited") },
+                    ] as const
+                  ).map((tabOption) => (
+                    <button
+                      key={tabOption.key}
+                      onClick={() => setTab(tabOption.key)}
+                      className={`rounded-full px-3 py-1.5 text-xs transition-colors whitespace-nowrap md:px-4 md:py-2 md:text-sm ${
+                        tab === tabOption.key
+                          ? "bg-foreground text-primary-foreground"
+                          : "bg-background/80 text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {tabOption.label}
+                    </button>
+                  ))}
                 </div>
+              }
+              trailing={
+                <span className="text-xs uppercase tracking-[0.16em] text-muted-foreground/70">
+                  {t("community.streamLabel")}
+                </span>
+              }
+              summary={
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/70">
+                    {t("community.sectionLabel")}
+                  </span>
+                  <span>{sorted.length}</span>
+                </div>
+              }
+            />
+
+            <div className="mt-4 border-t border-border/50 pt-5">
+              <div className="flex flex-col gap-1.5 md:gap-2">
+                {sorted.map((user, i) => (
+                  <div
+                    key={user.id}
+                    className="flex items-center gap-3 rounded-xl border border-border px-3 py-2.5 transition-colors cursor-pointer hover:bg-secondary/50 md:px-4 md:py-3"
+                  >
+                    <span className="w-5 flex-shrink-0 text-right text-xs text-muted-foreground md:w-6 md:text-sm">
+                      {i + 1}
+                    </span>
+
+                    {user.avatar ? (
+                      <OptimizedImage
+                        src={user.avatar}
+                        alt={user.username}
+                        width={40}
+                        height={40}
+                        className="h-8 w-8 flex-shrink-0 rounded-full object-cover md:h-10 md:w-10"
+                        sizes="40px"
+                      />
+                    ) : (
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-foreground text-xs font-semibold text-primary-foreground md:h-10 md:w-10 md:text-sm">
+                        {user.username[0].toUpperCase()}
+                      </div>
+                    )}
+
+                    <span className="flex-1 truncate text-sm font-medium text-foreground">
+                      @{user.username}
+                    </span>
+
+                    <div className="flex flex-shrink-0 gap-3 text-right md:gap-4">
+                      <div>
+                        <div className="text-xs font-semibold text-foreground md:text-sm">
+                          {user.brands}
+                        </div>
+                        <div className="text-[9px] text-muted-foreground md:text-[10px]">
+                          {t("community.brands")}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-foreground md:text-sm">
+                          {user.tried}
+                        </div>
+                        <div className="text-[9px] text-muted-foreground md:text-[10px]">
+                          {t("community.tried")}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-destructive md:text-sm">
+                          {user.fav}
+                        </div>
+                        <div className="text-[9px] text-muted-foreground md:text-[10px]">
+                          {t("community.favorited")}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          </div>
+            </div>
+          </CollectionPageSurface>
         </CollectionPageFrame>
       </div>
       <MobileNav />

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { getProductsByManufacturer } from "@/data/product-catalog";

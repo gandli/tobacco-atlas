@@ -1,6 +1,9 @@
 {
+  "eyebrow": "时间线",
   "title": "更新日志",
   "subtitle": "持续记录产品能力、结构重构和界面优化的演进时间线。",
+  "timelineLabel": "发布时间线",
+  "releaseLabel": "版本发布",
   "footer": "感谢您使用烟草图鉴，我们会持续改进产品体验。",
   "types": {
     "feature": "新功能",

@@ -18,6 +18,8 @@
     "title": "社区",
     "subtitle": "按尝试过的烟包数量为已设置用户名的收藏者排序。",
     "cta": "注册后登上排行榜",
+    "sectionLabel": "收藏者索引",
+    "streamLabel": "排行目录",
     "collectors": "收藏者",
     "mostTried": "尝试最多",
     "mostFavorited": "收藏最多",
@@ -30,7 +32,9 @@
     "title": "烟友聊天",
     "online": "{{count}} 人在线",
     "placeholder": "登录后即可聊天...",
-    "subtitle": "和大家分享新发现、旅行线索以及你最近抽到的烟。"
+    "subtitle": "和大家分享新发现、旅行线索以及你最近抽到的烟。",
+    "sectionLabel": "实时消息",
+    "streamLabel": "受限房间"
   },
   "gallery": {
     "desktopHint": "WASD 平移 · Q/E 缩放 · 点击查看",

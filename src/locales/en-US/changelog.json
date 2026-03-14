@@ -1,6 +1,9 @@
 {
+  "eyebrow": "Timeline",
   "title": "Changelog",
   "subtitle": "A running timeline of product improvements, structure changes, and interface upgrades.",
+  "timelineLabel": "Release timeline",
+  "releaseLabel": "Release",
   "footer": "Thank you for using Chinese Cigarette Museum. We will continue to improve the product experience.",
   "types": {
     "feature": "Feature",

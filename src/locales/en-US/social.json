@@ -18,6 +18,8 @@
     "title": "Community",
     "subtitle": "Collectors with a username, ranked by packs tried.",
     "cta": "Sign up to appear on the leaderboard",
+    "sectionLabel": "Collector index",
+    "streamLabel": "Ranked directory",
     "collectors": "Collectors",
     "mostTried": "Most tried",
     "mostFavorited": "Most favorited",
@@ -30,7 +32,9 @@
     "title": "Ciggie Chat",
     "online": "{{count}} online",
     "placeholder": "Sign in to chat...",
-    "subtitle": "Drop into the live room to swap finds, travel tips, and pack impressions."
+    "subtitle": "Drop into the live room to swap finds, travel tips, and pack impressions.",
+    "sectionLabel": "Live messages",
+    "streamLabel": "Locked room"
   },
   "gallery": {
     "desktopHint": "WASD pan · Q/E zoom · Click to open",

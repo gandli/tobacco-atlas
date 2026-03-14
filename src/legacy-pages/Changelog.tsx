@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import CollectionControlBar from "@/components/catalog/CollectionControlBar";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import { getLocalizedText } from "@/lib/i18n-utils";
-import { Clock3, Sparkles } from "lucide-react";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
+import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 
 type ChangeType = "feature" | "fix" | "improvement" | "breaking" | "docs";
 
@@ -75,65 +76,78 @@ const Changelog = () => {
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
         <CollectionPageFrame size="narrow">
-          <section className="relative overflow-hidden rounded-[30px] border border-border/60 bg-gradient-to-br from-secondary/60 via-background to-background px-6 py-8 md:px-8 md:py-10 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-            <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/8 blur-2xl" />
-            <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs text-muted-foreground">
-              <Clock3 className="h-3.5 w-3.5" />
-              Release Timeline
-            </div>
-            <div className="relative pt-10">
-              <div className="inline-flex items-center gap-2 rounded-full bg-secondary/70 px-3 py-1 text-xs font-medium text-muted-foreground">
-                <Sparkles className="h-3.5 w-3.5" />
-                {t("title")}
-              </div>
-              <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                {t('title')}
-              </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground md:text-base">
-                {t("subtitle")}
-              </p>
-            </div>
-          </section>
+          <CollectionPageHeader
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            subtitle={t("subtitle")}
+            meta={<span>{changelogData.length}</span>}
+          />
 
-          <div className="mt-8 space-y-6">
-            {changelogData.map((version) => (
-              <Card key={version.version} className="overflow-hidden rounded-[28px] border-border/60 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-                <CardHeader className="bg-muted/50 border-b">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Release</p>
-                      <h2 className="text-xl font-semibold">{version.version}</h2>
+          <CollectionPageSurface className="p-3 md:p-4">
+            <CollectionControlBar
+              leading={
+                <span className="rounded-full border border-border/60 bg-background/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">
+                  {t("timelineLabel")}
+                </span>
+              }
+              trailing={
+                <span className="text-xs uppercase tracking-[0.16em] text-muted-foreground/70">
+                  {t("releaseLabel")}
+                </span>
+              }
+              summary={
+                <div className="flex items-center justify-between gap-3">
+                  <span>{changelogData[0]?.version}</span>
+                  <span>{changelogData[0]?.date}</span>
+                </div>
+              }
+            />
+
+            <div className="mt-4 border-t border-border/50 pt-5 space-y-6">
+              {changelogData.map((version) => (
+                <section
+                  key={version.version}
+                  className="overflow-hidden rounded-[24px] border border-border/60 bg-background/70"
+                >
+                  <header className="border-b border-border/50 bg-muted/40 px-4 py-4 md:px-5">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                          {t("releaseLabel")}
+                        </p>
+                        <h2 className="text-xl font-semibold">{version.version}</h2>
+                      </div>
+                      <time className="text-sm text-muted-foreground" dateTime={version.date}>
+                        {version.date}
+                      </time>
                     </div>
-                    <time className="text-sm text-muted-foreground" dateTime={version.date}>
-                      {version.date}
-                    </time>
+                  </header>
+                  <div className="px-4 py-4 md:px-5">
+                    <ul className="space-y-3">
+                      {version.changes.map((change, index) => {
+                        const config = changeTypeConfig[change.type];
+                        return (
+                          <li key={index} className="flex items-start gap-3">
+                            <Badge variant={config.variant} className="mt-0.5 shrink-0">
+                              <span className="mr-1">{config.icon}</span>
+                              {config.label}
+                            </Badge>
+                            <span className="text-sm leading-relaxed">
+                              {getLocalizedText({
+                                language: i18n.resolvedLanguage,
+                                zh: change.descriptionZh,
+                                en: change.descriptionEn,
+                              })}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  <ul className="space-y-3">
-                    {version.changes.map((change, index) => {
-                      const config = changeTypeConfig[change.type];
-                      return (
-                        <li key={index} className="flex items-start gap-3">
-                          <Badge variant={config.variant} className="shrink-0 mt-0.5">
-                            <span className="mr-1">{config.icon}</span>
-                            {config.label}
-                          </Badge>
-                          <span className="text-sm leading-relaxed">
-                            {getLocalizedText({
-                              language: i18n.resolvedLanguage,
-                              zh: change.descriptionZh,
-                              en: change.descriptionEn,
-                            })}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </section>
+              ))}
+            </div>
+          </CollectionPageSurface>
 
           <p className="text-center text-muted-foreground text-sm mt-8">
             {t('footer')}

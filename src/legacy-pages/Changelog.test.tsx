@@ -52,5 +52,6 @@ describe("Changelog", () => {
     expect(pageText).toContain("Feature");
     expect(pageText).toContain("Added gallery support to brand detail pages");
     expect(screen.getByTestId("page-frame")).toBeInTheDocument();
+    expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
   });
 });

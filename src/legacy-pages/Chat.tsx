@@ -3,9 +3,11 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import SocialPageHero from "@/components/social/SocialPageHero";
 import OptimizedImage from "@/components/OptimizedImage";
+import CollectionControlBar from "@/components/catalog/CollectionControlBar";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
+import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 
 interface ChatMessage {
   id: string;
@@ -64,78 +66,95 @@ const Chat = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      <div className="flex-1 flex flex-col pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="px-4 md:px-6 py-4 md:py-6 border-b border-border/50 bg-background/80 backdrop-blur-sm">
-          <CollectionPageFrame size="reading" className="px-0 py-0">
-            <SocialPageHero
-              eyebrow={t("chat.eyebrow")}
-              title={t("chat.title")}
-              subtitle={t("chat.subtitle")}
-              action={
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-2 text-xs text-muted-foreground">
-                  <span className="w-2 h-2 rounded-full bg-green-500" />
-                  {t("chat.online", { count: onlineCount })}
-                </div>
-              }
-            />
-          </CollectionPageFrame>
-        </div>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto">
-          <CollectionPageFrame size="reading" className="space-y-1 px-0 py-4">
-            {mockMessages.map((msg) => (
-              <div key={msg.id} className="flex items-start gap-2.5 py-1.5 hover:bg-secondary/30 rounded-lg px-1 -mx-1 transition-colors">
-                {msg.avatar ? (
-                  <OptimizedImage
-                    src={msg.avatar}
-                    alt={msg.username}
-                    width={32}
-                    height={32}
-                    className="w-7 h-7 md:w-8 md:h-8 rounded-full object-cover flex-shrink-0 mt-0.5"
-                    sizes="32px"
-                  />
-                ) : (
-                  <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white flex-shrink-0 mt-0.5 ${getInitialColor(msg.username)}`}>
-                    {msg.username[0].toUpperCase()}
-                  </div>
-                )}
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-sm font-semibold text-foreground hover:underline cursor-pointer">
-                      {msg.username}
-                    </span>
-                    <span className="text-[10px] md:text-xs text-muted-foreground">{msg.date}</span>
-                  </div>
-                  <p className="text-sm text-foreground/90 break-words">{msg.message}</p>
-                </div>
+      <div className="flex-1 pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
+        <CollectionPageFrame size="reading" className="space-y-6">
+          <CollectionPageHeader
+            eyebrow={t("chat.eyebrow")}
+            title={t("chat.title")}
+            subtitle={t("chat.subtitle")}
+            action={
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-2 text-xs text-muted-foreground">
+                <span className="h-2 w-2 rounded-full bg-green-500" />
+                {t("chat.online", { count: onlineCount })}
               </div>
-            ))}
-            <div ref={bottomRef} />
-          </CollectionPageFrame>
-        </div>
+            }
+          />
 
-        {/* Input */}
-        <div className="border-t border-border/50 bg-background/80 backdrop-blur-md">
-          <CollectionPageFrame size="reading" className="px-0 py-3">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={t("chat.placeholder")}
-                className="flex-1 bg-secondary/50 border border-border/50 rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
-                disabled
+          <CollectionPageSurface className="overflow-hidden">
+            <div className="p-3 md:p-4">
+              <CollectionControlBar
+                leading={
+                  <span className="rounded-full border border-border/60 bg-background/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">
+                    {t("chat.sectionLabel")}
+                  </span>
+                }
+                trailing={
+                  <span className="text-xs uppercase tracking-[0.16em] text-muted-foreground/70">
+                    {t("chat.streamLabel")}
+                  </span>
+                }
+                summary={
+                  <div className="flex items-center justify-between gap-3">
+                    <span>{mockMessages.length}</span>
+                    <span>{t("chat.online", { count: onlineCount })}</span>
+                  </div>
+                }
               />
-              <button
-                className="w-9 h-9 rounded-full bg-foreground text-primary-foreground flex items-center justify-center flex-shrink-0 opacity-50 cursor-not-allowed"
-                disabled
-              >
-                <Send className="w-4 h-4" />
-              </button>
             </div>
-          </CollectionPageFrame>
-        </div>
+
+            <div className="border-t border-border/40 p-3 md:p-4">
+              <div className="space-y-1">
+                {mockMessages.map((msg) => (
+                  <div key={msg.id} className="flex items-start gap-2.5 rounded-lg px-1 py-1.5 transition-colors hover:bg-secondary/30">
+                    {msg.avatar ? (
+                      <OptimizedImage
+                        src={msg.avatar}
+                        alt={msg.username}
+                        width={32}
+                        height={32}
+                        className="mt-0.5 h-7 w-7 flex-shrink-0 rounded-full object-cover md:h-8 md:w-8"
+                        sizes="32px"
+                      />
+                    ) : (
+                      <div className={`mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white md:h-8 md:w-8 ${getInitialColor(msg.username)}`}>
+                        {msg.username[0].toUpperCase()}
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className="cursor-pointer text-sm font-semibold text-foreground hover:underline">
+                          {msg.username}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground md:text-xs">{msg.date}</span>
+                      </div>
+                      <p className="break-words text-sm text-foreground/90">{msg.message}</p>
+                    </div>
+                  </div>
+                ))}
+                <div ref={bottomRef} />
+              </div>
+            </div>
+
+            <div className="border-t border-border/40 bg-background/80 p-3 md:p-4">
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={t("chat.placeholder")}
+                  className="flex-1 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+                  disabled
+                />
+                <button
+                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-foreground text-primary-foreground opacity-50 cursor-not-allowed"
+                  disabled
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </CollectionPageSurface>
+        </CollectionPageFrame>
       </div>
       <MobileNav />
     </div>
