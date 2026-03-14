@@ -4,6 +4,7 @@ import MobileNav from "@/components/MobileNav";
 import { communityUsers } from "@/data";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import SocialPageHero from "@/components/social/SocialPageHero";
 
 type Tab = "collectors" | "most_tried" | "most_favorited";
 
@@ -21,17 +22,20 @@ const Community = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-2xl mx-auto px-4 md:px-6 py-8 md:py-12">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{t("community.title")}</h1>
-          <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-            {t("community.subtitle")}
-          </p>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-6">
+          <SocialPageHero
+            eyebrow={t("community.eyebrow")}
+            title={t("community.title")}
+            subtitle={t("community.subtitle")}
+            action={
+              <Button variant="default" className="h-11 md:h-12 text-sm">
+                {t("community.cta")}
+              </Button>
+            }
+          />
 
-          <Button variant="default" className="w-full mb-6 md:mb-8 h-11 md:h-12 text-sm">
-            {t("community.cta")}
-          </Button>
+          <div className="rounded-[28px] border border-border/60 bg-background/70 p-4 md:p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
 
-          {/* Tabs - scrollable on mobile */}
           <div className="flex gap-1 mb-4 md:mb-6 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
             {(
               [
@@ -54,7 +58,6 @@ const Community = () => {
             ))}
           </div>
 
-          {/* Leaderboard */}
           <div className="flex flex-col gap-1.5 md:gap-2">
             {sorted.map((user, i) => (
               <div
@@ -107,6 +110,7 @@ const Community = () => {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </div>

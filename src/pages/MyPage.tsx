@@ -14,6 +14,7 @@ import {
   FileText,
   Bell
 } from "lucide-react";
+import SocialPageHero from "@/components/social/SocialPageHero";
 
 const MyPage = () => {
   const { t } = useTranslation("account");
@@ -69,13 +70,15 @@ const MyPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12">
-          <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6">
-            {t("title")}
-          </h1>
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12 space-y-6">
+          <SocialPageHero
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            subtitle={t("subtitle")}
+          />
 
           {!isLoggedIn ? (
-            <Card className="max-w-md">
+            <Card className="max-w-md rounded-[28px] border-border/60 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <User className="w-5 h-5" />
@@ -125,7 +128,7 @@ const MyPage = () => {
           )}
 
           {/* Quick Actions */}
-          <div className="mt-8 pt-8 border-t">
+          <div className="pt-8 border-t">
             <h2 className="text-lg font-semibold mb-4">{t("quickActions")}</h2>
             <div className="flex flex-wrap gap-3">
               <Link to="/submit">

@@ -1,5 +1,7 @@
 {
   "title": "我的账户",
+  "eyebrow": "个人中心",
+  "subtitle": "在这里统一管理收藏、提交记录和账户设置。",
   "loginCardTitle": "登录账户",
   "loginCardDescription": "登录后可以收藏品牌、提交数据、参与社区讨论",
   "login": "登录",

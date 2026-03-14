@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SocialPageHero from "@/components/social/SocialPageHero";
 
 interface ChatMessage {
   id: string;
@@ -62,14 +63,19 @@ const Chat = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <div className="flex-1 flex flex-col pt-[var(--nav-height)] pb-mobile-nav md:pb-0">
-        {/* Header */}
-        <div className="px-4 md:px-6 py-3 md:py-4 border-b border-border/50">
-          <div className="max-w-3xl mx-auto flex items-center gap-2">
-            <h1 className="text-lg md:text-xl font-bold text-foreground">{t("chat.title")}</h1>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-500" />
-              <span className="text-xs text-muted-foreground">{t("chat.online", { count: onlineCount })}</span>
-            </div>
+        <div className="px-4 md:px-6 py-4 md:py-6 border-b border-border/50 bg-background/80 backdrop-blur-sm">
+          <div className="max-w-3xl mx-auto">
+            <SocialPageHero
+              eyebrow={t("chat.eyebrow")}
+              title={t("chat.title")}
+              subtitle={t("chat.subtitle")}
+              action={
+                <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-2 text-xs text-muted-foreground">
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  {t("chat.online", { count: onlineCount })}
+                </div>
+              }
+            />
           </div>
         </div>
 

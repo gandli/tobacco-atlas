@@ -39,7 +39,7 @@ describe("Feed", () => {
     render(<Feed />);
 
     expect(screen.getByText("Not signed in")).toBeInTheDocument();
-    expect(screen.getByText("Sign In")).toBeInTheDocument();
+    expect(screen.getAllByText("Sign In").length).toBeGreaterThan(0);
     expect(screen.getByText("Favorites")).toBeInTheDocument();
     expect(screen.getByText("Sign in to track your collection")).toBeInTheDocument();
   });

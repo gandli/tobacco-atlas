@@ -1,13 +1,18 @@
 {
   "feed": {
+    "eyebrow": "Collection Feed",
+    "title": "Track your collection",
+    "subtitle": "Save favorites, mark tried packs, and keep your wishlist in one place.",
     "notSignedIn": "Not signed in",
     "signIn": "Sign In",
     "favorites": "Favorites",
     "tried": "Tried",
     "wishlist": "Wishlist",
-    "empty": "Sign in to track your collection"
+    "empty": "Sign in to track your collection",
+    "helper": "Your collection activity will appear here once you sign in."
   },
   "community": {
+    "eyebrow": "Collector Network",
     "title": "Community",
     "subtitle": "Collectors with a username, ranked by packs tried.",
     "cta": "Sign up to appear on the leaderboard",
@@ -19,9 +24,11 @@
     "favorited": "Fav"
   },
   "chat": {
+    "eyebrow": "Live Lounge",
     "title": "Ciggie Chat",
     "online": "{{count}} online",
-    "placeholder": "Sign in to chat..."
+    "placeholder": "Sign in to chat...",
+    "subtitle": "Drop into the live room to swap finds, travel tips, and pack impressions."
   },
   "gallery": {
     "desktopHint": "WASD pan · Q/E zoom · Click to open",

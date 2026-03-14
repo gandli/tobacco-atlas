@@ -1,13 +1,18 @@
 {
   "feed": {
+    "eyebrow": "收藏动态",
+    "title": "追踪你的收藏",
+    "subtitle": "把收藏、尝试记录和想抽清单收在一个地方。",
     "notSignedIn": "未登录",
     "signIn": "登录",
     "favorites": "收藏",
     "tried": "尝试",
     "wishlist": "想抽",
-    "empty": "登录后即可追踪你的收藏"
+    "empty": "登录后即可追踪你的收藏",
+    "helper": "登录后，你的收藏动态会显示在这里。"
   },
   "community": {
+    "eyebrow": "收藏者网络",
     "title": "社区",
     "subtitle": "按尝试过的烟包数量为已设置用户名的收藏者排序。",
     "cta": "注册后登上排行榜",
@@ -19,9 +24,11 @@
     "favorited": "收藏"
   },
   "chat": {
+    "eyebrow": "实时聊天",
     "title": "烟友聊天",
     "online": "{{count}} 人在线",
-    "placeholder": "登录后即可聊天..."
+    "placeholder": "登录后即可聊天...",
+    "subtitle": "和大家分享新发现、旅行线索以及你最近抽到的烟。"
   },
   "gallery": {
     "desktopHint": "WASD 平移 · Q/E 缩放 · 点击查看",
