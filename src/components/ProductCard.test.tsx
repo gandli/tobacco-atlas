@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import ProductCard from "@/components/ProductCard";
-import type { Product } from "@/data";
+import type { Product } from "@/data/product-catalog";
 
 const mockI18n = {
   language: "zh-CN",

@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { getProductsByManufacturer } from "@/data";
+import { getProductsByManufacturer } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
 import OptimizedImage from "@/components/OptimizedImage";
 import {

@@ -6,7 +6,9 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import ProductCard from "@/components/ProductCard";
 import OptimizedImage from "@/components/OptimizedImage";
-import { getBrandByPinyin, getProductsByBrand, regionLabels } from "@/data";
+import { getBrandByPinyin } from "@/data/brand-catalog";
+import { getProductsByBrand } from "@/data/product-catalog";
+import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 const BrandDetail = () => {

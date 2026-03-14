@@ -1,17 +1,14 @@
 import { describe, it, expect } from "vitest";
+import { brands, totalBrands, getBrandByPinyin, type BrandItem } from "@/data/brand-catalog";
 import {
-  brands,
   products,
-  totalBrands,
   totalProducts,
-  regionLabels,
-  getBrandByPinyin,
   getProductsByManufacturer,
   getProductsByBrand,
   getProductById,
-  type BrandItem,
   type Product,
-} from "@/data";
+} from "@/data/product-catalog";
+import { regionLabels } from "@/data/region-labels";
 
 describe("Data Types and Exports", () => {
   describe("brands data", () => {

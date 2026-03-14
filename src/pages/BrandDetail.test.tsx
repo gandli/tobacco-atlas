@@ -39,7 +39,7 @@ vi.mock("react-router-dom", () => ({
   ),
 }));
 
-vi.mock("@/data", () => ({
+vi.mock("@/data/brand-catalog", () => ({
   getBrandByPinyin: () => ({
     id: 1,
     name: "中华",
@@ -51,10 +51,16 @@ vi.mock("@/data", () => ({
     descriptionCn: "经典国烟品牌",
     company: "Shanghai Tobacco",
   }),
+}));
+
+vi.mock("@/data/product-catalog", () => ({
   getProductsByBrand: () => [
     { id: 1, brand: "中华", name: "软中华", image: "", brandPinyin: "zhonghua" },
     { id: 2, brand: "中华", name: "硬中华", image: "", brandPinyin: "zhonghua" },
   ],
+}));
+
+vi.mock("@/data/region-labels", () => ({
   regionLabels: {
     mainland: { zh: "大陆", en: "Mainland" },
   },

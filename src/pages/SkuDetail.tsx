@@ -6,12 +6,9 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/OptimizedImage";
-import {
-  getProductById,
-  getBrandByPinyin,
-  regionLabels,
-  type Product,
-} from "@/data";
+import { getBrandByPinyin } from "@/data/brand-catalog";
+import { getProductById, type Product } from "@/data/product-catalog";
+import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 /** 产品图片画廊 — 多图轮播 + 缩略图 */
