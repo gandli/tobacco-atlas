@@ -33,6 +33,13 @@ const mockProduct: Product = {
   region: "mainland",
 };
 
+const longNameProduct: Product = {
+  ...mockProduct,
+  id: 456,
+  name: "中华典藏特别纪念中支限量版",
+  nameEn: "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
+};
+
 describe("ProductCard", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -69,5 +76,19 @@ describe("ProductCard", () => {
 
     expect(screen.getAllByText("Soft Zhonghua")).toHaveLength(2);
     expect(screen.getByText("Mainland")).toBeInTheDocument();
+  });
+
+  it("uses a more compact title treatment for long names while preserving the full label", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ProductCard product={longNameProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[11px]");
+    expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
+      "title",
+      "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
+    );
+    expect(screen.getByTestId("product-card-footer-name")).toHaveClass("truncate");
   });
 });

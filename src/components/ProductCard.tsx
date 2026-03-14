@@ -25,6 +25,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       ? regionLabel.en
       : regionLabel.zh
     : null;
+  const isLongProductName = productName.length > 26;
+  const overlayTitleClass = isLongProductName ? "text-[11px]" : "text-[12px]";
+  const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
 
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
@@ -36,14 +39,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       href={`/sku/${productId}`}
-      className="flex flex-col gap-3 cursor-pointer group outline-none rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="flex flex-col gap-3 cursor-pointer group outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       aria-label={`${product.brand} - ${productName}`}
     >
-      <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-lg overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
+      <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-xl overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
         <img
           src={product.image}
           alt={`${product.brand}（${productName}）`}
-          className="max-h-full max-w-full object-contain group-hover:scale-110 group-hover:blur-[2px] transition-all duration-700 ease-out"
+          className="max-h-full max-w-full object-contain group-hover:scale-105 group-hover:blur-[1px] transition-all duration-700 ease-out"
           loading="lazy"
           width={400}
           height={500}
@@ -63,10 +66,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 {localizedRegionLabel}
               </span>
             )}
-            <div className="text-[12px] text-foreground font-medium leading-tight mb-0.5 font-sans line-clamp-2">
+            <div
+              data-testid="product-card-overlay-title"
+              className={`${overlayTitleClass} text-foreground font-medium leading-snug mb-1 font-sans line-clamp-3`}
+            >
               {productName}
             </div>
-            <div className="text-[10px] text-muted-foreground/60 mb-3 font-sans truncate">
+            <div className="text-[10px] text-muted-foreground/80 mb-3 font-sans truncate">
               {product.brand}
             </div>
             <div className="flex items-center justify-between">
@@ -95,10 +101,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       <div className="flex flex-col items-center gap-0.5 px-1 group-hover:translate-y-[-2px] transition-transform duration-300">
-        <span className="text-sm font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors text-wrap-balance">
+        <span
+          className="text-sm font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors text-wrap-balance max-w-full"
+          title={product.brand}
+        >
           {product.brand}
         </span>
-        <span className="text-11 font-sans text-muted-foreground/60 text-center leading-tight line-clamp-1">
+        <span
+          data-testid="product-card-footer-name"
+          className={`${footerTitleClass} font-sans text-muted-foreground/70 text-center leading-tight max-w-full truncate`}
+          title={productName}
+        >
           {productName}
         </span>
       </div>

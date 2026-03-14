@@ -11,11 +11,12 @@ import {
   User,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { isPathActive, primaryNavigationItems } from "@/lib/routing/navigation";
+import { isPathActive, mobileNavigationItems } from "@/lib/routing/navigation";
 
 const iconMap = {
   collection: LayoutGrid,
   brands: Building2,
+  feed: Factory,
   manufacturers: Factory,
   community: Users,
   chat: MessageCircle,
@@ -29,7 +30,7 @@ const MobileNav = () => {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/90 backdrop-blur-md border-t border-border/50 safe-area-bottom">
       <div className="flex items-center justify-around h-14">
-        {primaryNavigationItems.map((tab) => {
+        {mobileNavigationItems.map((tab) => {
           const isActive = isPathActive(pathname, tab.path);
           const Icon = iconMap[tab.key as keyof typeof iconMap];
           return (

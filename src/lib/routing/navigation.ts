@@ -7,8 +7,19 @@ export const primaryNavigationItems: NavigationItem[] = [
   { key: "collection", path: "/" },
   { key: "brands", path: "/brands" },
   { key: "manufacturers", path: "/manufacturers" },
+  { key: "feed", path: "/feed" },
+];
+
+export const secondaryNavigationItems: NavigationItem[] = [
   { key: "community", path: "/community" },
   { key: "chat", path: "/chat" },
+];
+
+export const mobileNavigationItems: NavigationItem[] = [
+  { key: "collection", path: "/" },
+  { key: "brands", path: "/brands" },
+  { key: "feed", path: "/feed" },
+  { key: "community", path: "/community" },
   { key: "my", path: "/my" },
 ];
 

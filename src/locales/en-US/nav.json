@@ -1,10 +1,13 @@
 {
   "collection": "Collection",
   "brands": "Brands",
+  "feed": "Feed",
   "manufacturers": "Makers",
   "community": "Community",
   "chat": "Chat",
   "my": "My",
   "signIn": "Sign In",
-  "archive": "Archive"
+  "archive": "Archive",
+  "socialHub": "Social",
+  "openChat": "Open chat"
 }

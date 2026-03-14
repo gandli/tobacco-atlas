@@ -1,10 +1,13 @@
 {
   "collection": "Collection",
   "brands": "Brands",
+  "feed": "动态",
   "manufacturers": "Manufacturers",
   "community": "Community",
   "chat": "Chat",
   "my": "My",
   "signIn": "Sign In",
-  "archive": "Archive"
+  "archive": "Archive",
+  "socialHub": "社群",
+  "openChat": "打开聊天"
 }

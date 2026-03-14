@@ -38,7 +38,11 @@ describe("Navbar", () => {
     render(<Navbar />);
 
     expect(screen.getByRole("link", { name: /Chinese Cigarette Museum/i })).toHaveAttribute("href", "/");
-    expect(screen.getByRole("link", { name: "signIn" })).toHaveAttribute("href", "/login");
+    expect(screen.getByText("feed").closest("a")).toHaveAttribute("href", "/feed");
+    expect(screen.getByText("community").closest("a")).toHaveAttribute("href", "/community");
+    expect(screen.getByText("chat").closest("a")).toHaveAttribute("href", "/chat");
+    expect(screen.getAllByText("my")[0].closest("a")).toHaveAttribute("href", "/my");
+    expect(screen.getByText("signIn").closest("a")).toHaveAttribute("href", "/login");
   });
 
   it("marks the active navigation item from pathname", () => {

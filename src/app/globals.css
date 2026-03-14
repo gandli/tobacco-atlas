@@ -128,17 +128,25 @@ All colors MUST be HSL.
   }
 
   .sku-card-overlay {
-    @apply absolute left-0 right-0 bottom-0 p-3 bg-white dark:bg-zinc-950
-    opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0
-    flex flex-col justify-start text-left rounded-t-[1.75rem] shadow-[0_-4px_20px_rgba(0,0,0,0.08)];
-    height: 62%;
-    max-height: 62%;
-    min-height: 0;
+    @apply absolute inset-x-0 bottom-0 px-3 pb-3 pt-10
+    opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0
+    flex flex-col justify-end text-left;
+    min-height: 48%;
+    max-height: 76%;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 28%, rgba(255,255,255,0.98) 100%);
     overflow: hidden;
   }
 
   .sku-card-overlay-content {
-    @apply flex flex-col mt-auto;
+    @apply flex flex-col mt-auto rounded-2xl border border-white/70 bg-white/88 p-3 shadow-[0_10px_30px_rgba(15,23,42,0.16)] backdrop-blur-sm;
+  }
+
+  .dark .sku-card-overlay {
+    background: linear-gradient(180deg, rgba(9,9,11,0) 0%, rgba(9,9,11,0.88) 30%, rgba(9,9,11,0.96) 100%);
+  }
+
+  .dark .sku-card-overlay-content {
+    @apply border-white/10 bg-zinc-950/84 shadow-[0_12px_34px_rgba(0,0,0,0.4)];
   }
 
   .stamp {

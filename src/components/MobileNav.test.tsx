@@ -31,13 +31,17 @@ describe("MobileNav", () => {
 
     expect(screen.getByRole("link", { name: "collection" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("href", "/brands");
+    expect(screen.getByRole("link", { name: "feed" })).toHaveAttribute("href", "/feed");
+    expect(screen.getByRole("link", { name: "community" })).toHaveAttribute("href", "/community");
+    expect(screen.getByRole("link", { name: "my" })).toHaveAttribute("href", "/my");
+    expect(screen.queryByRole("link", { name: "chat" })).not.toBeInTheDocument();
   });
 
   it("marks the current mobile tab by pathname styling state", () => {
-    mockUsePathname.mockReturnValue("/chat");
+    mockUsePathname.mockReturnValue("/feed");
 
     render(<MobileNav />);
 
-    expect(screen.getByRole("link", { name: "chat" })).toHaveClass("text-foreground");
+    expect(screen.getByRole("link", { name: "feed" })).toHaveClass("text-foreground");
   });
 });
