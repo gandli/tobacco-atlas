@@ -1,16 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { Star, CheckCircle, Bookmark, MapPin, Building2 } from "lucide-react";
+import { Star, CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Product, regionLabels } from "@/data";
+import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { i18n } = useTranslation();
   const regionLabel = product.region ? regionLabels[product.region] : null;
   const productId = product.id;
+  const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
+  const productName = getLocalizedText({
+    language: i18n.resolvedLanguage,
+    zh: product.name,
+    en: product.nameEn,
+  });
+  const localizedRegionLabel = regionLabel
+    ? isEnglish
+      ? regionLabel.en
+      : regionLabel.zh
+    : null;
 
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
@@ -23,12 +37,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Link
       href={`/sku/${productId}`}
       className="flex flex-col gap-3 cursor-pointer group outline-none rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-      aria-label={`${product.brand} - ${product.name}`}
+      aria-label={`${product.brand} - ${productName}`}
     >
       <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-lg overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
         <img
           src={product.image}
-          alt={`${product.brand}（${product.name}）`}
+          alt={`${product.brand}（${productName}）`}
           className="max-h-full max-w-full object-contain group-hover:scale-110 group-hover:blur-[2px] transition-all duration-700 ease-out"
           loading="lazy"
           width={400}
@@ -46,11 +60,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     : "text-gold bg-gold/10"
                 }`}
               >
-                {regionLabel.zh} · {regionLabel.en}
+                {localizedRegionLabel}
               </span>
             )}
             <div className="text-[12px] text-foreground font-medium leading-tight mb-0.5 font-sans line-clamp-2">
-              {product.nameEn || product.name}
+              {productName}
             </div>
             <div className="text-[10px] text-muted-foreground/60 mb-3 font-sans truncate">
               {product.brand}
@@ -85,7 +99,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.brand}
         </span>
         <span className="text-11 font-sans text-muted-foreground/60 text-center leading-tight line-clamp-1">
-          {product.name}
+          {productName}
         </span>
       </div>
     </Link>
