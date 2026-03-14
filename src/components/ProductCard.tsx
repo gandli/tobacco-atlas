@@ -107,7 +107,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <div className="flex items-center gap-1.5">
                 <button
                   aria-label="Add to favorites"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-500 transition-all hover:bg-red-100 md:h-8 md:w-8"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-500 transition-all hover:bg-red-100 active:scale-95 md:h-8 md:w-8 animate-button-press"
                   onClick={(e) => handleAction(e, "favorite")}
                   type="button"
                 >
@@ -115,7 +115,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 </button>
                 <button
                   aria-label="Mark as tried"
-                  className="flex h-7 w-7 items-center justify-center text-foreground/40 transition-all hover:text-foreground md:h-8 md:w-8"
+                  className="flex h-7 w-7 items-center justify-center text-foreground/40 transition-all hover:text-foreground active:scale-95 md:h-8 md:w-8 animate-button-press"
                   onClick={(e) => handleAction(e, "tried")}
                   type="button"
                 >

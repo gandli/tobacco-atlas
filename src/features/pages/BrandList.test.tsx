@@ -101,10 +101,15 @@ describe("BrandList", () => {
 
     render(<BrandList />);
 
+    const searchInput = screen.getByPlaceholderText("Search brands…");
+    
     // 搜索 "zhong" 应该匹配 "中华" (zhonghua) 的拼音
-    fireEvent.change(screen.getByPlaceholderText("Search brands…"), {
+    fireEvent.change(searchInput, {
       target: { value: "zhong" },
     });
+
+    // 调试：输出当前 DOM 内容
+    console.log("DOM after search:", document.body.innerHTML);
 
     // 在 mainland 地区下，搜索 "zhong" 应该找到 "中华"
     expect(screen.getByText("中华")).toBeInTheDocument();
