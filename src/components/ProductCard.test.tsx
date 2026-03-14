@@ -59,6 +59,14 @@ const extremeLongCopyProduct: Product = {
     "Huanghelou Mantianyou Jiutian Collector Edition Ultra Long Presentation Pack",
 };
 
+const combinedLongCopyProduct: Product = {
+  ...mockProduct,
+  id: 790,
+  brand: "黄鹤楼",
+  name: "漫天游九天",
+  nameEn: "Huanghelou Mantianyou Jiutian",
+};
+
 describe("ProductCard", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -125,7 +133,7 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
       "compact",
@@ -164,5 +172,18 @@ describe("ProductCard", () => {
     expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[9px]");
     expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
     expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[8px]");
+  });
+
+  it("switches to compact overlay layout when combined bilingual copy would otherwise overflow", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ProductCard product={combinedLongCopyProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
+      "data-overlay-density",
+      "compact",
+    );
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
   });
 });

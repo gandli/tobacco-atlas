@@ -175,7 +175,7 @@ All colors MUST be HSL.
   }
 
   .stamp {
-    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-medium tracking-tight whitespace-nowrap;
+    @apply inline-flex max-w-full items-center px-2 py-0.5 rounded-full text-[9px] font-medium tracking-tight leading-tight;
   }
 
   .museum-inline-panel {

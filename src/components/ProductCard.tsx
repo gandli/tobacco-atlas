@@ -39,7 +39,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isExtremeProductName = productName.length > 62;
   const isExtremeBrandName = product.brand.length > 34;
   const isLongRegionLabel = (regionDisplayLabel?.length || 0) > 18;
-  const useCompactOverlay = isExtremeProductName || isExtremeBrandName || isLongRegionLabel;
+  const overlayCharLoad =
+    productName.length + product.brand.length + (regionDisplayLabel?.length || 0);
+  const useCompactOverlay =
+    isExtremeProductName ||
+    isExtremeBrandName ||
+    isLongRegionLabel ||
+    overlayCharLoad > 42 ||
+    productName.length > 24 ||
+    product.brand.length > 18;
   const overlayTitleClass = isExtremeProductName
     ? "text-[9px] leading-snug"
     : isVeryLongProductName
@@ -49,11 +57,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
         : "text-[12px] md:text-[13px] leading-snug";
   const overlayBrandClass = isExtremeBrandName
     ? "text-[8px] md:text-[9px] line-clamp-2"
-    : isLongProductName
+    : useCompactOverlay
+      ? "text-[8px] md:text-[9px] line-clamp-2"
+      : isLongProductName
       ? "text-[9px] md:text-[10px] line-clamp-1"
       : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} line-clamp-1`;
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
-  const overlayRegionClass = useCompactOverlay ? "text-[8px] px-1.5 py-0.5" : "";
+  const overlayRegionClass = useCompactOverlay
+    ? "text-[8px] px-1.5 py-0.5 max-w-full"
+    : "max-w-full";
   const overlayContentDensity = useCompactOverlay ? "compact" : "default";
   const overlayContentClass = useCompactOverlay
     ? "sku-card-overlay-content sku-card-overlay-content-compact"
@@ -150,7 +162,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} text-[#666661] font-medium font-sans ${isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
+                className={`${overlayTitleClass} text-[#666661] font-medium font-sans ${useCompactOverlay ? "line-clamp-3" : isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
                 title={productName}
               >
                 {productName}

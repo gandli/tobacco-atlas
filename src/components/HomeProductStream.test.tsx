@@ -15,17 +15,21 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-vi.mock("@/components/ProductGrid", () => ({
-  default: ({ products, sectionId }: { products: Array<{ id: number; name: string }>; sectionId?: string }) => (
-    <section id={sectionId}>
-      {products.map((product) => (
-        <div key={product.id} data-testid={`product-card-${product.id}`}>
-          {product.name}
-        </div>
-      ))}
-    </section>
-  ),
-}));
+vi.mock("@/components/ProductGrid", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/components/ProductGrid")>();
+  return {
+    ...actual,
+    default: ({ products, sectionId }: { products: Array<{ id: number; name: string }>; sectionId?: string }) => (
+      <section id={sectionId}>
+        {products.map((product) => (
+          <div key={product.id} data-testid={`product-card-${product.id}`}>
+            {product.name}
+          </div>
+        ))}
+      </section>
+    ),
+  };
+});
 
 vi.mock("@/components/skeletons/ProductCardSkeleton", () => ({
   default: ({ index }: { index: number }) => <div data-testid={`append-skeleton-${index}`} />,
