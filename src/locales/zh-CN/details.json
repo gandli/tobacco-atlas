@@ -2,7 +2,8 @@
   "breadcrumbs": {
     "home": "首页",
     "collection": "收藏",
-    "brands": "品牌"
+    "brands": "品牌",
+    "makers": "厂商"
   },
   "notFound": {
     "brandTitle": "品牌未找到",
@@ -14,13 +15,13 @@
   },
   "brand": {
     "products": "产品",
-    "manufacturer": "制造商",
+    "manufacturer": "厂商",
     "collection": "馆藏",
     "items": "{{count}} 件",
     "empty": "该品牌暂时还没有收录产品。"
   },
   "manufacturer": {
-    "badge": "生产企业",
+    "badge": "厂商",
     "summary": "共收录该厂家旗下的 {{brands}} 个品牌，{{products}} 款产品。",
     "brandsSection": "旗下品牌",
     "productsSection": "相关产品",

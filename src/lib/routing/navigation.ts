@@ -6,7 +6,7 @@ export interface NavigationItem {
 export const primaryNavigationItems: NavigationItem[] = [
   { key: "collection", path: "/" },
   { key: "brands", path: "/brands" },
-  { key: "manufacturers", path: "/manufacturers" },
+  { key: "manufacturers", path: "/makers" },
   { key: "feed", path: "/feed" },
 ];
 

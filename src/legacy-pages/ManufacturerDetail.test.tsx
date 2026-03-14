@@ -74,13 +74,20 @@ vi.mock("@/components/Navbar", () => ({
 
 describe("ManufacturerDetail", () => {
   it("renders translated labels from the current path", { timeout: 15000 }, () => {
-    window.history.replaceState({}, "", "/manufacturer/Anhui%20Tobacco");
+    window.history.replaceState({}, "", "/maker/Anhui%20Tobacco");
     render(<ManufacturerDetail />);
 
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getAllByText("Brands").length).toBeGreaterThan(0);
     expect(screen.getByText("2 brands · 3 products")).toBeInTheDocument();
     expect(screen.getByText("3 items")).toBeInTheDocument();
+  });
+
+  it("still supports the legacy manufacturer path", () => {
+    window.history.replaceState({}, "", "/manufacturer/Anhui%20Tobacco");
+    render(<ManufacturerDetail />);
+
+    expect(screen.getAllByText("Anhui Tobacco").length).toBeGreaterThan(0);
   });
 
   it("prefers the explicit name prop when provided", () => {

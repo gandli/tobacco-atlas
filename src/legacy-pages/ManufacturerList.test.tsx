@@ -121,7 +121,7 @@ describe("ManufacturerList", () => {
 
       expect(detailLink).not.toBeNull();
       expect(detailLink?.getAttribute("href")).toContain(
-        "/manufacturer/%E6%B9%96%E5%8C%97%E4%B8%AD%E7%83%9F%E5%B7%A5%E4%B8%9A%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8",
+        "/maker/%E6%B9%96%E5%8C%97%E4%B8%AD%E7%83%9F%E5%B7%A5%E4%B8%9A%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8",
       );
     });
   });

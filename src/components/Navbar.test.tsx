@@ -38,6 +38,7 @@ describe("Navbar", () => {
     const { container } = render(<Navbar />);
 
     expect(container.querySelector('a[href="/"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/makers"]')).toBeTruthy();
     expect(container.querySelector('a[href="/feed"]')).toBeTruthy();
     expect(container.querySelector('a[href="/community"]')).toBeTruthy();
     expect(container.querySelector('a[href="/chat"]')).toBeTruthy();

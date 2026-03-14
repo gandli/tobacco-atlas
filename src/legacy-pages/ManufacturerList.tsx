@@ -67,7 +67,7 @@ function ManufacturerCard({ manufacturer, index, isEnglish }: ManufacturerCardPr
 
   return (
     <Link
-      href={`/manufacturer/${encodeURIComponent(manufacturer.name)}`}
+      href={`/maker/${encodeURIComponent(manufacturer.name)}`}
       className="block group"
       style={{ animationDelay: `${index * 50}ms` }}
     >

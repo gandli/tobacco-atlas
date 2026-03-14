@@ -1,9 +1,9 @@
 {
-  "badge": "Manufacturers",
-  "title": "Manufacturer Directory",
+  "badge": "Makers",
+  "title": "Maker Directory",
   "subtitle": "Browse tobacco makers and the brands they produce across the collection.",
-  "searchPlaceholder": "Search manufacturers or brands...",
-  "sectionLabel": "Manufacturer index",
+  "searchPlaceholder": "Search makers or brands...",
+  "sectionLabel": "Maker index",
   "filters": {
     "region": "Region",
     "allRegions": "All regions",
@@ -18,14 +18,14 @@
     "name": "By name"
   },
   "stats": {
-    "all": "{{total}} manufacturers",
-    "filtered": "Showing {{filtered}} / {{total}} manufacturers",
+    "all": "{{total}} makers",
+    "filtered": "Showing {{filtered}} / {{total}} makers",
     "filteredBadge": "Filtered"
   },
   "empty": {
-    "filteredTitle": "No matching manufacturers found",
+    "filteredTitle": "No matching makers found",
     "filteredDescription": "Try adjusting your search or filters",
-    "defaultTitle": "No manufacturers available",
+    "defaultTitle": "No makers available",
     "defaultDescription": "Please check back later"
   },
   "card": {

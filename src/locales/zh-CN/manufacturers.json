@@ -1,9 +1,9 @@
 {
-  "badge": "Manufacturers",
-  "title": "制造商名录",
-  "subtitle": "浏览中国烟草行业各大制造商及其旗下品牌，了解完整的产品谱系",
-  "searchPlaceholder": "搜索制造商或品牌...",
-  "sectionLabel": "制造商索引",
+  "badge": "Makers",
+  "title": "厂商名录",
+  "subtitle": "浏览中国烟草行业各大厂商及其旗下品牌，了解完整的产品谱系",
+  "searchPlaceholder": "搜索厂商或品牌...",
+  "sectionLabel": "厂商索引",
   "filters": {
     "region": "地区",
     "allRegions": "全部地区",
@@ -18,14 +18,14 @@
     "name": "按名称"
   },
   "stats": {
-    "all": "共 {{total}} 家制造商",
-    "filtered": "显示 {{filtered}} / {{total}} 家制造商",
+    "all": "共 {{total}} 家厂商",
+    "filtered": "显示 {{filtered}} / {{total}} 家厂商",
     "filteredBadge": "已筛选"
   },
   "empty": {
-    "filteredTitle": "未找到匹配的制造商",
+    "filteredTitle": "未找到匹配的厂商",
     "filteredDescription": "尝试调整搜索条件或筛选器",
-    "defaultTitle": "暂无制造商数据",
+    "defaultTitle": "暂无厂商数据",
     "defaultDescription": "请稍后再试"
   },
   "card": {

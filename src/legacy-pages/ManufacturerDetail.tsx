@@ -26,7 +26,7 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
     explicitName ??
     (typeof window !== "undefined"
       ? decodeURIComponent(
-          window.location.pathname.match(/^\/manufacturer\/([^/]+)/)?.[1] ?? "",
+          window.location.pathname.match(/^\/(?:maker|manufacturer)\/([^/]+)/)?.[1] ?? "",
         )
       : "");
   const products = name ? getProductsByManufacturer(name) : [];
@@ -48,7 +48,7 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/brands">{t("breadcrumbs.brands")}</BreadcrumbLink>
+              <BreadcrumbLink href="/makers">{t("breadcrumbs.makers")}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

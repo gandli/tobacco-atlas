@@ -143,7 +143,7 @@ const MyPage = () => {
                   {t("browseBrands")}
                 </Button>
               </Link>
-              <Link to="/manufacturers">
+              <Link to="/makers">
                 <Button variant="outline" size="sm">
                   {t("browseManufacturers")}
                 </Button>

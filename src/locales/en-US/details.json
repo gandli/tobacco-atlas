@@ -2,7 +2,8 @@
   "breadcrumbs": {
     "home": "Home",
     "collection": "Collection",
-    "brands": "Brands"
+    "brands": "Brands",
+    "makers": "Makers"
   },
   "notFound": {
     "brandTitle": "Brand not found",
@@ -14,13 +15,13 @@
   },
   "brand": {
     "products": "Products",
-    "manufacturer": "Manufacturer",
+    "manufacturer": "Maker",
     "collection": "Collection",
     "items": "{{count}} items",
     "empty": "No products in our database yet for this brand."
   },
   "manufacturer": {
-    "badge": "Manufacturer",
+    "badge": "Maker",
     "summary": "This maker currently has {{brands}} brands and {{products}} products in the archive.",
     "brandsSection": "Brands",
     "productsSection": "Products",

@@ -303,7 +303,7 @@ const SkuDetail = ({ id: explicitId }: SkuDetailProps) => {
                         ·
                       </span>
                       <Link
-                        href={`/manufacturer/${encodeURIComponent(product.manufacturer)}`}
+                        href={`/maker/${encodeURIComponent(product.manufacturer)}`}
                         className="hover:text-gold transition-colors hover:underline focus-visible:underline outline-none"
                       >
                         {product.manufacturer}
