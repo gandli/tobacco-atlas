@@ -90,6 +90,14 @@ vi.mock("@/components/Navbar", () => ({
   default: () => <nav data-testid="navbar" />,
 }));
 
+vi.mock("@/components/MobileNav", () => ({
+  default: () => <nav data-testid="mobile-nav" />,
+}));
+
+vi.mock("@/components/ProductCard", () => ({
+  default: ({ product }: { product: { name: string } }) => <div>{product.name}</div>,
+}));
+
 describe("ManufacturerDetail", () => {
   it("renders translated labels from the current path", { timeout: 15000 }, () => {
     window.history.replaceState({}, "", "/maker/Anhui%20Tobacco");
