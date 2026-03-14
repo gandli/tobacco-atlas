@@ -3,8 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import MakerDetailPage from "@/app/maker/[name]/page";
 
-vi.mock("@/features/pages/ManufacturerDetail", () => ({
-  default: ({ name }: { name: string }) => <div>maker detail {name}</div>,
+vi.mock("@/data/maker-catalog", () => ({
+  getMakerByIdentifier: (id: string) => ({ identifier: id, englishName: "maker detail " + id, name: "maker detail " + id })
 }));
 
 describe("Maker detail route", () => {

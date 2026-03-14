@@ -3,8 +3,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import BrandDetailPage from "@/app/brand/[pinyin]/page";
 
-vi.mock("@/features/pages/BrandDetail", () => ({
-  default: ({ identifier }: { identifier: string }) => <div>brand detail {identifier}</div>,
+vi.mock("@/data/brand-catalog", () => ({
+  getBrandByPinyin: (id: string) => ({ pinyin: id, name: "brand detail " + id, region: "CN" }),
+  getBrandById: (id: number) => ({ pinyin: String(id), name: "brand detail " + id, region: "CN" }),
+}));
+vi.mock("@/data/region-labels", () => ({
+  regionLabels: { "CN": { en: "China", zh: "中国" } }
 }));
 
 describe("Brand detail route", () => {

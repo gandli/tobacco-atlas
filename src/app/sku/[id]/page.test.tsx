@@ -3,8 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import SkuDetailPage from "@/app/sku/[id]/page";
 
-vi.mock("@/features/pages/SkuDetail", () => ({
-  default: ({ id }: { id: string }) => <div>sku detail {id}</div>,
+vi.mock("@/data/product-catalog", () => ({
+  getSkuById: (id: string) => ({ id, name: "sku detail " + id })
 }));
 
 describe("Sku detail route", () => {
