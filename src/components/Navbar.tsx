@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { MessageCircle, UserCircle2 } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useAuthStatus } from "@/lib/auth/useAuthStatus";
 import {
   isPathActive,
   primaryNavigationItems,
@@ -16,6 +17,7 @@ import {
 const Navbar = () => {
   const pathname = usePathname();
   const { t } = useTranslation("nav");
+  const { isLoggedIn } = useAuthStatus();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-[var(--nav-height)] bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -82,13 +84,15 @@ const Navbar = () => {
         </Link>
         <LanguageSwitcher />
         <ThemeToggle />
-        <Link
-          href="/my"
-          className="hidden sm:inline-flex items-center gap-1 rounded-full border border-border/60 px-3 h-8 text-xs text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
-        >
-          <UserCircle2 className="h-3.5 w-3.5" />
-          {t("my")}
-        </Link>
+        {isLoggedIn ? (
+          <Link
+            href="/my"
+            className="hidden sm:inline-flex items-center gap-1 rounded-full border border-border/60 px-3 h-8 text-xs text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
+          >
+            <UserCircle2 className="h-3.5 w-3.5" />
+            {t("my")}
+          </Link>
+        ) : null}
         <Link href="/login">
           <Button variant="default" size="sm" className="text-xs h-8 px-4">
             {t("signIn")}

@@ -33,7 +33,7 @@ describe("MobileNav", () => {
     expect(screen.getByRole("link", { name: "brands" })).toHaveAttribute("href", "/brands");
     expect(screen.getByRole("link", { name: "feed" })).toHaveAttribute("href", "/feed");
     expect(screen.getByRole("link", { name: "community" })).toHaveAttribute("href", "/community");
-    expect(screen.getByRole("link", { name: "my" })).toHaveAttribute("href", "/my");
+    expect(screen.queryByRole("link", { name: "my" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "chat" })).not.toBeInTheDocument();
   });
 

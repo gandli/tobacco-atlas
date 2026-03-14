@@ -13,6 +13,7 @@ export const primaryNavigationItems: NavigationItem[] = [
 export const secondaryNavigationItems: NavigationItem[] = [
   { key: "community", path: "/community" },
   { key: "chat", path: "/chat" },
+  { key: "changelog", path: "/changelog" },
 ];
 
 export const mobileNavigationItems: NavigationItem[] = [
@@ -20,7 +21,6 @@ export const mobileNavigationItems: NavigationItem[] = [
   { key: "brands", path: "/brands" },
   { key: "feed", path: "/feed" },
   { key: "community", path: "/community" },
-  { key: "my", path: "/my" },
 ];
 
 export function isPathActive(pathname: string, path: string) {

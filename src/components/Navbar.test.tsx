@@ -41,7 +41,8 @@ describe("Navbar", () => {
     expect(screen.getByText("feed").closest("a")).toHaveAttribute("href", "/feed");
     expect(screen.getByText("community").closest("a")).toHaveAttribute("href", "/community");
     expect(screen.getByText("chat").closest("a")).toHaveAttribute("href", "/chat");
-    expect(screen.getAllByText("my")[0].closest("a")).toHaveAttribute("href", "/my");
+    expect(screen.getByText("changelog").closest("a")).toHaveAttribute("href", "/changelog");
+    expect(screen.queryByText("my")).not.toBeInTheDocument();
     expect(screen.getByText("signIn").closest("a")).toHaveAttribute("href", "/login");
   });
 

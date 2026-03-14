@@ -20,6 +20,7 @@ vi.mock("react-i18next", () => ({
         "en-US": {
           "types.feature": "Feature",
           title: "Changelog",
+          subtitle: "A running timeline of product improvements, structure changes, and interface upgrades.",
           footer: "Thank you for using Chinese Cigarette Museum. We will continue to improve the product experience.",
         },
       };
@@ -46,6 +47,7 @@ describe("Changelog", () => {
     render(<Changelog />);
 
     expect(screen.getByText("Changelog")).toBeInTheDocument();
+    expect(screen.getByText("A running timeline of product improvements, structure changes, and interface upgrades.")).toBeInTheDocument();
     expect(screen.getAllByText("Feature")[0]).toBeInTheDocument();
     expect(screen.getByText("Added gallery support to brand detail pages")).toBeInTheDocument();
   });
