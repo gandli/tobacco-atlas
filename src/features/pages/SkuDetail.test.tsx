@@ -68,6 +68,8 @@ vi.mock("@/data/product-catalog", () => ({
     tobaccoType: "Flue-cured",
     packPrice: 32,
     cartonPrice: 320,
+    boxBarcode: "6901028001234",
+    cartonBarcode: "6901028005678",
     tar: "10 mg",
     nicotine: "1.0 mg",
     taste: 8.3,
@@ -119,9 +121,8 @@ describe("SkuDetail", () => {
 
     expect(screen.getByTestId("sku-box-barcode-row")).toHaveClass("museum-inline-panel");
     expect(screen.getByTestId("sku-carton-barcode-row")).toHaveClass("museum-inline-panel");
-    expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("rounded-2xl");
-    expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("border-border/60");
-    expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("rounded-2xl");
+    expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("museum-inline-panel");
+    expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("museum-inline-panel");
     expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("border-foreground/50");
     expect(screen.getByTestId("sku-thumbnail-button-1")).toHaveClass("border-border/60");
   });
