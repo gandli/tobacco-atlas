@@ -28,8 +28,11 @@ type FeedActivityItemProps = {
 
 export default function FeedActivityItem({ activity }: FeedActivityItemProps) {
   return (
-    <li className="group px-4 py-4 transition-colors hover:bg-secondary/30 md:px-5">
-      <div className="flex items-start gap-3">
+    <li className="px-3 py-2 md:px-4">
+      <div
+        data-testid={`feed-activity-${activity.id}`}
+        className="museum-inline-panel group flex items-start gap-3 px-4 py-4 transition-colors hover:bg-secondary/30 md:px-5"
+      >
         <OptimizedImage
           src={activity.image}
           alt={activity.title}

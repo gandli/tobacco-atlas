@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import BrandDetailPage from "@/app/brand/[pinyin]/page";
 
-vi.mock("@/legacy-pages/BrandDetail", () => ({
+vi.mock("@/features/pages/BrandDetail", () => ({
   default: ({ identifier }: { identifier: string }) => <div>brand detail {identifier}</div>,
 }));
 

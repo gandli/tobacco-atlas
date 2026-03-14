@@ -1,6 +1,6 @@
 "use client";
 
-import FeedPage from "@/legacy-pages/Feed";
+import FeedPage from "@/features/pages/Feed";
 
 export default function FeedRoute() {
   return <FeedPage />;

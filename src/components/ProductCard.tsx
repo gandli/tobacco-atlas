@@ -30,10 +30,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isLongProductName = productName.length > 26;
   const isVeryLongProductName = productName.length > 42;
   const overlayTitleClass = isVeryLongProductName
-    ? "text-[10px]"
+    ? "text-[11px]"
     : isLongProductName
       ? "text-[11px]"
-      : "text-[12px]";
+      : "text-[12px] md:text-[13px]";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
 
   const handleAction = (e: React.MouseEvent, action: string) => {
@@ -75,37 +75,42 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </span>
             )}
             <div
-              data-testid="product-card-overlay-title"
-              className={`${overlayTitleClass} text-foreground font-medium leading-snug font-sans line-clamp-4 break-words`}
+              data-testid="product-card-overlay-text"
+              className="min-h-0 flex flex-col justify-center"
             >
-              {productName}
+              <div
+                data-testid="product-card-overlay-title"
+                className={`${overlayTitleClass} text-foreground font-medium leading-normal font-sans line-clamp-2 break-words md:line-clamp-3`}
+              >
+                {productName}
+              </div>
+              <div
+                data-testid="product-card-overlay-brand"
+                className="mt-1 text-[10px] text-muted-foreground/80 font-sans leading-normal line-clamp-1 break-words md:line-clamp-2"
+              >
+                {product.brand}
+              </div>
             </div>
-            <div
-              data-testid="product-card-overlay-brand"
-              className="text-[10px] text-muted-foreground/80 font-sans leading-relaxed line-clamp-2 break-words"
-            >
-              {product.brand}
-            </div>
-            <div className="mt-1 flex items-center justify-between gap-3">
-              <span className="text-[16px] font-bold text-red-500 tabular-nums">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[15px] font-bold text-red-500 tabular-nums md:text-[16px]">
                 ¥{product.packPrice || product.price || 0}
               </span>
               <div className="flex items-center gap-1.5">
                 <button
                   aria-label="Add to favorites"
-                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-red-50 text-red-500 hover:bg-red-100"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-500 transition-all hover:bg-red-100 md:h-8 md:w-8"
                   onClick={(e) => handleAction(e, "favorite")}
                   type="button"
                 >
-                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="h-3.5 w-3.5 fill-current md:h-4 md:w-4" />
                 </button>
                 <button
                   aria-label="Mark as tried"
-                  className="w-8 h-8 flex items-center justify-center transition-all text-foreground/40 hover:text-foreground"
+                  className="flex h-7 w-7 items-center justify-center text-foreground/40 transition-all hover:text-foreground md:h-8 md:w-8"
                   onClick={(e) => handleAction(e, "tried")}
                   type="button"
                 >
-                  <CheckCircle className="w-4 h-4" />
+                  <CheckCircle className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import BrandDetailPage from "@/legacy-pages/BrandDetail";
+import BrandDetailPage from "@/features/pages/BrandDetail";
 
 type BrandDetailRouteProps = {
   params: Promise<{

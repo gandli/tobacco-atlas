@@ -41,5 +41,6 @@ describe("Community", () => {
     expect(screen.getByText("Sign up to appear on the leaderboard")).toBeInTheDocument();
     expect(screen.getByTestId("page-frame")).toBeInTheDocument();
     expect(screen.getByTestId("collection-control-bar")).toBeInTheDocument();
+    expect(screen.getByTestId("community-row-1")).toHaveClass("museum-inline-panel");
   });
 });

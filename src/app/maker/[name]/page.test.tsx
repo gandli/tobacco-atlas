@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import MakerDetailPage from "@/app/maker/[name]/page";
 
-vi.mock("@/legacy-pages/ManufacturerDetail", () => ({
+vi.mock("@/features/pages/ManufacturerDetail", () => ({
   default: ({ name }: { name: string }) => <div>maker detail {name}</div>,
 }));
 

@@ -105,7 +105,11 @@ const Chat = () => {
             <div className="border-t border-border/40 p-3 md:p-4">
               <div className="space-y-1">
                 {mockMessages.map((msg) => (
-                  <div key={msg.id} className="flex items-start gap-2.5 rounded-lg px-1 py-1.5 transition-colors hover:bg-secondary/30">
+                  <div
+                    key={msg.id}
+                    data-testid={`chat-message-${msg.id}`}
+                    className="museum-inline-panel flex items-start gap-2.5 px-3 py-2.5 transition-colors hover:bg-secondary/40"
+                  >
                     {msg.avatar ? (
                       <OptimizedImage
                         src={msg.avatar}

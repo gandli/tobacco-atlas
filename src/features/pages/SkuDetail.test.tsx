@@ -117,6 +117,8 @@ describe("SkuDetail", () => {
   it("uses the shared rounded-rectangle treatment for the thumbnail rail", () => {
     render(<SkuDetail id="3424" />);
 
+    expect(screen.getByTestId("sku-box-barcode-row")).toHaveClass("museum-inline-panel");
+    expect(screen.getByTestId("sku-carton-barcode-row")).toHaveClass("museum-inline-panel");
     expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("rounded-2xl");
     expect(screen.getByTestId("sku-thumbnail-rail")).toHaveClass("border-border/60");
     expect(screen.getByTestId("sku-thumbnail-button-0")).toHaveClass("rounded-2xl");

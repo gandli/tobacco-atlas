@@ -85,7 +85,7 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[10px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[11px]");
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
       "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
@@ -106,7 +106,8 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-4");
-    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-1");
+    expect(screen.getByTestId("product-card-overlay-text")).toHaveClass("min-h-0");
   });
 });

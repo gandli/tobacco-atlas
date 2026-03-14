@@ -1,4 +1,4 @@
-import ManufacturerDetailPage from "@/legacy-pages/ManufacturerDetail";
+import ManufacturerDetailPage from "@/features/pages/ManufacturerDetail";
 
 type ManufacturerDetailRouteProps = {
   params: Promise<{

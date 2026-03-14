@@ -84,7 +84,8 @@ const Community = () => {
                 {sorted.map((user, i) => (
                   <div
                     key={user.id}
-                    className="flex items-center gap-3 rounded-xl border border-border px-3 py-2.5 transition-colors cursor-pointer hover:bg-secondary/50 md:px-4 md:py-3"
+                    data-testid={`community-row-${user.id}`}
+                    className="museum-inline-panel flex items-center gap-3 px-3 py-2.5 transition-colors cursor-pointer hover:bg-secondary/50 md:px-4 md:py-3"
                   >
                     <span className="w-5 flex-shrink-0 text-right text-xs text-muted-foreground md:w-6 md:text-sm">
                       {i + 1}

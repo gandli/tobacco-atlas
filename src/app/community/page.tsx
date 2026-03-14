@@ -1,6 +1,6 @@
 "use client";
 
-import CommunityPage from "@/legacy-pages/Community";
+import CommunityPage from "@/features/pages/Community";
 
 export default function CommunityRoute() {
   return <CommunityPage />;

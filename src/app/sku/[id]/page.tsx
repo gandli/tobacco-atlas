@@ -1,4 +1,4 @@
-import SkuDetailPage from "@/legacy-pages/SkuDetail";
+import SkuDetailPage from "@/features/pages/SkuDetail";
 
 type SkuDetailRouteProps = {
   params: Promise<{

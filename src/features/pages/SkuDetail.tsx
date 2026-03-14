@@ -82,7 +82,7 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
       {allImages.length > 1 && (
         <div
           data-testid="sku-thumbnail-rail"
-          className="flex gap-2 overflow-x-auto rounded-2xl border border-border/60 bg-background/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.06)] [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="museum-inline-panel flex gap-2 overflow-x-auto p-2 [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {allImages.map((url, i) => (
             <button
@@ -90,7 +90,7 @@ const ProductImageGallery = ({ product }: { product: Product }) => {
               data-testid={`sku-thumbnail-button-${i}`}
               onClick={() => setCurrentIndex(i)}
               aria-label={t("sku.viewImage", { index: i + 1 })}
-              className={`flex-shrink-0 h-14 w-14 overflow-hidden rounded-2xl border bg-card/85 transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none ${
+              className={`museum-inline-panel flex-shrink-0 h-14 w-14 overflow-hidden bg-card/85 transition-colors focus-visible:ring-2 focus-visible:ring-ring outline-none ${
                 i === currentIndex
                   ? "border-foreground/50 shadow-[0_10px_24px_rgba(15,23,42,0.12)]"
                   : "border-border/60 hover:border-foreground/25"
@@ -438,21 +438,21 @@ const SkuDetail = ({ id: explicitId }: SkuDetailProps) => {
                     {t("sku.barcodes")}
                   </p>
                   {product.boxBarcode && (
-                    <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
+                    <div data-testid="sku-box-barcode-row" className="museum-inline-panel flex items-center gap-3 px-5 py-3 bg-secondary/20">
                       <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
                         {t("sku.box")}
                       </span>
-                      <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
+                      <span className="museum-inline-chip px-2 py-0.5 text-[12px] text-foreground/60 font-mono tracking-widest">
                         {product.boxBarcode}
                       </span>
                     </div>
                   )}
                   {product.cartonBarcode && (
-                    <div className="flex items-center gap-3 px-5 py-3 bg-secondary/20 rounded-xl border border-border/30">
+                    <div data-testid="sku-carton-barcode-row" className="museum-inline-panel flex items-center gap-3 px-5 py-3 bg-secondary/20">
                       <span className="text-[11px] text-muted-foreground/50 w-28 shrink-0 uppercase tracking-wider">
                         {t("sku.carton")}
                       </span>
-                      <span className="text-[12px] text-foreground/60 font-mono tracking-widest bg-background/50 px-2 py-0.5 rounded border border-border/20">
+                      <span className="museum-inline-chip px-2 py-0.5 text-[12px] text-foreground/60 font-mono tracking-widest">
                         {product.cartonBarcode}
                       </span>
                     </div>

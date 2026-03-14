@@ -97,5 +97,6 @@ describe("Feed", () => {
     expect(screen.getByText("Brand updated")).toBeInTheDocument();
     expect(screen.getByText("Product added")).toBeInTheDocument();
     expect(screen.getAllByText("Sign In").length).toBeGreaterThan(0);
+    expect(screen.getByTestId("feed-activity-1")).toHaveClass("museum-inline-panel");
   });
 });

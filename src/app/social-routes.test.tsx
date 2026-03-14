@@ -6,19 +6,19 @@ import ChangelogPage from "@/app/changelog/page";
 import CommunityPage from "@/app/community/page";
 import FeedPage from "@/app/feed/page";
 
-vi.mock("@/legacy-pages/Feed", () => ({
+vi.mock("@/features/pages/Feed", () => ({
   default: () => <div>feed route content</div>,
 }));
 
-vi.mock("@/legacy-pages/Chat", () => ({
+vi.mock("@/features/pages/Chat", () => ({
   default: () => <div>chat route content</div>,
 }));
 
-vi.mock("@/legacy-pages/Community", () => ({
+vi.mock("@/features/pages/Community", () => ({
   default: () => <div>community route content</div>,
 }));
 
-vi.mock("@/legacy-pages/Changelog", () => ({
+vi.mock("@/features/pages/Changelog", () => ({
   default: () => <div>changelog route content</div>,
 }));
 

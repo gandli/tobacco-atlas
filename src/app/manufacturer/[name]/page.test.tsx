@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import ManufacturerDetailPage from "@/app/manufacturer/[name]/page";
 
-vi.mock("@/legacy-pages/ManufacturerDetail", () => ({
+vi.mock("@/features/pages/ManufacturerDetail", () => ({
   default: ({ name }: { name: string }) => <div>manufacturer detail {name}</div>,
 }));
 
