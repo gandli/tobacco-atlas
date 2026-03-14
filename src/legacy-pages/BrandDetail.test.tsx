@@ -32,8 +32,11 @@ vi.mock("react-i18next", () => ({
 
 vi.mock("react-router-dom", () => ({
   useParams: () => ({ pinyin: "zhonghua" }),
-  Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
-    <a href={to} {...props}>
+}));
+
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...props}>
       {children}
     </a>
   ),
@@ -85,6 +88,12 @@ describe("BrandDetail", () => {
     expect(screen.getByText("Brands")).toBeInTheDocument();
     expect(screen.getByText("Collection")).toBeInTheDocument();
     expect(screen.getByText("Manufacturer")).toBeInTheDocument();
+    expect(screen.getByText("2 items")).toBeInTheDocument();
+  });
+
+  it("prefers the explicit pinyin prop when provided", () => {
+    render(<BrandDetail pinyin="huangshan" />);
+
     expect(screen.getByText("2 items")).toBeInTheDocument();
   });
 });

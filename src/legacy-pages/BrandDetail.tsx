@@ -1,5 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMemo } from "react";
+import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
@@ -11,9 +12,14 @@ import { getProductsByBrand } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
 
-const BrandDetail = () => {
+type BrandDetailProps = {
+  pinyin?: string;
+};
+
+const BrandDetail = ({ pinyin: explicitPinyin }: BrandDetailProps) => {
   const { t, i18n } = useTranslation("details");
-  const { pinyin } = useParams<{ pinyin: string }>();
+  const routeParams = useParams<{ pinyin: string }>();
+  const pinyin = explicitPinyin ?? routeParams.pinyin;
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
 
   const brand = useMemo(() => getBrandByPinyin(pinyin || ""), [pinyin]);
@@ -34,7 +40,7 @@ const BrandDetail = () => {
             </h1>
             <p className="text-muted-foreground mb-4">{t("notFound.brandDescription")}</p>
             <Link
-              to="/brands"
+              href="/brands"
               className="text-sm text-foreground underline focus-visible:ring-2 focus-visible:ring-ring outline-none rounded"
             >
               ← {t("notFound.backToBrands")}
@@ -70,7 +76,7 @@ const BrandDetail = () => {
             aria-label="Breadcrumb"
           >
             <Link
-              to="/brands"
+              href="/brands"
               className="hover:text-foreground transition-colors flex items-center gap-1 focus-visible:underline outline-none"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
