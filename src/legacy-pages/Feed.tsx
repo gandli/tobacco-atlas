@@ -1,17 +1,37 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CollectionControlBar from "@/components/catalog/CollectionControlBar";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
 import CollectionPageHeader from "@/components/catalog/CollectionPageHeader";
 import CollectionPageSurface from "@/components/catalog/CollectionPageSurface";
 import FeedActivityList from "@/components/feed/FeedActivityList";
+import type { FeedEntryKind } from "@/components/feed/FeedActivityItem";
 import { feedActivities } from "@/data/feed-activity";
 
 const Feed = () => {
   const { t } = useTranslation("social");
+  const [activeFilter, setActiveFilter] = useState<"all" | FeedEntryKind>("all");
+
+  const filteredActivities = useMemo(() => {
+    if (activeFilter === "all") {
+      return feedActivities;
+    }
+
+    return feedActivities.filter((activity) => activity.kind === activeFilter);
+  }, [activeFilter]);
+
+  const filters = [
+    { key: "all", label: t("feed.all") },
+    { key: "maker", label: t("feed.makers") },
+    { key: "brand", label: t("feed.brands") },
+    { key: "product", label: t("feed.products") },
+  ] as const;
 
   return (
     <div className="min-h-screen bg-background">
@@ -34,13 +54,20 @@ const Feed = () => {
             <div className="p-3 md:p-4">
               <CollectionControlBar
                 leading={
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-full border border-border/60 bg-background/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">
-                      {t("feed.activityLabel")}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {feedActivities.length}
-                    </span>
+                  <div className="flex gap-1 overflow-x-auto no-scrollbar">
+                    {filters.map((filter) => (
+                      <button
+                        key={filter.key}
+                        onClick={() => setActiveFilter(filter.key)}
+                        className={`rounded-full px-3 py-1.5 text-xs transition-colors whitespace-nowrap md:px-4 md:py-2 md:text-sm ${
+                          activeFilter === filter.key
+                            ? "bg-foreground text-primary-foreground"
+                            : "bg-background/80 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        {filter.label}
+                      </button>
+                    ))}
                   </div>
                 }
                 trailing={
@@ -48,10 +75,18 @@ const Feed = () => {
                     {t("feed.streamLabel")}
                   </span>
                 }
+                summary={
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/70">
+                      {t("feed.summaryLabel")}
+                    </span>
+                    <span>{filteredActivities.length}</span>
+                  </div>
+                }
               />
             </div>
             <FeedActivityList
-              activities={feedActivities}
+              activities={filteredActivities}
               sectionLabel={t("feed.activityLabel")}
             />
           </CollectionPageSurface>
