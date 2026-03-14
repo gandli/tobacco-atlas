@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { Star, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { HomeProductSummary } from "@/data/home-catalog";
@@ -16,6 +17,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { i18n } = useTranslation();
   const { showSuccess } = useToast();
+  const titleTextRef = useRef<HTMLSpanElement | null>(null);
   const regionLabel = product.region ? regionLabels[product.region] : null;
   const productId = product.id;
   const isEnglish = isEnglishLanguage(i18n.resolvedLanguage);
@@ -43,12 +45,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isVeryLongRegionLabel = (regionDisplayLabel?.length || 0) > 24;
   const overlayCharLoad =
     productName.length + product.brand.length + (regionDisplayLabel?.length || 0);
+  const prefersExpandedOverlay =
+    productName.length > 16 || overlayCharLoad > 32 || product.brand.length > 14;
+  const [hasWrappedTitle, setHasWrappedTitle] = useState(prefersExpandedOverlay);
   const useDenseOverlay =
     isExtremeProductName ||
     overlayCharLoad > 58 ||
     productName.length > 34 ||
     product.brand.length > 24 ||
     isVeryLongRegionLabel;
+  const useExpandedOverlay = !useDenseOverlay && hasWrappedTitle;
   const useCompactOverlay =
     isExtremeProductName ||
     isExtremeBrandName ||
@@ -56,31 +62,32 @@ const ProductCard = ({ product }: ProductCardProps) => {
     overlayCharLoad > 42 ||
     productName.length > 24 ||
     product.brand.length > 18;
-  const overlayTitleClass = useDenseOverlay
-    ? "text-[8px] md:text-[9px] leading-[1.2]"
-    : isExtremeProductName
-      ? "text-[9px] leading-[1.18]"
-    : isVeryLongProductName
-      ? "text-[10px] leading-[1.18]"
-      : isLongProductName
-        ? "text-[11px] leading-[1.2]"
-        : isMediumProductName
-          ? "text-[11px] md:text-[12px] leading-[1.2]"
-        : "text-[12px] md:text-[13px] leading-[1.22]";
-  const overlayTitleClampClass = useDenseOverlay
-    ? "line-clamp-3"
-    : useCompactOverlay
-      ? "line-clamp-2"
-      : "line-clamp-2";
-  const overlayBrandClass = useDenseOverlay
-    ? "text-[7px] md:text-[8px] line-clamp-2"
+  const overlayTitleClass = "text-[11px] md:text-[12px] leading-[1.18]";
+  const overlayShellClass = useDenseOverlay || useExpandedOverlay
+    ? "sku-card-overlay sku-card-overlay-expanded"
+    : "sku-card-overlay";
+  const overlayTextLayoutClass = useDenseOverlay
+    ? "grid min-h-0 flex-1 grid-rows-[48px_18px] gap-1"
+    : useExpandedOverlay
+      ? "grid min-h-0 flex-1 grid-rows-[46px_18px] gap-1.5"
+      : "grid min-h-0 flex-1 grid-rows-[30px_18px] gap-1.5";
+  const overlayTitleBoxClass = useDenseOverlay
+    ? "h-12 overflow-hidden"
+    : useExpandedOverlay
+      ? "h-[46px] overflow-hidden"
+      : "h-[30px] overflow-hidden";
+  const overlayBrandBoxClass = useDenseOverlay
+    ? "h-[18px] overflow-hidden"
+    : "h-[18px] overflow-hidden";
+  const overlayBrandTextClass = useDenseOverlay
+    ? "text-[7px] md:text-[8px] leading-[1.24]"
     : isExtremeBrandName
-    ? "text-[8px] md:text-[9px] line-clamp-2"
-    : useCompactOverlay
-      ? "text-[8px] md:text-[9px] line-clamp-2"
-      : isLongProductName
-      ? "text-[9px] md:text-[10px] line-clamp-1"
-      : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} line-clamp-1`;
+      ? "text-[8px] md:text-[9px] leading-[1.22]"
+      : useCompactOverlay
+        ? "text-[8px] md:text-[9px] leading-[1.22]"
+        : isLongProductName
+          ? "text-[9px] md:text-[10px] leading-[1.2]"
+          : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} leading-[1.2]`;
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
   const overlayRegionClass = useDenseOverlay
     ? "text-[7px] px-1 py-[2px] max-w-full"
@@ -113,6 +120,41 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? "h-3 w-3 md:h-3.5 md:w-3.5"
     : "h-3.5 w-3.5 md:h-4 md:w-4";
 
+  useEffect(() => {
+    const element = titleTextRef.current;
+    if (!element || typeof window === "undefined") {
+      return;
+    }
+
+    const measureWrap = () => {
+      const computedStyle = window.getComputedStyle(element);
+      const lineHeight = Number.parseFloat(computedStyle.lineHeight);
+      const fallbackLineHeight = Number.isFinite(lineHeight) ? lineHeight : 18;
+      const contentHeight = Math.max(element.scrollHeight, element.getBoundingClientRect().height);
+      if (contentHeight === 0) {
+        setHasWrappedTitle(prefersExpandedOverlay);
+        return;
+      }
+      setHasWrappedTitle(contentHeight > fallbackLineHeight * 1.35);
+    };
+
+    measureWrap();
+
+    if (typeof ResizeObserver === "undefined") {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureWrap();
+    });
+
+    resizeObserver.observe(element);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [productName, prefersExpandedOverlay]);
+
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -132,11 +174,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       href={`/sku/${productId}`}
       data-testid="product-card-root"
       data-card-shape="wide-compact"
-      className="group block cursor-pointer outline-none rounded-[24px] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="group block h-full cursor-pointer outline-none rounded-[24px] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       aria-label={`${product.brand} - ${productName}`}
     >
-      <div className="relative overflow-hidden rounded-[24px] border border-[#ece6de] bg-[#fdfcf9] shadow-[0_14px_30px_rgba(15,23,42,0.08)] transition-all duration-500 group-hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)]">
-        <div className="relative aspect-[11/12] flex items-start justify-center overflow-hidden bg-gradient-to-b from-[#f8f7f3] to-[#f4f1ea] px-4.5 pt-2.5">
+      <div className="relative grid h-full aspect-[11/16] overflow-hidden rounded-[24px] border border-[#ece6de] bg-[#fdfcf9] shadow-[0_14px_30px_rgba(15,23,42,0.08)] transition-all duration-500 group-hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)] [grid-template-rows:minmax(0,1fr)_88px] md:[grid-template-rows:minmax(0,1fr)_92px]">
+        <div className="relative flex min-h-0 items-start justify-center overflow-hidden bg-gradient-to-b from-[#f8f7f3] to-[#f4f1ea] px-4.5 pt-2.5">
           <OptimizedImage
             src={product.image}
             alt={`${product.brand}（${productName}）`}
@@ -148,8 +190,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           />
         </div>
 
-        <div className="border-t border-[#efebe5] bg-[#fcfbf8] px-3.5 pb-3 pt-2.5">
-          <div className="flex flex-col items-start gap-1">
+        <div className="flex min-h-[88px] flex-col justify-center border-t border-[#efebe5] bg-[#fcfbf8] px-3.5 py-2.5 md:min-h-[92px]">
+          <div className="flex flex-col items-start gap-1 overflow-hidden">
             <span
               className="text-[14px] font-semibold text-[#22211f] leading-[1.1] line-clamp-2 font-serif"
               title={productName}
@@ -169,7 +211,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div
           data-testid="product-card-overlay-shell"
           data-overlay-anchor="card-bottom-half"
-          className="sku-card-overlay"
+          className={overlayShellClass}
         >
           <div
             data-testid="product-card-overlay-content"
@@ -191,21 +233,28 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
             <div
               data-testid="product-card-overlay-text"
-              className={`flex min-h-0 flex-1 flex-col ${useDenseOverlay ? "gap-1" : useCompactOverlay ? "gap-1.5" : "gap-2"}`}
+              className={overlayTextLayoutClass}
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} ${overlayTitleClampClass} pb-px text-[#666661] font-medium font-sans break-words`}
+                className={`${overlayTitleBoxClass} text-[#666661] font-medium font-sans subpixel-antialiased`}
                 title={productName}
               >
-                {productName}
+                <span
+                  ref={titleTextRef}
+                  className={`${overlayTitleClass} block break-words`}
+                >
+                  {productName}
+                </span>
               </div>
               <div
                 data-testid="product-card-overlay-brand"
-                className={`${overlayBrandClass} text-[#b3ada7] font-sans leading-tight break-words`}
+                className={`${overlayBrandBoxClass} text-[#b3ada7] font-sans subpixel-antialiased`}
                 title={product.brand}
               >
-                {product.brand}
+                <span className={`${overlayBrandTextClass} block break-words`}>
+                  {product.brand}
+                </span>
               </div>
             </div>
             <div className={`mt-auto flex shrink-0 items-center justify-between gap-3 ${useDenseOverlay ? "pt-0" : useCompactOverlay ? "pt-0.5" : "pt-1"}`}>

@@ -120,9 +120,9 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={mediumLengthEnglishProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass(
-      "text-[11px]",
-      "md:text-[12px]",
+    // 英文名称长度 18 > 16，应该使用 expanded overlay
+    expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
+      "sku-card-overlay-expanded",
     );
   });
 
@@ -132,10 +132,15 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[8px]");
+    expect(screen.getByTestId("product-card-overlay-title").firstElementChild).toHaveClass(
+      "text-[11px]",
+    );
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
       "dense",
+    );
+    expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
+      "sku-card-overlay-expanded",
     );
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
@@ -157,13 +162,18 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-3");
+    const titleWrapper = screen.getByTestId("product-card-overlay-title");
+    expect(titleWrapper).toHaveClass("h-12", "overflow-hidden");
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-density",
       "dense",
     );
-    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
-    expect(screen.getByTestId("product-card-overlay-text")).toHaveClass("min-h-0");
+    const brandWrapper = screen.getByTestId("product-card-overlay-brand");
+    expect(brandWrapper).toHaveClass("h-[18px]", "overflow-hidden");
+    expect(screen.getByTestId("product-card-overlay-text")).toHaveClass(
+      "grid",
+      "grid-rows-[48px_18px]",
+    );
   });
 
   it("anchors the hover overlay to the lower half of the card", () => {
@@ -173,6 +183,7 @@ describe("ProductCard", () => {
       "data-card-shape",
       "wide-compact",
     );
+    expect(screen.getByTestId("product-card-root")).toHaveClass("h-full");
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveAttribute(
       "data-overlay-anchor",
       "card-bottom-half",
@@ -181,6 +192,13 @@ describe("ProductCard", () => {
       "data-overlay-variant",
       "floating-sheet",
     );
+  });
+
+  it("keeps a fixed card frame regardless of image or copy length", () => {
+    const { container } = render(<ProductCard product={mockProduct} />);
+
+    expect(container.querySelector('[class*="aspect-[11/16]"]')).toBeInTheDocument();
+    expect(container.querySelector('[class*="min-h-[88px]"]')).toBeInTheDocument();
   });
 
   it("shrinks overlay typography for extreme copy lengths so all key info still fits", () => {
@@ -193,8 +211,12 @@ describe("ProductCard", () => {
       "data-overlay-density",
       "dense",
     );
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[8px]");
-    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-overlay-title").firstElementChild).toHaveClass(
+      "text-[11px]",
+    );
+    expect(screen.getByTestId("product-card-overlay-brand").firstElementChild).toHaveClass(
+      "text-[7px]",
+    );
     expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[7px]");
   });
 
@@ -208,7 +230,11 @@ describe("ProductCard", () => {
       "data-overlay-density",
       "compact",
     );
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("h-[46px]");
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("h-[18px]");
+    expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
+      "sku-card-overlay-expanded",
+    );
   });
 
   it("pins the price row to the bottom so bilingual copy gets the remaining vertical space", () => {
