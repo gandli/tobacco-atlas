@@ -9,9 +9,19 @@ const mockI18n = {
   resolvedLanguage: "zh-CN",
 };
 
+const mockShowSuccess = vi.fn();
+
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     i18n: mockI18n,
+  }),
+}));
+
+vi.mock("@/components/ToastProvider", () => ({
+  useToast: () => ({
+    showSuccess: mockShowSuccess,
+    showError: vi.fn(),
+    showToast: vi.fn(),
   }),
 }));
 
