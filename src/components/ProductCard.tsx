@@ -32,11 +32,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isLongProductName = productName.length > 26;
   const isVeryLongProductName = productName.length > 42;
   const overlayTitleClass = isVeryLongProductName
-    ? "text-[11px]"
+    ? "text-[10px] leading-tight"
     : isLongProductName
-      ? "text-[11px]"
-      : "text-[12px] md:text-[13px]";
+      ? "text-[11px] leading-tight"
+      : "text-[12px] md:text-[13px] leading-normal";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
+  const isLongBrandName = product.brand.length > 15;
 
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
@@ -85,17 +86,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
             <div
               data-testid="product-card-overlay-text"
-              className="min-h-0 flex flex-col justify-center"
+              className="flex flex-col gap-1 min-h-0"
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} text-foreground font-medium leading-normal font-sans line-clamp-2 break-words md:line-clamp-3`}
+                className={`${overlayTitleClass} text-foreground font-medium font-sans ${isVeryLongProductName ? 'line-clamp-2' : 'line-clamp-2 md:line-clamp-3'} break-words`}
+                title={productName}
               >
                 {productName}
               </div>
               <div
                 data-testid="product-card-overlay-brand"
-                className="mt-1 text-[10px] text-muted-foreground/80 font-sans leading-normal line-clamp-1 break-words md:line-clamp-2"
+                className={`${isLongBrandName ? 'text-[9px] md:text-[10px]' : 'text-[10px]'} text-muted-foreground/80 font-sans leading-tight line-clamp-1 break-words`}
+                title={product.brand}
               >
                 {product.brand}
               </div>

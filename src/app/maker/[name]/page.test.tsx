@@ -10,7 +10,7 @@ vi.mock("@/data/maker-catalog", () => ({
 describe("Maker detail route", () => {
   it("passes the dynamic name param into the maker detail page", () => {
     const page = MakerDetailPage({
-      params: { name: "Anhui%20Tobacco" } as any,
+      params: { name: "Anhui%20Tobacco" } as Parameters<typeof MakerDetailPage>[0]["params"],
     });
 
     render(page);

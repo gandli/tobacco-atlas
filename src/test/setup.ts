@@ -7,8 +7,10 @@ vi.mock("react", async (importOriginal) => {
   const actual = await importOriginal<typeof import("react")>();
   return {
     ...actual,
-    use: actual.use || ((promise: any) => {
-      if (promise && promise._mockResolvedValue) return promise._mockResolvedValue;
+    use: actual.use || ((promise: unknown) => {
+      if (promise && (promise as { _mockResolvedValue?: unknown })._mockResolvedValue) {
+        return (promise as { _mockResolvedValue: unknown })._mockResolvedValue;
+      }
       return promise;
     }),
   };

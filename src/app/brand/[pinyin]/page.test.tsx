@@ -15,7 +15,7 @@ vi.mock("@/data/region-labels", () => ({
 describe("Brand detail route", () => {
   it("passes the dynamic pinyin param into the brand detail page", () => {
     const page = BrandDetailPage({
-      params: { pinyin: "huangshan" } as any,
+      params: { pinyin: "huangshan" } as Parameters<typeof BrandDetailPage>[0]["params"],
     });
 
     render(page);
@@ -25,7 +25,7 @@ describe("Brand detail route", () => {
 
   it("passes numeric brand ids through the same dynamic route", () => {
     const page = BrandDetailPage({
-      params: { pinyin: "23" } as any,
+      params: { pinyin: "23" } as Parameters<typeof BrandDetailPage>[0]["params"],
     });
 
     render(page);
