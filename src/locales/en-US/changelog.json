@@ -7,5 +7,30 @@
     "improvement": "Improvement",
     "breaking": "Breaking",
     "docs": "Docs"
+  },
+  "entries": {
+    "v1_2_0": {
+      "featureGallery": "Added gallery support to brand detail pages",
+      "featureFavorites": "Added brand and SKU favorites",
+      "improveNav": "Improved the mobile navigation experience",
+      "fixImageFallback": "Fixed broken-image placeholder handling",
+      "fixPagination": "Fixed incorrect pagination in search results"
+    },
+    "v1_1_0": {
+      "featureCommunity": "Added community discussions",
+      "featureChat": "Added the real-time chat room",
+      "improveBrandList": "Refactored the brand list page for faster loading",
+      "improveLazyLoad": "Improved the image lazy-loading strategy",
+      "fixLoginState": "Fixed login state persistence issues",
+      "docsApi": "Updated the API documentation"
+    },
+    "v1_0_0": {
+      "featureLaunch": "Initial release of the brand database",
+      "featureSearch": "Added brand search and filtering",
+      "featureBrandDetail": "Added brand detail pages",
+      "featureSku": "Added SKU detail views",
+      "featureManufacturer": "Added manufacturer information pages",
+      "improveResponsive": "Added responsive support for mobile devices"
+    }
   }
 }

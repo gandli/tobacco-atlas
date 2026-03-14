@@ -31,5 +31,11 @@
   "language": {
     "zh": "中文",
     "en": "English"
+  },
+  "switchLanguage": "Switch language",
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you requested does not exist or has moved.",
+    "backHome": "Return home"
   }
 }

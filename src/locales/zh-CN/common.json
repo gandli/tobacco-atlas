@@ -31,5 +31,11 @@
   "language": {
     "zh": "中文",
     "en": "English"
+  },
+  "switchLanguage": "切换语言",
+  "notFound": {
+    "title": "页面不存在",
+    "description": "抱歉，你访问的页面不存在或已被移动。",
+    "backHome": "返回首页"
   }
 }

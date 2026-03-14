@@ -16,5 +16,10 @@
   "date": "日期",
   "actions": "操作",
   "approve": "批准",
-  "reject": "拒绝"
+  "reject": "拒绝",
+  "submissionTypes": {
+    "brand": "品牌",
+    "product": "产品",
+    "manufacturer": "制造商"
+  }
 }

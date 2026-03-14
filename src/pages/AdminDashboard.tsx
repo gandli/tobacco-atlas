@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 const mockSubmissions = [
   {
     id: 1,
-    type: "Brand",
+    type: "brand",
     name: "Marlboro",
     region: "United States",
     description: "Popular American cigarette brand",
@@ -22,7 +22,7 @@ const mockSubmissions = [
   },
   {
     id: 2,
-    type: "Product",
+    type: "product",
     name: "Marlboro Red",
     brand: "Marlboro",
     category: "Cigarettes",
@@ -33,7 +33,7 @@ const mockSubmissions = [
   },
   {
     id: 3,
-    type: "Manufacturer",
+    type: "manufacturer",
     name: "Philip Morris International",
     country: "United States",
     website: "https://www.pmi.com",
@@ -124,7 +124,7 @@ const AdminDashboard = () => {
                         {pendingSubmissions.map((submission) => (
                           <TableRow key={submission.id}>
                             <TableCell>
-                              <Badge variant="secondary">{submission.type}</Badge>
+                              <Badge variant="secondary">{t(`submissionTypes.${submission.type}`)}</Badge>
                             </TableCell>
                             <TableCell>{submission.name}</TableCell>
                             <TableCell>{submission.email}</TableCell>
@@ -170,7 +170,7 @@ const AdminDashboard = () => {
                         {approvedSubmissions.map((submission) => (
                           <TableRow key={submission.id}>
                             <TableCell>
-                              <Badge variant="secondary">{submission.type}</Badge>
+                              <Badge variant="secondary">{t(`submissionTypes.${submission.type}`)}</Badge>
                             </TableCell>
                             <TableCell>{submission.name}</TableCell>
                             <TableCell>{submission.email}</TableCell>
@@ -203,7 +203,7 @@ const AdminDashboard = () => {
                         {rejectedSubmissions.map((submission) => (
                           <TableRow key={submission.id}>
                             <TableCell>
-                              <Badge variant="secondary">{submission.type}</Badge>
+                              <Badge variant="secondary">{t(`submissionTypes.${submission.type}`)}</Badge>
                             </TableCell>
                             <TableCell>{submission.name}</TableCell>
                             <TableCell>{submission.email}</TableCell>

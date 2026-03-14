@@ -7,5 +7,30 @@
     "improvement": "优化",
     "breaking": "破坏性变更",
     "docs": "文档"
+  },
+  "entries": {
+    "v1_2_0": {
+      "featureGallery": "新增品牌详情页面的图片画廊功能",
+      "featureFavorites": "支持用户收藏品牌和 SKU",
+      "improveNav": "优化移动端导航体验",
+      "fixImageFallback": "修复图片加载失败时的占位显示问题",
+      "fixPagination": "修复搜索结果分页不正确的问题"
+    },
+    "v1_1_0": {
+      "featureCommunity": "新增社区讨论功能",
+      "featureChat": "新增实时聊天室",
+      "improveBrandList": "重构品牌列表页面，提升加载速度",
+      "improveLazyLoad": "优化图片懒加载策略",
+      "fixLoginState": "修复用户登录状态丢失的问题",
+      "docsApi": "更新 API 文档"
+    },
+    "v1_0_0": {
+      "featureLaunch": "品牌数据库首次发布",
+      "featureSearch": "支持品牌搜索和筛选",
+      "featureBrandDetail": "品牌详情页面展示",
+      "featureSku": "SKU 信息展示",
+      "featureManufacturer": "生产厂家信息页面",
+      "improveResponsive": "响应式设计，支持移动端访问"
+    }
   }
 }

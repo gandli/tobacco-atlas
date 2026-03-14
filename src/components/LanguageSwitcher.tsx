@@ -16,7 +16,7 @@ const languages = [
 ];
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation("common");
 
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
@@ -32,10 +32,10 @@ export function LanguageSwitcher() {
           variant="ghost"
           size="icon"
           className="h-8 w-8"
-          aria-label="Switch language"
+          aria-label={t("switchLanguage")}
         >
           <Globe className="h-4 w-4" />
-          <span className="sr-only">Switch language</span>
+          <span className="sr-only">{t("switchLanguage")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
