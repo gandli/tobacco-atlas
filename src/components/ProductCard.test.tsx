@@ -50,6 +50,15 @@ const longNameProduct: Product = {
   nameEn: "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
 };
 
+const extremeLongCopyProduct: Product = {
+  ...mockProduct,
+  id: 789,
+  brand: "Shanghai Tobacco Group Limited Reserve Collection International Edition",
+  name: "黄鹤楼漫天游九天典藏超长命名礼盒版",
+  nameEn:
+    "Huanghelou Mantianyou Jiutian Collector Edition Ultra Long Presentation Pack",
+};
+
 describe("ProductCard", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -86,7 +95,7 @@ describe("ProductCard", () => {
     render(<ProductCard product={mockProduct} />);
 
     expect(screen.getAllByText("Soft Zhonghua")).toHaveLength(2);
-    expect(screen.getByText("Mainland")).toBeInTheDocument();
+    expect(screen.getByText("大陆 · Mainland")).toBeInTheDocument();
   });
 
   it("uses a more compact title treatment for long names while preserving the full label", () => {
@@ -95,11 +104,10 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={longNameProduct} />);
 
-    // 名称长度 > 42，使用 text-[10px]
     expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[10px]");
     expect(screen.getByTestId("product-card-footer-name")).toHaveAttribute(
       "title",
-      "Zhonghua Collector's Reserve Limited Edition Slim Cigarette",
+      "中华",
     );
     expect(screen.getByTestId("product-card-footer-name")).toHaveClass("truncate");
   });
@@ -118,7 +126,43 @@ describe("ProductCard", () => {
     );
 
     expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("line-clamp-2");
-    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-1");
+    expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
+      "data-overlay-density",
+      "compact",
+    );
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
     expect(screen.getByTestId("product-card-overlay-text")).toHaveClass("min-h-0");
+  });
+
+  it("anchors the hover overlay to the lower half of the card", () => {
+    render(<ProductCard product={mockProduct} />);
+
+    expect(screen.getByTestId("product-card-root")).toHaveAttribute(
+      "data-card-shape",
+      "wide-compact",
+    );
+    expect(screen.getByTestId("product-card-overlay-shell")).toHaveAttribute(
+      "data-overlay-anchor",
+      "card-bottom-half",
+    );
+    expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
+      "data-overlay-variant",
+      "floating-sheet",
+    );
+  });
+
+  it("shrinks overlay typography for extreme copy lengths so all key info still fits", () => {
+    mockI18n.language = "en-US";
+    mockI18n.resolvedLanguage = "en-US";
+
+    render(<ProductCard product={extremeLongCopyProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
+      "data-overlay-density",
+      "compact",
+    );
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("text-[9px]");
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("line-clamp-2");
+    expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[8px]");
   });
 });

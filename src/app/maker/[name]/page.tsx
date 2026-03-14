@@ -5,8 +5,7 @@ import { useTranslation } from "react-i18next";
 import MobileNav from "@/components/MobileNav";
 import Navbar from "@/components/Navbar";
 import OptimizedImage from "@/components/OptimizedImage";
-import ProductCard from "@/components/ProductCard";
-import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import ProductGrid from "@/components/ProductGrid";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -110,11 +109,11 @@ function ManufacturerDetailContent({ name: explicitName }: ManufacturerDetailCon
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 md:gap-8">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <ProductGrid
+              products={products}
+              sectionId="maker-products"
+              className="px-0 pb-0 pt-0 max-w-none"
+            />
           </section>
         </div>
       </main>

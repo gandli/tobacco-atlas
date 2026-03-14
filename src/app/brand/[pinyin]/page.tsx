@@ -7,8 +7,7 @@ import { useTranslation } from "react-i18next";
 import MobileNav from "@/components/MobileNav";
 import Navbar from "@/components/Navbar";
 import OptimizedImage from "@/components/OptimizedImage";
-import ProductCard from "@/components/ProductCard";
-import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
+import ProductGrid from "@/components/ProductGrid";
 import { getBrandById, getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductsByBrand } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
@@ -188,11 +187,11 @@ function BrandDetailContent({
           </div>
 
           {brandProducts.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 md:gap-8">
-              {brandProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <ProductGrid
+              products={brandProducts}
+              sectionId="brand-collection"
+              className="px-0 pb-0 pt-0 max-w-none"
+            />
           ) : (
             <div className="text-center py-20 bg-secondary/20 rounded-3xl border border-dashed border-border">
               <p className="text-muted-foreground">{t("brand.empty")}</p>

@@ -97,4 +97,13 @@ describe("ProductGrid", () => {
     const grid = container.querySelector('[class*="grid-cols"]');
     expect(grid).toBeInTheDocument();
   });
+
+  it("should use the shared product grid sizing across contexts", () => {
+    render(<ProductGrid products={mockProducts} />);
+
+    expect(screen.getByTestId("product-grid")).toHaveClass("md:grid-cols-5");
+    expect(screen.getByTestId("product-grid")).toHaveClass("lg:grid-cols-6");
+    expect(screen.getByTestId("product-grid")).toHaveClass("xl:grid-cols-7");
+    expect(screen.getByTestId("product-grid")).toHaveClass("2xl:grid-cols-8");
+  });
 });

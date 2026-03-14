@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { HomeProductSummary } from "@/data/home-catalog";
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid, { productGridLayoutClassName } from "@/components/ProductGrid";
 import ProductCardSkeleton from "@/components/skeletons/ProductCardSkeleton";
 
 interface HomeProductStreamProps {
@@ -68,7 +68,7 @@ export default function HomeProductStream({
             {isAppending ? t("loadingMore") : t("loadMoreHint")}
           </div>
           {isAppending ? (
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 md:gap-8">
+            <div className={productGridLayoutClassName}>
               {Array.from({ length: Math.min(batchSize, products.length - visibleCount) }).map(
                 (_, index) => (
                   <ProductCardSkeleton key={index} index={index} />

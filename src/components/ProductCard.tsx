@@ -29,15 +29,44 @@ const ProductCard = ({ product }: ProductCardProps) => {
       ? regionLabel.en
       : regionLabel.zh
     : null;
+  const bilingualRegionLabel = regionLabel
+    ? `${regionLabel.zh} · ${regionLabel.en}`
+    : null;
+  const regionDisplayLabel = bilingualRegionLabel || localizedRegionLabel;
+  const isLongBrandName = product.brand.length > 15;
   const isLongProductName = productName.length > 26;
   const isVeryLongProductName = productName.length > 42;
-  const overlayTitleClass = isVeryLongProductName
-    ? "text-[10px] leading-tight"
+  const isExtremeProductName = productName.length > 62;
+  const isExtremeBrandName = product.brand.length > 34;
+  const isLongRegionLabel = (regionDisplayLabel?.length || 0) > 18;
+  const useCompactOverlay = isExtremeProductName || isExtremeBrandName || isLongRegionLabel;
+  const overlayTitleClass = isExtremeProductName
+    ? "text-[9px] leading-snug"
+    : isVeryLongProductName
+      ? "text-[10px] leading-snug"
+      : isLongProductName
+        ? "text-[11px] leading-snug"
+        : "text-[12px] md:text-[13px] leading-snug";
+  const overlayBrandClass = isExtremeBrandName
+    ? "text-[8px] md:text-[9px] line-clamp-2"
     : isLongProductName
-      ? "text-[11px] leading-tight"
-      : "text-[12px] md:text-[13px] leading-normal";
+      ? "text-[9px] md:text-[10px] line-clamp-1"
+      : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} line-clamp-1`;
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
-  const isLongBrandName = product.brand.length > 15;
+  const overlayRegionClass = useCompactOverlay ? "text-[8px] px-1.5 py-0.5" : "";
+  const overlayContentDensity = useCompactOverlay ? "compact" : "default";
+  const overlayContentClass = useCompactOverlay
+    ? "sku-card-overlay-content sku-card-overlay-content-compact"
+    : "sku-card-overlay-content";
+  const overlayPriceClass = useCompactOverlay
+    ? "text-[13px] md:text-[14px]"
+    : "text-[14px] md:text-[15px]";
+  const overlayActionButtonClass = useCompactOverlay
+    ? "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press"
+    : "flex h-6 w-6 items-center justify-center rounded-full transition-all active:scale-95 md:h-7 md:w-7 animate-button-press";
+  const overlayActionIconClass = useCompactOverlay
+    ? "h-3 w-3 md:h-3.5 md:w-3.5"
+    : "h-3.5 w-3.5 md:h-4 md:w-4";
 
   const handleAction = (e: React.MouseEvent, action: string) => {
     e.preventDefault();
@@ -56,94 +85,109 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       href={`/sku/${productId}`}
-      className="flex flex-col gap-3 cursor-pointer group outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      data-testid="product-card-root"
+      data-card-shape="wide-compact"
+      className="group block cursor-pointer outline-none rounded-[24px] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       aria-label={`${product.brand} - ${productName}`}
     >
-      <div className="relative w-full aspect-[4/5] flex items-center justify-center p-4 bg-secondary/30 rounded-xl overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
-        <OptimizedImage
-          src={product.image}
-          alt={`${product.brand}（${productName}）`}
-          width={400}
-          height={500}
-          className="max-h-full max-w-full object-contain group-hover:scale-105 group-hover:blur-[1px] transition-all duration-700 ease-out"
-          loading="lazy"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
-        />
+      <div className="relative overflow-hidden rounded-[24px] border border-[#ece6de] bg-[#fdfcf9] shadow-[0_14px_30px_rgba(15,23,42,0.08)] transition-all duration-500 group-hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)]">
+        <div className="relative aspect-[11/12] flex items-start justify-center overflow-hidden bg-gradient-to-b from-[#f8f7f3] to-[#f4f1ea] px-4.5 pt-2.5">
+          <OptimizedImage
+            src={product.image}
+            alt={`${product.brand}（${productName}）`}
+            width={400}
+            height={500}
+            className="h-full w-auto max-w-[80%] object-contain object-top transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+            loading="lazy"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
+          />
+        </div>
 
-        {/* Hover Overlay */}
-        <div className="sku-card-overlay">
-          <div className="sku-card-overlay-content">
+        <div className="border-t border-[#efebe5] bg-[#fcfbf8] px-3.5 pb-3 pt-2.5">
+          <div className="flex flex-col items-start gap-1">
+            <span
+              className="text-[14px] font-semibold text-[#22211f] leading-[1.1] line-clamp-2 font-serif"
+              title={productName}
+            >
+              {productName}
+            </span>
+            <span
+              data-testid="product-card-footer-name"
+              className={`${footerTitleClass} font-sans text-[#b2ada7] leading-tight max-w-full truncate`}
+              title={product.brand}
+            >
+              {product.brand}
+            </span>
+          </div>
+        </div>
+
+        <div
+          data-testid="product-card-overlay-shell"
+          data-overlay-anchor="card-bottom-half"
+          className="sku-card-overlay"
+        >
+          <div
+            data-testid="product-card-overlay-content"
+            data-overlay-variant="floating-sheet"
+            data-overlay-density={overlayContentDensity}
+            className={overlayContentClass}
+          >
             {regionLabel && (
               <span
-                className={`stamp w-fit mb-2 ${
+                data-testid="product-card-region-badge"
+                className={`stamp w-fit ${overlayRegionClass} ${
                   product.region === "mainland"
                     ? "text-red-500 bg-red-50"
                     : "text-gold bg-gold/10"
                 }`}
               >
-                {localizedRegionLabel}
+                {regionDisplayLabel}
               </span>
             )}
             <div
               data-testid="product-card-overlay-text"
-              className="flex flex-col gap-1 min-h-0"
+              className={`flex flex-col min-h-0 ${useCompactOverlay ? "gap-1.5" : "gap-2"}`}
             >
               <div
                 data-testid="product-card-overlay-title"
-                className={`${overlayTitleClass} text-foreground font-medium font-sans ${isVeryLongProductName ? 'line-clamp-2' : 'line-clamp-2 md:line-clamp-3'} break-words`}
+                className={`${overlayTitleClass} text-[#666661] font-medium font-sans ${isVeryLongProductName ? "line-clamp-2" : "line-clamp-2 md:line-clamp-3"} break-words`}
                 title={productName}
               >
                 {productName}
               </div>
               <div
                 data-testid="product-card-overlay-brand"
-                className={`${isLongBrandName ? 'text-[9px] md:text-[10px]' : 'text-[10px]'} text-muted-foreground/80 font-sans leading-tight line-clamp-1 break-words`}
+                className={`${overlayBrandClass} text-[#b3ada7] font-sans leading-tight break-words`}
                 title={product.brand}
               >
                 {product.brand}
               </div>
             </div>
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[15px] font-bold text-red-500 tabular-nums md:text-[16px]">
+            <div className={`flex items-center justify-between gap-3 ${useCompactOverlay ? "pt-0.5" : "pt-1"}`}>
+              <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
                 ¥{product.packPrice || product.price || 0}
               </span>
-              <div className="flex items-center gap-1.5">
+              <div className={`flex items-center ${useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
                 <button
                   aria-label="Add to favorites"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-500 transition-all hover:bg-red-100 active:scale-95 md:h-8 md:w-8 animate-button-press"
+                  className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#ff6b5b]`}
                   onClick={(e) => handleAction(e, "favorite")}
                   type="button"
                 >
-                  <Star className="h-3.5 w-3.5 fill-current md:h-4 md:w-4" />
+                  <Star className={`${overlayActionIconClass} stroke-[1.75]`} />
                 </button>
                 <button
                   aria-label="Mark as tried"
-                  className="flex h-7 w-7 items-center justify-center text-foreground/40 transition-all hover:text-foreground active:scale-95 md:h-8 md:w-8 animate-button-press"
+                  className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#8f8a84]`}
                   onClick={(e) => handleAction(e, "tried")}
                   type="button"
                 >
-                  <CheckCircle className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <CheckCircle className={`${overlayActionIconClass} stroke-[1.55]`} />
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex flex-col items-center gap-0.5 px-1 group-hover:translate-y-[-2px] transition-transform duration-300">
-        <span
-          className="text-sm font-serif text-ash text-center leading-tight line-clamp-1 group-hover:text-gold transition-colors text-wrap-balance max-w-full"
-          title={product.brand}
-        >
-          {product.brand}
-        </span>
-        <span
-          data-testid="product-card-footer-name"
-          className={`${footerTitleClass} font-sans text-muted-foreground/70 text-center leading-tight max-w-full truncate`}
-          title={productName}
-        >
-          {productName}
-        </span>
       </div>
     </Link>
   );
