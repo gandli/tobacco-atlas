@@ -162,13 +162,13 @@ describe("ProductCard", () => {
     );
 
     const titleWrapper = screen.getByTestId("product-card-overlay-title");
-    expect(titleWrapper).toHaveClass("h-10", "overflow-hidden");
+    expect(titleWrapper).toHaveClass("h-9", "overflow-hidden");
     const brandWrapper = screen.getByTestId("product-card-overlay-brand");
-    expect(brandWrapper).toHaveClass("h-[18px]", "overflow-hidden");
+    expect(brandWrapper).toHaveClass("h-4", "overflow-hidden");
     expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
       "grid",
-      "grid-rows-[40px_18px_24px]",
-      "gap-2",
+      "grid-rows-[36px_16px_24px]",
+      "gap-1.5",
     );
     const actionButtons = screen.getAllByRole("button");
     expect(actionButtons[0]).toHaveClass("h-5", "w-5", "md:h-6", "md:w-6");
@@ -223,8 +223,8 @@ describe("ProductCard", () => {
 
     render(<ProductCard product={combinedLongCopyProduct} />);
 
-    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("h-10");
-    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("h-[18px]");
+    expect(screen.getByTestId("product-card-overlay-title")).toHaveClass("h-9");
+    expect(screen.getByTestId("product-card-overlay-brand")).toHaveClass("h-4");
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
       "sku-card-overlay-expanded",
     );
@@ -243,8 +243,8 @@ describe("ProductCard", () => {
 
     expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
       "grid",
-      "grid-rows-[40px_18px_24px]",
-      "gap-2",
+      "grid-rows-[36px_16px_24px]",
+      "gap-1.5",
     );
     expect(screen.getByTestId("product-card-overlay-body")).toHaveAttribute(
       "data-overlay-rails",

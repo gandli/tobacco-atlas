@@ -47,12 +47,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? "sku-card-overlay sku-card-overlay-expanded"
     : "sku-card-overlay";
   const overlayBodyClass = useExpandedOverlay
-    ? "grid grid-rows-[40px_18px_24px] gap-2"
-    : "grid grid-rows-[30px_18px_24px] gap-2";
+    ? "grid grid-rows-[36px_16px_24px] gap-1.5"
+    : "grid grid-rows-[28px_16px_24px] gap-1.5";
   const overlayTitleBoxClass = useExpandedOverlay
-    ? "h-10 overflow-hidden"
-    : "h-[30px] overflow-hidden";
-  const overlayBrandBoxClass = "h-[18px] overflow-hidden";
+    ? "h-9 overflow-hidden"
+    : "h-7 overflow-hidden";
+  const overlayBrandBoxClass = "h-4 overflow-hidden";
   const overlayBrandTextClass = "text-[10px] md:text-[11px] leading-[1.2]";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
   const overlayRegionClass = "text-[8px] px-1.5 py-0.5 max-w-full";
