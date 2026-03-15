@@ -35,8 +35,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? `${regionLabel.zh} · ${regionLabel.en}`
     : null;
   const regionDisplayLabel = bilingualRegionLabel || localizedRegionLabel;
-  const isLongBrandName = product.brand.length > 15;
-  const isMediumProductName = productName.length > 16;
   const isLongProductName = productName.length > 24;
   const isVeryLongProductName = productName.length > 34;
   const isExtremeProductName = productName.length > 52;
@@ -76,24 +74,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : useExpandedOverlay
       ? "h-[34px] overflow-hidden"
       : "h-[30px] overflow-hidden";
-  const overlayBrandBoxClass = useDenseOverlay
-    ? "h-[18px] overflow-hidden"
-    : "h-[18px] overflow-hidden";
-  const overlayBrandTextClass = useDenseOverlay
-    ? "text-[7px] md:text-[8px] leading-[1.24]"
-    : isExtremeBrandName
-      ? "text-[8px] md:text-[9px] leading-[1.22]"
-      : useCompactOverlay
-        ? "text-[8px] md:text-[9px] leading-[1.22]"
-        : isLongProductName
-          ? "text-[9px] md:text-[10px] leading-[1.2]"
-          : `${isLongBrandName ? "text-[9px] md:text-[10px]" : "text-[10px] md:text-[11px]"} leading-[1.2]`;
+  const overlayBrandBoxClass = "h-[18px] overflow-hidden";
+  const overlayBrandTextClass = "text-[10px] md:text-[11px] leading-[1.2]";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
-  const overlayRegionClass = useDenseOverlay
-    ? "text-[7px] px-1 py-[2px] max-w-full"
-    : useCompactOverlay
-    ? "text-[8px] px-1.5 py-0.5 max-w-full"
-    : "max-w-full";
+  const overlayRegionClass = "text-[8px] px-1.5 py-0.5 max-w-full";
   const overlayContentDensity = useDenseOverlay
     ? "dense"
     : useCompactOverlay
@@ -104,11 +88,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : useCompactOverlay
     ? "sku-card-overlay-content sku-card-overlay-content-compact"
     : "sku-card-overlay-content";
-  const overlayPriceClass = useDenseOverlay
-    ? "text-[12px] md:text-[13px]"
-    : useCompactOverlay
-    ? "text-[13px] md:text-[14px]"
-    : "text-[14px] md:text-[15px]";
+  const overlayPriceClass = "text-[14px] md:text-[15px]";
   const overlayActionButtonClass = useDenseOverlay
     ? "flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all active:scale-95 md:h-5 md:w-5 animate-button-press"
     : useCompactOverlay

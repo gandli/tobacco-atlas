@@ -114,19 +114,22 @@ describe("ProductCard", () => {
     expect(screen.getByText("大陆 · Mainland")).toBeInTheDocument();
   });
 
-  it("shrinks title typography earlier for medium-length english names", () => {
+  it("keeps title typography fixed for medium-length english names", () => {
     mockI18n.language = "en-US";
     mockI18n.resolvedLanguage = "en-US";
 
     render(<ProductCard product={mediumLengthEnglishProduct} />);
 
-    // 英文名称长度 18 > 16，应该使用 expanded overlay
+    expect(screen.getByTestId("product-card-overlay-title").firstElementChild).toHaveClass(
+      "text-[11px]",
+      "md:text-[12px]",
+    );
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
       "sku-card-overlay-expanded",
     );
   });
 
-  it("uses a more compact title treatment for long names while preserving the full label", () => {
+  it("keeps fixed overlay font sizes for long names while preserving the full label", () => {
     mockI18n.language = "en-US";
     mockI18n.resolvedLanguage = "en-US";
 
@@ -213,11 +216,13 @@ describe("ProductCard", () => {
     );
     expect(screen.getByTestId("product-card-overlay-title").firstElementChild).toHaveClass(
       "text-[11px]",
+      "md:text-[12px]",
     );
     expect(screen.getByTestId("product-card-overlay-brand").firstElementChild).toHaveClass(
-      "text-[7px]",
+      "text-[10px]",
+      "md:text-[11px]",
     );
-    expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[7px]");
+    expect(screen.getByTestId("product-card-region-badge")).toHaveClass("text-[8px]");
   });
 
   it("switches to compact overlay layout when combined bilingual copy would otherwise overflow", () => {
@@ -235,6 +240,11 @@ describe("ProductCard", () => {
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
       "sku-card-overlay-expanded",
     );
+    expect(screen.getByTestId("product-card-overlay-brand").firstElementChild).toHaveClass(
+      "text-[10px]",
+      "md:text-[11px]",
+    );
+    expect(screen.getByText("¥0")).toHaveClass("text-[14px]", "md:text-[15px]");
   });
 
   it("keeps title, brand, and price rows on fixed overlay rails", () => {
