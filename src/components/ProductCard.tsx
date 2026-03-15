@@ -44,8 +44,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const useExpandedOverlay = hasWrappedTitle;
   const overlayTitleClass = "text-[11px] md:text-[12px] leading-[1.18]";
   const overlayShellClass = useExpandedOverlay
-    ? "sku-card-overlay sku-card-overlay-expanded"
-    : "sku-card-overlay";
+    ? "sku-card-overlay sku-card-overlay-expanded h-[152px] md:h-[160px]"
+    : "sku-card-overlay h-[142px] md:h-[150px]";
   const overlayBodyClass = useExpandedOverlay
     ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
     : "grid min-h-0 flex-1 grid-rows-[30px_18px_26px] gap-2";
@@ -154,7 +154,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         <div
           data-testid="product-card-overlay-shell"
-          data-overlay-anchor="card-bottom-half"
+          data-overlay-anchor="card-bottom-sheet"
           className={overlayShellClass}
         >
           <div

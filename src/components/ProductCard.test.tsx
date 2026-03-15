@@ -276,6 +276,16 @@ describe("ProductCard", () => {
       "dense",
     );
     expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
+      "sku-card-overlay-expanded",
+      "h-[152px]",
+      "md:h-[160px]",
+    );
+  });
+
+  it("keeps the default overlay shell on a fixed bottom-sheet height", () => {
+    render(<ProductCard product={mockProduct} />);
+
+    expect(screen.getByTestId("product-card-overlay-shell")).toHaveClass(
       "h-[142px]",
       "md:h-[150px]",
     );
