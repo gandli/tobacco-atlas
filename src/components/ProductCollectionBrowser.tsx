@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import ProductGrid, { productGridLayoutClassName, productGridSectionClassName } from "@/components/ProductGrid";
 import ProductCardSkeleton from "@/components/skeletons/ProductCardSkeleton";
 import CollectionControlBar from "@/components/catalog/CollectionControlBar";
+import type { HomeProductSummary } from "@/data/home-catalog";
 import {
   getAvailableFormatKeys,
   getVisibleProductCollection,
@@ -35,7 +36,18 @@ interface ProductCollectionBrowserProps<T extends ProductBrowseItem> {
 const regionKeys: ProductBrowseRegion[] = ["all", "mainland", "hkmo", "international"];
 const sortKeys: ProductBrowseSort[] = ["newest", "price-asc", "price-desc", "name"];
 
-export default function ProductCollectionBrowser<T extends ProductBrowseItem>({
+function getSortTranslationKey(sortKey: ProductBrowseSort) {
+  switch (sortKey) {
+    case "price-asc":
+      return "priceAsc";
+    case "price-desc":
+      return "priceDesc";
+    default:
+      return sortKey;
+  }
+}
+
+export default function ProductCollectionBrowser<T extends ProductBrowseItem & HomeProductSummary>({
   products,
   sectionId = "collection",
   className,
@@ -47,7 +59,9 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem>({
   loadingMoreLabel,
   endOfCollectionLabel,
 }: ProductCollectionBrowserProps<T>) {
-  const { t, i18n } = useTranslation(["common", "home"]);
+  const translation = useTranslation(["common", "home"]);
+  const { t } = translation;
+  const resolvedLanguage = translation.i18n?.resolvedLanguage || "zh-CN";
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState<ProductBrowseRegion>("all");
   const [format, setFormat] = useState<ProductBrowseFormat>("all");
@@ -64,9 +78,9 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem>({
         region,
         format,
         sort,
-        language: i18n.resolvedLanguage || "zh-CN",
+        language: resolvedLanguage,
       }),
-    [products, search, region, format, sort, i18n.resolvedLanguage],
+    [products, search, region, format, sort, resolvedLanguage],
   );
 
   useEffect(() => {
@@ -112,10 +126,7 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem>({
       className="mb-6 md:mb-8"
       leading={
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <label
-            className="relative block min-w-0 lg:max-w-[22rem] lg:flex-[1.2]"
-            aria-label="search-products"
-          >
+          <label className="relative block min-w-0 lg:max-w-[22rem] lg:flex-[1.2]">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               aria-label="search-products"
@@ -164,7 +175,7 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem>({
         >
           {sortKeys.map((key) => (
             <option key={key} value={key}>
-              {t(`common.productBrowser.sort.${key}`)}
+              {t(`common.productBrowser.sort.${getSortTranslationKey(key)}`)}
             </option>
           ))}
         </select>

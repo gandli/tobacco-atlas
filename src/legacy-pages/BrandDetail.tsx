@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import OptimizedImage from "@/components/OptimizedImage";
-import ProductGrid from "@/components/ProductGrid";
+import ProductCollectionBrowser from "@/components/ProductCollectionBrowser";
 import { getBrandById, getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductsByBrand } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
@@ -184,10 +184,11 @@ const BrandDetail = ({ identifier, pinyin: explicitPinyin }: BrandDetailProps) =
           </div>
 
           {brandProducts.length > 0 ? (
-            <ProductGrid
+            <ProductCollectionBrowser
               products={brandProducts}
               sectionId="legacy-brand-collection"
               className="px-0 pb-0 pt-0 max-w-none"
+              emptyMessage={t("brand.empty")}
             />
           ) : (
             <div className="text-center py-20 bg-secondary/20 rounded-3xl border border-dashed border-border">

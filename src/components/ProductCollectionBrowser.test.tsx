@@ -98,6 +98,9 @@ describe("ProductCollectionBrowser", () => {
     fireEvent.change(screen.getByLabelText("search-products"), {
       target: { value: "" },
     });
+    fireEvent.change(screen.getByLabelText("region-filter"), {
+      target: { value: "all" },
+    });
     fireEvent.change(screen.getByLabelText("format-filter"), {
       target: { value: "slim" },
     });

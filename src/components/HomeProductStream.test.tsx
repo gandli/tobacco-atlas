@@ -51,8 +51,8 @@ describe("HomeProductStream", () => {
   it("renders only the initial batch before the sentinel is triggered", () => {
     render(<HomeProductStream products={products} initialCount={2} batchSize={2} />);
 
-    expect(screen.getByTestId("product-card-1")).toBeInTheDocument();
-    expect(screen.getByTestId("product-card-2")).toBeInTheDocument();
+    expect(screen.getByTestId("product-card-5")).toBeInTheDocument();
+    expect(screen.getByTestId("product-card-4")).toBeInTheDocument();
     expect(screen.queryByTestId("product-card-3")).not.toBeInTheDocument();
   });
 

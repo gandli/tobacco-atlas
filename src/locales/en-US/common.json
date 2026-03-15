@@ -33,6 +33,34 @@
     "en": "English"
   },
   "switchLanguage": "Switch language",
+  "productBrowser": {
+    "searchPlaceholder": "Search products...",
+    "results": "Results",
+    "empty": "No matching products",
+    "region": {
+      "all": "All",
+      "mainland": "Mainland",
+      "hkmo": "Hong Kong & Macau",
+      "international": "Imported"
+    },
+    "format": {
+      "all": "Format",
+      "regular": "Regular",
+      "hard": "Hard",
+      "soft": "Soft",
+      "middle": "Middle",
+      "slim": "Slim",
+      "short": "Short",
+      "capsule": "Capsule",
+      "cigar": "Cigar"
+    },
+    "sort": {
+      "newest": "Newest",
+      "priceAsc": "Price Low to High",
+      "priceDesc": "Price High to Low",
+      "name": "Name"
+    }
+  },
   "notFound": {
     "title": "Page not found",
     "description": "Sorry, the page you requested does not exist or has moved.",

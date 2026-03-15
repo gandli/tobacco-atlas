@@ -7,7 +7,7 @@ import { getProductsByMakerIdentifier } from "@/data/product-catalog";
 import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import CollectionPageFrame from "@/components/catalog/CollectionPageFrame";
-import ProductGrid from "@/components/ProductGrid";
+import ProductCollectionBrowser from "@/components/ProductCollectionBrowser";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -111,10 +111,11 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
             </span>
           </div>
 
-          <ProductGrid
+          <ProductCollectionBrowser
             products={products}
             sectionId="legacy-maker-products"
             className="px-0 pb-0 pt-0 max-w-none"
+            emptyMessage={t("manufacturer.empty")}
           />
         </section>
         </CollectionPageFrame>

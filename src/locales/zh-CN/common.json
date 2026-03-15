@@ -33,6 +33,34 @@
     "en": "English"
   },
   "switchLanguage": "切换语言",
+  "productBrowser": {
+    "searchPlaceholder": "搜索产品…",
+    "results": "结果",
+    "empty": "没有匹配的产品",
+    "region": {
+      "all": "全部",
+      "mainland": "大陆",
+      "hkmo": "港澳台",
+      "international": "进口"
+    },
+    "format": {
+      "all": "规格",
+      "regular": "常规",
+      "hard": "硬盒",
+      "soft": "软盒",
+      "middle": "中支",
+      "slim": "细支",
+      "short": "短支",
+      "capsule": "爆珠",
+      "cigar": "雪茄"
+    },
+    "sort": {
+      "newest": "最新",
+      "priceAsc": "价格从低到高",
+      "priceDesc": "价格从高到低",
+      "name": "名称"
+    }
+  },
   "notFound": {
     "title": "页面不存在",
     "description": "抱歉，你访问的页面不存在或已被移动。",

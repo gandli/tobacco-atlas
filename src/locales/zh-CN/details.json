@@ -25,7 +25,8 @@
     "summary": "共收录该厂家旗下的 {{brands}} 个品牌，{{products}} 款产品。",
     "brandsSection": "旗下品牌",
     "productsSection": "相关产品",
-    "items": "{{count}} 件"
+    "items": "{{count}} 件",
+    "empty": "该厂商暂时还没有收录产品。"
   },
   "sku": {
     "description": "介绍",

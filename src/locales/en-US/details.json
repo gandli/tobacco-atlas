@@ -25,7 +25,8 @@
     "summary": "This maker currently has {{brands}} brands and {{products}} products in the archive.",
     "brandsSection": "Brands",
     "productsSection": "Products",
-    "items": "{{count}} items"
+    "items": "{{count}} items",
+    "empty": "No products in our database yet for this maker."
   },
   "sku": {
     "description": "Description",
