@@ -44,11 +44,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const useExpandedOverlay = hasWrappedTitle;
   const overlayTitleClass = "text-[11px] md:text-[12px] leading-[1.18]";
   const overlayShellClass = useExpandedOverlay
-    ? "sku-card-overlay sku-card-overlay-expanded h-[152px] md:h-[160px]"
-    : "sku-card-overlay h-[142px] md:h-[150px]";
+    ? "sku-card-overlay sku-card-overlay-expanded"
+    : "sku-card-overlay";
   const overlayBodyClass = useExpandedOverlay
-    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
-    : "grid min-h-0 flex-1 grid-rows-[30px_18px_26px] gap-2";
+    ? "grid grid-rows-[40px_18px_24px] gap-2"
+    : "grid grid-rows-[30px_18px_24px] gap-2";
   const overlayTitleBoxClass = useExpandedOverlay
     ? "h-10 overflow-hidden"
     : "h-[30px] overflow-hidden";
@@ -205,7 +205,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <div
                 data-testid="product-card-overlay-footer"
                 data-footer-align="bottom"
-                className="flex h-[26px] items-center justify-between gap-3"
+                className="flex h-6 items-center justify-between gap-3"
               >
                 <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
                   ¥{product.packPrice || product.price || 0}
