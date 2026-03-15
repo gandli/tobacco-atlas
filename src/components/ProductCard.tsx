@@ -65,9 +65,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? "sku-card-overlay sku-card-overlay-expanded"
     : "sku-card-overlay";
   const overlayBodyClass = useDenseOverlay
-    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_24px] gap-2"
+    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
     : useExpandedOverlay
-      ? "grid min-h-0 flex-1 grid-rows-[40px_18px_24px] gap-2"
+      ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
       : "grid min-h-0 flex-1 grid-rows-[30px_18px_24px] gap-2";
   const overlayTitleBoxClass = useDenseOverlay
     ? "h-10 overflow-hidden"
@@ -87,9 +87,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const overlayPriceClass = "text-[14px] md:text-[15px]";
   const overlayActionButtonClass = useDenseOverlay
     ? "flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all active:scale-95 md:h-5 md:w-5 animate-button-press"
-    : useCompactOverlay
-    ? "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press"
-    : "flex h-6 w-6 items-center justify-center rounded-full transition-all active:scale-95 md:h-7 md:w-7 animate-button-press";
+    : "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press";
   const overlayActionIconClass = useDenseOverlay
     ? "h-2.5 w-2.5 md:h-3 md:w-3"
     : useCompactOverlay
@@ -237,12 +235,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </div>
               <div
                 data-testid="product-card-overlay-footer"
-                className="flex h-full items-center justify-between gap-3"
+                data-footer-align="bottom"
+                className="flex h-[26px] items-center justify-between gap-3 self-end"
               >
                 <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
                   ¥{product.packPrice || product.price || 0}
                 </span>
-                <div className={`flex items-center ${useDenseOverlay ? "gap-2" : useCompactOverlay ? "gap-2.5" : "gap-3"}`}>
+                <div
+                  className="flex items-center gap-3"
+                >
                   <button
                     aria-label="Add to favorites"
                     className={`${overlayActionButtonClass} text-[#c9c3bc] hover:text-[#ff6b5b]`}

@@ -175,7 +175,7 @@ describe("ProductCard", () => {
     expect(brandWrapper).toHaveClass("h-[18px]", "overflow-hidden");
     expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
       "grid",
-      "grid-rows-[40px_18px_24px]",
+      "grid-rows-[40px_18px_26px]",
       "gap-2",
     );
   });
@@ -256,7 +256,7 @@ describe("ProductCard", () => {
 
     expect(screen.getByTestId("product-card-overlay-body")).toHaveClass(
       "grid",
-      "grid-rows-[40px_18px_24px]",
+      "grid-rows-[40px_18px_26px]",
       "gap-2",
     );
     expect(screen.getByTestId("product-card-overlay-body")).toHaveAttribute(
@@ -265,10 +265,15 @@ describe("ProductCard", () => {
     );
     expect(screen.getByTestId("product-card-overlay-footer")).toHaveClass(
       "flex",
-      "h-full",
+      "h-[26px]",
       "items-center",
       "justify-between",
       "gap-3",
+      "self-end",
+    );
+    expect(screen.getByTestId("product-card-overlay-footer")).toHaveAttribute(
+      "data-footer-align",
+      "bottom",
     );
     expect(screen.getByTestId("product-card-overlay-content")).toHaveAttribute(
       "data-overlay-layout",
