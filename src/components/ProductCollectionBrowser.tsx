@@ -132,7 +132,7 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem & H
               aria-label="search-products"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder={t("common.productBrowser.searchPlaceholder")}
+              placeholder={t("productBrowser.searchPlaceholder", { ns: "common" })}
               className="h-12 w-full rounded-full border border-border/70 bg-background/90 pl-11 pr-4 text-sm text-foreground outline-none transition focus:border-foreground/20 focus:ring-2 focus:ring-ring/20"
               type="search"
             />
@@ -146,7 +146,7 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem & H
             >
               {regionKeys.map((key) => (
                 <option key={key} value={key}>
-                  {t(`common.productBrowser.region.${key}`)}
+                  {t(`productBrowser.region.${key}`, { ns: "common" })}
                 </option>
               ))}
             </select>
@@ -156,10 +156,10 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem & H
               onChange={(event) => setFormat(event.target.value as ProductBrowseFormat)}
               className="h-11 rounded-full border border-border/70 bg-background px-4 text-sm text-foreground outline-none transition focus:border-foreground/20 focus:ring-2 focus:ring-ring/20"
             >
-              <option value="all">{t("common.productBrowser.format.all")}</option>
+              <option value="all">{t("productBrowser.format.all", { ns: "common" })}</option>
               {formatKeys.map((key) => (
                 <option key={key} value={key}>
-                  {t(`common.productBrowser.format.${key}`)}
+                  {t(`productBrowser.format.${key}`, { ns: "common" })}
                 </option>
               ))}
             </select>
@@ -175,14 +175,16 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem & H
         >
           {sortKeys.map((key) => (
             <option key={key} value={key}>
-              {t(`common.productBrowser.sort.${getSortTranslationKey(key)}`)}
+              {t(`productBrowser.sort.${getSortTranslationKey(key)}`, {
+                ns: "common",
+              })}
             </option>
           ))}
         </select>
       }
       summary={
         <span>
-          {t("common.productBrowser.results")} {visibleProducts.length}
+          {t("productBrowser.results", { ns: "common" })} {visibleProducts.length}
         </span>
       }
     />
@@ -196,7 +198,7 @@ export default function ProductCollectionBrowser<T extends ProductBrowseItem & H
       >
         {controlBar}
         <div className="rounded-[24px] border border-dashed border-border/70 bg-secondary/20 px-6 py-16 text-center text-sm text-muted-foreground">
-          {emptyMessage || t("common.productBrowser.empty")}
+          {emptyMessage || t("productBrowser.empty", { ns: "common" })}
         </div>
       </section>
     );
