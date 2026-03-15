@@ -65,10 +65,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? "sku-card-overlay sku-card-overlay-expanded"
     : "sku-card-overlay";
   const overlayBodyClass = useDenseOverlay
-    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_22px] gap-1"
+    ? "grid min-h-0 flex-1 grid-rows-[40px_18px_24px] gap-2"
     : useExpandedOverlay
-      ? "grid min-h-0 flex-1 grid-rows-[34px_18px_24px] gap-1.5"
-      : "grid min-h-0 flex-1 grid-rows-[30px_18px_24px] gap-1.5";
+      ? "grid min-h-0 flex-1 grid-rows-[40px_18px_24px] gap-2"
+      : "grid min-h-0 flex-1 grid-rows-[30px_18px_24px] gap-2";
   const overlayTitleBoxClass = useDenseOverlay
     ? "h-10 overflow-hidden"
     : useExpandedOverlay
@@ -83,11 +83,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : useCompactOverlay
       ? "compact"
       : "default";
-  const overlayContentClass = useDenseOverlay
-    ? "sku-card-overlay-content sku-card-overlay-content-dense"
-    : useCompactOverlay
-    ? "sku-card-overlay-content sku-card-overlay-content-compact"
-    : "sku-card-overlay-content";
+  const overlayContentClass = "sku-card-overlay-content";
   const overlayPriceClass = "text-[14px] md:text-[15px]";
   const overlayActionButtonClass = useDenseOverlay
     ? "flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all active:scale-95 md:h-5 md:w-5 animate-button-press"
@@ -198,6 +194,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             data-testid="product-card-overlay-content"
             data-overlay-variant="floating-sheet"
             data-overlay-density={overlayContentDensity}
+            data-overlay-layout="fixed-four-part"
             className={overlayContentClass}
           >
             {regionLabel && (
@@ -212,7 +209,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 {regionDisplayLabel}
               </span>
             )}
-            <div data-testid="product-card-overlay-body" className={overlayBodyClass}>
+            <div
+              data-testid="product-card-overlay-body"
+              data-overlay-rails="fixed"
+              className={overlayBodyClass}
+            >
               <div
                 data-testid="product-card-overlay-title"
                 className={`${overlayTitleBoxClass} text-[#666661] font-medium font-sans subpixel-antialiased`}
