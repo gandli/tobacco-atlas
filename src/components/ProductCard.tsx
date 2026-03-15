@@ -36,63 +36,32 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : null;
   const regionDisplayLabel = bilingualRegionLabel || localizedRegionLabel;
   const isLongProductName = productName.length > 24;
-  const isVeryLongProductName = productName.length > 34;
-  const isExtremeProductName = productName.length > 52;
-  const isExtremeBrandName = product.brand.length > 34;
-  const isLongRegionLabel = (regionDisplayLabel?.length || 0) > 18;
-  const isVeryLongRegionLabel = (regionDisplayLabel?.length || 0) > 24;
   const overlayCharLoad =
     productName.length + product.brand.length + (regionDisplayLabel?.length || 0);
   const prefersExpandedOverlay =
-    productName.length > 16 || overlayCharLoad > 32 || product.brand.length > 14;
+    productName.length > 16 || overlayCharLoad > 34 || product.brand.length > 14;
   const [hasWrappedTitle, setHasWrappedTitle] = useState(prefersExpandedOverlay);
-  const useDenseOverlay =
-    isExtremeProductName ||
-    overlayCharLoad > 58 ||
-    productName.length > 34 ||
-    product.brand.length > 24 ||
-    isVeryLongRegionLabel;
-  const useExpandedOverlay = !useDenseOverlay && hasWrappedTitle;
-  const useCompactOverlay =
-    isExtremeProductName ||
-    isExtremeBrandName ||
-    isLongRegionLabel ||
-    overlayCharLoad > 42 ||
-    productName.length > 24 ||
-    product.brand.length > 18;
+  const useExpandedOverlay = hasWrappedTitle;
   const overlayTitleClass = "text-[11px] md:text-[12px] leading-[1.18]";
-  const overlayShellClass = useDenseOverlay || useExpandedOverlay
+  const overlayShellClass = useExpandedOverlay
     ? "sku-card-overlay sku-card-overlay-expanded"
     : "sku-card-overlay";
-  const overlayBodyClass = useDenseOverlay
+  const overlayBodyClass = useExpandedOverlay
     ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
-    : useExpandedOverlay
-      ? "grid min-h-0 flex-1 grid-rows-[40px_18px_26px] gap-2"
-      : "grid min-h-0 flex-1 grid-rows-[30px_18px_24px] gap-2";
-  const overlayTitleBoxClass = useDenseOverlay
+    : "grid min-h-0 flex-1 grid-rows-[30px_18px_26px] gap-2";
+  const overlayTitleBoxClass = useExpandedOverlay
     ? "h-10 overflow-hidden"
-    : useExpandedOverlay
-      ? "h-[34px] overflow-hidden"
-      : "h-[30px] overflow-hidden";
+    : "h-[30px] overflow-hidden";
   const overlayBrandBoxClass = "h-[18px] overflow-hidden";
   const overlayBrandTextClass = "text-[10px] md:text-[11px] leading-[1.2]";
   const footerTitleClass = isLongProductName ? "text-[10px]" : "text-11";
   const overlayRegionClass = "text-[8px] px-1.5 py-0.5 max-w-full";
-  const overlayContentDensity = useDenseOverlay
-    ? "dense"
-    : useCompactOverlay
-      ? "compact"
-      : "default";
+  const overlayContentDensity = useExpandedOverlay ? "expanded" : "default";
   const overlayContentClass = "sku-card-overlay-content";
   const overlayPriceClass = "text-[14px] md:text-[15px]";
-  const overlayActionButtonClass = useDenseOverlay
-    ? "flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all active:scale-95 md:h-5 md:w-5 animate-button-press"
-    : "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press";
-  const overlayActionIconClass = useDenseOverlay
-    ? "h-2.5 w-2.5 md:h-3 md:w-3"
-    : useCompactOverlay
-    ? "h-3 w-3 md:h-3.5 md:w-3.5"
-    : "h-3.5 w-3.5 md:h-4 md:w-4";
+  const overlayActionButtonClass =
+    "flex h-5 w-5 items-center justify-center rounded-full transition-all active:scale-95 md:h-6 md:w-6 animate-button-press";
+  const overlayActionIconClass = "h-3 w-3 md:h-3.5 md:w-3.5";
 
   useEffect(() => {
     const element = titleTextRef.current;
@@ -219,7 +188,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               >
                 <span
                   ref={titleTextRef}
-                  className={`${overlayTitleClass} block break-words`}
+                  className={`${overlayTitleClass} block break-words line-clamp-2`}
                 >
                   {productName}
                 </span>
@@ -236,7 +205,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <div
                 data-testid="product-card-overlay-footer"
                 data-footer-align="bottom"
-                className="flex h-[26px] items-center justify-between gap-3 self-end"
+                className="flex h-[26px] items-center justify-between gap-3"
               >
                 <span className={`${overlayPriceClass} font-bold text-[#ff4d3b] tabular-nums`}>
                   ¥{product.packPrice || product.price || 0}
