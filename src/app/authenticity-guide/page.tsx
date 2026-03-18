@@ -8,6 +8,45 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { brandGuides } from "@/data/authenticity-guides";
 import { getBrandByPinyin } from "@/data/brand-catalog";
+import { useState } from "react";
+
+interface BrandLogoProps {
+  brand: {
+    pinyin: string;
+    nameZh: string;
+    nameEn: string;
+    logoUrl?: string | null;
+    productCount: number;
+  };
+  isZh: boolean;
+}
+
+function BrandLogo({ brand, isZh }: BrandLogoProps) {
+  const [imageError, setImageError] = useState(false);
+  const displayName = isZh ? brand.nameZh : brand.nameEn;
+  const firstChar = displayName.charAt(0);
+
+  if (!brand.logoUrl || imageError) {
+    return (
+      <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
+        <div className="text-4xl font-bold text-muted-foreground">
+          {firstChar}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
+      <img
+        src={brand.logoUrl}
+        alt={displayName}
+        className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
+        onError={() => setImageError(true)}
+      />
+    </div>
+  );
+}
 
 export default function AuthenticityGuidePage() {
   const { t, i18n } = useTranslation("authenticity");
@@ -104,27 +143,7 @@ export default function AuthenticityGuidePage() {
                   href={`/authenticity-guide/${brand.pinyin}`}
                   className="group bg-card rounded-lg p-4 border hover:border-primary/50 hover:shadow-md transition-all"
                 >
-                  <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
-                    {brand.logoUrl ? (
-                      <img
-                        src={brand.logoUrl}
-                        alt={isZh ? brand.nameZh : brand.nameEn}
-                        className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const parent = target.parentElement;
-                          if (parent) {
-                            parent.innerHTML = `<div class="text-3xl font-bold text-muted-foreground">${(isZh ? brand.nameZh : brand.nameEn).charAt(0)}</div>`;
-                          }
-                        }}
-                      />
-                    ) : (
-                      <div className="text-3xl font-bold text-muted-foreground">
-                        {(isZh ? brand.nameZh : brand.nameEn).charAt(0)}
-                      </div>
-                    )}
-                  </div>
+                  <BrandLogo brand={brand} isZh={isZh} />
                   <h3 className="font-medium text-foreground text-sm text-center mb-1">
                     {isZh ? brand.nameZh : brand.nameEn}
                   </h3>

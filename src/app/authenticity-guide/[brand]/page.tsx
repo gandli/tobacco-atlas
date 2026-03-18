@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,43 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { getAuthenticityGuideByBrand } from "@/data/authenticity-guides";
 import { getBrandByPinyin } from "@/data/brand-catalog";
+
+function BrandLogo({ logoUrl, brandNameZh, brandNameEn, isZh, size = "md" }: { 
+  logoUrl?: string | null; 
+  brandNameZh: string;
+  brandNameEn?: string;
+  isZh: boolean;
+  size?: "sm" | "md" | "lg";
+}) {
+  const [imageError, setImageError] = useState(false);
+  const displayName = isZh ? brandNameZh : brandNameEn;
+  const firstChar = displayName?.charAt(0) || "?";
+  
+  const sizeClasses = {
+    sm: "w-12 h-12 text-lg",
+    md: "w-16 h-16 text-xl",
+    lg: "w-20 h-20 text-2xl",
+  };
+
+  if (!logoUrl || imageError) {
+    return (
+      <div className={`${sizeClasses[size]} rounded-lg bg-muted flex items-center justify-center flex-shrink-0`}>
+        <span className="font-bold text-muted-foreground">{firstChar}</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${sizeClasses[size]} rounded-lg bg-muted flex items-center justify-center overflow-hidden flex-shrink-0`}>
+      <img
+        src={logoUrl}
+        alt={displayName}
+        className="w-full h-full object-contain p-2"
+        onError={() => setImageError(true)}
+      />
+    </div>
+  );
+}
 
 export default function BrandAuthenticityGuidePage() {
   const params = useParams();
@@ -70,27 +107,13 @@ export default function BrandAuthenticityGuidePage() {
 
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
-              {logoUrl ? (
-                <img
-                  src={logoUrl}
-                  alt={isZh ? guide.brandNameZh : guide.brandNameEn}
-                  className="w-full h-full object-contain p-2"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `<div class="text-xl font-bold text-muted-foreground">${(isZh ? guide.brandNameZh : guide.brandNameEn).charAt(0)}</div>`;
-                    }
-                  }}
-                />
-              ) : (
-                <span className="text-xl font-bold text-muted-foreground">
-                  {(isZh ? guide.brandNameZh : guide.brandNameEn).charAt(0)}
-                </span>
-              )}
-            </div>
+            <BrandLogo 
+              logoUrl={logoUrl}
+              brandNameZh={guide.brandNameZh}
+              brandNameEn={guide.brandNameEn}
+              isZh={isZh}
+              size="md"
+            />
             <div>
               <h1 className="text-3xl font-bold text-foreground">
                 {isZh ? guide.brandNameZh : guide.brandNameEn}
