@@ -25,6 +25,9 @@ export default function BrandAuthenticityGuidePage() {
     return getBrandByPinyin(brandPinyin);
   }, [guide, brandPinyin]);
 
+  // 优先使用品牌数据中的 logo，其次使用指南中的 logoUrl
+  const logoUrl = brand?.logo || guide.logoUrl;
+
   if (!guide) {
     return (
       <div className="min-h-screen bg-background">
@@ -65,9 +68,9 @@ export default function BrandAuthenticityGuidePage() {
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
             <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
-              {guide.logoUrl ? (
+              {logoUrl ? (
                 <img
-                  src={guide.logoUrl}
+                  src={logoUrl}
                   alt={isZh ? guide.brandNameZh : guide.brandNameEn}
                   className="w-full h-full object-contain p-2"
                 />
