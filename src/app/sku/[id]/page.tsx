@@ -13,7 +13,7 @@ import { getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductById, type Product } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
-import { PreservationTipLink } from "@/components/cigar-preservation/PreservationTipLink";
+import { ProductTipLink } from "@/components/ProductTipLink";
 import RecommendationEngine from "@/components/RecommendationEngine";
 
 type SkuDetailRouteProps = {
@@ -480,8 +480,11 @@ function SkuDetailContent({ id: explicitId }: SkuDetailContentProps) {
                 </div>
               )}
 
-              {/* 雪茄保存贴士入口 */}
-              <PreservationTipLink />
+              {/* 产品贴士入口 - 根据类型显示真伪鉴别或雪茄保存 */}
+              <ProductTipLink 
+                productType={product.tobaccoType}
+                tobaccoType={product.tobaccoType}
+              />
 
               {/* 类似产品推荐 */}
               <div className="pt-6 border-t border-border/50">
