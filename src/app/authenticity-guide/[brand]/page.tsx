@@ -16,14 +16,17 @@ export default function BrandAuthenticityGuidePage() {
   const isZh = i18n.resolvedLanguage?.startsWith("zh");
   const brandPinyin = params.brand as string;
 
+  // 兼容性处理：chungwa -> zhonghua
+  const resolvedBrandPinyin = brandPinyin === 'chungwa' ? 'zhonghua' : brandPinyin;
+
   const guide = useMemo(() => {
-    return getAuthenticityGuideByBrand(brandPinyin);
-  }, [brandPinyin]);
+    return getAuthenticityGuideByBrand(resolvedBrandPinyin);
+  }, [resolvedBrandPinyin]);
 
   const brand = useMemo(() => {
     if (!guide) return null;
-    return getBrandByPinyin(brandPinyin);
-  }, [guide, brandPinyin]);
+    return getBrandByPinyin(resolvedBrandPinyin);
+  }, [guide, resolvedBrandPinyin]);
 
   // 优先使用品牌数据中的 logo，其次使用指南中的 logoUrl
   const logoUrl = brand?.logo || guide.logoUrl;

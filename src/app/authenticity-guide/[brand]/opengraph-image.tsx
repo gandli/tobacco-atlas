@@ -14,7 +14,9 @@ export const contentType = 'image/png';
 
 // Image generation
 export default async function Image({ params }: { params: { brand: string } }) {
-  const guide = getAuthenticityGuideByBrand(params.brand);
+  // 兼容性处理：chungwa -> zhonghua
+  const resolvedBrand = params.brand === 'chungwa' ? 'zhonghua' : params.brand;
+  const guide = getAuthenticityGuideByBrand(resolvedBrand);
 
   // Fetch Inter Bold font
   const fontData = await fetch(
