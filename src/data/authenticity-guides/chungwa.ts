@@ -5,11 +5,11 @@
 
 import type { AuthenticityGuide } from './index';
 
-export const chungwaGuide: AuthenticityGuide = {
-  brandPinyin: 'chungwa',
+export const zhonghuaGuide: AuthenticityGuide = {
+  brandPinyin: 'zhonghua',
   brandNameZh: '中华',
   brandNameEn: 'Zhonghua',
-  logoUrl: '/api/img/brands/140.jpg',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/140.jpg',
   
   generalTips: [
     {
@@ -239,4 +239,4 @@ export const chungwaGuide: AuthenticityGuide = {
   ],
 };
 
-export default chungwaGuide;
+export default zhonghuaGuide;

@@ -125,7 +125,7 @@ export function getAuthenticityGuideByBrand(brandPinyin: string): AuthenticityGu
 }
 
 // 导入所有品牌指南
-import { chungwaGuide } from './chungwa';
+import { zhonghuaGuide } from './chungwa';
 import { huanghelouGuide } from './huanghelou';
 import { yuxiGuide } from './yuxi';
 import { yunyanGuide } from './yunyan';
@@ -145,7 +145,7 @@ import { guiyanGuide } from './guiyan';
  * 所有品牌的鉴别指南索引
  */
 export const brandGuides: Record<string, AuthenticityGuide> = {
-  chungwa: chungwaGuide,
+  zhonghua: zhonghuaGuide,
   huanghelou: huanghelouGuide,
   yuxi: yuxiGuide,
   yunyan: yunyanGuide,
