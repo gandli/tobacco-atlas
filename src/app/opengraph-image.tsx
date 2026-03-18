@@ -4,7 +4,7 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 
 // Image metadata
-export const alt = 'Chinese Cigarette Museum - 中国烟草博物馆';
+export const alt = 'Tobacco Atlas - Chinese Cigarette Museum - 中国烟草博物馆';
 export const size = {
   width: 1200,
   height: 630,
@@ -140,7 +140,7 @@ export default async function Image() {
               lineHeight: 1.5,
             }}
           >
-            探索中国烟草品牌和产品的综合数据库
+            Comprehensive Guide to Chinese Tobacco Products
           </p>
         </div>
 
