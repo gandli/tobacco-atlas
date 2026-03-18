@@ -17,11 +17,13 @@ export default function AuthenticityGuidePage() {
     return Object.keys(brandGuides).map((pinyin) => {
       const guide = brandGuides[pinyin];
       const brand = getBrandByPinyin(pinyin);
+      // 优先使用品牌数据中的 logo，其次使用指南中的 logoUrl
+      const logoUrl = brand?.logo || guide.logoUrl;
       return {
         pinyin,
         nameZh: guide.brandNameZh,
         nameEn: guide.brandNameEn || brand?.name || guide.brandNameZh,
-        logoUrl: guide.logoUrl,
+        logoUrl,
         productCount: brand?.count || 0,
       };
     });
