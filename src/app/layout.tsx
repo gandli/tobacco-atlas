@@ -13,6 +13,21 @@ export const metadata: Metadata = {
   },
   description: "探索中国烟草品牌和产品的综合数据库 | A comprehensive database of Chinese cigarette brands and products",
   keywords: ["中国烟草", "香烟", "品牌", "烟草", "Chinese cigarettes", "tobacco brands"],
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://tobacco-atlas.vercel.app',
+    siteName: 'Tobacco Atlas - 中国烟草博物馆',
+    title: 'Chinese Cigarette Museum - 中国烟草博物馆',
+    description: '探索中国烟草品牌和产品的综合数据库 | A comprehensive database of Chinese cigarette brands and products',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chinese Cigarette Museum - 中国烟草博物馆',
+    description: '探索中国烟草品牌和产品的综合数据库 | A comprehensive database of Chinese cigarette brands and products',
+    creator: '@tobaccoatlas',
+  },
+  metadataBase: new URL('https://tobacco-atlas.vercel.app'),
 };
 
 export default function RootLayout({
