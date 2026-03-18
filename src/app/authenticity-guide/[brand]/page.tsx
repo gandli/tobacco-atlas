@@ -17,17 +17,16 @@ function BrandLogo({ logoUrl, brandNameZh, brandNameEn, isZh, size = "md" }: {
   isZh: boolean;
   size?: "sm" | "md" | "lg";
 }) {
-  const [imageError, setImageError] = useState(false);
   const displayName = isZh ? brandNameZh : brandNameEn;
   const firstChar = displayName?.charAt(0) || "?";
   
-  const sizeClasses = {
-    sm: "w-12 h-12 text-lg",
-    md: "w-16 h-16 text-xl",
-    lg: "w-20 h-20 text-2xl",
-  };
-
-  if (!logoUrl || imageError) {
+  // 如果没有 logoUrl，直接显示首字母
+  if (!logoUrl) {
+    const sizeClasses = {
+      sm: "w-12 h-12 text-lg",
+      md: "w-16 h-16 text-xl",
+      lg: "w-20 h-20 text-2xl",
+    };
     return (
       <div className={`${sizeClasses[size]} rounded-lg bg-muted flex items-center justify-center flex-shrink-0`}>
         <span className="font-bold text-muted-foreground">{firstChar}</span>
@@ -36,12 +35,45 @@ function BrandLogo({ logoUrl, brandNameZh, brandNameEn, isZh, size = "md" }: {
   }
 
   return (
+    <BrandLogoImage 
+      src={logoUrl} 
+      alt={displayName}
+      fallback={firstChar}
+      size={size}
+    />
+  );
+}
+
+// 独立的图片组件，处理加载错误
+function BrandLogoImage({ src, alt, fallback, size = "md" }: { 
+  src: string; 
+  alt: string; 
+  fallback: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const [error, setError] = useState(false);
+
+  const sizeClasses = {
+    sm: "w-12 h-12 text-lg",
+    md: "w-16 h-16 text-xl",
+    lg: "w-20 h-20 text-2xl",
+  };
+
+  if (error || !src) {
+    return (
+      <div className={`${sizeClasses[size]} rounded-lg bg-muted flex items-center justify-center flex-shrink-0`}>
+        <span className="font-bold text-muted-foreground">{fallback}</span>
+      </div>
+    );
+  }
+
+  return (
     <div className={`${sizeClasses[size]} rounded-lg bg-muted flex items-center justify-center overflow-hidden flex-shrink-0`}>
       <img
-        src={logoUrl}
-        alt={displayName}
+        src={src}
+        alt={alt}
         className="w-full h-full object-contain p-2"
-        onError={() => setImageError(true)}
+        onError={() => setError(true)}
       />
     </div>
   );

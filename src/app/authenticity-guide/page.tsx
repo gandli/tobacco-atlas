@@ -22,11 +22,11 @@ interface BrandLogoProps {
 }
 
 function BrandLogo({ brand, isZh }: BrandLogoProps) {
-  const [imageError, setImageError] = useState(false);
   const displayName = isZh ? brand.nameZh : brand.nameEn;
   const firstChar = displayName.charAt(0);
 
-  if (!brand.logoUrl || imageError) {
+  // 如果没有 logoUrl，直接显示首字母
+  if (!brand.logoUrl) {
     return (
       <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
         <div className="text-4xl font-bold text-muted-foreground">
@@ -36,13 +36,37 @@ function BrandLogo({ brand, isZh }: BrandLogoProps) {
     );
   }
 
+  // 使用客户端组件处理图片错误，避免 hydration 错误
+  return (
+    <BrandLogoImage 
+      src={brand.logoUrl} 
+      alt={displayName}
+      fallback={firstChar}
+    />
+  );
+}
+
+// 独立的图片组件，处理加载错误
+function BrandLogoImage({ src, alt, fallback }: { src: string; alt: string; fallback: string }) {
+  const [error, setError] = useState(false);
+
+  if (error || !src) {
+    return (
+      <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
+        <div className="text-4xl font-bold text-muted-foreground">
+          {fallback}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
       <img
-        src={brand.logoUrl}
-        alt={displayName}
+        src={src}
+        alt={alt}
         className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
-        onError={() => setImageError(true)}
+        onError={() => setError(true)}
       />
     </div>
   );
