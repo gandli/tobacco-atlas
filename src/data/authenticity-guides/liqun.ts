@@ -9,7 +9,7 @@ export const liqunGuide: AuthenticityGuide = {
   brandPinyin: 'liqun',
   brandNameZh: '利群',
   brandNameEn: 'Liqun',
-  logoUrl: '/api/img/brands/81.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/81.png',
   
   generalTips: [
     { title: '查看防伪标识', description: '利群采用多重防伪技术', icon: '🔍' },

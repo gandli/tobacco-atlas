@@ -8,7 +8,7 @@ export const shuangxiGuide: AuthenticityGuide = {
   brandPinyin: 'shuangxi',
   brandNameZh: '双喜',
   brandNameEn: 'Shuangxi',
-  logoUrl: '/api/img/brands/45.jpg',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/45.jpg',
   generalTips: [
     { title: '防伪', description: '全息防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },

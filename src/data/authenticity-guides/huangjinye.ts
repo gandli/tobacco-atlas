@@ -9,7 +9,7 @@ export const huangjinyeGuide: AuthenticityGuide = {
   brandPinyin: 'huangjinye',
   brandNameZh: '黄金叶',
   brandNameEn: 'Huangjinye',
-  logoUrl: '/api/img/brands/230.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/230.png',
   
   generalTips: [
     { title: '查看防伪标识', description: '黄金叶采用多重防伪', icon: '🔍' },

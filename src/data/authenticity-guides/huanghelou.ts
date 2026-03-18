@@ -9,7 +9,7 @@ export const huanghelouGuide: AuthenticityGuide = {
   brandPinyin: 'huanghelou',
   brandNameZh: '黄鹤楼',
   brandNameEn: 'Huanghelou',
-  logoUrl: '/api/img/brands/184.jpg',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/184.jpg',
   
   generalTips: [
     {

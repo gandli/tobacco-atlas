@@ -8,7 +8,7 @@ export const taishanGuide: AuthenticityGuide = {
   brandPinyin: 'taishan',
   brandNameZh: '泰山',
   brandNameEn: 'Taishan',
-  logoUrl: '/api/img/brands/212.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/212.png',
   generalTips: [
     { title: '查看防伪', description: '泰山采用全息防伪', icon: '🔍' },
     { title: '检查包装', description: '正品精美', icon: '✋' },

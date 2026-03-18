@@ -8,7 +8,7 @@ export const changbaishanGuide: AuthenticityGuide = {
   brandPinyin: 'changbaishan',
   brandNameZh: '长白山',
   brandNameEn: 'Changbaishan',
-  logoUrl: '/api/img/brands/266.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/266.png',
   generalTips: [
     { title: '防伪', description: '全息防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },

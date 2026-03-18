@@ -9,7 +9,7 @@ export const nanjingGuide: AuthenticityGuide = {
   brandPinyin: 'nanjing',
   brandNameZh: '南京',
   brandNameEn: 'Nanjing',
-  logoUrl: '/api/img/brands/124.jpg',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/124.jpg',
   
   generalTips: [
     { title: '查看防伪标识', description: '南京烟采用全息防伪等技术', icon: '🔍' },

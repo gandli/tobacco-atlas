@@ -9,7 +9,7 @@ export const furongwangGuide: AuthenticityGuide = {
   brandPinyin: 'furongwang',
   brandNameZh: '芙蓉王',
   brandNameEn: 'Furong Wang',
-  logoUrl: '/api/img/brands/260.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/260.png',
   
   generalTips: [
     {

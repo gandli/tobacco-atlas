@@ -9,7 +9,7 @@ export const yuxiGuide: AuthenticityGuide = {
   brandPinyin: 'yuxi',
   brandNameZh: '玉溪',
   brandNameEn: 'Yuxi',
-  logoUrl: '/api/img/brands/235.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/235.png',
   
   generalTips: [
     {

@@ -8,7 +8,7 @@ export const guiyanGuide: AuthenticityGuide = {
   brandPinyin: 'guiyan',
   brandNameZh: '贵烟',
   brandNameEn: 'Guiyan',
-  logoUrl: '/api/img/brands/64.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/64.png',
   generalTips: [
     { title: '防伪', description: '多重防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },

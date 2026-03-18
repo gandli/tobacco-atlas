@@ -9,7 +9,7 @@ export const yunyanGuide: AuthenticityGuide = {
   brandPinyin: 'yunyan',
   brandNameZh: '云烟',
   brandNameEn: 'Yunyan',
-  logoUrl: '/api/img/brands/319.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/319.png',
   
   generalTips: [
     {

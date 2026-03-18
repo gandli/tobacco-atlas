@@ -8,7 +8,7 @@ export const hongtashanGuide: AuthenticityGuide = {
   brandPinyin: 'hongtashan',
   brandNameZh: '红塔山',
   brandNameEn: 'Hongtashan',
-  logoUrl: '/api/img/brands/234.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/234.png',
   generalTips: [
     { title: '防伪', description: '全息防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },

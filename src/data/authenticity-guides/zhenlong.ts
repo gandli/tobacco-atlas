@@ -8,7 +8,7 @@ export const zhenlongGuide: AuthenticityGuide = {
   brandPinyin: 'zhenlong',
   brandNameZh: '真龙',
   brandNameEn: 'Zhenlong',
-  logoUrl: '/api/img/brands/53.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/53.png',
   generalTips: [
     { title: '防伪', description: '多重防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },

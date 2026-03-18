@@ -8,7 +8,7 @@ export const baishaGuide: AuthenticityGuide = {
   brandPinyin: 'baisha',
   brandNameZh: '白沙',
   brandNameEn: 'Baisha',
-  logoUrl: '/api/img/brands/15.png',
+  logoUrl: 'https://www.ciggies.app/api/img/brands/15.png',
   generalTips: [
     { title: '防伪', description: '多重防伪', icon: '🔍' },
     { title: '包装', description: '精美', icon: '✋' },
