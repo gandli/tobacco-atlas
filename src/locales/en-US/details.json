@@ -43,6 +43,7 @@
     "nextImage": "Next image",
     "viewImage": "View image {{index}}",
     "box": "Box",
-    "carton": "Carton"
+    "carton": "Carton",
+    "similarProducts": "Similar Products"
   }
 }

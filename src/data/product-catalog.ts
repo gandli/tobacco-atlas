@@ -4,7 +4,7 @@ import { brands, getBrandByPinyin } from "./brand-catalog";
 import { getMakerByIdentifier } from "./maker-catalog";
 
 export interface Product {
-  id: number;
+  sku_id: number;
   brand: string;
   name: string;
   nameEn?: string;
@@ -81,7 +81,7 @@ export const products: Product[] = (rawProducts as RawProduct[]).map((product) =
   }
 
   return {
-    id: product.sku_id,
+    sku_id: product.sku_id,
     brand: product.brand || product.brand_name || "",
     name:
       product.name.replace(/^[^（]*（/, "").replace(/）$/, "") || product.name,
@@ -151,5 +151,5 @@ export function getProductsByBrand(pinyin: string): Product[] {
 }
 
 export function getProductById(id: number): Product | undefined {
-  return products.find((product) => product.id === id);
+  return products.find((product) => product.sku_id === id);
 }

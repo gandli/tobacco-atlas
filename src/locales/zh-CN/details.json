@@ -43,6 +43,7 @@
     "nextImage": "下一张图片",
     "viewImage": "查看图片 {{index}}",
     "box": "盒码",
-    "carton": "条码"
+    "carton": "条码",
+    "similarProducts": "类似产品"
   }
 }

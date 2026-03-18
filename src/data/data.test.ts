@@ -58,7 +58,7 @@ describe("Data Types and Exports", () => {
 
     it("should have valid product id types", () => {
       products.forEach((product) => {
-        expect(typeof product.id).toBe("number");
+        expect(typeof product.sku_id).toBe("number");
       });
     });
 

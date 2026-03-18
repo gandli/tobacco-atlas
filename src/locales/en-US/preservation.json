@@ -1,0 +1,104 @@
+{
+  "title": "Cigar Preservation Guide",
+  "subtitle": "Professional Cigar Storage and Care",
+  "description": "Learn proper cigar preservation methods, maintain optimal humidity and temperature, and age your cigars in perfect condition",
+  "sections": {
+    "core": {
+      "title": "Core Preservation Tips",
+      "humidity": {
+        "title": "Humidity Control",
+        "description": "Maintaining 65-70% relative humidity is crucial for cigar preservation"
+      },
+      "temperature": {
+        "title": "Temperature Control",
+        "description": "Stable temperature environment ensures cigar aging quality"
+      },
+      "light": {
+        "title": "Dark Storage",
+        "description": "UV light damages cigar flavor and color"
+      },
+      "ventilation": {
+        "title": "Ventilation Requirements",
+        "description": "Proper air circulation prevents odors and mold"
+      },
+      "longTerm": {
+        "title": "Long-term Storage",
+        "description": "Aged cigars require more careful management"
+      },
+      "shortTerm": {
+        "title": "Short-term Storage",
+        "description": "Daily enjoyment cigars can have simplified storage"
+      }
+    },
+    "humidity": {
+      "title": "Humidity Zones",
+      "zones": {
+        "tooLow": "Too Low",
+        "low": "Low",
+        "ideal": "Ideal",
+        "high": "High",
+        "tooHigh": "Too High"
+      }
+    },
+    "storage": {
+      "title": "Storage Equipment Guide",
+      "humidor": "Traditional Humidor",
+      "tupperdor": "Tupperdor (Sealed Container + Boveda)",
+      "wineador": "Wineador (Wine Cooler Conversion)",
+      "travel": "Travel Humidor Tube",
+      "pros": "Pros",
+      "cons": "Cons",
+      "recommended": "Recommended"
+    },
+    "tools": {
+      "title": "Interactive Tools",
+      "humidityCalculator": {
+        "title": "Humidity Calculator",
+        "description": "Calculate and monitor your cigar storage conditions",
+        "relativeHumidity": "Relative Humidity",
+        "temperature": "Temperature",
+        "recommendations": "Recommendations",
+        "quickReference": "Quick Reference"
+      }
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting Guide",
+      "symptom": "Symptom",
+      "cause": "Cause",
+      "solutions": "Solutions",
+      "severity": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "issues": {
+        "overHumidified": "Over-humidified Cigars",
+        "underHumidified": "Under-humidified Cigars",
+        "mold": "White Mold Spots",
+        "plume": "White Crystals (Suspected Plume)",
+        "beetles": "Tobacco Beetles",
+        "crackedWrapper": "Cracked Wrapper"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "actions": {
+    "back": "Back to Guide",
+    "useCalculator": "Use Humidity Calculator",
+    "viewTroubleshooting": "View Troubleshooting",
+    "learnMore": "Learn More"
+  },
+  "alerts": {
+    "emergency": {
+      "title": "Emergency",
+      "message": "If you discover severe mold or tobacco beetle infestation, immediately isolate affected cigars and take emergency measures. Don't hesitate to discard severely damaged cigars to protect the rest of your collection."
+    }
+  },
+  "units": {
+    "humidity": "% RH",
+    "temperature": "°C",
+    "temperatureF": "°F"
+  }
+}

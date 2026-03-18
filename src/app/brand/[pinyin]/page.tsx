@@ -47,7 +47,17 @@ function BrandDetailContent({
   }, [brandIdentifier]);
 
   const brandProducts = useMemo(
-    () => getProductsByBrand(brand?.pinyin || ""),
+    () =>
+      getProductsByBrand(brand?.pinyin || "").map((p) => ({
+        id: p.sku_id,
+        brand: p.brand,
+        name: p.name,
+        nameEn: p.nameEn,
+        image: p.image,
+        brandPinyin: p.brandPinyin,
+        region: p.region,
+        price: p.price,
+      })),
     [brand?.pinyin],
   );
 

@@ -1,0 +1,69 @@
+{
+  "forYou": "为你推荐",
+  "similarProducts": "类似产品",
+  "setupTitle": "个性化推荐",
+  "setupDescription": "告诉我们你的偏好，获取更精准的产品推荐",
+  "setupBenefits": "完成偏好设置后，我们将根据你的口味、价格偏好和品牌喜好为你推荐产品",
+  "setupButton": "开始设置",
+  "browseWithoutSetup": "随便看看",
+  "refresh": "换一批",
+  "resetPreferences": "重置偏好",
+  "confirmReset": "确定要重置偏好设置吗？这将清除你之前的所有选择。",
+  "noRecommendations": "暂无推荐，试试调整你的偏好设置",
+  "type": {
+    "preference": "符合偏好",
+    "popular": "热门",
+    "similar": "相似",
+    "new": "新品",
+    "behavior": "基于浏览",
+    "recommended": "推荐"
+  },
+  "quiz": {
+    "intro": {
+      "title": "发现你的完美产品",
+      "description": "回答几个简单问题，我们将为你推荐最符合口味的产品"
+    },
+    "start": "开始设置",
+    "skip": "跳过",
+    "back": "返回",
+    "next": "继续",
+    "complete": "完成",
+    "step": "第 {{current}} 步 / 共 {{total}} 步",
+    "taste": {
+      "title": "你偏好哪种口味？",
+      "description": "选择你平时喜欢的口感强度",
+      "mild": "清淡型",
+      "mildDesc": "焦油量 ≤ 6mg，口感柔和",
+      "medium": "中等型",
+      "mediumDesc": "焦油量 7-9mg，口感平衡",
+      "strong": "浓烈型",
+      "strongDesc": "焦油量 ≥ 10mg，口感浓郁"
+    },
+    "price": {
+      "title": "你的预算范围是？",
+      "description": "选择你通常接受的价格区间",
+      "min": "最低价格",
+      "max": "最高价格",
+      "range": "价格区间：¥{{min}} - ¥{{max}}"
+    },
+    "type": {
+      "title": "你感兴趣的产品类型？",
+      "description": "选择你偏好的产品类别",
+      "any": "全部",
+      "anyDesc": "显示所有类型的产品",
+      "cigarette": "卷烟",
+      "cigaretteDesc": "传统卷烟产品",
+      "cigar": "雪茄",
+      "cigarDesc": "雪茄产品",
+      "vape": "电子烟",
+      "vapeDesc": "电子烟产品"
+    },
+    "brands": {
+      "title": "有偏好的品牌吗？",
+      "description": "选择你喜欢的品牌（可多选）"
+    },
+    "completeTitle": "设置完成！",
+    "completeDescription": "现在你将看到为你量身定制的产品推荐",
+    "viewRecommendations": "查看推荐"
+  }
+}

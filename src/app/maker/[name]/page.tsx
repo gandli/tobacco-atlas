@@ -38,7 +38,18 @@ function ManufacturerDetailContent({ name: explicitName }: ManufacturerDetailCon
       : "");
   const maker = identifier ? getMakerByIdentifier(identifier) : undefined;
   const displayName = maker?.englishName ?? String(identifier ?? "");
-  const products = identifier ? getProductsByMakerIdentifier(identifier) : [];
+  const products = identifier 
+    ? getProductsByMakerIdentifier(identifier).map((p) => ({
+        id: p.sku_id,
+        brand: p.brand,
+        name: p.name,
+        nameEn: p.nameEn,
+        image: p.image,
+        brandPinyin: p.brandPinyin,
+        region: p.region,
+        price: p.price,
+      }))
+    : [];
   const brands = Array.from(new Set(products.map((product) => product.brand))).filter(Boolean);
 
   return (

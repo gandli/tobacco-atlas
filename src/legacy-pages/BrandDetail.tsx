@@ -40,7 +40,20 @@ const BrandDetail = ({ identifier, pinyin: explicitPinyin }: BrandDetailProps) =
     return getBrandByPinyin(brandIdentifier || "");
   }, [brandIdentifier]);
   const brandProducts = useMemo(
-    () => getProductsByBrand(brand?.pinyin || ""),
+    () =>
+      getProductsByBrand(brand?.pinyin || "").map((p) => ({
+        id: p.sku_id,
+        brand: p.brand,
+        name: p.name,
+        nameEn: p.nameEn,
+        region: p.region,
+        format: p.format,
+        tobaccoType: p.tobaccoType,
+        price: p.price,
+        packPrice: p.packPrice,
+        image: p.image,
+        brandPinyin: p.brandPinyin,
+      })),
     [brand?.pinyin],
   );
 

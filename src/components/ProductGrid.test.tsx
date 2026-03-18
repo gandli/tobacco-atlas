@@ -29,7 +29,7 @@ const mockProducts = [
 // Mock ProductCard
 vi.mock("@/components/ProductCard", () => ({
   default: ({ product }: { product: { id: number; name: string } }) => (
-    <div data-testid={`product-card-${product.id}`}>{product.name}</div>
+    <div data-testid={`product-card-${product.sku_id}`}>{product.name}</div>
   ),
 }));
 

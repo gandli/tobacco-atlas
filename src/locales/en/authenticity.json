@@ -1,0 +1,75 @@
+{
+  "title": "Authenticity Verification Guide",
+  "subtitle": "Help you identify genuine and counterfeit tobacco products to protect your rights and health",
+  "selectBrand": "Select a Brand to View Guide",
+  "quickTips": {
+    "checkPackaging": {
+      "title": "Check Packaging",
+      "desc": "Check printing quality, anti-counterfeit labels, pull tabs and other details"
+    },
+    "learnFeatures": {
+      "title": "Learn Brand Features",
+      "desc": "Each brand has unique identification features to help quick recognition"
+    },
+    "watchFakes": {
+      "title": "Watch for Fakes",
+      "desc": "Abnormal prices, irregular channels, rough packaging are typical fake signs"
+    }
+  },
+  "generalTips": {
+    "title": "General Verification Tips",
+    "packaging": {
+      "title": "Packaging Verification",
+      "tips": [
+        "Check if printing is clear and exquisite",
+        "Verify anti-counterfeit labels are authentic",
+        "Check if pull tab is transparent and easy to pull",
+        "Check if steel stamp is clear and consistent",
+        "Feel if packaging material is thick and stiff"
+      ]
+    },
+    "cigarette": {
+      "title": "Cigarette Verification",
+      "tips": [
+        "Measure length and circumference match specs",
+        "Check if tobacco is golden and oily",
+        "Check if filter is full and firmly attached",
+        "Smell if there is unique aroma",
+        "Check if burning is even and ash is gray-white"
+      ]
+    }
+  },
+  "brandGuide": {
+    "quickVerification": "Quick Verification Tips",
+    "packagingVerification": "Packaging Verification",
+    "cigaretteVerification": "Cigarette Verification",
+    "smellVerification": "Smell Verification",
+    "burnVerification": "Burn Verification",
+    "brandSpecific": "Brand-Specific Tips",
+    "commonFakes": "Common Fake Characteristics",
+    "checklist": "Verification Checklist (Printable)",
+    "item": "Item",
+    "genuine": "Genuine",
+    "fake": "Fake",
+    "importance": "Importance",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "genuineSpec": "Genuine Spec",
+    "tolerance": "Tolerance",
+    "method": "Method",
+    "genuineSmell": "Genuine Smell",
+    "fakeSmell": "Fake Smell",
+    "genuineBehavior": "Genuine Behavior",
+    "fakeBehavior": "Fake Behavior",
+    "howToIdentify": "How to identify",
+    "checkItem": "Check Item",
+    "checkMethod": "Check Method",
+    "genuineStandard": "Genuine Standard"
+  },
+  "notFound": {
+    "title": "Guide Not Found",
+    "back": "Back to Guides"
+  },
+  "products": "products"
+}

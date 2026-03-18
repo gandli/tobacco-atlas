@@ -32,7 +32,21 @@ const ManufacturerDetail = ({ name: explicitName }: ManufacturerDetailProps) => 
       : "");
   const maker = identifier ? getMakerByIdentifier(identifier) : undefined;
   const displayName = maker?.englishName ?? String(identifier ?? "");
-  const products = identifier ? getProductsByMakerIdentifier(identifier) : [];
+  const products = identifier 
+    ? getProductsByMakerIdentifier(identifier).map((p) => ({
+        id: p.sku_id,
+        brand: p.brand,
+        name: p.name,
+        nameEn: p.nameEn,
+        region: p.region,
+        format: p.format,
+        tobaccoType: p.tobaccoType,
+        price: p.price,
+        packPrice: p.packPrice,
+        image: p.image,
+        brandPinyin: p.brandPinyin,
+      }))
+    : [];
 
   // 获取该厂家的品牌列表 (去重)
   const brands = Array.from(new Set(products.map((p) => p.brand))).filter(

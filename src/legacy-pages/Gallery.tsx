@@ -132,9 +132,9 @@ const Gallery = () => {
             <div key={ri} className="flex" style={{ gap: GAP }}>
               {row.map((product) => (
                 <div
-                  key={product.id}
+                  key={product.sku_id}
                   data-product
-                  onClick={() => navigate(`/sku/${product.id}`)}
+                  onClick={() => navigate(`/sku/${product.sku_id}`)}
                   className="flex flex-col items-center gap-2 cursor-pointer group hover:opacity-80 transition-opacity"
                   style={{ width: CELL_W, height: CELL_H, padding: 12, flexShrink: 0 }}
                 >

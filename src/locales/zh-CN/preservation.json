@@ -1,0 +1,104 @@
+{
+  "title": "雪茄保存指南",
+  "subtitle": "专业的雪茄存储和保养知识",
+  "description": "学习正确的雪茄保存方法，保持最佳湿度和温度，让您的雪茄在完美状态下陈化",
+  "sections": {
+    "core": {
+      "title": "核心保存贴士",
+      "humidity": {
+        "title": "湿度控制",
+        "description": "保持 65-70% 的相对湿度是雪茄保存的关键"
+      },
+      "temperature": {
+        "title": "温度控制",
+        "description": "稳定的温度环境确保雪茄陈化质量"
+      },
+      "light": {
+        "title": "避光存储",
+        "description": "紫外线会损害雪茄的风味和色泽"
+      },
+      "ventilation": {
+        "title": "通风要求",
+        "description": "适当的空气流通防止异味和霉变"
+      },
+      "longTerm": {
+        "title": "长期保存",
+        "description": "陈年雪茄需要更精细的管理"
+      },
+      "shortTerm": {
+        "title": "短期保存",
+        "description": "日常享用的雪茄可以简化保存"
+      }
+    },
+    "humidity": {
+      "title": "湿度区域说明",
+      "zones": {
+        "tooLow": "过低",
+        "low": "偏低",
+        "ideal": "理想",
+        "high": "偏高",
+        "tooHigh": "过高"
+      }
+    },
+    "storage": {
+      "title": "存储设备指南",
+      "humidor": "传统保湿盒",
+      "tupperdor": "密封盒 + 保湿包",
+      "wineador": "红酒柜改造",
+      "travel": "旅行保湿管",
+      "pros": "优点",
+      "cons": "缺点",
+      "recommended": "推荐"
+    },
+    "tools": {
+      "title": "互动工具",
+      "humidityCalculator": {
+        "title": "湿度计算器",
+        "description": "计算和监控雪茄存储的湿度和温度条件",
+        "relativeHumidity": "相对湿度",
+        "temperature": "温度",
+        "recommendations": "综合建议",
+        "quickReference": "快速参考"
+      }
+    },
+    "troubleshooting": {
+      "title": "问题诊断指南",
+      "symptom": "症状",
+      "cause": "原因",
+      "solutions": "解决方案",
+      "severity": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
+      },
+      "issues": {
+        "overHumidified": "雪茄过湿",
+        "underHumidified": "雪茄过干",
+        "mold": "白色霉斑",
+        "plume": "白色结晶（疑似油霜）",
+        "beetles": "烟草甲虫",
+        "crackedWrapper": "茄衣开裂"
+      }
+    },
+    "faq": {
+      "title": "常见问题 FAQ"
+    }
+  },
+  "actions": {
+    "back": "返回保存指南",
+    "useCalculator": "使用湿度计算器",
+    "viewTroubleshooting": "查看问题诊断",
+    "learnMore": "了解更多"
+  },
+  "alerts": {
+    "emergency": {
+      "title": "紧急情况",
+      "message": "如果发现严重霉变或烟草甲虫侵害，请立即隔离受影响的雪茄，并采取紧急措施。不要犹豫丢弃严重受损的雪茄以保护其他藏品。"
+    }
+  },
+  "units": {
+    "humidity": "% RH",
+    "temperature": "°C",
+    "temperatureF": "°F"
+  }
+}

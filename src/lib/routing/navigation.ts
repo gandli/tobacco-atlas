@@ -8,12 +8,14 @@ export const primaryNavigationItems: NavigationItem[] = [
   { key: "brands", path: "/brands" },
   { key: "manufacturers", path: "/makers" },
   { key: "feed", path: "/feed" },
+  { key: "recommend", path: "/recommend" },
 ];
 
 export const secondaryNavigationItems: NavigationItem[] = [
   { key: "community", path: "/community" },
   { key: "chat", path: "/chat" },
   { key: "changelog", path: "/changelog" },
+  { key: "preservation", path: "/cigar-preservation" },
 ];
 
 export const mobileNavigationItems: NavigationItem[] = [

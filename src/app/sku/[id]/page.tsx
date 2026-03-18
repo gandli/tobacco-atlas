@@ -13,6 +13,8 @@ import { getBrandByPinyin } from "@/data/brand-catalog";
 import { getProductById, type Product } from "@/data/product-catalog";
 import { regionLabels } from "@/data/region-labels";
 import { getLocalizedText, isEnglishLanguage } from "@/lib/i18n-utils";
+import { PreservationTipLink } from "@/components/cigar-preservation/PreservationTipLink";
+import RecommendationEngine from "@/components/RecommendationEngine";
 
 type SkuDetailRouteProps = {
   params: Promise<{
@@ -477,6 +479,19 @@ function SkuDetailContent({ id: explicitId }: SkuDetailContentProps) {
                   </div>
                 </div>
               )}
+
+              {/* 雪茄保存贴士入口 */}
+              <PreservationTipLink />
+
+              {/* 类似产品推荐 */}
+              <div className="pt-6 border-t border-border/50">
+                <RecommendationEngine
+                  productId={product.sku_id}
+                  title={t("sku.similarProducts")}
+                  limit={6}
+                  showQuiz={false}
+                />
+              </div>
             </div>
           </div>
         </CollectionPageFrame>

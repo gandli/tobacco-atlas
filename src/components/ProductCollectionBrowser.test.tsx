@@ -39,7 +39,7 @@ vi.mock("@/components/ProductGrid", async (importOriginal) => {
     default: ({ products }: { products: Array<{ id: number; name: string }> }) => (
       <div data-testid="product-grid">
         {products.map((product) => (
-          <div key={product.id} data-testid={`product-${product.id}`}>
+          <div key={product.sku_id} data-testid={`product-${product.sku_id}`}>
             {product.name}
           </div>
         ))}

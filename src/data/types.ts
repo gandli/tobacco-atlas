@@ -253,3 +253,165 @@ export interface Manufacturer {
    */
   productIds: number[];
 }
+
+// ==================== 推荐系统相关类型 ====================
+
+/**
+ * 用户口味偏好
+ */
+export type TastePreference = "strong" | "mild" | "medium";
+
+/**
+ * 产品类型偏好
+ */
+export type ProductTypePreference = "cigarette" | "cigar" | "vape" | "any";
+
+/**
+ * 价格区间偏好
+ */
+export type PriceRangePreference = {
+  min: number;
+  max: number;
+};
+
+/**
+ * 用户偏好配置
+ */
+export interface UserPreferences {
+  /**
+   * 口味偏好（浓烈/清淡/中等）
+   */
+  taste: TastePreference;
+  /**
+   * 价格区间
+   */
+  priceRange: PriceRangePreference;
+  /**
+   * 产品类型偏好
+   */
+  productType: ProductTypePreference;
+  /**
+   * 偏好的品牌列表
+   */
+  favoriteBrands: string[];
+  /**
+   * 焦油量偏好 (mg)
+   */
+  tarPreference?: {
+    min: number;
+    max: number;
+  };
+  /**
+   * 偏好设置完成时间
+   */
+  completedAt?: string;
+  /**
+   * 偏好设置版本
+   */
+  version?: number;
+}
+
+/**
+ * 浏览历史记录项
+ */
+export interface BrowsingHistoryItem {
+  /**
+   * 产品 ID
+   */
+  productId: number;
+  /**
+   * 浏览时间戳
+   */
+  timestamp: number;
+  /**
+   * 来源页面
+   */
+  referrer?: string;
+}
+
+/**
+ * 用户行为数据
+ */
+export interface UserBehavior {
+  /**
+   * 浏览历史
+   */
+  browsingHistory: BrowsingHistoryItem[];
+  /**
+   * 收藏的产品 ID 列表
+   */
+  favorites: number[];
+  /**
+   * 对比过的产品 ID 列表
+   */
+  compared: number[];
+  /**
+   * 搜索历史记录
+   */
+  searchHistory: string[];
+}
+
+/**
+ * 推荐结果项
+ */
+export interface Recommendation {
+  /**
+   * 产品 ID
+   */
+  productId: number;
+  /**
+   * 推荐分数
+   */
+  score: number;
+  /**
+   * 推荐原因
+   */
+  reasons: string[];
+  /**
+   * 推荐类型
+   */
+  type: "preference" | "similar" | "popular" | "new" | "behavior";
+}
+
+/**
+ * 偏好测试问题
+ */
+export interface PreferenceQuestion {
+  /**
+   * 问题 ID
+   */
+  id: string;
+  /**
+   * 问题文本 (zh-CN)
+   */
+  questionZh: string;
+  /**
+   * 问题文本 (en-US)
+   */
+  questionEn: string;
+  /**
+   * 选项列表
+   */
+  options: {
+    /**
+     * 选项值
+     */
+    value: string;
+    /**
+     * 选项文本 (zh-CN)
+     */
+    labelZh: string;
+    /**
+     * 选项文本 (en-US)
+     */
+    labelEn: string;
+    /**
+     * 选项描述 (zh-CN)
+     */
+    descriptionZh?: string;
+    /**
+     * 选项描述 (en-US)
+     */
+    descriptionEn?: string;
+  }[];
+}

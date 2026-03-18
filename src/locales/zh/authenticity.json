@@ -1,0 +1,75 @@
+{
+  "title": "真伪鉴别指南",
+  "subtitle": "帮助您识别正品和假冒烟草产品，保护您的权益和健康",
+  "selectBrand": "选择品牌查看鉴别指南",
+  "quickTips": {
+    "checkPackaging": {
+      "title": "查看包装",
+      "desc": "检查印刷质量、防伪标识、拉线等细节，正品包装精美清晰"
+    },
+    "learnFeatures": {
+      "title": "了解品牌特征",
+      "desc": "每个品牌都有独特的鉴别要点，了解这些特征有助于快速识别"
+    },
+    "watchFakes": {
+      "title": "警惕假冒特征",
+      "desc": "价格异常、渠道不正规、包装粗糙等都是假冒的典型特征"
+    }
+  },
+  "generalTips": {
+    "title": "通用鉴别技巧",
+    "packaging": {
+      "title": "包装鉴别",
+      "tips": [
+        "检查印刷质量是否清晰精美",
+        "验证防伪标识是否真实有效",
+        "观察拉线是否透明易拉",
+        "检查钢印是否清晰一致",
+        "感受包装材质是否厚实挺括"
+      ]
+    },
+    "cigarette": {
+      "title": "烟支鉴别",
+      "tips": [
+        "测量烟支长度和圆周是否符合规格",
+        "观察烟丝是否金黄油润",
+        "检查滤嘴是否饱满接装牢固",
+        "闻气味是否有独特香气",
+        "观察燃烧是否均匀烟灰灰白"
+      ]
+    }
+  },
+  "brandGuide": {
+    "quickVerification": "快速鉴别要点",
+    "packagingVerification": "包装鉴别",
+    "cigaretteVerification": "烟支鉴别",
+    "smellVerification": "气味鉴别",
+    "burnVerification": "燃烧鉴别",
+    "brandSpecific": "品牌专属鉴别要点",
+    "commonFakes": "常见假冒特征",
+    "checklist": "鉴别清单（可打印）",
+    "item": "鉴别项目",
+    "genuine": "正品特征",
+    "fake": "假冒特征",
+    "importance": "重要度",
+    "high": "高",
+    "medium": "中",
+    "low": "低",
+    "genuineSpec": "正品规格",
+    "tolerance": "允许误差",
+    "method": "检测方法",
+    "genuineSmell": "正品气味",
+    "fakeSmell": "假烟气味",
+    "genuineBehavior": "正品表现",
+    "fakeBehavior": "假烟表现",
+    "howToIdentify": "识别方法",
+    "checkItem": "检查项目",
+    "checkMethod": "检查方法",
+    "genuineStandard": "正品标准"
+  },
+  "notFound": {
+    "title": "指南不存在",
+    "back": "返回鉴别指南"
+  },
+  "products": "款产品"
+}
