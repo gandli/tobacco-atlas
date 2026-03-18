@@ -67,15 +67,25 @@ export default function BrandAuthenticityGuidePage() {
 
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
               {logoUrl ? (
                 <img
                   src={logoUrl}
                   alt={isZh ? guide.brandNameZh : guide.brandNameEn}
                   className="w-full h-full object-contain p-2"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<div class="text-xl font-bold text-muted-foreground">${(isZh ? guide.brandNameZh : guide.brandNameEn).charAt(0)}</div>`;
+                    }
+                  }}
                 />
               ) : (
-                <span className="text-2xl">🚬</span>
+                <span className="text-xl font-bold text-muted-foreground">
+                  {(isZh ? guide.brandNameZh : guide.brandNameEn).charAt(0)}
+                </span>
               )}
             </div>
             <div>

@@ -104,16 +104,24 @@ export default function AuthenticityGuidePage() {
                   href={`/authenticity-guide/${brand.pinyin}`}
                   className="group bg-card rounded-lg p-4 border hover:border-primary/50 hover:shadow-md transition-all"
                 >
-                  <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden">
+                  <div className="aspect-square rounded-lg bg-muted mb-3 overflow-hidden flex items-center justify-center">
                     {brand.logoUrl ? (
                       <img
                         src={brand.logoUrl}
                         alt={isZh ? brand.nameZh : brand.nameEn}
                         className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<div class="text-3xl font-bold text-muted-foreground">${(isZh ? brand.nameZh : brand.nameEn).charAt(0)}</div>`;
+                          }
+                        }}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-2xl">
-                        🚬
+                      <div className="text-3xl font-bold text-muted-foreground">
+                        {(isZh ? brand.nameZh : brand.nameEn).charAt(0)}
                       </div>
                     )}
                   </div>
