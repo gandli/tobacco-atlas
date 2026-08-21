@@ -23,13 +23,22 @@ Tobacco Atlas is an informational website inspired by [ciggies.app](https://www.
 - 🚬 Cigar preservation tips
 - 🌐 Bilingual support (Chinese/English)
 
+## Screenshots
+
+| 首页 | 品牌列表 |
+| ---- | -------- |
+| ![首页](images/首页.png) | ![品牌列表](images/品牌列表.png) |
+
+| 画廊 | 产品详情 |
+| ---- | -------- |
+| ![画廊](images/画廊.png) | ![产品详情](images/产品详情.png) |
+
 ## Tech Stack
 
 - Frontend: React / Next.js
 - Styling: Tailwind CSS
 - Data: Static JSON / Markdown content
 - AI Services: Machine Learning recommendation engine
-- Deployment: Vercel / GitHub Pages
 
 ## Getting Started
 
@@ -47,11 +56,8 @@ npm run dev
 ## Documentation
 
 - [Product Requirements Document (PRD)](./docs/PRD.md)
+- [Development Plan](./docs/Development_Plan.md)
 
 ## License
 
 MIT License
-
----
-
-🦞 _Idea captured by Lobster, the AI assistant_
